@@ -1,6 +1,6 @@
 body {
-    background: whitesmoke;
-    font-family: "Product Sans";
+    background: white;
+    font-family: 'Trebuchet MS', sans-serif;
 }
 
 .intro {
@@ -13,17 +13,15 @@ body {
 .profile {
     width: 200px;
     height: 200px;
+    border-radius: 50%;
+    object-fit: cover;
 }
 
-.introText h2 {
-    font-size: 32px;
-}
-
-.highlight {
-    color: #3b82f6;
+.introText h1 {
+    font-size: 40px;
 }
 
 .introText p {
-    font-size: 10px;
+    font-size: 20px;
 }
 
