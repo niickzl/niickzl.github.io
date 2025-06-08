@@ -8,10 +8,7 @@ body {
 .intro {
     display: flex;
     flex-direction: row;
-    align-items: center;
-    text-align: left;
-    justify-content: center;
-    gap: 40;
+    gap: 40px;
     margin-top: 160px;
     padding: 0 20px;
 }
@@ -25,9 +22,11 @@ body {
 
 .introText h1 {
     font-size: 40px;
+    text-align: left;
 }
 
 .introText p {
     font-size: 20px;
+    text-align: left;
 }
 
