@@ -1,13 +1,19 @@
 body {
     background: white;
     font-family: 'Trebuchet MS', sans-serif;
+    width:1200px;
+    height:700px;
 }
 
 .intro {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     align-items: center;
-    text-align: center;
+    text-align: left;
+    justify-content: center;
+    gap: 40;
+    margin-top: 160px;
+    padding: 0 20px;
 }
 
 .profile {
