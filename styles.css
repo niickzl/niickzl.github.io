@@ -13,8 +13,7 @@ body {
     justify-content: center;
     align-items: center;
     gap: 40px;
-    margin-top: 160px;
-    padding: 0 20px;
+    margin: 160px;
 }
 
 .profile {
