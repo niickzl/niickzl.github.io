@@ -5,6 +5,7 @@ body {
     justify-content: center;
     align-items: center;
     background-color: white;
+    overflow: hidden;
 }
 
 .navbar {
@@ -49,7 +50,6 @@ body {
     justify-content: center;
     align-items: center;
     gap: 40px;
-    margin-top: 80px;
 }
 
 .profile {
