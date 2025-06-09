@@ -1,17 +1,55 @@
 body {
     width:100%;
     height:100%;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
     background: white;
     font-family: 'Trebuchet MS', sans-serif;
 }
 
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.name h1 {
+    font-size: 24px;
+}
+
+.menu {
+    display: flex;
+    gap: 20px;
+}
+
+.menu a {
+    font-size: 15px;
+}
+
+.menu a.activeA, .menu a:hover {
+    color:blue;
+}
+
+.menu a.activeB, .menu a:hover {
+    color:blue;
+}
+
+.menu a.activeC, .menu a:hover {
+    color:blue;
+}
+
+.menu a.activeD, .menu a:hover {
+    color:blue;
+}
+
+.location p{
+    font-size: 24;
+}
+
 .intro {
     display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
     gap: 40px;
-    margin-top: 160px;
 }
 
 .profile {
