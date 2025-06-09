@@ -1,21 +1,27 @@
-body {
+html, body {
     width:100%;
     height:100%;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
+    display: flex;
+    flex-direction: column;
     background: white;
     font-family: 'Trebuchet MS', sans-serif;
+    overflow: hidden;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
 }
 
 .navbar {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    padding: 20px;
 }
 
 .name h1 {
-    font-size: 24px;
+    font-size: 40px;
 }
 
 .menu {
@@ -24,31 +30,22 @@ body {
 }
 
 .menu a {
-    font-size: 15px;
+    font-size: 20px;
 }
 
-.menu a.activeA, .menu a:hover {
-    color:blue;
-}
-
-.menu a.activeB, .menu a:hover {
-    color:blue;
-}
-
-.menu a.activeC, .menu a:hover {
-    color:blue;
-}
-
-.menu a.activeD, .menu a:hover {
+.menu a.activeA, a.activeB, a.activeC, a.activeD, .menu a:hover {
     color:blue;
 }
 
 .location p{
-    font-size: 24;
+    font-size: 40px;
 }
 
 .intro {
     display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
     gap: 40px;
 }
 
