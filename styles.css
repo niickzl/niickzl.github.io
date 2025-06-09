@@ -17,11 +17,11 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 20px;
+    padding: 0 40px;
 }
 
 .name h1 {
-    font-size: 40px;
+    font-size: 30px;
 }
 
 .menu {
@@ -38,7 +38,7 @@ body {
 }
 
 .location p{
-    font-size: 40px;
+    font-size: 30px;
 }
 
 .intro {
