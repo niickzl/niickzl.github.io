@@ -4,6 +4,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Nick's Website</title>
     <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 </head>
 <body>
     <header class = "navbar">
@@ -11,10 +12,10 @@
             <h1><strong>  Nick Ze Kun<br>  Lei</strong></h1>
         </div>
         <nav class = "menu">
-            <a href ="#" class = "activeA">Home</a>
-            <a href ="#" class = "activeB">Personal Activities</a>
-            <a href ="#" class = "activeC">Interests</a>
-            <a href ="#" class = "activeD">More About Me</a>
+            <a href = "#Home" class = "activeHome">Home</a>
+            <a href = "#Personal_Activities" class = "activePerson">Personal Activities</a>
+            <a href = "#Interests" class = "activeInterest">Interests</a>
+            <a href = "#More_About_Me" class = "activeMore">More About Me</a>
         </nav>
         <div class = "location">
             <p><strong>Canada, BC  </strong></p>
@@ -22,14 +23,29 @@
     </header>
 
     <main class = "intro">
-        <img class = "profile" src= "images/profile.png" />
+        <img class = "profile" src = "images/profile.png" />
 
         <div class = "introText">
-            <h1>Hello! I'm <span style="color: blue;">Nick</span></h1>
+            <h1>Hello! I'm <span style = "color: blue;">Nick</span></h1>
             <p><strong>A Computer Science Student @ Simon Fraser University</strong></p>
             <p><strong>Welcome to my page!</strong></p>
             <p><strong>Learn about me from the menu above.</strong></p>
         </div>
     </main>
+    
+    <div class = "contacts">
+        <h1>Contacts:</h1>
+        <div class = "contactExternals">
+            <a href = "tell:12368627277" class = "cell">
+                <img class = "iconLinkedin" src = "images/phone.png"/>
+            </a>
+            <a href = "mailto:20051024nick@gmail.com" class = "email">
+                <img class = "iconGmail" src = "images/gmail.png"/>
+            </a>
+            <a href = "https://www.linkedin.com/in/nickl24/" class = "linkedin" target = "_blank">
+                <img class = "iconLinkedin" src = "images/linkedin.png"/>
+            </a>
+        </div>
+    </div>
 </body>
 </html>
