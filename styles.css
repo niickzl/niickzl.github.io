@@ -100,7 +100,7 @@ body {
     flex-direction: row;
     justify-content: center;
     align-items: center;
-    gap: 80px;
+    gap: 100px;
 }
 
 .profile {
@@ -131,11 +131,6 @@ body {
     justify-content: center;
     align-items: center;
     padding-bottom: 60px;
-}
-
-.contacts h1{
-    font-size: 30px;
-    text-align: center;
 }
 
 .contactExternals {
