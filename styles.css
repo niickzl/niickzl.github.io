@@ -123,14 +123,6 @@ body {
 
 /* Contact Bar */
 
-.contacts {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    padding-bottom: 60px;
-}
-
 .contactExternals {
     display: flex;
     flex-direction: row;
