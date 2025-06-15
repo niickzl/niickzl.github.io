@@ -139,7 +139,7 @@ body {
 }
 
 .contactExternals {
-    width: 80%;
+    width: 40%;
     height: 60px;
     display: flex;
     flex-direction: row;
@@ -149,7 +149,8 @@ body {
 
 .iconPhone,
 .iconEmail,
-.iconLinkedin {
+.iconLinkedin,
+.iconGithub {
     width: 80px;
     height: 80px;
     border-radius: 50%;
