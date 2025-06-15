@@ -90,3 +90,110 @@ body {
 .location p{
     font-size: 30px;
 }
+
+/* Main Body */
+
+.intro {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 200px;
+    padding: 60px;
+}
+
+.introPhoto {
+    width: 220px;
+    height: 220px;
+    border-radius: 50%; 
+    object-fit: cover; 
+}
+
+.introText h1 {
+    font-size: 50px;
+}
+.introText p {
+    font-size: 30px;
+    text-indent: 50px;
+}
+
+.background {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 200px;
+}
+
+.backgroundText h1 {
+    font-size: 50px;
+}
+.backgroundText p {
+    font-size: 30px;
+    text-indent: 50px;
+}
+
+.backgroundPhoto {
+    width: 220px;
+    height: 350px;
+    border-radius: 10%; 
+    object-fit: cover; 
+}
+
+.future {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 200px;
+    padding: 60px;
+}
+
+.futurePhoto {
+    width: 500px;
+    height: 300px;
+    border-radius: 10%; 
+    object-fit: cover; 
+}
+
+.futureText h1 {
+    font-size: 50px;
+}
+.futureText p {
+    font-size: 30px;
+    text-indent: 50px;
+}
+
+/* Footer */
+
+.preFooter {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.preFooter h1{
+    font-size: 25px;
+}
+
+.contactExternals {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 80px;
+}
+
+.iconPhone,
+.iconEmail,
+.iconLinkedin,
+.iconGithub,
+.iconYoutube,
+.iconChess,
+.iconResume {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;  
+}
