@@ -147,23 +147,10 @@ body {
     align-items: center;
 }
 
-.contactExternals a.cell,
-.contactExternals a.email,
-.contactExternals a.linkedin {
-    color:black;
-}
-.contactExternals a:hover {
-    color:blue;
-}
-
-.iconGmail {
-    width: 80px;
-    height: 80px;
-    border-radius: 50%;  
-}
-
+.iconPhone,
+.iconEmail,
 .iconLinkedin {
     width: 80px;
     height: 80px;
-    border-radius: 50%;
+    border-radius: 50%;  
 }
