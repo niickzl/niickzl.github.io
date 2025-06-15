@@ -88,7 +88,7 @@ body {
     border-radius: 30px;
 }
 
-.location p{
+.location h1{
     font-size: 30px;
 }
 
@@ -100,7 +100,7 @@ body {
     flex-direction: row;
     justify-content: center;
     align-items: center;
-    gap: 80px;
+    gap: 100px;
 }
 
 .profile {
@@ -133,11 +133,6 @@ body {
     padding-bottom: 60px;
 }
 
-.contacts h1{
-    font-size: 30px;
-    text-align: center;
-}
-
 .contactExternals {
     width: 40%;
     height: 60px;
@@ -153,6 +148,5 @@ body {
 .iconGithub {
     width: 80px;
     height: 80px;
-    border-radius: 50%;
-    object-fit: cover;
+    border-radius: 50%;  
 }
