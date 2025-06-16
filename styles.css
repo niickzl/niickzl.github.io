@@ -108,6 +108,15 @@ body {
     height: 300px;
     border-radius: 50%;
     object-fit: cover;
+    cursor: zoom-in;
+}
+
+.profile.zoomed{
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(2.5);
+    cursor: zoom-out;
 }
 
 .introText h1 {

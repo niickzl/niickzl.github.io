@@ -141,15 +141,16 @@ body {
     border-radius: 50%;
 }
 
-.discordBotTest{
+.discordBotTest {
     width: 200px;
     height: 300px;
     padding: 10px;
     border-radius: 10%;
+    object-fit: cover;
     cursor: zoom-in;
 }
 
-.discordBotTest.zoomed{
+.discordBotTest.zoomed {
     position: fixed;
     top: 50%;
     left: 50%;
@@ -199,15 +200,16 @@ body {
     border-radius: 50%;
 }
 
-.userApp{
-    width: 500px;
+.userApp {
+    width: 600px;
     height: 300px;
     padding: 10px;
     border-radius: 10%;
+    object-fit: cover;
     cursor: zoom-in;
 }
 
-.userApp.zoomed{
+.userApp.zoomed {
     position: fixed;
     top: 50%;
     left: 50%;

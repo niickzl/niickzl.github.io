@@ -110,5 +110,51 @@
             </a>
         </div>
     </footer>
+
+    <script>
+        const images1 = document.querySelectorAll('.introPhoto');
+
+        images1.forEach(img => {
+            img.addEventListener('click', () => {
+            img.classList.toggle('zoomed');
+            });
+        });
+
+        document.addEventListener('click', (e) => {
+            if (!e.target.classList.contains('introPhoto')) {
+            images1.forEach(img => img.classList.remove('zoomed'));
+            }
+        });
+    </script>
+    <script>
+        const images2 = document.querySelectorAll('.backgroundPhoto');
+
+        images2.forEach(img => {
+            img.addEventListener('click', () => {
+            img.classList.toggle('zoomed');
+            });
+        });
+
+        document.addEventListener('click', (e) => {
+            if (!e.target.classList.contains('backgroundPhoto')) {
+            images2.forEach(img => img.classList.remove('zoomed'));
+            }
+        });
+    </script>
+    <script>
+        const images3 = document.querySelectorAll('.futurePhoto');
+
+        images3.forEach(img => {
+            img.addEventListener('click', () => {
+            img.classList.toggle('zoomed');
+            });
+        });
+
+        document.addEventListener('click', (e) => {
+            if (!e.target.classList.contains('futurePhoto')) {
+            images3.forEach(img => img.classList.remove('zoomed'));
+            }
+        });
+    </script>
 </body>
 </html>
