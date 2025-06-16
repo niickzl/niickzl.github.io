@@ -90,3 +90,105 @@ body {
 .location h1{
     font-size: 30px;
 }
+
+/* Main Body */
+.content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.headerContent {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 120px;
+}
+
+.headerContent h1 {
+    font-size: 40px;
+}
+
+.headerContent h2 {
+    font-size: 22px;
+}
+
+.iconChessChess {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+}
+
+.heroContent {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 120px;
+    padding-bottom: 40px;
+}
+
+.heroContent h2 {
+    font-size: 22px;
+}
+
+.leftHero h2,
+.rightHero h2,
+.leftHero img,
+.rightHero img {
+    margin: 0;
+}
+
+.leftHero,
+.rightHero {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 40px;
+}
+
+.leftHeroOne,
+.leftHeroTwo,
+.rightHeroOne,
+.rightHeroTwo {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.leftHero img,
+.rightHero img,
+.heroContent img {
+    margin-top: 0.1em;
+}
+
+.chessLeftOne,
+.chessLeftTwo,
+.chessRightOne,
+.chessRightTwo {
+    height: 400px;
+    width: 400px;
+    border-radius: 5%;
+    cursor: zoom-in;
+}
+
+.chessLeftOne.zoomed,
+.chessLeftTwo.zoomed,
+.chessRightOne.zoomed,
+.chessRightTwo.zoomed {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(2);
+    cursor: zoom-out;
+}
+
+.magIcon {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+}
