@@ -105,7 +105,16 @@ body {
     width: 220px;
     height: 220px;
     border-radius: 50%; 
-    object-fit: cover; 
+    object-fit: cover;
+    cursor: zoom-in;
+}
+
+.introPhoto.zoomed {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(2.5);
+    cursor: zoom-out;
 }
 
 .introText h1 {
@@ -136,7 +145,16 @@ body {
     width: 220px;
     height: 350px;
     border-radius: 10%; 
-    object-fit: cover; 
+    object-fit: cover;
+    cursor: zoom-in;
+}
+
+.backgroundPhoto.zoomed {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(2.5);
+    cursor: zoom-out;
 }
 
 .future {
@@ -152,7 +170,16 @@ body {
     width: 500px;
     height: 300px;
     border-radius: 10%; 
-    object-fit: cover; 
+    object-fit: cover;
+    cursor: zoom-in;
+}
+
+.futurePhoto.zoomed {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(2.5);
+    cursor: zoom-out;
 }
 
 .futureText h1 {
@@ -174,7 +201,7 @@ body {
     padding: 20px;
 }
 
-.preFooter h1{
+.preFooter h1 {
     font-size: 25px;
 }
 

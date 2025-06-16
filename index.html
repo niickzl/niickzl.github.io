@@ -67,5 +67,21 @@
             <img class = "iconGithub" src = "images/iconGithubImage.png" alt = "GitHub icon linking to Nick's profile"/>
         </a>
     </footer>
+
+    <script>
+        const images1 = document.querySelectorAll('.profile');
+
+        images1.forEach(img => {
+            img.addEventListener('click', () => {
+            img.classList.toggle('zoomed');
+            });
+        });
+
+        document.addEventListener('click', (e) => {
+            if (!e.target.classList.contains('profile')) {
+            images1.forEach(img => img.classList.remove('zoomed'));
+            }
+        });
+    </script>
 </body>
 </html>
