@@ -41,5 +41,128 @@
             <h1>Canada, BC</h1>
         </div>
     </header>
+
+    <main class = "content">
+        <div class = "headerContent">
+            <div class = "introChess">
+                <h1><span style = "color: blue">Chess</span></h1>
+                <h2>I was introduced to Chess in high school and I've 
+                <br>been hooked ever since.</h2>
+
+                <ul><h2>This page will display games I've played:
+                <li><span style = "color: blue">Title format:</span> (My Rating) vs (Opponent Rating) [(Mode)] (Game Review)</li>
+                    <li>My side the always the bottom of the board</li>
+                </h2></ul>
+            </div>
+            <a href = "https://www.chess.com/member/hiiamnick" class = "chessAccount" target = "_blank">
+                <img class = "iconChessChess" src = "images/iconChessImage.png" alt = "Chess icon linking to chess profile"/>
+            </a>
+        </div>
+        <div  class = "heroContent">
+            <div class = "leftHero">
+                <div class = leftHeroOne>
+                    <h2>
+                        (1620) vs (1593) [Rapid Game]
+                        <a href = "https://www.chess.com/analysis/game/live/123368152778?tab=review" class = "chessLeftGameOne" target = "_blank">
+                            <img class = "magIcon" src = "images/iconMagGlass.png" alt = "A magnifying glass to a game review for a chess game"/>
+                        </a>
+                    </h2>
+                    <img class = "chessLeftOne" src = "gifs/chessLeftOne.gif" alt = "A GIF of a chess game"/>
+                </div>
+
+                <div class = leftHeroTwo>
+                    <h2>
+                        (1631) vs (1624) [Rapid Game]
+                        <a href = "https://www.chess.com/analysis/game/live/123558032818?tab=review" class = "chessLeftGameTwo" target = "_blank">
+                            <img class = "magIcon" src = "images/iconMagGlass.png" alt = "A magnifying glass to a game review for a chess game"/>
+                        </a>
+                    </h2>
+                    <img class = "chessLeftTwo" src = "gifs/chessLeftTwo.gif" alt = "A GIF of a chess game"/>
+                </div>
+            </div>
+            <div class = "rightHero">
+                <div class = "rightHeroOne">
+                    <h2>
+                        (1574) vs (1643) [Rapid Game]
+                        <a href = "https://www.chess.com/analysis/game/live/126155373007?tab=review" class = "chessRightGameOne" target = "_blank">
+                            <img class = "magIcon" src = "images/iconMagGlass.png" alt = "A magnifying glass to a game review for a chess game"/>
+                        </a>
+                    </h2>
+                    <img class = "chessRightOne" src = "gifs/chessRightOne.gif" alt = "A GIF of a chess game"/>
+                </div>
+                
+                <div class = "rightHeroTwo">
+                    <h2>
+                        (1542) vs (1542) [Rapid Game]
+                        <a href = "https://www.chess.com/analysis/game/live/125663367031?tab=review" class = "chessRightGameTwo" target = "_blank">
+                            <img class = "magIcon" src = "images/iconMagGlass.png" alt = "A magnifying glass to a game review for a chess game"/>
+                        </a>
+                    </h2>
+                    <img class = "chessRightTwo" src = "gifs/chessRightTwo.gif" alt = "A GIF of a chess game"/>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        const images1 = document.querySelectorAll('.chessLeftOne');
+
+        images1.forEach(img => {
+            img.addEventListener('click', () => {
+            img.classList.toggle('zoomed');
+            });
+        });
+
+        document.addEventListener('click', (e) => {
+            if (!e.target.classList.contains('chessLeftOne')) {
+            images1.forEach(img => img.classList.remove('zoomed'));
+            }
+        });
+    </script>
+    <script>
+        const images2 = document.querySelectorAll('.chessLeftTwo');
+
+        images2.forEach(img => {
+            img.addEventListener('click', () => {
+            img.classList.toggle('zoomed');
+            });
+        });
+
+        document.addEventListener('click', (e) => {
+            if (!e.target.classList.contains('chessLeftTwo')) {
+            images2.forEach(img => img.classList.remove('zoomed'));
+            }
+        });
+    </script>
+    <script>
+        const images3 = document.querySelectorAll('.chessRightOne');
+
+        images3.forEach(img => {
+            img.addEventListener('click', () => {
+            img.classList.toggle('zoomed');
+            });
+        });
+
+        document.addEventListener('click', (e) => {
+            if (!e.target.classList.contains('chessRightOne')) {
+            images3.forEach(img => img.classList.remove('zoomed'));
+            }
+        });
+    </script>
+    <script>
+        const images4 = document.querySelectorAll('.chessRightTwo');
+
+        images4.forEach(img => {
+            img.addEventListener('click', () => {
+            img.classList.toggle('zoomed');
+            });
+        });
+
+        document.addEventListener('click', (e) => {
+            if (!e.target.classList.contains('chessRightTwo')) {
+            images4.forEach(img => img.classList.remove('zoomed'));
+            }
+        });
+    </script>
 </body>
 </html>
