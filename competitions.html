@@ -41,5 +41,118 @@
             <h1>Canada, BC</h1>
         </div>
     </header>
+
+    <main class = "content">
+        <div class = "pivot">
+            <div class = "leftPivot">
+            <h1>SAP Concur Case Competition
+            <br><span style = "color: blue">@Pivot, CaseIT</span>
+            </h1>
+            <h2>Date: Feb 2025</h2>
+
+            <ul><strong><span style = "color: blue">Context:</span></strong>
+            <li><span style = "color: blue">SAP Concur</span> is a software company providing travel and
+            <br>expense management services to businesses.</li>
+            <li>My team and I are tasked to create a <span style = "color: blue">strategic plan</span> to 
+            <br>optimize SAP's core features and growth.</li>
+            </ul>
+
+            <ul><strong><span style = "color: blue">Our Plan:</span></strong>
+            <li>Redesign the NewGen UI with additional features:
+                <ul>
+                    <li>Online Banking Connection</li>
+                    <li>AI Voice Detection</li>
+                </ul>
+            </li>
+            <li>Establish secure data privacy:
+                <ul>
+                    <li>Physical servers located in client headquarters</li>
+                    <li>Reduce lags and gliches by controlling a smaller <br>sample</li>
+                </ul>
+            </li>
+            <li>Offer tailored support for NA clients travlling to Asia:</li>
+                <ul>
+                    <li>Optimize Payment Integrations</li>
+                    <li>Optimize Travel Integrations</li>
+                </ul>
+            </ul>
+            </div>
+            <div class = "rightPivot">
+                <a href = "files/pivot.pdf" class = "pivotPDF" target = "_blank">
+                    <img class = "iconPDFPivot" src = "images/iconPDFImage.png" alt = "PDF icon linking to Pivot PDF"/>
+                </a>
+
+                <img class = "pivotImage" src = "images/pivotImage.png" alt = "Group image for the Pivot Competition"/>
+            </div>
+        </div>
+        <div class = "enactus">
+            <div class = "leftEnactus">
+                <a href = "files/enactus.pdf" class = "enactusPDF" target = "_blank">
+                    <img class = "iconPDFEnactus" src = "images/iconPDFImage.png" alt = "PDF icon linking to Enactus PDF"/>
+                </a>
+
+                <img class = "enactusImage" src = "images/enactusImage.jpg" alt = "Group image for the Enactus Competition"/>
+            </div>
+            <div class = "rightEnactus">
+                <h1>Forward Vision Pitch
+                <br>Competition <span style = "color: blue">@Enactus</span>
+                </h1>
+                <h2>Date: Feb 2025</h2>
+
+                <ul><strong><span style = "color: blue">Context:</span></strong>
+                <li>Forward Vision is an ongoing mission aiming to 
+                <br>innovate and build towards <span style = "color: blue"> The 17 Goals of The United Nations</span>.</li>
+                <li>My team and I are tasked to create a <span style = "color: blue">unique product</span> 
+                <br>that pursues one of the 17 goals.</li>
+                </ul>
+
+                <ul><strong><span style = "color: blue">Our Product:</span></strong>
+                <li><span style = "color: blue">Let's Go Doggo!</span>: A multi-purpose app to:</li>
+                    <ul>
+                        <li>Raise awarenes of local dog shelters</li>
+                        <li>Provide useful tools for existing dog owners</li>
+                        <li>Connect people to their dogs</li>
+                    </ul>
+                <li>Aims at the three goals of:</li>
+                    <ul>
+                        <li><span style = "color: blue">Goal 3</span>: Good Health and Well-being</li>
+                        <li><span style = "color: blue">Goal 11</span>: Sustainable cities and Communities</li>
+                        <li><span style = "color: blue">Goal 16</span>: Peace and Justice</li>
+                    </ul>
+                </ul>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        const images1 = document.querySelectorAll('.pivotImage');
+
+        images1.forEach(img => {
+            img.addEventListener('click', () => {
+            img.classList.toggle('zoomed');
+            });
+        });
+
+        document.addEventListener('click', (e) => {
+            if (!e.target.classList.contains('pivotImage')) {
+            images1.forEach(img => img.classList.remove('zoomed'));
+            }
+        });
+    </script>
+    <script>
+        const images2 = document.querySelectorAll('.enactusImage');
+
+        images2.forEach(img => {
+            img.addEventListener('click', () => {
+            img.classList.toggle('zoomed');
+            });
+        });
+
+        document.addEventListener('click', (e) => {
+            if (!e.target.classList.contains('enactusImage')) {
+            images2.forEach(img => img.classList.remove('zoomed'));
+            }
+        });
+    </script>
 </body>
 </html>
