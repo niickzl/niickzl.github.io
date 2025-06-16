@@ -90,3 +90,127 @@ body {
 .location h1{
     font-size: 30px;
 }
+
+/* Main Body */
+
+.content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.discordMusicBot {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 80px;
+}
+
+.leftDiscordMusicBot {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.leftDiscordMusicBot h1 {
+    font-size: 40px;
+    margin-bottom: 0.1em;
+}
+
+.leftDiscordMusicBot h2 {
+    font-size: 22px;
+    margin-top: 0.1em;
+}
+
+.leftDiscordMusicBot ul {
+    font-size: 22px;
+}
+
+.rightDiscordMusicBot {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.iconGithubRepoDiscord {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+}
+
+.discordBotTest{
+    width: 200px;
+    height: 300px;
+    padding: 10px;
+    border-radius: 10%;
+    cursor: zoom-in;
+}
+
+.discordBotTest.zoomed{
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(2.5);
+    cursor: zoom-out;
+}
+
+
+.userInfoApp {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 80px;
+}
+
+.leftInfoApp {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.rightInfoApp {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.rightInfoApp h1 {
+    font-size: 40px;
+    margin-bottom: 0.1em;
+}
+
+.rightInfoApp h2 {
+    font-size: 22px;
+    margin-top: 0.1em;
+}
+
+.rightInfoApp ul {
+    font-size: 22px;
+}
+
+.iconGithubRepoApp {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+}
+
+.userApp{
+    width: 500px;
+    height: 300px;
+    padding: 10px;
+    border-radius: 10%;
+    cursor: zoom-in;
+}
+
+.userApp.zoomed{
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(2.5);
+    cursor: zoom-out;
+}

@@ -41,5 +41,97 @@
             <h1>Canada, BC</h1>
         </div>
     </header>
+
+    <main class = "content">
+        <div class = discordMusicBot>
+            <div class = "leftDiscordMusicBot">
+                <h1><span style = "color: blue">Python</span> YouTube Audio Discord Bot</h1>
+                <h2>Date: Feb 2025</h2>
+
+                <ul><strong><span style = "color: blue">Background:</span></strong>
+                <li>YouTube rate limited Discord bots from streaming audio,
+                <br>causing many popular music bots to <span style = "color: red">shut down</span>.</li>
+                <li>As a fun challenge, I attempted to create a private music bot.</li>
+                </ul>
+
+                <ul><strong><span style = "color: blue">Features:</span></strong>
+                <li>Responds to "@zlbot" or "!!!" commands</li>
+                <li>Simple Commands include: <span style = "color: blue">join</span>, 
+                                             <span style = "color: blue">leave</span>, 
+                                             <span style = "color: blue">play</span>, 
+                                             <span style = "color: blue">skip</span>, and 
+                                             <span style = "color: blue">help</span></li>
+                <li>Streams YouTube audio when given a YouTube link</li>
+                <li>Implements a song queue system for continuous playback</li>
+                </ul>
+            </div>
+            <div class = "rightDiscordMusicBot">
+                <a href = "https://github.com/niickzl/YT-DISC-BOT" class = "githubRepoDiscord" target = "_blank">
+                    <img class = "iconGithubRepoDiscord" src = "images/iconGithubImage.png" alt = "GitHub icon linking to repository"/>
+                </a>
+
+                <img class = "discordBotTest" src = "images/discordBotTestImage.png" alt = "Image to illustrate the Discord bot in action"/>
+            </div>
+        </div>
+
+        <div class = userInfoApp>
+            <div class = "leftInfoApp">
+                <a href = "https://github.com/niickzl/USER-INFO-PROGRAM" class = "githubRepoApp" target = "_blank">
+                    <img class = "iconGithubRepoApp" src = "images/iconGithubImage.png" alt = "GitHub icon linking to repository"/>
+                </a>
+
+                <img class = "userApp" src = "images/userAppImage.png" alt = "Image to illustrate the user info app in action"/>
+            </div>
+            <div class = "rightInfoApp">
+                <h1><span style = "color: blue">Python</span> User Information 
+                <br>Storage Program</h1>
+                <h2>Date: May - June 2024</h2>
+
+                <ul><strong><span style = "color: blue">Background:</span></strong>
+                <li>With a family business that uses a customer information 
+                <br>storage software, I wanted to make one myself.</li>
+                </ul>
+
+                <ul><strong><span style = "color: blue">Features:</span></strong>
+                <li>Tkinter-based GUI with the primary features of <span style = "color: blue">storing</span>, 
+                <br>                                               <span style = "color: blue">retrieving</span>, 
+                                                                   <span style = "color: blue">searching</span>, 
+                                                                   <span style = "color: blue">editing</span> user information</li>
+                <li>The data are organized by date in structured files for access</li>
+                </ul>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        const images1 = document.querySelectorAll('.discordBotTest');
+
+        images1.forEach(img => {
+            img.addEventListener('click', () => {
+            img.classList.toggle('zoomed');
+            });
+        });
+
+        document.addEventListener('click', (e) => {
+            if (!e.target.classList.contains('discordBotTest')) {
+            images1.forEach(img => img.classList.remove('zoomed'));
+            }
+        });
+    </script>
+    <script>
+        const images2 = document.querySelectorAll('.userApp');
+
+        images2.forEach(img => {
+            img.addEventListener('click', () => {
+            img.classList.toggle('zoomed');
+            });
+        });
+
+        document.addEventListener('click', (e) => {
+            if (!e.target.classList.contains('userApp')) {
+            images2.forEach(img => img.classList.remove('zoomed'));
+            }
+        });
+    </script>
 </body>
 </html>
