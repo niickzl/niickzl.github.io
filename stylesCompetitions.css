@@ -90,3 +90,129 @@ body {
 .location h1{
     font-size: 30px;
 }
+
+/* Main Body */
+
+.content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.pivot {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 80px;
+}
+
+.leftPivot {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.leftPivot h1 {
+    font-size: 40px;
+    margin-bottom: 0.1em;
+}
+
+.leftPivot h2 {
+    font-size: 22px;
+    margin-top: 0.1em;
+}
+
+.leftPivot ul {
+    font-size: 22px;
+}
+
+.rightPivot {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.iconPDFPivot {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+}
+
+.pivotImage {
+    width: 500px;
+    height: 300px;
+    padding: 10px;
+    border-radius: 10%;
+    object-fit: cover;
+    cursor: zoom-in;
+}
+
+.pivotImage.zoomed{
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(2.5);
+    cursor: zoom-out;
+}
+
+
+.enactus {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 80px;
+}
+
+.leftEnactus {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.rightEnactus {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.rightEnactus h1 {
+    font-size: 40px;
+    margin-bottom: 0.1em;
+}
+
+.rightEnactus h2 {
+    font-size: 22px;
+    margin-top: 0.1em;
+}
+
+.rightEnactus ul {
+    font-size: 22px;
+}
+
+.iconPDFEnactus {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+}
+
+.enactusImage{
+    width: 500px;
+    height: 300px;
+    padding: 10px;
+    border-radius: 10%;
+    object-fit: cover;
+    cursor: zoom-in;
+}
+
+.enactusImage.zoomed{
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(2.5);
+    cursor: zoom-out;
+}
