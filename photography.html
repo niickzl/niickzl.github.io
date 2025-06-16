@@ -41,5 +41,107 @@
             <h1>Canada, BC</h1>
         </div>
     </header>
+
+    <main class = "content">
+        <div class = "headerContent">
+            <div class = "introPhotography">
+                <h1><span style = "color: blue">Photography</span></h1>
+                <h2>When I was 10, my dad found interest in photography and bought 
+                <br>a <span style = "color: blue">Canon EOS 550D</span>. Every now and then, he'd let me take photos, 
+                <br>planting in me a love for scenery.</h2>
+
+                <h2>A few of my favourite photos will be displayed below:</h2>
+                <p>All photos taken with my cell phone</p>
+            </div>
+            <a href = "https://drive.google.com/drive/folders/11A1i5bbHlNRmZ2ht9XCsdGO404n6DOIG?usp=drive_link" class = "photographyGoogleDrive" target = "_blank">
+                <img class = "iconGoogleDrivePhotography" src = "images/iconGoogleDrive.png" alt = "Google Drive icon linking to photography portfilio"/>
+            </a>
+        </div>
+        <div  class = "heroContent">
+            <div class = "leftHero">
+                <div class = leftHeroOne>
+                    <h2>@Burnaby, Canada</h2>
+                    <img class = "sunsetPhoto" src = "images/sunset.jpg" alt = "Sunset photo taken by Nick"/>
+                </div>
+
+                <div class = leftHeroTwo>
+                    <h2>@Yongshun Country, China</h2>
+                    <img class = "yongshunPhoto" src = "images/yongshun.jpg" alt = "A photo taken by Nick in Yongshun Country"/>
+                </div>
+            </div>
+            <div class = "rightHero">
+                <div class = "rightHeroOne">
+                    <h2>@Zhangjiajie, China</h2>
+                    <img class = "zhangjiajiePhoto" src = "images/zhangjiajie.jpg" alt = "A photo taken by Nick in Zhangjiajie"/>
+                </div>
+                
+                <div class = "rightHeroTwo">
+                    <h2>@Toronto, Canada</h2>
+                    <img class = "torontoPhoto" src = "images/toronto.jpg" alt = "A photo taken by Nick in toronto"/>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        const images1 = document.querySelectorAll('.sunsetPhoto');
+
+        images1.forEach(img => {
+            img.addEventListener('click', () => {
+            img.classList.toggle('zoomed');
+            });
+        });
+
+        document.addEventListener('click', (e) => {
+            if (!e.target.classList.contains('sunsetPhoto')) {
+            images1.forEach(img => img.classList.remove('zoomed'));
+            }
+        });
+    </script>
+    <script>
+        const images2 = document.querySelectorAll('.yongshunPhoto');
+
+        images2.forEach(img => {
+            img.addEventListener('click', () => {
+            img.classList.toggle('zoomed');
+            });
+        });
+
+        document.addEventListener('click', (e) => {
+            if (!e.target.classList.contains('yongshunPhoto')) {
+            images2.forEach(img => img.classList.remove('zoomed'));
+            }
+        });
+    </script>
+    <script>
+        const images3 = document.querySelectorAll('.zhangjiajiePhoto');
+
+        images3.forEach(img => {
+            img.addEventListener('click', () => {
+            img.classList.toggle('zoomed');
+            });
+        });
+
+        document.addEventListener('click', (e) => {
+            if (!e.target.classList.contains('zhangjiajiePhoto')) {
+            images3.forEach(img => img.classList.remove('zoomed'));
+            }
+        });
+    </script>
+    <script>
+        const images4 = document.querySelectorAll('.torontoPhoto');
+
+        images4.forEach(img => {
+            img.addEventListener('click', () => {
+            img.classList.toggle('zoomed');
+            });
+        });
+
+        document.addEventListener('click', (e) => {
+            if (!e.target.classList.contains('torontoPhoto')) {
+            images4.forEach(img => img.classList.remove('zoomed'));
+            }
+        });
+    </script>
 </body>
 </html>
