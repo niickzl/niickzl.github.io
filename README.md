@@ -1,4 +1,12 @@
 # niickzl.github.io
+Nick's LICENSE choice explaination:
+I chose the MIT License as it is said to be the "leanest license".
+Moreover, my website was no private technology/patent, meaning I had no need of preventing people from using it.
+
+I learned about the MIT and other licenses from [GitHub Gist](https://gist.github.com/nicolasdao/a7adda51f2f185e8d2700e1573d8a633#1-mit)
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------
+
 Nick's Personal Website Wireframes:
 
 Homepage Wireframe:
