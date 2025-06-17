@@ -98,7 +98,7 @@ body {
     flex-direction: row;
     justify-content: center;
     align-items: center;
-    gap: 200px;
+    gap: 100px;
 }
 
 .introPhoto {
@@ -130,7 +130,7 @@ body {
     flex-direction: row;
     justify-content: center;
     align-items: center;
-    gap: 200px;
+    gap: 100px;
 }
 
 .backgroundText h1 {
@@ -144,7 +144,7 @@ body {
 .backgroundPhoto {
     width: 220px;
     height: 350px;
-    border-radius: 10%; 
+    border-radius: 5%; 
     object-fit: cover;
     cursor: zoom-in;
 }
@@ -162,14 +162,15 @@ body {
     flex-direction: row;
     justify-content: center;
     align-items: center;
-    gap: 200px;
-    padding: 60px;
+    gap: 100px;
+    padding-top: 20px;
+    padding-bottom: 60px;
 }
 
 .futurePhoto {
     width: 500px;
     height: 300px;
-    border-radius: 10%; 
+    border-radius: 5%; 
     object-fit: cover;
     cursor: zoom-in;
 }
@@ -198,7 +199,6 @@ body {
     justify-content: center;
     align-items: center;
     text-align: center;
-    padding: 20px;
 }
 
 .preFooter h1 {

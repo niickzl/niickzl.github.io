@@ -104,7 +104,7 @@ body {
     flex-direction: row;
     justify-content: center;
     align-items: center;
-    gap: 120px;
+    gap: 100px;
 }
 
 .headerContent h1 {
@@ -126,7 +126,7 @@ body {
     flex-direction: row;
     justify-content: center;
     align-items: center;
-    gap: 120px;
+    gap: 100px;
     padding-bottom: 40px;
 }
 

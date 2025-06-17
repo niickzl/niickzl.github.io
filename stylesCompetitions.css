@@ -105,7 +105,7 @@ body {
     flex-direction: row;
     justify-content: center;
     align-items: center;
-    gap: 80px;
+    gap: 100px;
 }
 
 .leftPivot {
@@ -145,7 +145,7 @@ body {
     width: 500px;
     height: 300px;
     padding: 10px;
-    border-radius: 10%;
+    border-radius: 5%;
     object-fit: cover;
     cursor: zoom-in;
 }
@@ -164,7 +164,8 @@ body {
     flex-direction: row;
     justify-content: center;
     align-items: center;
-    gap: 80px;
+    gap: 100px;
+    padding-bottom: 20px;
 }
 
 .leftEnactus {
@@ -204,7 +205,7 @@ body {
     width: 500px;
     height: 300px;
     padding: 10px;
-    border-radius: 10%;
+    border-radius: 5%;
     object-fit: cover;
     cursor: zoom-in;
 }
