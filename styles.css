@@ -41,7 +41,7 @@ body {
 
 .dropdownPerson,
 .dropdownInterest {
-    position: relavtive;
+    position: relative;
     display: inline-block;
 }
 
