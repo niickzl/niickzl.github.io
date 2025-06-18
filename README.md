@@ -10,6 +10,8 @@ I learned about the MIT and other licenses from [GitHub Gist](https://gist.githu
 Nick's Personal Website Wireframes:
 
 Homepage Wireframe:
+![Home Page](wireframe/HomePage.png)
+
 Header:
     Left: Name
     Middle: Nav links (Home | Personal Activities -> (Projects | Competitions) | Interests -> (Photography | Chess) | More About Me)
@@ -25,6 +27,13 @@ Footer:
 -----------------------------------------------------------------------------------------------------------------------------------------------------
 
 Personal Activities & Interests Wireframe:
+
+Personal Activities:
+![P/A Page](wireframe/PersonalActivities.png)
+
+Interests:
+![Interests Page](wireframe/Interest.png)
+
 Header:
     Left: Name
     Middle: Nav links (Home | Personal Activities -> (Projects | Competitions) | Interests -> (Photography | Chess) | More About Me)
@@ -38,6 +47,8 @@ Hero Section:
 -----------------------------------------------------------------------------------------------------------------------------------------------------
 
 More About Me Wireframe:
+![More About Me Page](wireframe/MoreAboutMe.png)
+
 Header: 
     Left: Name
     Middle: Nav links (Home | Personal Activities -> (Projects | Competitions) | Interests -> (Photography | Chess) | More About Me)
