@@ -1,4 +1,10 @@
 # niickzl.github.io
+Nick's Website Overview:
+This is a personal website covering some information about myself including topics like personal activities, interests of my own. 
+Some features I've implemeted are click-able icons, zoom-in-able images, and a drop-down bar.
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------
+
 Nick's LICENSE choice explaination:
 I chose the MIT License as it is said to be the "leanest license".
 Moreover, my website was no private technology/patent, meaning I had no need of preventing people from using it.
