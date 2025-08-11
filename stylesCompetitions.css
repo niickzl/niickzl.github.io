@@ -139,6 +139,11 @@ body {
     width: 100px;
     height: 100px;
     border-radius: 50%;
+    transition: transform 0.3s ease;
+}
+
+.iconPDFPivot:hover {
+    transform: scale(1.1);
 }
 
 .pivotImage {
@@ -199,6 +204,11 @@ body {
     width: 100px;
     height: 100px;
     border-radius: 50%;
+    transition: transform 0.3s ease;
+}
+
+.iconPDFEnactus:hover {
+    transform: scale(1.1);
 }
 
 .enactusImage{

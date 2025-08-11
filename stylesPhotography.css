@@ -126,6 +126,11 @@ body {
     width: 100px;
     height: 100px;
     border-radius: 50%;
+    transition: transform 0.3s ease;
+}
+
+.iconGoogleDrivePhotography:hover {
+    transform: scale(1.1);
 }
 
 .heroContent {

@@ -139,6 +139,11 @@ body {
     width: 100px;
     height: 100px;
     border-radius: 50%;
+    transition: transform 0.3s ease;
+}
+
+.iconGithubRepoDiscord:hover {
+    transform: scale(1.1);
 }
 
 .discordBotTest {
@@ -200,6 +205,11 @@ body {
     width: 100px;
     height: 100px;
     border-radius: 50%;
+    transition: transform 0.3s ease;
+}
+
+.iconGithubRepoApp:hover {
+    transform: scale(1.1);
 }
 
 .userApp {
