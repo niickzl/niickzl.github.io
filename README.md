@@ -26,8 +26,8 @@ niickzl.github.io/
 ├── LoLDraftAppWeb/          # React development folder
 │   ├── src/                 # React source code
 │   ├── package.json         # Dependencies
-│   └── dist/                # Built files (copied to PersonalProjects)
-└── PersonalProjects/        # LoL Drafter App (deployed)
+│   └── dist/                # Built files
+└── PersonalProjects/        # LoL Drafter App
     ├── index.html           # Built React app
     └── assets/              # Built assets
 ```
@@ -40,7 +40,7 @@ niickzl.github.io/
 - **Purpose**: Hub page to navigate between different projects
 
 ### Personal Website
-- **URL**: `https://niickzl.github.io/PersonalWeb/`
+- **URL**: `https://niickzl.github.io/PersonalWeb/home.html`
 - **Source**: PersonalWeb directory
 - **Purpose**: Personal portfolio and information
 
@@ -49,31 +49,7 @@ niickzl.github.io/
 - **Source**: PersonalProjects directory (built from LoLDraftAppWeb)
 - **Purpose**: League of Legends champion drafting tool built with React
 
-## How to Add New Projects
-
-1. Create a new folder in the root directory (e.g., `NewProject/`)
-2. Add an `index.html` file in the new folder
-3. Update the main `index.html` hub page to include a link to your new project
-4. The new project will be accessible at `https://niickzl.github.io/NewProject/`
-
-## Alternative: Separate Repositories
-
-For completely independent projects, you can:
-
-1. Create a new repository (e.g., `my-new-project`)
-2. Copy the project files to the new repository
-3. Enable GitHub Pages in the repository settings
-4. The project will be accessible at `https://yourusername.github.io/my-new-project`
-
-## File Structure Notes
-
-- All hrefs in HTML files use relative paths
-- Images and assets are organized in subdirectories
-- CSS files are kept separate for each page for better organization
-- The main hub page provides easy navigation between projects
-
 ## Contact
 
 - **Email**: 20051024nick@gmail.com
 - **LinkedIn**: [Nick Lei](https://www.linkedin.com/in/nickl24/)
-- **GitHub**: [niickzl](https://github.com/niickzl)
