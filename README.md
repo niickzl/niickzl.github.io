@@ -1,71 +1,79 @@
-# niickzl.github.io
-Nick's Website Overview:
-This is a personal website covering some information about myself including topics like personal activities, interests of my own. 
-Some features I've implemeted are click-able icons, zoom-in-able images, and a drop-down bar.
+# Nick's Website Hub
 
------------------------------------------------------------------------------------------------------------------------------------------------------
+This repository contains multiple websites that can be deployed on GitHub Pages.
 
-Nick's LICENSE choice explaination:
-I chose the MIT License as it is said to be the "leanest license".
-Moreover, my website was no private technology/patent, meaning I had no need of preventing people from using it.
+## Structure
 
-I learned about the MIT and other licenses from [GitHub Gist](https://gist.github.com/nicolasdao/a7adda51f2f185e8d2700e1573d8a633#1-mit)
+```
+niickzl.github.io/
+├── index.html                 # Main hub page
+├── PersonalWeb/              # Personal website
+│   ├── home.html             # Personal website home page
+│   ├── aboutMe.html          # About me page
+│   ├── projects.html         # Projects page
+│   ├── competitions.html     # Competitions page
+│   ├── photography.html      # Photography page
+│   ├── chess.html           # Chess page
+│   ├── stylesHome.css       # Main stylesheet
+│   ├── stylesAboutMe.css    # About me styles
+│   ├── stylesProjects.css   # Projects styles
+│   ├── stylesCompetitions.css # Competitions styles
+│   ├── stylesPhotography.css # Photography styles
+│   ├── stylesChess.css      # Chess styles
+│   ├── images/              # Image assets
+│   ├── gifs/                # GIF assets
+│   └── files/               # PDF files
+├── LoLDraftAppWeb/          # React development folder
+│   ├── src/                 # React source code
+│   ├── package.json         # Dependencies
+│   └── dist/                # Built files (copied to PersonalProjects)
+└── PersonalProjects/        # LoL Drafter App (deployed)
+    ├── index.html           # Built React app
+    └── assets/              # Built assets
+```
 
------------------------------------------------------------------------------------------------------------------------------------------------------
+## Deployment
 
-Nick's Personal Website Wireframes:
+### Main Hub (Current Repository)
+- **URL**: `https://niickzl.github.io`
+- **Source**: Root directory
+- **Purpose**: Hub page to navigate between different projects
 
-Homepage Wireframe:
-![Home Page](wireframe/HomePage.png)
+### Personal Website
+- **URL**: `https://niickzl.github.io/PersonalWeb/`
+- **Source**: PersonalWeb directory
+- **Purpose**: Personal portfolio and information
 
-Header:
-    Left: Name
-    Middle: Nav links (Home | Personal Activities -> (Projects | Competitions) | Interests -> (Photography | Chess) | More About Me)
-    Right: Location
+### LoL Drafter App
+- **URL**: `https://niickzl.github.io/PersonalProjects/`
+- **Source**: PersonalProjects directory (built from LoLDraftAppWeb)
+- **Purpose**: League of Legends champion drafting tool built with React
 
-Hero Section:
-    Large profile image
-    Introduction & Welcome visitors & Reminder of feature
+## How to Add New Projects
 
-Footer:
-    Phone | Email | LinkedIn | GitHub
+1. Create a new folder in the root directory (e.g., `NewProject/`)
+2. Add an `index.html` file in the new folder
+3. Update the main `index.html` hub page to include a link to your new project
+4. The new project will be accessible at `https://niickzl.github.io/NewProject/`
 
------------------------------------------------------------------------------------------------------------------------------------------------------
+## Alternative: Separate Repositories
 
-Personal Activities & Interests Wireframe:
+For completely independent projects, you can:
 
-Personal Activities:
-![P/A Page](wireframe/PersonalActivities.png)
+1. Create a new repository (e.g., `my-new-project`)
+2. Copy the project files to the new repository
+3. Enable GitHub Pages in the repository settings
+4. The project will be accessible at `https://yourusername.github.io/my-new-project`
 
-Interests:
-![Interests Page](wireframe/Interest.png)
+## File Structure Notes
 
-Header:
-    Left: Name
-    Middle: Nav links (Home | Personal Activities -> (Projects | Competitions) | Interests -> (Photography | Chess) | More About Me)
-    Right: Location
+- All hrefs in HTML files use relative paths
+- Images and assets are organized in subdirectories
+- CSS files are kept separate for each page for better organization
+- The main hub page provides easy navigation between projects
 
-Hero Section:
-    Large text on title of topic & Medium text on context
-    Click-able icon linking to additional information
-    Zoom-able image to illustrate topic
+## Contact
 
------------------------------------------------------------------------------------------------------------------------------------------------------
-
-More About Me Wireframe:
-![More About Me Page](wireframe/MoreAboutMe.png)
-
-Header: 
-    Left: Name
-    Middle: Nav links (Home | Personal Activities -> (Projects | Competitions) | Interests -> (Photography | Chess) | More About Me)
-    Right: Location
-
-Hero Section:
-    Split into 4 rows:
-        Row 1: Profile image and description about me
-        Row 3: (Past) My background
-        Row 4: (Future) My desire for the future
-
-Footer:
-    Thank Visitor
-    Additional Links (Phone | Email | Linkedin | GitHub | YouTube | Chess | Resume)
+- **Email**: 20051024nick@gmail.com
+- **LinkedIn**: [Nick Lei](https://www.linkedin.com/in/nickl24/)
+- **GitHub**: [niickzl](https://github.com/niickzl)
