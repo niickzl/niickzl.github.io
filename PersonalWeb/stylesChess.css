@@ -36,9 +36,15 @@ body.light-theme {
     --img-border: #000000;
 }
 
+/* Prevent horizontal overflow on all pages */
+html, body {
+    max-width: 100%;
+    overflow-x: hidden;
+}
+
 body {
     height: 100vh;
-    width: 100vw;
+    width: 100%;
     margin: 0;
     padding: 0;
     display: flex;
