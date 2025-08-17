@@ -63,6 +63,14 @@ body {
     font-size: 30px;
 }
 
+/* Make left header cluster flex so HUB button sits left of the name */
+.name {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 12px;
+}
+
 /* Make header name link theme-aware and unstyled, with subtle hover */
 .name h1 a {
     color: var(--text);
@@ -327,6 +335,47 @@ html.dark-theme .iconTheme,
 body.dark-theme .iconTheme {
     filter: invert(1) brightness(1.2) drop-shadow(0 0 2px rgba(0,0,0,0.2));
 }
+
+/* Header right cluster (location + toggle) */
+.headerRight {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+/* Theme toggle button */
+.theme-toggle {
+    padding: 8px 14px;
+    font-size: 14px;
+    border-radius: 20px;
+    background: transparent;
+    color: var(--text);
+    cursor: pointer;
+    transition: transform 0.2s ease, background-color 0.2s ease;
+    border: 1px solid var(--border);
+    outline: none;
+    box-shadow: none;
+}
+
+.theme-toggle:hover { transform: scale(1.1); }
+.theme-toggle:focus, .theme-toggle:active { outline: none; box-shadow: none; }
+.theme-toggle img.iconTheme { width: 22px; height: 22px; display: block; }
+
+/* HUB button: same style as theme toggle */
+.hub-button {
+    padding: 8px 14px;
+    font-size: 16px;
+    border-radius: 20px;
+    background: transparent;
+    color: var(--text);
+    cursor: pointer;
+    transition: transform 0.2s ease, background-color 0.2s ease, color 0.2s ease;
+    border: 1px solid var(--border);
+    text-decoration: none;
+    display: inline-block;
+}
+
+.hub-button:hover { transform: scale(1.1); }
 
 /* Header right cluster (location + toggle) */
 .headerRight {
