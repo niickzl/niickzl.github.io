@@ -5,7 +5,7 @@
     --text: #000000;
     --link: #000000;
     --border: #000000;
-    --img-border: #000000; /* light theme image border */
+    --img-border: #000000;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -14,26 +14,24 @@
         --text: #e6e6e6;
         --link: #e6e6e6;
         --border: #3a3f4b;
-        --img-border: #ffffff; /* dark pref image border */
+        --img-border: #ffffff;
     }
 }
 
-/* Explicit dark theme (applied when toggled) */
 body.dark-theme {
     --bg: #0f1115;
     --text: #e6e6e6;
     --link: #e6e6e6;
     --border: #3a3f4b;
-    --img-border: #ffffff; /* contrast border in dark mode */
+    --img-border: #ffffff;
 }
 
-/* Explicit light theme (applied when toggled) */
 body.light-theme {
     --bg: #ffffff;
     --text: #000000;
     --link: #000000;
     --border: #000000;
-    --img-border: #000000; /* contrast border in light mode */
+    --img-border: #000000;
 }
 
 body {

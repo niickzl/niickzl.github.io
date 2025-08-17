@@ -18,7 +18,6 @@
     }
 }
 
-/* Explicit dark theme (applied when toggled) */
 body.dark-theme {
     --bg: #0f1115;
     --text: #e6e6e6;
@@ -27,7 +26,6 @@ body.dark-theme {
     --img-border: #ffffff;
 }
 
-/* Explicit light theme (applied when toggled) */
 body.light-theme {
     --bg: #ffffff;
     --text: #000000;
