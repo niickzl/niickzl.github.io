@@ -63,6 +63,22 @@ body {
     font-size: 30px;
 }
 
+/* Make header name link theme-aware and unstyled, with subtle hover */
+.name h1 a {
+    color: var(--text);
+    text-decoration: none;
+    display: inline-block;
+    transition: transform 0.2s ease, color 0.2s ease;
+}
+
+.name h1 a:visited {
+    color: var(--text);
+}
+
+.name h1 a:hover {
+    transform: scale(1.1);
+}
+
 .menu {
     display: flex;
     gap: 40px;
