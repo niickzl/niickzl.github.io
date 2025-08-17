@@ -13,7 +13,7 @@ export default function SiteHeader() {
       }}
     >
       <a
-        href="./index.html"
+        href="../index.html"
         style={{
           display: "flex",
           alignItems: "center",
