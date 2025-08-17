@@ -18,6 +18,7 @@
     }
 }
 
+html.dark-theme,
 body.dark-theme {
     --bg: #0f1115;
     --text: #e6e6e6;
@@ -26,6 +27,7 @@ body.dark-theme {
     --img-border: #ffffff;
 }
 
+html.light-theme,
 body.light-theme {
     --bg: #ffffff;
     --text: #000000;
@@ -290,8 +292,12 @@ img:not(.iconPDFPivot):not(.iconPDFEnactus):not(.iconTheme) {
     cursor: pointer;
     transition: transform 0.2s ease, background-color 0.2s ease;
     border: 1px solid var(--border);
-    outline: none;
-    box-shadow: none;
+}
+
+/* Dark mode: lighten inline blue text only */
+html.dark-theme [style*="color: blue"],
+body.dark-theme [style*="color: blue"] {
+    color: #8ab4f8 !important;
 }
 
 .theme-toggle:hover { transform: scale(1.1); }
@@ -299,6 +305,9 @@ img:not(.iconPDFPivot):not(.iconPDFEnactus):not(.iconTheme) {
 .theme-toggle img.iconTheme { width: 22px; height: 22px; display: block; }
 
 /* Invert icons in dark mode */
+html.dark-theme .iconPDFPivot,
+html.dark-theme .iconPDFEnactus,
+html.dark-theme .iconTheme,
 body.dark-theme .iconPDFPivot,
 body.dark-theme .iconPDFEnactus,
 body.dark-theme .iconTheme {

@@ -18,6 +18,7 @@
     }
 }
 
+html.dark-theme,
 body.dark-theme {
     --bg: #0f1115;
     --text: #e6e6e6;
@@ -26,6 +27,7 @@ body.dark-theme {
     --img-border: #ffffff;
 }
 
+html.light-theme,
 body.light-theme {
     --bg: #ffffff;
     --text: #000000;
@@ -244,10 +246,21 @@ img:not(.iconPhone):not(.iconEmail):not(.iconLinkedin):not(.iconGithub):not(.ico
     transform: scale(1.1);
 }
 
+html.dark-theme .iconPhone,
+html.dark-theme .iconEmail,
+html.dark-theme .iconLinkedin,
+html.dark-theme .iconGithub,
+html.dark-theme .iconTheme,
 body.dark-theme .iconPhone,
 body.dark-theme .iconEmail,
 body.dark-theme .iconLinkedin,
 body.dark-theme .iconGithub,
 body.dark-theme .iconTheme {
     filter: invert(1) brightness(1.2) drop-shadow(0 0 2px rgba(0,0,0,0.2));
+}
+
+/* Lighten inline blue text in dark mode only (e.g., <span style="color: blue;">) */
+html.dark-theme [style*="color: blue"],
+body.dark-theme [style*="color: blue"] {
+    color: #8ab4f8 !important;
 }

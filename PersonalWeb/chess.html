@@ -3,6 +3,18 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Chess | Nick's Website</title>
+    <script>
+        // Early theme: apply saved preference to <html> before CSS loads to avoid flash
+        (function () {
+            try {
+                const key = 'theme';
+                const saved = localStorage.getItem(key);
+                const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+                const initial = (saved === 'dark' || saved === 'light') ? saved : (prefersDark ? 'dark' : 'light');
+                document.documentElement.classList.add(initial === 'dark' ? 'dark-theme' : 'light-theme');
+            } catch (e) { /* no-op */ }
+        })();
+    </script>
     <link rel="stylesheet" href="stylesChess.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -130,17 +142,21 @@
             const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
             const saved = localStorage.getItem(storageKey);
             const body = document.body;
+            const html = document.documentElement;
             const toggle = document.getElementById('themeToggle');
 
             function apply(theme) {
                 body.classList.remove('dark-theme', 'light-theme');
+                html.classList.remove('dark-theme', 'light-theme');
                 if (theme === 'dark') {
                     body.classList.add('dark-theme');
+                    html.classList.add('dark-theme');
                 } else {
                     body.classList.add('light-theme');
+                    html.classList.add('light-theme');
                 }
                 if (toggle) {
-                    const label = body.classList.contains('dark-theme') ? 'Switch to light mode' : 'Switch to dark mode';
+                    const label = html.classList.contains('dark-theme') ? 'Switch to light mode' : 'Switch to dark mode';
                     toggle.setAttribute('aria-label', label);
                     toggle.setAttribute('title', label);
                 }
@@ -152,7 +168,7 @@
 
             if (toggle) {
                 toggle.addEventListener('click', () => {
-                    const next = body.classList.contains('dark-theme') ? 'light' : 'dark';
+                    const next = html.classList.contains('dark-theme') ? 'light' : 'dark';
                     apply(next);
                     localStorage.setItem(storageKey, next);
                 });
