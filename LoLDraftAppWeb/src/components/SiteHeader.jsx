@@ -13,7 +13,7 @@ export default function SiteHeader() {
       }}
     >
       <a
-        href="../index.html"
+        href="/LoLDraftAppWeb/"
         style={{
           display: "flex",
           alignItems: "center",
