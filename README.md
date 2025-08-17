@@ -8,7 +8,7 @@ This repository contains multiple websites that can be deployed on GitHub Pages.
 niickzl.github.io/
 ├── index.html                 # Main hub page
 ├── PersonalWeb/              # Personal website
-│   ├── home.html             # Personal website home page
+│   ├── index.html             # Personal website home page
 │   ├── aboutMe.html          # About me page
 │   ├── projects.html         # Projects page
 │   ├── competitions.html     # Competitions page
@@ -40,7 +40,7 @@ niickzl.github.io/
 - **Purpose**: Hub page to navigate between different projects
 
 ### Personal Website
-- **URL**: `https://niickzl.github.io/PersonalWeb/home.html`
+- **URL**: `https://niickzl.github.io/PersonalWeb/`
 - **Source**: PersonalWeb directory
 - **Purpose**: Personal portfolio and information
 

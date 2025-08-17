@@ -37,8 +37,13 @@
             <a href = "aboutMe.html" class = "activeMore">More About Me</a>
         </nav>
 
-        <div class = "location">
-            <h1>Canada, BC</h1>
+        <div class = "headerRight">
+            <div class = "location">
+                <h1>Canada, BC</h1>
+            </div>
+            <button id="themeToggle" class="theme-toggle" aria-label="Toggle color theme" title="Toggle theme">
+                <img id="iconTheme" class="iconTheme" src="images/iconLightMode.png" alt="Theme icon" />
+            </button>
         </div>
     </header>
 
@@ -97,6 +102,42 @@
             images1.forEach(img => img.classList.remove('zoomed'));
             }
         });
+    </script>
+    <script>
+        // Theme toggle with persistence (dark <-> light)
+        (function () {
+            const storageKey = 'theme';
+            const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+            const saved = localStorage.getItem(storageKey);
+            const body = document.body;
+            const toggle = document.getElementById('themeToggle');
+
+            function apply(theme) {
+                body.classList.remove('dark-theme', 'light-theme');
+                if (theme === 'dark') {
+                    body.classList.add('dark-theme');
+                } else {
+                    body.classList.add('light-theme');
+                }
+                if (toggle) {
+                    const label = body.classList.contains('dark-theme') ? 'Switch to light mode' : 'Switch to dark mode';
+                    toggle.setAttribute('aria-label', label);
+                    toggle.setAttribute('title', label);
+                }
+            }
+
+            const initial = (saved === 'dark' || saved === 'light') ? saved : (prefersDark ? 'dark' : 'light');
+            apply(initial);
+            if (saved !== initial) localStorage.setItem(storageKey, initial);
+
+            if (toggle) {
+                toggle.addEventListener('click', () => {
+                    const next = body.classList.contains('dark-theme') ? 'light' : 'dark';
+                    apply(next);
+                    localStorage.setItem(storageKey, next);
+                });
+            }
+        })();
     </script>
     <script>
         const images2 = document.querySelectorAll('.yongshunPhoto');

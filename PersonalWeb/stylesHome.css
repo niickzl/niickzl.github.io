@@ -1,3 +1,41 @@
+/* AI note: standardized order + theme-aware image backgrounds */
+/* Theme variables */
+:root {
+    --bg: #ffffff;
+    --text: #000000;
+    --link: #000000;
+    --border: #000000;
+    --img-border: #000000; /* light theme image border */
+}
+
+@media (prefers-color-scheme: dark) {
+    :root {
+        --bg: #0f1115;
+        --text: #e6e6e6;
+        --link: #e6e6e6;
+        --border: #3a3f4b;
+        --img-border: #ffffff; /* dark pref image border */
+    }
+}
+
+/* Explicit dark theme (applied when toggled) */
+body.dark-theme {
+    --bg: #0f1115;
+    --text: #e6e6e6;
+    --link: #e6e6e6;
+    --border: #3a3f4b;
+    --img-border: #ffffff; /* contrast border in dark mode */
+}
+
+/* Explicit light theme (applied when toggled) */
+body.light-theme {
+    --bg: #ffffff;
+    --text: #000000;
+    --link: #000000;
+    --border: #000000;
+    --img-border: #000000; /* contrast border in light mode */
+}
+
 body {
     height: 100vh;
     width: 100vw;
@@ -5,7 +43,8 @@ body {
     padding: 0;
     display: flex;
     flex-direction: column;
-    background-color: white;
+    background-color: var(--bg);
+    color: var(--text);
     overflow: hidden;
     font-family: 'Overlock';
 }
@@ -33,8 +72,9 @@ body {
 .menu a {
     font-size: 20px;
     text-decoration: none;
-    color: black;
+    color: var(--link);
 }
+
 .menu a:hover {
     text-decoration: underline;
 }
@@ -48,6 +88,7 @@ body {
 .activePerson:hover {
     text-decoration: underline;
 }
+
 .activeInterest:hover {
     text-decoration: underline;
 }
@@ -57,6 +98,7 @@ body {
     gap: 40px;
     padding-top: 20px;
 }
+
 .dropdownInterest:hover .dropdownInterestContent {
     display: flex;
     gap: 40px;
@@ -69,6 +111,7 @@ body {
     transform: translateX(-15%);
     z-index: 1;
 }
+
 .dropdownInterestContent {
     display: none;
     position: absolute;
@@ -78,18 +121,57 @@ body {
 
 .dropdownPersonContent a {
     padding: 5px 10px;
-    border: 2px solid black;
+    border: 2px solid var(--border);
     border-radius: 30px;
 }
 
 .dropdownInterestContent a {
     padding: 5px 10px;
-    border: 2px solid black;
+    border: 2px solid var(--border);
     border-radius: 30px;
 }
 
-.location h1{
+.location h1 {
     font-size: 30px;
+}
+
+/* Header right cluster (location + toggle) */
+.headerRight {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+.theme-toggle {
+    padding: 8px 14px;
+    font-size: 14px;
+    border-radius: 20px;
+    background: transparent;
+    color: var(--text);
+    cursor: pointer;
+    transition: transform 0.2s ease, background-color 0.2s ease;
+    border: 1px solid var(--border);
+    outline: none;
+    box-shadow: none;
+}
+
+.theme-toggle:hover {
+    transform: scale(1.1);
+    background-color: transparent;
+}
+
+/* Remove shaded border/outline in focus/active states */
+.theme-toggle:focus,
+.theme-toggle:active {
+    outline: none;
+    box-shadow: none;
+}
+
+/* Theme toggle icon */
+.theme-toggle img.iconTheme {
+    width: 22px;
+    height: 22px;
+    display: block;
 }
 
 /* Main body */
@@ -111,7 +193,14 @@ body {
     cursor: zoom-in;
 }
 
-.profile.zoomed{
+img:not(.iconPhone):not(.iconEmail):not(.iconLinkedin):not(.iconGithub):not(.iconTheme) {
+    border: 4px solid var(--img-border);
+    box-sizing: border-box;
+    background-color: var(--bg);
+    background-clip: padding-box;
+}
+
+.profile.zoomed {
     position: fixed;
     top: 50%;
     left: 50%;
@@ -129,7 +218,6 @@ body {
     text-align: left;
 }
 
-
 /* Contact Bar */
 
 .contactExternals {
@@ -143,7 +231,8 @@ body {
 .iconPhone,
 .iconEmail,
 .iconLinkedin,
-.iconGithub {
+.iconGithub,
+.iconTheme {
     width: 80px;
     height: 80px;
     border-radius: 50%;  
@@ -155,4 +244,12 @@ body {
 .iconLinkedin:hover,
 .iconGithub:hover {
     transform: scale(1.1);
+}
+
+body.dark-theme .iconPhone,
+body.dark-theme .iconEmail,
+body.dark-theme .iconLinkedin,
+body.dark-theme .iconGithub,
+body.dark-theme .iconTheme {
+    filter: invert(1) brightness(1.2) drop-shadow(0 0 2px rgba(0,0,0,0.2));
 }

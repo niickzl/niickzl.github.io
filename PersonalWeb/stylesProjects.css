@@ -1,3 +1,41 @@
+/* AI note: standardized order + theme-aware image backgrounds */
+/* Theme variables */
+:root {
+    --bg: #ffffff;
+    --text: #000000;
+    --link: #000000;
+    --border: #000000;
+    --img-border: #000000; /* light theme image border */
+}
+
+@media (prefers-color-scheme: dark) {
+    :root {
+        --bg: #0f1115;
+        --text: #e6e6e6;
+        --link: #e6e6e6;
+        --border: #3a3f4b;
+        --img-border: #ffffff; /* dark pref image border */
+    }
+}
+
+/* Explicit dark theme (applied when toggled) */
+body.dark-theme {
+    --bg: #0f1115;
+    --text: #e6e6e6;
+    --link: #e6e6e6;
+    --border: #3a3f4b;
+    --img-border: #ffffff; /* contrast border in dark mode */
+}
+
+/* Explicit light theme (applied when toggled) */
+body.light-theme {
+    --bg: #ffffff;
+    --text: #000000;
+    --link: #000000;
+    --border: #000000;
+    --img-border: #000000; /* contrast border in light mode */
+}
+
 body {
     height: 100vh;
     width: 100vw;
@@ -5,7 +43,8 @@ body {
     padding: 0;
     display: flex;
     flex-direction: column;
-    background-color: white;
+    background-color: var(--bg);
+    color: var(--text);
     font-family: 'Overlock';
 }
 
@@ -32,7 +71,7 @@ body {
 .menu a {
     font-size: 20px;
     text-decoration: none;
-    color: black;
+    color: var(--link);
 }
 .menu a:hover {
     text-decoration: underline;
@@ -40,7 +79,7 @@ body {
 
 .dropdownPerson,
 .dropdownInterest {
-    position: relavtive;
+    position: relative;
     display: inline-block;
 }
 
@@ -77,18 +116,74 @@ body {
 
 .dropdownPersonContent a {
     padding: 5px 10px;
-    border: 2px solid black;
+    border: 2px solid var(--border);
     border-radius: 30px;
 }
 
 .dropdownInterestContent a {
     padding: 5px 10px;
-    border: 2px solid black;
+    border: 2px solid var(--border);
     border-radius: 30px;
 }
 
 .location h1{
     font-size: 30px;
+}
+
+/* Header right cluster (location + toggle) */
+.headerRight {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+/* Theme toggle button */
+.theme-toggle {
+    padding: 8px 14px;
+    font-size: 14px;
+    border-radius: 20px;
+    background: transparent;
+    color: var(--text);
+    cursor: pointer;
+    transition: transform 0.2s ease, background-color 0.2s ease;
+    border: 1px solid var(--border);
+    outline: none;
+    box-shadow: none;
+}
+
+.theme-toggle:hover {
+    transform: scale(1.1);
+    background-color: transparent;
+}
+
+.theme-toggle:focus,
+.theme-toggle:active {
+    outline: none;
+    box-shadow: none;
+}
+
+.theme-toggle img.iconTheme {
+    width: 22px;
+    height: 22px;
+    display: block;
+}
+
+img:not(.iconGithubRepoDiscord):not(.iconGithubRepoApp):not(.iconTheme) {
+    background-color: var(--bg);
+    background-clip: padding-box;
+}
+
+/* Apply thin contrasting border to images except icons */
+img:not(.iconGithubRepoDiscord):not(.iconGithubRepoApp):not(.iconTheme) {
+    border: 4px solid var(--img-border);
+    box-sizing: border-box;
+}
+
+/* Improve visibility of black icons in dark mode */
+body.dark-theme .iconGithubRepoDiscord,
+body.dark-theme .iconGithubRepoApp,
+body.dark-theme .iconTheme {
+    filter: invert(1) brightness(1.2) drop-shadow(0 0 2px rgba(0,0,0,0.2));
 }
 
 /* Main Body */
