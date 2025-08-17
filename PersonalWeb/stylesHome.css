@@ -60,22 +60,24 @@ body {
 
 .navbar {
     width: 100%;
-    height: 80px;
+    height: 9vh;
     display: flex;
     justify-content: space-around;
     align-items: center;
-    padding-top: 10px;
+    padding-top: 1vh;
 }
 
 .name h1 {
-    font-size: 30px;
+    font-size: clamp(18px, 1.56vw, 30px);
+    margin: 0;
+    line-height: 1.1;
 }
 
 /* Make left header cluster flex so HUB button sits left of the name */
 .name {
     display: flex;
     align-items: center;
-    gap: 12px;
+    gap: 1vw;
 }
 
 /* Make header name link theme-aware and unstyled, with subtle hover */
@@ -96,13 +98,23 @@ body {
 
 .menu {
     display: flex;
-    gap: 40px;
+    gap: 2vw;
 }
 
 .menu a {
-    font-size: 20px;
+    font-size: clamp(8px, 1.56vw, 20px);
     text-decoration: none;
     color: var(--link);
+}
+
+/* Explicit active states present in HTML */
+.activeHome {
+    text-decoration: underline;
+}
+
+.activeMore {
+    /* not active on Home, but keep style consistent when used */
+    text-decoration: none;
 }
 
 .menu a:hover {
@@ -125,14 +137,14 @@ body {
 
 .dropdownPerson:hover .dropdownPersonContent {
     display: flex;
-    gap: 40px;
-    padding-top: 20px;
+    gap: 2vw;
+    padding-top: 2vh;
 }
 
 .dropdownInterest:hover .dropdownInterestContent {
     display: flex;
-    gap: 40px;
-    padding-top: 20px;
+    gap: 2vw;
+    padding-top: 2vh;
 }
 
 .dropdownPersonContent {
@@ -153,28 +165,36 @@ body {
     padding: 5px 10px;
     border: 2px solid var(--border);
     border-radius: 30px;
+    text-decoration: none;
+    color: var(--text);
+    font-size: clamp(8px, 1.56vw, 20px);
 }
 
 .dropdownInterestContent a {
     padding: 5px 10px;
     border: 2px solid var(--border);
     border-radius: 30px;
+    text-decoration: none;
+    color: var(--text);
+    font-size: clamp(8px, 1.56vw, 20px);
 }
 
 .location h1 {
-    font-size: 30px;
+    font-size: clamp(18px, 1.56vw, 30px);
+    margin: 0;
+    line-height: 1.1;
 }
 
 /* Header right cluster (location + toggle) */
 .headerRight {
     display: flex;
     align-items: center;
-    gap: 16px;
+    gap: 1vw;
 }
 
 .theme-toggle {
     padding: 8px 14px;
-    font-size: 14px;
+    font-size: clamp(4px, 1.56vw, 16px);
     border-radius: 20px;
     background: transparent;
     color: var(--text);
@@ -199,15 +219,16 @@ body {
 
 /* Theme toggle icon */
 .theme-toggle img.iconTheme {
-    width: 22px;
-    height: 22px;
+    /* ≈22px at desktop widths; allows graceful scaling */
+    width: clamp(12px, 1.15vw, 22px);
+    height: clamp(12px, 1.15vw, 22px);
     display: block;
 }
 
 /* HUB button: same style as theme toggle */
 .hub-button {
     padding: 8px 14px;
-    font-size: 16px;
+    font-size: clamp(4px, 1.56vw, 16px);
     border-radius: 20px;
     background: transparent;
     color: var(--text);
@@ -230,12 +251,12 @@ body {
     flex-direction: row;
     justify-content: center;
     align-items: center;
-    gap: 100px;
+    gap: 6vw;
 }
 
 .profile {
-    width: 300px;
-    height: 300px;
+    width: clamp(180px, 15.63vw, 300px);
+    height: clamp(180px, 15.63vw, 300px);
     border-radius: 50%;
     object-fit: cover;
     cursor: zoom-in;
@@ -257,12 +278,12 @@ img:not(.iconPhone):not(.iconEmail):not(.iconLinkedin):not(.iconGithub):not(.ico
 }
 
 .introText h1 {
-    font-size: 60px;
+    font-size: clamp(24px, 3.13vw, 60px);
     text-align: left;
 }
 
 .introText p {
-    font-size: 30px;
+    font-size: clamp(16px, 1.56vw, 30px);
     text-align: left;
 }
 
@@ -273,7 +294,17 @@ img:not(.iconPhone):not(.iconEmail):not(.iconLinkedin):not(.iconGithub):not(.ico
     flex-direction: row;
     justify-content: center;
     align-items: center;
-    gap: 80px;
+    gap: 4vw;
+    /* Reserve space for hover scale so page height doesn't change */
+    min-height: calc(1.1 * clamp(32px, 4.17vw, 80px));
+    overflow: hidden;
+}
+
+/* Remove default underline around icon links in footer */
+.contactExternals a {
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
 }
 
 .iconPhone,
@@ -281,10 +312,12 @@ img:not(.iconPhone):not(.iconEmail):not(.iconLinkedin):not(.iconGithub):not(.ico
 .iconLinkedin,
 .iconGithub,
 .iconTheme {
-    width: 80px;
-    height: 80px;
+    width: clamp(32px, 4.17vw, 80px);
+    height: clamp(32px, 4.17vw, 80px);
     border-radius: 50%;  
     transition: transform 0.3s ease;
+    cursor: pointer;
+    transform-origin: center;
 }
 
 .iconPhone:hover,
