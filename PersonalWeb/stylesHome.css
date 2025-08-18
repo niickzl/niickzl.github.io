@@ -10,8 +10,8 @@
 }
 
 .profile {
-    width: clamp(180px, 15.63vw, 300px);
-    height: clamp(180px, 15.63vw, 300px);
+    width: clamp(200px, 15vw, 300px);
+    height: clamp(200px, 15vw, 300px);
     border-radius: 50%;
     object-fit: cover;
     cursor: zoom-in;
@@ -26,12 +26,12 @@
 }
 
 .introText h1 {
-    font-size: clamp(24px, 3.13vw, 60px);
+    font-size: clamp(40px, 3vw, 60px);
     text-align: left;
 }
 
 .introText p {
-    font-size: clamp(16px, 1.56vw, 30px);
+    font-size: clamp(20px, 1.5vw, 30px);
     text-align: left;
 }
 
@@ -43,7 +43,7 @@
     justify-content: center;
     align-items: center;
     gap: 4vw;
-    min-height: calc(1.1 * clamp(32px, 4.17vw, 80px));
+    min-height: calc(1.1 * clamp(53px, 4vw, 80px));
     overflow: hidden;
 }
 
@@ -58,8 +58,8 @@
 .iconLinkedin,
 .iconGithub,
 .iconTheme {
-    width: clamp(32px, 4.17vw, 80px);
-    height: clamp(32px, 4.17vw, 80px);
+    width: clamp(53px, 4vw, 80px);
+    height: clamp(53px, 4vw, 80px);
     border-radius: 50%;  
     transition: transform 0.3s ease;
     cursor: pointer;
@@ -148,7 +148,7 @@ body {
 }
 
 .name h1 {
-    font-size: clamp(18px, 1.56vw, 30px);
+    font-size: clamp(20px, 1.5vw, 30px);
     margin: 0;
     line-height: 1.1;
 }
@@ -165,7 +165,7 @@ body {
 
 .menu { display: flex; gap: 2vw; }
 .menu a {
-    font-size: clamp(8px, 1.56vw, 20px);
+    font-size: clamp(13px, 1vw, 20px);
     text-decoration: none;
     color: var(--link);
 }
@@ -210,11 +210,11 @@ body {
     border-radius: 30px;
     text-decoration: none;
     color: var(--text);
-    font-size: clamp(8px, 1.56vw, 20px);
+    font-size: clamp(13px, 1vw, 20px);
 }
 
 .location h1 {
-    font-size: clamp(18px, 1.56vw, 30px);
+    font-size: clamp(20px, 1.5vw, 30px);
     margin: 0;
     line-height: 1.1;
 }
@@ -226,7 +226,7 @@ body {
 .hub-button,
 .theme-toggle {
     padding: 8px 14px;
-    font-size: clamp(4px, 1.56vw, 16px);
+    font-size: clamp(11px, 0.8vw, 16px);
     border-radius: 20px;
     background: transparent;
     color: var(--text);
@@ -242,8 +242,8 @@ body {
 
 /* Theme toggle icon sizing */
 .theme-toggle img.iconTheme {
-    width: clamp(12px, 1.15vw, 22px);
-    height: clamp(12px, 1.15vw, 22px);
+    width: clamp(15px, 1.1vw, 22px);
+    height: clamp(15px, 1.1vw, 22px);
     display: block;
 }
 

@@ -23,17 +23,17 @@
 }
 
 .leftDiscordMusicBot h1 {
-    font-size: clamp(20px, 2.08vw, 40px);
+    font-size: clamp(27px, 2vw, 40px);
     margin-bottom: 0.1em;
 }
 
 .leftDiscordMusicBot h2 {
-    font-size: clamp(14px, 1.15vw, 22px);
+    font-size: clamp(15px, 1.1vw, 22px);
     margin-top: 0.1em;
 }
 
 .leftDiscordMusicBot ul {
-    font-size: clamp(14px, 1.15vw, 22px);
+    font-size: clamp(15px, 1.1vw, 22px);
 }
 
 .rightDiscordMusicBot {
@@ -44,8 +44,8 @@
 }
 
 .iconGithubRepoDiscord {
-    width: clamp(60px, 5.21vw, 100px);
-    height: clamp(60px, 5.21vw, 100px);
+    width: clamp(67px, 5vw, 100px);
+    height: clamp(67px, 5vw, 100px);
     border-radius: 50%;
     transition: transform 0.3s ease;
 }
@@ -55,9 +55,9 @@
 }
 
 .discordBotTest {
-    width: clamp(140px, 10.42vw, 200px);
-    height: clamp(210px, 15.63vw, 300px);
-    padding: clamp(4px, 0.78vw, 10px);
+    width: clamp(133px, 10vw, 200px);
+    height: clamp(267px, 15vw, 300px);
+    padding: clamp(7px, 0.5vw, 10px);
     border-radius: 5%;
     object-fit: cover;
     cursor: zoom-in;
@@ -95,22 +95,22 @@
 }
 
 .rightInfoApp h1 {
-    font-size: clamp(20px, 2.08vw, 40px);
+    font-size: clamp(27px, 2vw, 40px);
     margin-bottom: 0.1em;
 }
 
 .rightInfoApp h2 {
-    font-size: clamp(14px, 1.15vw, 22px);
+    font-size: clamp(15px, 1.1vw, 22px);
     margin-top: 0.1em;
 }
 
 .rightInfoApp ul {
-    font-size: clamp(14px, 1.15vw, 22px);
+    font-size: clamp(15px, 1.1vw, 22px);
 }
 
 .iconGithubRepoApp {
-    width: clamp(60px, 5.21vw, 100px);
-    height: clamp(60px, 5.21vw, 100px);
+    width: clamp(67px, 5vw, 100px);
+    height: clamp(67px, 5vw, 100px);
     border-radius: 50%;
     transition: transform 0.3s ease;
 }
@@ -120,9 +120,9 @@
 }
 
 .userApp {
-    width: clamp(360px, 31.25vw, 600px);
-    height: clamp(180px, 15.63vw, 300px);
-    padding: clamp(4px, 0.78vw, 10px);
+    width: clamp(400px, 30vw, 600px);
+    height: clamp(200px, 15vw, 300px);
+    padding: clamp(7px, 0.5vw, 10px);
     border-radius: 5%;
     object-fit: cover;
     cursor: zoom-in;
@@ -211,7 +211,7 @@ body {
 }
 
 .name h1 {
-    font-size: clamp(18px, 1.56vw, 30px);
+    font-size: clamp(20px, 1.5vw, 30px);
     margin: 0;
     line-height: 1.1;
 }
@@ -228,7 +228,7 @@ body {
 
 .menu { display: flex; gap: 2vw; }
 .menu a {
-    font-size: clamp(8px, 1.56vw, 20px);
+    font-size: clamp(13px, 1vw, 20px);
     text-decoration: none;
     color: var(--link);
 }
@@ -273,11 +273,11 @@ body {
     border-radius: 30px;
     text-decoration: none;
     color: var(--text);
-    font-size: clamp(8px, 1.56vw, 20px);
+    font-size: clamp(13px, 1vw, 20px);
 }
 
 .location h1 {
-    font-size: clamp(18px, 1.56vw, 30px);
+    font-size: clamp(20px, 1.5vw, 30px);
     margin: 0;
     line-height: 1.1;
 }
@@ -289,7 +289,7 @@ body {
 .hub-button,
 .theme-toggle {
     padding: 8px 14px;
-    font-size: clamp(4px, 1.56vw, 16px);
+    font-size: clamp(11px, 0.8vw, 16px);
     border-radius: 20px;
     background: transparent;
     color: var(--text);
@@ -305,8 +305,8 @@ body {
 
 /* Theme toggle icon sizing */
 .theme-toggle img.iconTheme {
-    width: clamp(12px, 1.15vw, 22px);
-    height: clamp(12px, 1.15vw, 22px);
+    width: clamp(15px, 1.1vw, 22px);
+    height: clamp(15px, 1.1vw, 22px);
     display: block;
 }
 

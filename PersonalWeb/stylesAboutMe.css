@@ -10,8 +10,8 @@
 }
 
 .introPhoto {
-    width: clamp(100px, 10vw, 220px);
-    height: clamp(100px, 10vw, 220px);
+    width: clamp(147px, 11vw, 220px);
+    height: clamp(147px, 11vw, 220px);
     border-radius: 50%; 
     object-fit: cover;
     cursor: zoom-in;
@@ -28,11 +28,11 @@
 }
 
 .introText h1 {
-    font-size: clamp(16px, 2.5vw, 50px);
+    font-size: clamp(33px, 2.5vw, 50px);
 }
 .introText p {
-    font-size: clamp(16px, 1.56vw, 30px);
-    text-indent: clamp(20px, 2.6vw, 50px);
+    font-size: clamp(20px, 1.5vw, 30px);
+    text-indent: clamp(33px, 2.5vw, 50px);
 }
 
 .background {
@@ -44,15 +44,15 @@
 }
 
 .backgroundText h1 {
-    font-size: clamp(16px, 2.5vw, 50px);
+    font-size: clamp(33px, 2.5vw, 50px);
 }
 .backgroundText p {
-    font-size: clamp(16px, 1.56vw, 30px);
-    text-indent: clamp(20px, 2.6vw, 50px);
+    font-size: clamp(20px, 1.5vw, 30px);
+    text-indent: clamp(33px, 2.5vw, 50px);
 }
 
 .backgroundPhoto {
-    width: clamp(100px, 10vw, 220px);
+    width: clamp(147px, 11vw, 220px);
     aspect-ratio: 22 / 35;
     height: auto;
     border-radius: 5%; 
@@ -76,12 +76,12 @@
     justify-content: center;
     align-items: center;
     gap: 6vw;
-    padding-top: clamp(8px, 1.56vw, 20px);
-    padding-bottom: clamp(20px, 3.13vw, 60px);
+    padding-top: clamp(13px, 1vw, 20px);
+    padding-bottom: clamp(40px, 3vw, 60px);
 }
 
 .futurePhoto {
-    width: clamp(220px, 26vw, 500px);
+    width: clamp(333px, 25vw, 500px);
     aspect-ratio: 5 / 3;
     height: auto;
     border-radius: 5%; 
@@ -100,9 +100,9 @@
 }
 
 .futureText h1 {
-    font-size: clamp(16px, 2.5vw, 50px);
+    font-size: clamp(33px, 2.5vw, 50px);
 }
-.futureText p { font-size: clamp(16px, 1.56vw, 30px); text-indent: clamp(20px, 2.6vw, 50px); }
+.futureText p { font-size: clamp(20px, 1.5vw, 30px); text-indent: clamp(33px, 2.5vw, 50px); }
 
 /* Footer */
 
@@ -115,7 +115,7 @@
 }
 
 .preFooter h1 {
-    font-size: clamp(18px, 1.3vw, 25px);
+    font-size: clamp(17px, 1.25vw, 25px);
 }
 
 .contactExternals {
@@ -124,7 +124,7 @@
     justify-content: center;
     align-items: center;
     gap: 4vw;
-    min-height: calc(1.1 * clamp(32px, 4.17vw, 80px));
+    min-height: calc(1.1 * clamp(53px, 4vw, 80px));
     overflow: hidden;
     
 }
@@ -136,8 +136,8 @@
 .iconYoutube,
 .iconChess,
 .iconResume {
-    width: clamp(32px, 4.17vw, 80px);
-    height: clamp(32px, 4.17vw, 80px);
+    width: clamp(53px, 4vw, 80px);
+    height: clamp(53px, 4vw, 80px);
     border-radius: 50%;  
     transition: transform 0.3s ease;
     
@@ -228,7 +228,7 @@ body {
 }
 
 .name h1 {
-    font-size: clamp(18px, 1.56vw, 30px);
+    font-size: clamp(20px, 1.5vw, 30px);
     margin: 0;
     line-height: 1.1;
 }
@@ -245,7 +245,7 @@ body {
 
 .menu { display: flex; gap: 2vw; }
 .menu a {
-    font-size: clamp(8px, 1.56vw, 20px);
+    font-size: clamp(13px, 1vw, 20px);
     text-decoration: none;
     color: var(--link);
 }
@@ -290,11 +290,11 @@ body {
     border-radius: 30px;
     text-decoration: none;
     color: var(--text);
-    font-size: clamp(8px, 1.56vw, 20px);
+    font-size: clamp(13px, 1vw, 20px);
 }
 
 .location h1 {
-    font-size: clamp(18px, 1.56vw, 30px);
+    font-size: clamp(20px, 1.5vw, 30px);
     margin: 0;
     line-height: 1.1;
 }
@@ -306,7 +306,7 @@ body {
 .hub-button,
 .theme-toggle {
     padding: 8px 14px;
-    font-size: clamp(4px, 1.56vw, 16px);
+    font-size: clamp(11px, 0.8vw, 16px);
     border-radius: 20px;
     background: transparent;
     color: var(--text);
@@ -322,8 +322,8 @@ body {
 
 /* Theme toggle icon sizing */
 .theme-toggle img.iconTheme {
-    width: clamp(12px, 1.15vw, 22px);
-    height: clamp(12px, 1.15vw, 22px);
+    width: clamp(15px, 1.1vw, 22px);
+    height: clamp(15px, 1.1vw, 22px);
     display: block;
 }
 

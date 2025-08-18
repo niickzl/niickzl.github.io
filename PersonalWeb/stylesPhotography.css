@@ -17,22 +17,22 @@
 }
 
 .headerContent h1 {
-    font-size: clamp(20px, 2.08vw, 40px);
+    font-size: clamp(27px, 2vw, 40px);
 }
 
 .headerContent h2 {
-    font-size: clamp(14px, 1.15vw, 22px);
+    font-size: clamp(15px, 1.1vw, 22px);
     margin-bottom: 0.1em;
 }
 
 .headerContent p {
-    font-size: clamp(10px, 1.15vw, 18px);
+    font-size: clamp(12px, 0.9vw, 18px);
     margin-top: 0.1em;
 }
 
 .iconGoogleDrivePhotography {
-    width: clamp(60px, 5.21vw, 100px);
-    height: clamp(60px, 5.21vw, 100px);
+    width: clamp(67px, 5vw, 100px);
+    height: clamp(67px, 5vw, 100px);
     border-radius: 50%;
     transition: transform 0.3s ease;
 }
@@ -47,11 +47,11 @@
     justify-content: center;
     align-items: center;
     gap: 6vw;
-    padding: clamp(20px, 2.08vw, 40px);
+    padding: clamp(27px, 2vw, 40px);
 }
 
 .heroContent h2 {
-    font-size: clamp(14px, 1.15vw, 22px);
+    font-size: clamp(15px, 1.1vw, 22px);
 }
 
 .leftHero h2,
@@ -67,7 +67,7 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    gap: clamp(20px, 2.08vw, 40px);
+    gap: clamp(27px, 2vw, 40px);
 }
 
 .leftHeroOne,
@@ -88,7 +88,7 @@
 
 .sunsetPhoto,
 .torontoPhoto {
-    width: clamp(180px, 26vw, 400px);
+    width: clamp(267px, 20vw, 400px);
     aspect-ratio: 4 / 3;
     height: auto;
     border-radius: 5%;
@@ -97,7 +97,7 @@
 
 .zhangjiajiePhoto,
 .yongshunPhoto {
-    width: clamp(180px, 26vw, 300px);
+    width: clamp(200px, 15vw, 300px);
     aspect-ratio: 3 / 4;
     height: auto;
     border-radius: 5%;
@@ -197,7 +197,7 @@ body {
 }
 
 .name h1 {
-    font-size: clamp(18px, 1.56vw, 30px);
+    font-size: clamp(20px, 1.5vw, 30px);
     margin: 0;
     line-height: 1.1;
 }
@@ -214,7 +214,7 @@ body {
 
 .menu { display: flex; gap: 2vw; }
 .menu a {
-    font-size: clamp(8px, 1.56vw, 20px);
+    font-size: clamp(13px, 1vw, 20px);
     text-decoration: none;
     color: var(--link);
 }
@@ -259,11 +259,11 @@ body {
     border-radius: 30px;
     text-decoration: none;
     color: var(--text);
-    font-size: clamp(8px, 1.56vw, 20px);
+    font-size: clamp(13px, 1.5vw, 20px);
 }
 
 .location h1 {
-    font-size: clamp(18px, 1.56vw, 30px);
+    font-size: clamp(20px, 1.5vw, 30px);
     margin: 0;
     line-height: 1.1;
 }
@@ -275,7 +275,7 @@ body {
 .hub-button,
 .theme-toggle {
     padding: 8px 14px;
-    font-size: clamp(4px, 1.56vw, 16px);
+    font-size: clamp(11px, 0.8vw, 16px);
     border-radius: 20px;
     background: transparent;
     color: var(--text);
@@ -291,8 +291,8 @@ body {
 
 /* Theme toggle icon sizing */
 .theme-toggle img.iconTheme {
-    width: clamp(12px, 1.15vw, 22px);
-    height: clamp(12px, 1.15vw, 22px);
+    width: clamp(15px, 1.1vw, 22px);
+    height: clamp(15px, 1.1vw, 22px);
     display: block;
 }
 
