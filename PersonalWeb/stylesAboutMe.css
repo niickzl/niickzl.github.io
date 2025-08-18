@@ -1,4 +1,159 @@
-/* AI note: standardized order + theme-aware image backgrounds */
+/* Main Body */
+
+.intro {
+    flex: 1;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 6vw;
+}
+
+.introPhoto {
+    width: clamp(100px, 10vw, 220px);
+    height: clamp(100px, 10vw, 220px);
+    border-radius: 50%; 
+    object-fit: cover;
+    cursor: zoom-in;
+    border: 4px solid var(--img-border);
+    box-sizing: border-box;
+}
+
+.introPhoto.zoomed {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(2.5);
+    cursor: zoom-out;
+}
+
+.introText h1 {
+    font-size: clamp(16px, 2.5vw, 50px);
+}
+.introText p {
+    font-size: clamp(16px, 1.56vw, 30px);
+    text-indent: clamp(20px, 2.6vw, 50px);
+}
+
+.background {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 6vw;
+}
+
+.backgroundText h1 {
+    font-size: clamp(16px, 2.5vw, 50px);
+}
+.backgroundText p {
+    font-size: clamp(16px, 1.56vw, 30px);
+    text-indent: clamp(20px, 2.6vw, 50px);
+}
+
+.backgroundPhoto {
+    width: clamp(100px, 10vw, 220px);
+    aspect-ratio: 22 / 35;
+    height: auto;
+    border-radius: 5%; 
+    object-fit: cover;
+    cursor: zoom-in;
+    border: 4px solid var(--img-border);
+    box-sizing: border-box;
+}
+
+.backgroundPhoto.zoomed {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(2.5);
+    cursor: zoom-out;
+}
+
+.future {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 6vw;
+    padding-top: clamp(8px, 1.56vw, 20px);
+    padding-bottom: clamp(20px, 3.13vw, 60px);
+}
+
+.futurePhoto {
+    width: clamp(220px, 26vw, 500px);
+    aspect-ratio: 5 / 3;
+    height: auto;
+    border-radius: 5%; 
+    object-fit: cover;
+    cursor: zoom-in;
+    border: 4px solid var(--img-border);
+    box-sizing: border-box;
+}
+
+.futurePhoto.zoomed {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(2.5);
+    cursor: zoom-out;
+}
+
+.futureText h1 {
+    font-size: clamp(16px, 2.5vw, 50px);
+}
+.futureText p { font-size: clamp(16px, 1.56vw, 30px); text-indent: clamp(20px, 2.6vw, 50px); }
+
+/* Footer */
+
+.preFooter {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.preFooter h1 {
+    font-size: clamp(18px, 1.3vw, 25px);
+}
+
+.contactExternals {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 4vw;
+    min-height: calc(1.1 * clamp(32px, 4.17vw, 80px));
+    overflow: hidden;
+    
+}
+
+.iconPhone,
+.iconEmail,
+.iconLinkedin,
+.iconGithub,
+.iconYoutube,
+.iconChess,
+.iconResume {
+    width: clamp(32px, 4.17vw, 80px);
+    height: clamp(32px, 4.17vw, 80px);
+    border-radius: 50%;  
+    transition: transform 0.3s ease;
+    
+}
+
+.iconPhone:hover,
+.iconEmail:hover,
+.iconLinkedin:hover,
+.iconGithub:hover,
+.iconYoutube:hover,
+.iconChess:hover,
+.iconResume:hover {
+    transform: scale(1.1);
+}
+
+/* AI Generated Styles */
 /* Theme variables */
 :root {
     --bg: #ffffff;
@@ -43,7 +198,7 @@ html, body {
 }
 
 body {
-    height: 100vh;
+    min-height: 100vh;
     width: 100%;
     margin: 0;
     padding: 0;
@@ -51,30 +206,31 @@ body {
     flex-direction: column;
     background-color: var(--bg);
     color: var(--text);
+    overflow-x: hidden;
+    overflow-y: auto;
     font-family: 'Overlock';
 }
 
-/* Menu Bar */
-
+/* Header / Navbar */
 .navbar {
     width: 100%;
     height: 9vh;
     display: flex;
     justify-content: space-around;
     align-items: center;
-    padding-top: 10px;
+    padding-top: 1vh;
+}
+
+.name {
+    display: flex;
+    align-items: center;
+    gap: 1vw;
 }
 
 .name h1 {
-    font-size: 30px;
-}
-
-/* Make left header cluster flex so HUB button sits left of the name */
-.name {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    gap: 12px;
+    font-size: clamp(18px, 1.56vw, 30px);
+    margin: 0;
+    line-height: 1.1;
 }
 
 /* Make header name link theme-aware and unstyled, with subtle hover */
@@ -84,51 +240,35 @@ body {
     display: inline-block;
     transition: transform 0.2s ease, color 0.2s ease;
 }
+.name h1 a:visited { color: var(--text); }
+.name h1 a:hover { transform: scale(1.1); }
 
-.name h1 a:visited {
-    color: var(--text);
-}
-
-.name h1 a:hover {
-    transform: scale(1.1);
-}
-
-.menu {
-    display: flex;
-    gap: 40px;
-}
-
+.menu { display: flex; gap: 2vw; }
 .menu a {
-    font-size: 20px;
+    font-size: clamp(8px, 1.56vw, 20px);
     text-decoration: none;
     color: var(--link);
 }
-.menu a:hover {
-    text-decoration: underline;
-}
+.menu a:hover { text-decoration: underline; }
 
-.dropdownPerson,
-.dropdownInterest {
+/* Active states used by pages */
+.activeHome { text-decoration: underline; }
+.activeSub { text-decoration: underline; }
+.activeMore { text-decoration: underline; }
+
+/* Dropdowns */
+.dropdownPerson, .dropdownInterest {
     position: relative;
     display: inline-block;
 }
+.activePerson:hover { text-decoration: underline; }
+.activeInterest:hover { text-decoration: underline; }
 
-.activePerson:hover {
-    text-decoration: underline;
-}
-.activeInterest:hover {
-    text-decoration: underline;
-}
-
-.dropdownPerson:hover .dropdownPersonContent {
-    display: flex;
-    gap: 40px;
-    padding-top: 20px;
-}
+.dropdownPerson:hover .dropdownPersonContent,
 .dropdownInterest:hover .dropdownInterestContent {
     display: flex;
-    gap: 40px;
-    padding-top: 20px;
+    gap: 2vw;
+    padding-top: 2vh;
 }
 
 .dropdownPersonContent {
@@ -143,286 +283,78 @@ body {
     transform: translateX(-35%);
     z-index: 1;
 }
-
-.dropdownPersonContent a {
-    padding: 5px 10px;
-    border: 2px solid var(--border);
-    border-radius: 30px;
-}
-
+.dropdownPersonContent a,
 .dropdownInterestContent a {
     padding: 5px 10px;
     border: 2px solid var(--border);
     border-radius: 30px;
+    text-decoration: none;
+    color: var(--text);
+    font-size: clamp(8px, 1.56vw, 20px);
 }
 
-.location h1{
-    font-size: 30px;
-}
-
-/* Main Body */
-
-.intro {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-    gap: 100px;
-}
-
-.introPhoto {
-    width: 220px;
-    height: 220px;
-    border-radius: 50%; 
-    object-fit: cover;
-    cursor: zoom-in;
-    border: 4px solid var(--img-border);
-    box-sizing: border-box;
-}
-
-.introPhoto.zoomed {
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%) scale(2.5);
-    cursor: zoom-out;
-}
-
-.introText h1 {
-    font-size: 50px;
-}
-.introText p {
-    font-size: 30px;
-    text-indent: 50px;
-}
-
-.background {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-    gap: 100px;
-}
-
-.backgroundText h1 {
-    font-size: 50px;
-}
-.backgroundText p {
-    font-size: 30px;
-    text-indent: 50px;
-}
-
-.backgroundPhoto {
-    width: 220px;
-    height: 350px;
-    border-radius: 5%; 
-    object-fit: cover;
-    cursor: zoom-in;
-    border: 4px solid var(--img-border);
-    box-sizing: border-box;
-}
-
-.backgroundPhoto.zoomed {
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%) scale(2.5);
-    cursor: zoom-out;
-}
-
-.future {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-    gap: 100px;
-    padding-top: 20px;
-    padding-bottom: 60px;
-}
-
-.futurePhoto {
-    width: 500px;
-    height: 300px;
-    border-radius: 5%; 
-    object-fit: cover;
-    cursor: zoom-in;
-    border: 4px solid var(--img-border);
-    box-sizing: border-box;
-}
-
-.futurePhoto.zoomed {
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%) scale(2.5);
-    cursor: zoom-out;
-}
-
-.futureText h1 {
-    font-size: 50px;
-}
-.futureText p {
-    font-size: 30px;
-    text-indent: 50px;
-}
-
-/* Apply thin contrasting border to images except icons */
-img:not(.iconPhone):not(.iconEmail):not(.iconLinkedin):not(.iconGithub):not(.iconYoutube):not(.iconChess):not(.iconResume):not(.iconTheme) {
-    border: 4px solid var(--img-border);
-    box-sizing: border-box;
-    background-color: var(--bg);
-    background-clip: padding-box;
-}
-
-/* Footer */
-
-.preFooter {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-}
-
-.preFooter h1 {
-    font-size: 25px;
-}
-
-.contactExternals {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-    gap: 80px;
-}
-
-.iconPhone,
-.iconEmail,
-.iconLinkedin,
-.iconGithub,
-.iconYoutube,
-.iconChess,
-.iconResume {
-    width: 80px;
-    height: 80px;
-    border-radius: 50%;  
-    transition: transform 0.3s ease;
-}
-
-.iconPhone:hover,
-.iconEmail:hover,
-.iconLinkedin:hover,
-.iconGithub:hover,
-.iconYoutube:hover,
-.iconChess:hover,
-.iconResume:hover {
-    transform: scale(1.1);
-}
-
-html.dark-theme .iconPhone,
-html.dark-theme .iconEmail,
-html.dark-theme .iconLinkedin,
-html.dark-theme .iconGithub,
-html.dark-theme .iconYoutube,
-html.dark-theme .iconChess,
-html.dark-theme .iconResume,
-body.dark-theme .iconPhone,
-body.dark-theme .iconEmail,
-body.dark-theme .iconLinkedin,
-body.dark-theme .iconGithub,
-body.dark-theme .iconYoutube,
-body.dark-theme .iconChess,
-body.dark-theme .iconResume {
-    filter: invert(1) brightness(1.2) drop-shadow(0 0 2px rgba(0,0,0,0.2));
-}
-
-/* Improve visibility of theme icon in dark mode (match homepage) */
-html.dark-theme .iconTheme,
-body.dark-theme .iconTheme {
-    filter: invert(1) brightness(1.2) drop-shadow(0 0 2px rgba(0,0,0,0.2));
+.location h1 {
+    font-size: clamp(18px, 1.56vw, 30px);
+    margin: 0;
+    line-height: 1.1;
 }
 
 /* Header right cluster (location + toggle) */
-.headerRight {
-    display: flex;
-    align-items: center;
-    gap: 16px;
-}
+.headerRight { display: flex; align-items: center; gap: 1vw; }
 
-/* Theme toggle button */
+/* HUB button and Theme toggle share style */
+.hub-button,
 .theme-toggle {
     padding: 8px 14px;
-    font-size: 14px;
-    border-radius: 20px;
-    background: transparent;
-    color: var(--text);
-    cursor: pointer;
-    transition: transform 0.2s ease, background-color 0.2s ease;
-    border: 1px solid var(--border);
-    outline: none;
-    box-shadow: none;
-}
-
-.theme-toggle:hover { transform: scale(1.1); }
-.theme-toggle:focus, .theme-toggle:active { outline: none; box-shadow: none; }
-.theme-toggle img.iconTheme { width: 22px; height: 22px; display: block; }
-
-/* HUB button: same style as theme toggle */
-.hub-button {
-    padding: 8px 14px;
-    font-size: 16px;
+    font-size: clamp(4px, 1.56vw, 16px);
     border-radius: 20px;
     background: transparent;
     color: var(--text);
     cursor: pointer;
     transition: transform 0.2s ease, background-color 0.2s ease, color 0.2s ease;
     border: 1px solid var(--border);
-    text-decoration: none;
-    display: inline-block;
-}
-
-.hub-button:hover { transform: scale(1.1); }
-
-/* Header right cluster (location + toggle) */
-.headerRight {
-    display: flex;
-    align-items: center;
-    gap: 16px;
-}
-
-/* Theme toggle button */
-.theme-toggle {
-    padding: 8px 14px;
-    font-size: 14px;
-    border-radius: 20px;
-    background: transparent;
-    color: var(--text);
-    cursor: pointer;
-    transition: transform 0.2s ease, background-color 0.2s ease;
-    border: 1px solid var(--border);
     outline: none;
     box-shadow: none;
 }
+.hub-button { text-decoration: none; display: inline-block; }
+.hub-button:hover, .theme-toggle:hover { transform: scale(1.1); }
+.theme-toggle:focus, .theme-toggle:active { outline: none; box-shadow: none; }
 
-.theme-toggle:hover {
-    transform: scale(1.1);
-    background-color: transparent;
-}
-
-.theme-toggle:focus,
-.theme-toggle:active {
-    outline: none;
-    box-shadow: none;
-}
-
+/* Theme toggle icon sizing */
 .theme-toggle img.iconTheme {
-    width: 22px;
-    height: 22px;
+    width: clamp(12px, 1.15vw, 22px);
+    height: clamp(12px, 1.15vw, 22px);
     display: block;
 }
 
-/* Dark mode: lighten inline blue text only */
-html.dark-theme [style*="color: blue"],
-body.dark-theme [style*="color: blue"] {
-    color: #8ab4f8 !important;
+/* Apply borders/background to all content images except small UI icons */
+img:not(.iconPhone):not(.iconEmail):not(.iconLinkedin):not(.iconGithub):not(.iconTheme):not(.iconPDFPivot):not(.iconPDFEnactus):not(.iconChessChess):not(.iconChess):not(.iconGoogleDrivePhotography):not(.magIcon):not(.iconResume):not(.iconGithubRepoDiscord):not(.iconGithubRepoApp):not(.iconYoutube) {
+    border: 4px solid var(--img-border);
+    box-sizing: border-box;
+    background-color: var(--bg);
+    background-clip: padding-box;
 }
+
+/* Invert icons in dark theme for visibility */
+html.dark-theme .iconPhone,
+html.dark-theme .iconEmail,
+html.dark-theme .iconLinkedin,
+html.dark-theme .iconGithub,
+html.dark-theme .iconTheme,
+html.dark-theme .iconYoutube,
+html.dark-theme .iconResume,
+html.dark-theme .iconChess,
+body.dark-theme .iconPhone,
+body.dark-theme .iconEmail,
+body.dark-theme .iconLinkedin,
+body.dark-theme .iconGithub,
+body.dark-theme .iconTheme,
+body.dark-theme .iconYoutube,
+body.dark-theme .iconResume,
+body.dark-theme .iconChess {
+    filter: invert(1) brightness(1.15);
+}
+
+/* Lighten inline blue text in dark mode only */
+html.dark-theme [style*="color: blue"],
+body.dark-theme [style*="color: blue"] { color: #8ab4f8 !important; }
