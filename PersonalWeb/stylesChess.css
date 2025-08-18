@@ -1,4 +1,118 @@
-/* AI note: standardized order + theme-aware image backgrounds */
+/* Main Body */
+
+.content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    flex: 1;
+}
+
+.headerContent {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 6vw;
+}
+
+.headerContent h1 {
+    font-size: clamp(20px, 2.08vw, 40px);
+}
+
+.headerContent h2 {
+    font-size: clamp(14px, 1.15vw, 22px);
+}
+
+.iconChessChess {
+    width: clamp(60px, 5.21vw, 100px);
+    height: clamp(60px, 5.21vw, 100px);
+    border-radius: 50%;
+    transition: transform 0.3s ease;
+}
+
+.iconChessChess:hover {
+    transform: scale(1.1);
+}
+
+.heroContent {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 6vw;
+    padding: clamp(20px, 2.08vw, 40px);
+}
+
+.heroContent h2 {
+    font-size: clamp(14px, 1.15vw, 22px);
+}
+
+.leftHero h2,
+.rightHero h2,
+.leftHero img,
+.rightHero img {
+    margin: 0;
+}
+
+.leftHero,
+.rightHero {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: clamp(20px, 2.08vw, 40px);
+}
+
+.leftHeroOne,
+.leftHeroTwo,
+.rightHeroOne,
+.rightHeroTwo {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.leftHero img,
+.rightHero img,
+.heroContent img {
+    margin-top: 0.1em;
+}
+
+.chessLeftOne,
+.chessLeftTwo,
+.chessRightOne,
+.chessRightTwo {
+    height: clamp(180px, 26vw, 400px);
+    width: clamp(180px, 26vw, 400px);
+    border-radius: 5%;
+    cursor: zoom-in;
+}
+
+.chessLeftOne.zoomed,
+.chessLeftTwo.zoomed,
+.chessRightOne.zoomed,
+.chessRightTwo.zoomed {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(2);
+    cursor: zoom-out;
+}
+
+.magIcon {
+    width: clamp(30px, 3vw, 60px);
+    height: clamp(30px, 3vw, 60px);
+    border-radius: 50%;
+    transition: transform 0.3s ease;
+}
+
+.magIcon:hover {
+    transform: scale(1.1);
+}
+
+/* AI Generated Styles */
 /* Theme variables */
 :root {
     --bg: #ffffff;
@@ -43,7 +157,7 @@ html, body {
 }
 
 body {
-    height: 100vh;
+    min-height: 100vh;
     width: 100%;
     margin: 0;
     padding: 0;
@@ -51,29 +165,31 @@ body {
     flex-direction: column;
     background-color: var(--bg);
     color: var(--text);
+    overflow-x: hidden;
+    overflow-y: auto;
     font-family: 'Overlock';
 }
 
-/* Menu Bar */
-
+/* Header / Navbar */
 .navbar {
     width: 100%;
-    height: 80px;
+    height: 9vh;
     display: flex;
     justify-content: space-around;
     align-items: center;
-    padding-top: 10px;
+    padding-top: 1vh;
 }
 
-.name h1 {
-    font-size: 30px;
-}
-
-/* Make left header cluster flex so HUB button sits left of the name */
 .name {
     display: flex;
     align-items: center;
-    gap: 12px;
+    gap: 1vw;
+}
+
+.name h1 {
+    font-size: clamp(18px, 1.56vw, 30px);
+    margin: 0;
+    line-height: 1.1;
 }
 
 /* Make header name link theme-aware and unstyled, with subtle hover */
@@ -83,51 +199,35 @@ body {
     display: inline-block;
     transition: transform 0.2s ease, color 0.2s ease;
 }
+.name h1 a:visited { color: var(--text); }
+.name h1 a:hover { transform: scale(1.1); }
 
-.name h1 a:visited {
-    color: var(--text);
-}
-
-.name h1 a:hover {
-    transform: scale(1.1);
-}
-
-.menu {
-    display: flex;
-    gap: 40px;
-}
-
+.menu { display: flex; gap: 2vw; }
 .menu a {
-    font-size: 20px;
+    font-size: clamp(8px, 1.56vw, 20px);
     text-decoration: none;
     color: var(--link);
 }
-.menu a:hover {
-    text-decoration: underline;
-}
+.menu a:hover { text-decoration: underline; }
 
-.dropdownPerson,
-.dropdownInterest {
+/* Active states used by pages */
+.activeHome { text-decoration: underline; }
+.activeSub { text-decoration: underline; }
+.activeMore { text-decoration: underline; }
+
+/* Dropdowns */
+.dropdownPerson, .dropdownInterest {
     position: relative;
     display: inline-block;
 }
+.activePerson:hover { text-decoration: underline; }
+.activeInterest:hover { text-decoration: underline; }
 
-.activePerson:hover {
-    text-decoration: underline;
-}
-.activeInterest:hover {
-    text-decoration: underline;
-}
-
-.dropdownPerson:hover .dropdownPersonContent {
-    display: flex;
-    gap: 40px;
-    padding-top: 20px;
-}
+.dropdownPerson:hover .dropdownPersonContent,
 .dropdownInterest:hover .dropdownInterestContent {
     display: flex;
-    gap: 40px;
-    padding-top: 20px;
+    gap: 2vw;
+    padding-top: 2vh;
 }
 
 .dropdownPersonContent {
@@ -142,195 +242,67 @@ body {
     transform: translateX(-35%);
     z-index: 1;
 }
-
-.dropdownPersonContent a {
-    padding: 5px 10px;
-    border: 2px solid var(--border);
-    border-radius: 30px;
-}
-
+.dropdownPersonContent a,
 .dropdownInterestContent a {
     padding: 5px 10px;
     border: 2px solid var(--border);
     border-radius: 30px;
+    text-decoration: none;
+    color: var(--text);
+    font-size: clamp(8px, 1.56vw, 20px);
 }
 
-.location h1{
-    font-size: 30px;
-}
-
-/* Main Body */
-.content {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-}
-
-.headerContent {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-    gap: 100px;
-}
-
-.headerContent h1 {
-    font-size: 40px;
-}
-
-.headerContent h2 {
-    font-size: 22px;
-}
-
-.iconChessChess {
-    width: 100px;
-    height: 100px;
-    border-radius: 50%;
-    transition: transform 0.3s ease;
-}
-
-.iconChessChess:hover {
-    transform: scale(1.1);
-}
-
-.heroContent {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-    gap: 100px;
-    padding-bottom: 40px;
-}
-
-.heroContent h2 {
-    font-size: 22px;
-}
-
-.leftHero h2,
-.rightHero h2,
-.leftHero img,
-.rightHero img {
+.location h1 {
+    font-size: clamp(18px, 1.56vw, 30px);
     margin: 0;
-}
-
-.leftHero,
-.rightHero {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    gap: 40px;
-}
-
-.leftHeroOne,
-.leftHeroTwo,
-.rightHeroOne,
-.rightHeroTwo {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-}
-
-.leftHero img,
-.rightHero img,
-.heroContent img {
-    margin-top: 0.1em;
-}
-
-.chessLeftOne,
-.chessLeftTwo,
-.chessRightOne,
-.chessRightTwo {
-    height: 400px;
-    width: 400px;
-    border-radius: 5%;
-    cursor: zoom-in;
-}
-
-.chessLeftOne.zoomed,
-.chessLeftTwo.zoomed,
-.chessRightOne.zoomed,
-.chessRightTwo.zoomed {
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%) scale(2);
-    cursor: zoom-out;
-}
-
-.magIcon {
-    width: 60px;
-    height: 60px;
-    border-radius: 50%;
-    transition: transform 0.3s ease;
-}
-
-.magIcon:hover {
-    transform: scale(1.1);
+    line-height: 1.1;
 }
 
 /* Header right cluster (location + toggle) */
-.headerRight {
-    display: flex;
-    align-items: center;
-    gap: 16px;
-}
+.headerRight { display: flex; align-items: center; gap: 1vw; }
 
-/* Theme toggle button */
+/* HUB button and Theme toggle share style */
+.hub-button,
 .theme-toggle {
     padding: 8px 14px;
-    font-size: 14px;
-    border-radius: 20px;
-    background: transparent;
-    color: var(--text);
-    cursor: pointer;
-    transition: transform 0.2s ease, background-color 0.2s ease;
-    border: 1px solid var(--border);
-    outline: none;
-    box-shadow: none;
-}
-
-.theme-toggle:hover { transform: scale(1.1); }
-.theme-toggle:focus, .theme-toggle:active { outline: none; box-shadow: none; }
-.theme-toggle img.iconTheme { width: 22px; height: 22px; display: block; }
-
-/* HUB button: same style as theme toggle */
-.hub-button {
-    padding: 8px 14px;
-    font-size: 16px;
+    font-size: clamp(4px, 1.56vw, 16px);
     border-radius: 20px;
     background: transparent;
     color: var(--text);
     cursor: pointer;
     transition: transform 0.2s ease, background-color 0.2s ease, color 0.2s ease;
     border: 1px solid var(--border);
-    text-decoration: none;
-    display: inline-block;
+    outline: none;
+    box-shadow: none;
+}
+.hub-button { text-decoration: none; display: inline-block; }
+.hub-button:hover, .theme-toggle:hover { transform: scale(1.1); }
+.theme-toggle:focus, .theme-toggle:active { outline: none; box-shadow: none; }
+
+/* Theme toggle icon sizing */
+.theme-toggle img.iconTheme {
+    width: clamp(12px, 1.15vw, 22px);
+    height: clamp(12px, 1.15vw, 22px);
+    display: block;
 }
 
-.hub-button:hover { transform: scale(1.1); }
-
-img:not(.iconChessChess):not(.magIcon):not(.iconTheme) {
+/* Apply borders/background to all content images except small UI icons */
+img:not(.iconPhone):not(.iconEmail):not(.iconLinkedin):not(.iconGithub):not(.iconTheme):not(.iconPDFPivot):not(.iconPDFEnactus):not(.iconChessChess):not(.iconChess):not(.iconGoogleDrivePhotography):not(.magIcon):not(.iconResume):not(.iconGithubRepoDiscord):not(.iconGithubRepoApp):not(.iconYoutube) {
     border: 4px solid var(--img-border);
     box-sizing: border-box;
     background-color: var(--bg);
     background-clip: padding-box;
 }
 
-/* Dark mode: lighten inline blue text only */
-html.dark-theme [style*="color: blue"],
-body.dark-theme [style*="color: blue"] {
-    color: #8ab4f8 !important;
-}
-
-/* Invert icons in dark mode */
+/* Invert icons in dark theme for visibility */
+html.dark-theme .iconTheme,
 html.dark-theme .iconChessChess,
 html.dark-theme .magIcon,
-html.dark-theme .iconTheme,
+body.dark-theme .iconTheme,
 body.dark-theme .iconChessChess,
-body.dark-theme .magIcon,
-body.dark-theme .iconTheme {
-    filter: invert(1) brightness(1.2) drop-shadow(0 0 2px rgba(0,0,0,0.2));
+body.dark-theme .magIcon {
+    filter: invert(1) brightness(1.15);
 }
+
+html.dark-theme [style*="color: blue"],
+body.dark-theme [style*="color: blue"] { color: #8ab4f8 !important; }
