@@ -61,6 +61,38 @@
     </header>
 
     <main class = "content">
+        <div class = easyChart>
+            <div class = "leftEasyChart">
+                <a href = "https://github.com/CMPT-276-SUMMER-2025/final-project-5-lakes" class = "githubEasyChart" target = "_blank">
+                    <img class = "iconGithubRepoChart" src = "images/iconGithubImage.png" alt = "GitHub icon linking to repository"/>
+                </a>
+
+                <img class = "easyChartHome" src = "images/easyChartImage.png" alt = "Image to illustrate EasyChart in action"/>
+            </div>
+            <div class = "rightEasyChart">
+                <h1><span style = "color: blue">EasyChart</span>: A <span style = "color: blue">Web App</span> to
+                <br>make graphing easier</h1>
+                <h2>Date: August 2025</h2>
+
+                <ul><strong><span style = "color: blue">Background:</span></strong>
+                <li>EasyChart is a web app for quick data visualization.
+                <br>Users upload data, and the platform auto-generates
+                <br>editable, exportable graphs.</li>
+                <li>Built with <span style = "color: blue">Node.js</span> (backend), <span style = "color: blue">React</span> (frontend), 
+                <br><span style = "color: blue">DeepSeek R1T2 Chimera</span> (API), and <span style = "color: blue">Chart.js</span> (API).</li>
+                </ul>
+
+                <ul><strong><span style = "color: blue">Features:</span></strong>
+                <li><span style = "color: blue">Auto-extracts</span> data from given files</li>
+                <li>Provides an editable table for the extracted info</li>
+                <li><span style = "color: blue">Recommends</span> suited graph types for the data</li>
+                <li><span style = "color: blue">Summarizes</span> key trends in the info</li>
+                <li>Allows modification of graph visuals</li>
+                <li>Supports exporting in multiple formats</li>
+                </ul>
+            </div>
+        </div>
+
         <div class = discordMusicBot>
             <div class = "leftDiscordMusicBot">
                 <h1><span style = "color: blue">Python</span> YouTube Audio Discord Bot</h1>
@@ -148,6 +180,21 @@
         document.addEventListener('click', (e) => {
             if (!e.target.classList.contains('userApp')) {
             images2.forEach(img => img.classList.remove('zoomed'));
+            }
+        });
+    </script>
+    <script>
+        const images3 = document.querySelectorAll('.easyChartHome');
+
+        images3.forEach(img => {
+            img.addEventListener('click', () => {
+            img.classList.toggle('zoomed');
+            });
+        });
+
+        document.addEventListener('click', (e) => {
+            if (!e.target.classList.contains('easyChartHome')) {
+            images3.forEach(img => img.classList.remove('zoomed'));
             }
         });
     </script>
