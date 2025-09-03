@@ -11,6 +11,12 @@ const base = isGitHubPages ? '/LoLDraftAppWeb/' : '/';
 export default defineConfig({
   base,
   plugins: [react()],
+  resolve: {
+    extensions: ['.js', '.jsx', '.json'],
+    alias: {
+      '@': resolve(__dirname, 'src')
+    }
+  },
   build: {
     outDir: 'dist',
     sourcemap: true,
