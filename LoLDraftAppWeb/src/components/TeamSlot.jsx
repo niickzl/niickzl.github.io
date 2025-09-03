@@ -1,4 +1,7 @@
-export default function TeamSlot({ team, index }) {
+const DATA_DRAGON_CDN = "https://ddragon.leagueoflegends.com/cdn";
+const DATA_DRAGON_PATCH = "15.15.1";
+
+export default function TeamSlot({ team, index, champion = null }) {
   const blueBorderColors = [
     "#60A5FA", // blue-400
     "#3B82F6", // blue-500
@@ -29,10 +32,26 @@ export default function TeamSlot({ team, index }) {
         alignItems: "center",
         justifyContent: "center",
         color: "#aaa",
-        fontSize: "clamp(12px, 1.8vw, 18px)"
+        fontSize: "clamp(12px, 1.8vw, 18px)",
+        overflow: "hidden",
+        position: "relative"
       }}
     >
-      {team} {index + 1}
+      {champion ? (
+        <img
+          src={`${DATA_DRAGON_CDN}/${DATA_DRAGON_PATCH}/img/champion/${champion.image.full}`}
+          alt={champion.name}
+          style={{
+            width: "100%",
+            height: "100%",
+            objectFit: "cover"
+          }}
+        />
+      ) : (
+        <span style={{ zIndex: 1, textShadow: "0 0 4px rgba(0,0,0,0.8)" }}>
+          {team} {index + 1}
+        </span>
+      )}
     </div>
   );
 }

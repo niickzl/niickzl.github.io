@@ -4,7 +4,7 @@ const DATA_DRAGON_CDN = "https://ddragon.leagueoflegends.com/cdn";
 const DATA_DRAGON_PATCH = "15.15.1";
 const TILE_SIZE = "clamp(80px, 7vw, 112px)";
 
-export default function ChampionGrid({ searchTerm = "" }) {
+export default function ChampionGrid({ searchTerm = "", onChampionSelect, selectedChampions = new Set() }) {
   const [champions, setChampions] = useState([]);
   const [error, setError] = useState(null);
 
@@ -36,9 +36,11 @@ export default function ChampionGrid({ searchTerm = "" }) {
 
   const filteredChampions = useMemo(() => {
     const term = searchTerm.trim().toLowerCase();
-    if (!term) return sortedChampions;
-    return sortedChampions.filter((c) => c.name.toLowerCase().includes(term));
-  }, [sortedChampions, searchTerm]);
+    return sortedChampions.filter(champ => 
+      !selectedChampions.has(champ.id) && 
+      (!term || champ.name.toLowerCase().includes(term))
+    );
+  }, [sortedChampions, searchTerm, selectedChampions]);
 
   return (
     <div
@@ -81,7 +83,7 @@ export default function ChampionGrid({ searchTerm = "" }) {
               cursor: "pointer",
               color: "inherit"
             }}
-            onClick={() => console.log(`Champion selected: ${champ.name}`)}
+            onClick={() => onChampionSelect(champ)}
           >
             <div
               style={{
@@ -89,11 +91,16 @@ export default function ChampionGrid({ searchTerm = "" }) {
                 aspectRatio: "1 / 1",
                 overflow: "hidden",
                 borderRadius: "8px",
-                backgroundColor: "#181818",
-                border: "1px solid #2a2a2a",
+                backgroundColor: selectedChampions.has(champ.id) ? "#1a3a1a" : "#181818",
+                border: selectedChampions.has(champ.id) 
+                  ? "2px solid #4CAF50" 
+                  : "1px solid #2a2a2a",
                 display: "flex",
                 alignItems: "center",
                 justifyContent: "center",
+                opacity: selectedChampions.has(champ.id) ? 0.6 : 1,
+                cursor: selectedChampions.has(champ.id) ? 'not-allowed' : 'pointer',
+                transition: 'all 0.2s ease-in-out'
               }}
             >
               <img

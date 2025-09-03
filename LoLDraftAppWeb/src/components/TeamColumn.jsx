@@ -1,6 +1,6 @@
 import TeamSlot from "./TeamSlot";
 
-export default function TeamColumn({ team }) {
+export default function TeamColumn({ team, teamData = Array(5).fill(null) }) {
   return (
     <div
       style={{
@@ -13,7 +13,12 @@ export default function TeamColumn({ team }) {
       }}
     >
       {Array.from({ length: 5 }).map((_, i) => (
-        <TeamSlot key={i} team={team} index={i} />
+        <TeamSlot 
+          key={i} 
+          team={team} 
+          index={i} 
+          champion={teamData[i]} 
+        />
       ))}
     </div>
   );
