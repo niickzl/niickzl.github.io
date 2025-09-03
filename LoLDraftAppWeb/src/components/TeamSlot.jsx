@@ -1,7 +1,10 @@
 const DATA_DRAGON_CDN = "https://ddragon.leagueoflegends.com/cdn";
 const DATA_DRAGON_PATCH = "15.15.1";
 
-export default function TeamSlot({ team, index, champion = null }) {
+import { useState } from 'react';
+
+export default function TeamSlot({ team, index, champion = null, onClick = () => {} }) {
+  const [isHovered, setIsHovered] = useState(false);
   const blueBorderColors = [
     "#60A5FA", // blue-400
     "#3B82F6", // blue-500
@@ -19,8 +22,16 @@ export default function TeamSlot({ team, index, champion = null }) {
   const isBlueTeam = String(team).toLowerCase() === "blue";
   const borderColor = (isBlueTeam ? blueBorderColors : redBorderColors)[index % 5];
 
+  const handleClick = (e) => {
+    e.stopPropagation();
+    onClick();
+  };
+
   return (
     <div
+      onClick={handleClick}
+      onMouseEnter={() => champion && setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
       style={{
         width: "auto",
         height: "100%",
@@ -34,21 +45,62 @@ export default function TeamSlot({ team, index, champion = null }) {
         color: "#aaa",
         fontSize: "clamp(12px, 1.8vw, 18px)",
         overflow: "hidden",
-        position: "relative"
+        position: "relative",
+        cursor: champion ? 'pointer' : 'default',
+        transition: 'all 0.1s ease-in-out',
+        transform: isHovered && champion ? 'scale(1.02)' : 'none',
+        boxShadow: isHovered && champion ? '0 0 15px #ff4444' : 'none',
+        userSelect: 'none',
+        WebkitUserSelect: 'none',
+        WebkitTouchCallout: 'none',
+        KhtmlUserSelect: 'none',
+        msUserSelect: 'none'
       }}
     >
       {champion ? (
-        <img
-          src={`${DATA_DRAGON_CDN}/${DATA_DRAGON_PATCH}/img/champion/${champion.image.full}`}
-          alt={champion.name}
-          style={{
-            width: "100%",
-            height: "100%",
-            objectFit: "cover"
-          }}
-        />
+        <>
+          <img
+            src={`${DATA_DRAGON_CDN}/${DATA_DRAGON_PATCH}/img/champion/${champion.id}.png`}
+            alt={champion.name}
+            style={{
+              width: "100%",
+              height: "100%",
+              objectFit: "cover",
+              pointerEvents: 'none',
+              WebkitUserDrag: 'none',
+              userSelect: 'none',
+              WebkitUserSelect: 'none',
+              MozUserSelect: 'none',
+              msUserSelect: 'none',
+              opacity: isHovered ? 0.6 : 1,
+              filter: isHovered ? 'grayscale(50%) brightness(0.8)' : 'none',
+              transition: 'all 0.2s ease-in-out'
+            }}
+          />
+          {isHovered && (
+            <div style={{
+              position: 'absolute',
+              top: '50%',
+              left: '50%',
+              transform: 'translate(-50%, -50%)',
+              color: '#ff4444',
+              fontSize: '2.5rem',
+              fontWeight: 'bold',
+              textShadow: '0 0 8px rgba(0,0,0,0.8)',
+              pointerEvents: 'none'
+            }}>
+              ×
+            </div>
+          )}
+        </>
       ) : (
-        <span style={{ zIndex: 1, textShadow: "0 0 4px rgba(0,0,0,0.8)" }}>
+        <span style={{ 
+          zIndex: 1, 
+          textShadow: "0 0 4px rgba(0,0,0,0.8)",
+          userSelect: 'none',
+          WebkitUserSelect: 'none',
+          msUserSelect: 'none'
+        }}>
           {team} {index + 1}
         </span>
       )}
