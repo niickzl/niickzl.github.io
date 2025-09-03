@@ -1,55 +1,59 @@
-# Nick's Website Hub
+# Nick's Personal Website & Projects
 
-This repository contains multiple websites that can be deployed on GitHub Pages.
+Welcome to my personal website and project portfolio! This repository contains the source code for my personal website and the LoL Draft App.
 
-## Structure
+## Project Structure
 
 ```
 niickzl.github.io/
 ├── index.html                 # Main hub page
-├── PersonalWeb/              # Personal website
-│   ├── index.html             # Personal website home page
+│
+├── PersonalWeb/              # Personal website (HTML/CSS)
+│   ├── index.html             # Home page
 │   ├── aboutMe.html          # About me page
-│   ├── projects.html         # Projects page
-│   ├── competitions.html     # Competitions page
-│   ├── photography.html      # Photography page
-│   ├── chess.html           # Chess page
-│   ├── stylesHome.css       # Main stylesheet
-│   ├── stylesAboutMe.css    # About me styles
-│   ├── stylesProjects.css   # Projects styles
-│   ├── stylesCompetitions.css # Competitions styles
-│   ├── stylesPhotography.css # Photography styles
-│   ├── stylesChess.css      # Chess styles
+│   ├── projects.html         # Projects showcase
+│   ├── competitions.html     # Coding competitions
+│   ├── photography.html      # Photography portfolio
+│   ├── chess.html           # Chess projects
+│   ├── styles*.css          # Individual page styles
 │   ├── images/              # Image assets
-│   ├── gifs/                # GIF assets
-│   └── files/               # PDF files
-├── LoLDraftAppWeb/          # React development folder
-│   ├── src/                 # React source code
+│   ├── gifs/                # Animated content
+│   └── files/               # Downloadable files
+│
+├── LoLDraftAppWeb/          # React development
+│   ├── src/                 # Source code
+│   │   ├── components/      # React components
+│   │   ├── pages/           # App pages
+│   │   ├── public/          # Static assets
+│   │   └── main.jsx         # Entry point
 │   ├── package.json         # Dependencies
-│   └── dist/                # Built files
-└── PersonalProjects/        # LoL Drafter App
-    ├── index.html           # Built React app
-    └── assets/              # Built assets
+│   └── vite.config.js       # Build configuration
+│
+└── LolDraftAppWebDist/      # Built version of LoL Draft App
+    └── assets/              # Production assets
 ```
 
-## Deployment
-
-### Main Hub (Current Repository)
-- **URL**: `https://niickzl.github.io`
-- **Source**: Root directory
-- **Purpose**: Hub page to navigate between different projects
+## Projects
 
 ### Personal Website
-- **URL**: `https://niickzl.github.io/PersonalWeb/`
-- **Source**: PersonalWeb directory
-- **Purpose**: Personal portfolio and information
+- **URL**: [https://niickzl.github.io/PersonalWeb/](https://niickzl.github.io/PersonalWeb/)
+- **Tech Stack**: HTML5, CSS3, JavaScript
 
-### LoL Drafter App
-- **URL**: `https://niickzl.github.io/PersonalProjects/`
-- **Source**: PersonalProjects directory (built from LoLDraftAppWeb)
-- **Purpose**: League of Legends champion drafting tool built with React
+### LoL Draft App
+- **URL**: [https://niickzl.github.io/LoLDraftAppWeb/](https://niickzl.github.io/LoLDraftAppWeb/)
+- **Tech Stack**: React, Vite, JavaScript
+- **Features**:
+  - Champion selection interface
+  - Team composition builder
+  - Responsive design
+  - Real-time updates
 
 ## Contact
 
 - **Email**: 20051024nick@gmail.com
 - **LinkedIn**: [Nick Lei](https://www.linkedin.com/in/nickl24/)
+- **GitHub**: [niickzl](https://github.com/niickzl)
+
+## License
+
+This project is open source and available under the [MIT License](LICENSE).
