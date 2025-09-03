@@ -1,6 +1,6 @@
-import Home from "./pages/Home.jsx";
-import SiteHeader from "./components/SiteHeader.jsx";
-import SiteFooter from "./components/SiteFooter.jsx";
+import Home from "./pages/Home";
+import SiteHeader from "./components/SiteHeader";
+import SiteFooter from "./components/SiteFooter";
 
 function App() {
   return (
