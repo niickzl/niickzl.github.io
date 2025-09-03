@@ -1,6 +1,10 @@
 import TeamSlot from "./TeamSlot";
 
-export default function TeamColumn({ team }) {
+export default function TeamColumn({ 
+  team, 
+  teamData = Array(5).fill(null), 
+  onSlotClick = () => {}
+}) {
   return (
     <div
       style={{
@@ -12,8 +16,14 @@ export default function TeamColumn({ team }) {
         height: "100%"
       }}
     >
-      {Array.from({ length: 5 }).map((_, i) => (
-        <TeamSlot key={i} team={team} index={i} />
+      {[0, 1, 2, 3, 4].map((position) => (
+        <TeamSlot 
+          key={position} 
+          team={team} 
+          index={position} 
+          champion={teamData[position]}
+          onClick={() => onSlotClick(team, position)}
+        />
       ))}
     </div>
   );

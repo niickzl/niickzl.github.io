@@ -1,10 +1,16 @@
-import { useEffect, useMemo, useState } from "react";
+import { useCallback, useEffect, useMemo, useState } from "react";
 
 const DATA_DRAGON_CDN = "https://ddragon.leagueoflegends.com/cdn";
 const DATA_DRAGON_PATCH = "15.15.1";
 const TILE_SIZE = "clamp(80px, 7vw, 112px)";
 
-export default function ChampionGrid({ searchTerm = "" }) {
+export default function ChampionGrid({ 
+  searchTerm = "", 
+  onChampionSelect, 
+  selectedChampions = new Set(),
+  draftPhase = 0,
+  draftOrder = []
+}) {
   const [champions, setChampions] = useState([]);
   const [error, setError] = useState(null);
 
@@ -35,10 +41,28 @@ export default function ChampionGrid({ searchTerm = "" }) {
   }, [champions]);
 
   const filteredChampions = useMemo(() => {
-    const term = searchTerm.trim().toLowerCase();
-    if (!term) return sortedChampions;
-    return sortedChampions.filter((c) => c.name.toLowerCase().includes(term));
-  }, [sortedChampions, searchTerm]);
+    const searchLower = searchTerm.toLowerCase();
+    return champions
+      .filter((champ) =>
+        champ.name.toLowerCase().includes(searchLower) ||
+        champ.id.toLowerCase().includes(searchLower)
+      )
+      .sort((a, b) => a.name.localeCompare(b.name));
+  }, [champions, searchTerm]);
+
+  const isChampionSelectable = useCallback((championId) => {
+    // Check if champion is already selected
+    if (selectedChampions.has(championId)) {
+      return false;
+    }
+    
+    // If all slots are filled, don't allow selection
+    if (selectedChampions.size >= draftOrder.length) {
+      return false;
+    }
+    
+    return true;
+  }, [selectedChampions, draftOrder]);
 
   return (
     <div
@@ -81,7 +105,7 @@ export default function ChampionGrid({ searchTerm = "" }) {
               cursor: "pointer",
               color: "inherit"
             }}
-            onClick={() => console.log(`Champion selected: ${champ.name}`)}
+            onClick={() => isChampionSelectable(champ.id) && onChampionSelect(champ)}
           >
             <div
               style={{
@@ -89,11 +113,16 @@ export default function ChampionGrid({ searchTerm = "" }) {
                 aspectRatio: "1 / 1",
                 overflow: "hidden",
                 borderRadius: "8px",
-                backgroundColor: "#181818",
-                border: "1px solid #2a2a2a",
+                backgroundColor: selectedChampions.has(champ.id) ? "#1a3a1a" : "#181818",
+                border: selectedChampions.has(champ.id) 
+                  ? "2px solid #4CAF50" 
+                  : "1px solid #2a2a2a",
                 display: "flex",
                 alignItems: "center",
                 justifyContent: "center",
+                opacity: selectedChampions.has(champ.id) ? 0.5 : (isChampionSelectable(champ.id) ? 1 : 0.3),
+                cursor: isChampionSelectable(champ.id) ? 'pointer' : 'not-allowed',
+                transition: 'opacity 0.2s ease-in-out'
               }}
             >
               <img
