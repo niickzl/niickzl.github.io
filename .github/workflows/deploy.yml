@@ -23,10 +23,16 @@ jobs:
           node-version: '20'
           cache: 'npm'
 
+      - name: Change directory to LoLDraftAppWeb
+        working-directory: ./LoLDraftAppWeb
+        run: pwd
+
       - name: Install dependencies
+        working-directory: ./LoLDraftAppWeb
         run: npm ci
 
       - name: Build
+        working-directory: ./LoLDraftAppWeb
         run: npm run build
         env:
           NODE_ENV: production
@@ -37,7 +43,7 @@ jobs:
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: 'dist/'
+          path: 'LoLDraftAppWeb/dist/'
 
   deploy:
     environment:
