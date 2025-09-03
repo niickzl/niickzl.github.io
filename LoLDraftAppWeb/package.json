@@ -1,13 +1,13 @@
 {
-  "name": "frontend",
+  "name": "lol-draft-app",
   "private": true,
   "version": "0.0.0",
   "type": "module",
+  "homepage": "https://niickzl.github.io/LoLDraftAppWeb",
   "scripts": {
     "dev": "vite",
-    "build": "vite build --base=/LoLDraftAppWeb/",
-    "preview": "vite preview",
-    "deploy": "npm run build && gh-pages -d dist"
+    "build": "vite build",
+    "preview": "vite preview"
   },
   "dependencies": {
     "react": "^19.1.1",
