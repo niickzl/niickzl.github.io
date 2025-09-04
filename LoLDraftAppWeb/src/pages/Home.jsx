@@ -49,6 +49,7 @@ export default function Home() {
   const [bannedChampions, setBannedChampions] = useState(Array(10).fill(null));
   const [deletedSlots, setDeletedSlots] = useState([]); // Track deleted slots in order
   const [deletedBanSlots, setDeletedBanSlots] = useState([]); // Track deleted ban slots
+  const [selectedRole, setSelectedRole] = useState(null); // Track selected role
 
   // Update team states based on current selections
   const updateTeamStates = useCallback((newSelections) => {
@@ -111,6 +112,7 @@ export default function Home() {
     setBlueTeam(Array(5).fill(null));
     setRedTeam(Array(5).fill(null));
     setSelectedChampions(new Set());
+    setSelectedRole(null);
     setDeletedSlots([]);
     setDeletedBanSlots([]);
     setResetKey(prev => prev + 1);
@@ -414,16 +416,17 @@ export default function Home() {
               </button>
               <div style={{ display: 'flex', gap: '15px', justifyContent: 'center', width: '100%', marginTop: '8px' }}>
                 {[
-                  { name: 'Top', icon: '/src/public/roleIcon/Top_icon.png' },
-                  { name: 'Jungle', icon: '/src/public/roleIcon/Jungle_icon.png' },
-                  { name: 'Mid', icon: '/src/public/roleIcon/Middle_icon.png' },
-                  { name: 'Bot', icon: '/src/public/roleIcon/Bottom_icon.png' },
-                  { name: 'Support', icon: '/src/public/roleIcon/Support_icon.png' }
+                  { name: 'Top', icon: '/src/public/roleIcon/Top_icon.png', role: 'top' },
+                  { name: 'Jungle', icon: '/src/public/roleIcon/Jungle_icon.png', role: 'jungle' },
+                  { name: 'Mid', icon: '/src/public/roleIcon/Middle_icon.png', role: 'mid' },
+                  { name: 'Bot', icon: '/src/public/roleIcon/Bottom_icon.png', role: 'adc' },
+                  { name: 'Support', icon: '/src/public/roleIcon/Support_icon.png', role: 'support' }
                 ].map((role) => (
                   <button
                     key={role.name}
                     type="button"
-                    className="role-button"
+                    className={`role-button ${selectedRole === role.role ? 'role-button-active' : ''}`}
+                    onClick={() => setSelectedRole(selectedRole === role.role ? null : role.role)}
                   >
                     <img 
                       src={role.icon} 
@@ -487,6 +490,7 @@ export default function Home() {
               draftPhase={isBanning ? banPhase : draftPhase}
               draftOrder={isBanning ? banOrder : draftOrder}
               isBanning={isBanning}
+              selectedRole={selectedRole}
             />
           </div>
         </div>
