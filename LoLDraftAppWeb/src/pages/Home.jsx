@@ -1,6 +1,7 @@
 import ChampionGrid from "../components/ChampionGrid";
 import TeamColumn from "../components/TeamColumn";
-import { useState, useCallback, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
+import "./Home.css";
 
 export default function Home() {
   const [searchTerm, setSearchTerm] = useState("");
@@ -218,7 +219,8 @@ export default function Home() {
       });
     }
   }, [selectedChampions, bannedChampions, isBanning, draftOrder, deletedSlots, deletedBanSlots, updateTeamStates]);
-  const banSpotSize = 36;
+  
+  const banSpotSize = 44;
   const banSpotBaseStyle = {
     width: banSpotSize,
     height: banSpotSize,
@@ -342,7 +344,7 @@ export default function Home() {
                 placeholder="Search champions..."
                 style={{
                   width: "min(380px, 70%)",
-                  padding: "8px 12px",
+                  padding: "12px 16px",
                   borderRadius: "8px",
                   border: "1px solid #333",
                   backgroundColor: "#0f0f0f",
@@ -410,6 +412,28 @@ export default function Home() {
               >
                 Reset All
               </button>
+              <div style={{ display: 'flex', gap: '15px', justifyContent: 'center', width: '100%', marginTop: '8px' }}>
+                {[
+                  { name: 'Top', icon: '/src/public/roleIcon/Top_icon.png' },
+                  { name: 'Jungle', icon: '/src/public/roleIcon/Jungle_icon.png' },
+                  { name: 'Mid', icon: '/src/public/roleIcon/Middle_icon.png' },
+                  { name: 'Bot', icon: '/src/public/roleIcon/Bottom_icon.png' },
+                  { name: 'Support', icon: '/src/public/roleIcon/Support_icon.png' }
+                ].map((role) => (
+                  <button
+                    key={role.name}
+                    type="button"
+                    className="role-button"
+                  >
+                    <img 
+                      src={role.icon} 
+                      alt={role.name} 
+                      title={role.name}
+                      style={{ width: '35px', height: '35px' }}
+                    />
+                  </button>
+                ))}
+              </div>
             </div>
 
             {/* Right bans (swappable) */}
