@@ -1,7 +1,7 @@
 import { useCallback, useEffect, useMemo, useState } from "react";
 
 const DATA_DRAGON_CDN = "https://ddragon.leagueoflegends.com/cdn";
-const DATA_DRAGON_PATCH = "15.15.1";
+const DATA_DRAGON_PATCH = "15.17.1";
 const TILE_SIZE = "clamp(80px, 7vw, 112px)";
 
 export default function ChampionGrid({ 
