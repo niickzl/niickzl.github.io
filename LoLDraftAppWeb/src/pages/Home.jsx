@@ -419,7 +419,7 @@ export default function Home() {
                   { name: 'Top', icon: '/src/public/roleIcon/Top_icon.png', role: 'top' },
                   { name: 'Jungle', icon: '/src/public/roleIcon/Jungle_icon.png', role: 'jungle' },
                   { name: 'Mid', icon: '/src/public/roleIcon/Middle_icon.png', role: 'mid' },
-                  { name: 'Bot', icon: '/src/public/roleIcon/Bottom_icon.png', role: 'adc' },
+                  { name: 'Bot', icon: '/src/public/roleIcon/Bottom_icon.png', role: 'bot' },
                   { name: 'Support', icon: '/src/public/roleIcon/Support_icon.png', role: 'support' }
                 ].map((role) => (
                   <button

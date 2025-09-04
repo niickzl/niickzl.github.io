@@ -56,7 +56,7 @@ export default function ChampionGrid({
         const matchesRole = !selectedRole || 
           !championInfo[champ.name] || 
           championInfo[champ.name].roles.some(role => 
-            role.toLowerCase() === selectedRole.toLowerCase()
+            role && role.toLowerCase() === selectedRole.toLowerCase()
           );
         
         return matchesSearch && matchesRole;
