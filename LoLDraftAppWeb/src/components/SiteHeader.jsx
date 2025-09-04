@@ -1,4 +1,4 @@
-import logo from "../public/favicon/favicon-32x32.png";
+import logo from "/favicon/favicon-32x32.png";
 
 export default function SiteHeader() {
   return (

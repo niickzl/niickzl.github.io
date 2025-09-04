@@ -3,6 +3,13 @@ import TeamColumn from "../components/TeamColumn";
 import React, { useState, useEffect, useCallback } from "react";
 import "./Home.css";
 
+// Import role icons
+const TopIcon = "/roleIcon/Top_icon.png";
+const JungleIcon = "/roleIcon/Jungle_icon.png";
+const MidIcon = "/roleIcon/Middle_icon.png";
+const BotIcon = "/roleIcon/Bottom_icon.png";
+const SupportIcon = "/roleIcon/Support_icon.png";
+
 export default function Home() {
   const [searchTerm, setSearchTerm] = useState("");
   const [isSwapped, setIsSwapped] = useState(false);
@@ -416,11 +423,11 @@ export default function Home() {
               </button>
               <div style={{ display: 'flex', gap: '15px', justifyContent: 'center', width: '100%', marginTop: '8px' }}>
                 {[
-                  { name: 'Top', icon: '/src/public/roleIcon/Top_icon.png', role: 'top' },
-                  { name: 'Jungle', icon: '/src/public/roleIcon/Jungle_icon.png', role: 'jungle' },
-                  { name: 'Mid', icon: '/src/public/roleIcon/Middle_icon.png', role: 'mid' },
-                  { name: 'Bot', icon: '/src/public/roleIcon/Bottom_icon.png', role: 'bot' },
-                  { name: 'Support', icon: '/src/public/roleIcon/Support_icon.png', role: 'support' }
+                  { name: 'Top', icon: TopIcon, role: 'top' },
+                  { name: 'Jungle', icon: JungleIcon, role: 'jungle' },
+                  { name: 'Mid', icon: MidIcon, role: 'mid' },
+                  { name: 'Bot', icon: BotIcon, role: 'bot' },
+                  { name: 'Support', icon: SupportIcon, role: 'support' }
                 ].map((role) => (
                   <button
                     key={role.name}
