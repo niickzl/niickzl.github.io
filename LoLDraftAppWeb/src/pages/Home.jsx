@@ -1,6 +1,7 @@
 import ChampionGrid from "../components/ChampionGrid";
 import TeamColumn from "../components/TeamColumn";
-import { useState, useCallback, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
+import "./Home.css";
 
 export default function Home() {
   const [searchTerm, setSearchTerm] = useState("");
@@ -48,6 +49,7 @@ export default function Home() {
   const [bannedChampions, setBannedChampions] = useState(Array(10).fill(null));
   const [deletedSlots, setDeletedSlots] = useState([]); // Track deleted slots in order
   const [deletedBanSlots, setDeletedBanSlots] = useState([]); // Track deleted ban slots
+  const [selectedRole, setSelectedRole] = useState(null); // Track selected role
 
   // Update team states based on current selections
   const updateTeamStates = useCallback((newSelections) => {
@@ -110,6 +112,7 @@ export default function Home() {
     setBlueTeam(Array(5).fill(null));
     setRedTeam(Array(5).fill(null));
     setSelectedChampions(new Set());
+    setSelectedRole(null);
     setDeletedSlots([]);
     setDeletedBanSlots([]);
     setResetKey(prev => prev + 1);
@@ -218,7 +221,8 @@ export default function Home() {
       });
     }
   }, [selectedChampions, bannedChampions, isBanning, draftOrder, deletedSlots, deletedBanSlots, updateTeamStates]);
-  const banSpotSize = 36;
+  
+  const banSpotSize = 44;
   const banSpotBaseStyle = {
     width: banSpotSize,
     height: banSpotSize,
@@ -342,7 +346,7 @@ export default function Home() {
                 placeholder="Search champions..."
                 style={{
                   width: "min(380px, 70%)",
-                  padding: "8px 12px",
+                  padding: "12px 16px",
                   borderRadius: "8px",
                   border: "1px solid #333",
                   backgroundColor: "#0f0f0f",
@@ -410,6 +414,29 @@ export default function Home() {
               >
                 Reset All
               </button>
+              <div style={{ display: 'flex', gap: '15px', justifyContent: 'center', width: '100%', marginTop: '8px' }}>
+                {[
+                  { name: 'Top', icon: '/src/public/roleIcon/Top_icon.png', role: 'top' },
+                  { name: 'Jungle', icon: '/src/public/roleIcon/Jungle_icon.png', role: 'jungle' },
+                  { name: 'Mid', icon: '/src/public/roleIcon/Middle_icon.png', role: 'mid' },
+                  { name: 'Bot', icon: '/src/public/roleIcon/Bottom_icon.png', role: 'adc' },
+                  { name: 'Support', icon: '/src/public/roleIcon/Support_icon.png', role: 'support' }
+                ].map((role) => (
+                  <button
+                    key={role.name}
+                    type="button"
+                    className={`role-button ${selectedRole === role.role ? 'role-button-active' : ''}`}
+                    onClick={() => setSelectedRole(selectedRole === role.role ? null : role.role)}
+                  >
+                    <img 
+                      src={role.icon} 
+                      alt={role.name} 
+                      title={role.name}
+                      style={{ width: '35px', height: '35px' }}
+                    />
+                  </button>
+                ))}
+              </div>
             </div>
 
             {/* Right bans (swappable) */}
@@ -463,6 +490,7 @@ export default function Home() {
               draftPhase={isBanning ? banPhase : draftPhase}
               draftOrder={isBanning ? banOrder : draftOrder}
               isBanning={isBanning}
+              selectedRole={selectedRole}
             />
           </div>
         </div>

@@ -1,4 +1,5 @@
 import { useCallback, useEffect, useMemo, useState } from "react";
+import championInfo from "../data/championInfo";
 
 const DATA_DRAGON_CDN = "https://ddragon.leagueoflegends.com/cdn";
 const DATA_DRAGON_PATCH = "15.17.1";
@@ -10,7 +11,8 @@ export default function ChampionGrid({
   selectedChampions = new Set(),
   bannedChampions = [],
   draftOrder = [],
-  isBanning = false
+  isBanning = false,
+  selectedRole = null
 }) {
   const [champions, setChampions] = useState([]);
   const [error, setError] = useState(null);
@@ -44,12 +46,23 @@ export default function ChampionGrid({
   const filteredChampions = useMemo(() => {
     const searchLower = searchTerm.toLowerCase();
     return champions
-      .filter((champ) =>
-        champ.name.toLowerCase().includes(searchLower) ||
-        champ.id.toLowerCase().includes(searchLower)
-      )
+      .filter((champ) => {
+        // Filter by search term
+        const matchesSearch = 
+          champ.name.toLowerCase().includes(searchLower) ||
+          champ.id.toLowerCase().includes(searchLower);
+        
+        // Filter by role if one is selected
+        const matchesRole = !selectedRole || 
+          !championInfo[champ.name] || 
+          championInfo[champ.name].roles.some(role => 
+            role.toLowerCase() === selectedRole.toLowerCase()
+          );
+        
+        return matchesSearch && matchesRole;
+      })
       .sort((a, b) => a.name.localeCompare(b.name));
-  }, [champions, searchTerm]);
+  }, [champions, searchTerm, selectedRole]);
 
   const isChampionSelectable = useCallback((champion) => {
     // Check if champion is already selected or banned

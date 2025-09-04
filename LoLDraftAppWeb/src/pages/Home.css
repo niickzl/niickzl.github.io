@@ -1,0 +1,30 @@
+.role-button {
+  background-color: transparent;
+  color: white;
+  border: none;
+  padding: 6px;
+  border-radius: 4px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease-in-out;
+  opacity: 0.6;
+  transform: scale(1);
+}
+
+.role-button:hover {
+  opacity: 1;
+  transform: scale(1.1);
+  background-color: rgba(255, 255, 255, 0.05);
+}
+
+.role-button:active {
+  transform: scale(0.95);
+}
+
+.role-button-active {
+  opacity: 1 !important;
+  transform: scale(1.1) !important;
+  background-color: rgba(255, 255, 255, 0.1) !important;
+}
