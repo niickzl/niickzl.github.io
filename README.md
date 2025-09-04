@@ -40,7 +40,7 @@ niickzl.github.io/
 - **Tech Stack**: HTML5, CSS3, JavaScript
 
 ### LoL Draft App
-- **URL**: [https://niickzl.github.io/LoLDraftAppWeb/](https://niickzl.github.io/LoLDraftAppWeb/)
+- **URL**: [https://niickzl.github.io/LoLDraftAppWeb/](https://niickzl.github.io/LolDraftAppWebDist/)
 - **Tech Stack**: React, Vite, JavaScript
 - **Features**:
   - Champion selection interface
