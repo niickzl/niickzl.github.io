@@ -1,12 +1,28 @@
 import ChampionGrid from "../components/ChampionGrid";
 import TeamColumn from "../components/TeamColumn";
-import { useState, useCallback } from "react";
+import { useState, useCallback, useEffect } from "react";
 
 export default function Home() {
   const [searchTerm, setSearchTerm] = useState("");
   const [isSwapped, setIsSwapped] = useState(false);
   const [resetKey, setResetKey] = useState(0);
   const [draftPhase, setDraftPhase] = useState(0);
+  const [isBanning, setIsBanning] = useState(true);
+  const [banPhase, setBanPhase] = useState(0);
+  
+  // Ban order: B1, R1, B2, R2, B3, R3
+  const banOrder = [
+    { team: 'blue', position: 0 },  // B1
+    { team: 'red', position: 0 },   // R1
+    { team: 'blue', position: 1 },  // B2
+    { team: 'red', position: 1 },   // R2
+    { team: 'blue', position: 2 },  // B3
+    { team: 'red', position: 2 },   // R3
+    { team: 'blue', position: 3 },  // B4
+    { team: 'red', position: 3 },   // R4
+    { team: 'blue', position: 4 },  // B5
+    { team: 'red', position: 4 },   // R5
+  ];
   
   // Draft order specifies the exact position for each pick
   const draftOrder = [
@@ -29,7 +45,9 @@ export default function Home() {
   const [blueTeam, setBlueTeam] = useState(Array(5).fill(null));
   const [redTeam, setRedTeam] = useState(Array(5).fill(null));
   const [selectedChampions, setSelectedChampions] = useState(new Set());
+  const [bannedChampions, setBannedChampions] = useState(Array(10).fill(null));
   const [deletedSlots, setDeletedSlots] = useState([]); // Track deleted slots in order
+  const [deletedBanSlots, setDeletedBanSlots] = useState([]); // Track deleted ban slots
 
   // Update team states based on current selections
   const updateTeamStates = useCallback((newSelections) => {
@@ -86,13 +104,16 @@ export default function Home() {
   
   const resetDraft = useCallback(() => {
     setDraftPhase(0);
+    setBanPhase(0);
     setSelections(Array(draftOrder.length).fill(null));
+    setBannedChampions(Array(banOrder.length).fill(null));
     setBlueTeam(Array(5).fill(null));
     setRedTeam(Array(5).fill(null));
     setSelectedChampions(new Set());
     setDeletedSlots([]);
+    setDeletedBanSlots([]);
     setResetKey(prev => prev + 1);
-  }, [draftOrder.length]);
+  }, [draftOrder.length, banOrder.length]);
 
   const handleSlotClick = useCallback((team, position) => {
     const teamKey = team.toLowerCase();
@@ -116,52 +137,102 @@ export default function Home() {
     });
   }, [blueTeam, redTeam, updateTeamStates]);
 
+  const handleBanClick = useCallback((team, position) => {
+    const banIndex = banOrder.findIndex(ban => ban.team === team && ban.position === position);
+    if (banIndex === -1 || bannedChampions[banIndex] === null) return;
+    
+    setBannedChampions(prev => {
+      const newBans = [...prev];
+      newBans[banIndex] = null;
+      setDeletedBanSlots(prev => [...prev, banIndex]);
+      return newBans;
+    });
+  }, [bannedChampions]);
+
   const handleChampionSelect = useCallback((champion) => {
-    // Check if champion is already selected
-    if (selectedChampions.has(champion.id)) {
+    // Check if champion is already selected or banned
+    if (selectedChampions.has(champion.id) || bannedChampions.some(ban => ban?.id === champion.id)) {
       return;
     }
     
-    setSelections(prevSelections => {
-      // Check if all slots are filled
-      const filledSlots = prevSelections.filter(Boolean).length;
-      if (filledSlots >= draftOrder.length) {
-        return prevSelections;
-      }
-      
-      const newSelections = [...prevSelections];
-      
-      // First fill any deleted slots in order
-      if (deletedSlots.length > 0) {
-        const slotToFill = deletedSlots[0];
-        newSelections[slotToFill] = champion;
-        setDeletedSlots(prev => prev.slice(1));
-      } 
-      // Otherwise fill the next available slot in draft order
-      else {
-        const nextEmptyIndex = newSelections.findIndex((slot, index) => 
-          slot === null && !deletedSlots.includes(index)
-        );
-        if (nextEmptyIndex !== -1) {
-          newSelections[nextEmptyIndex] = champion;
-          // Only update draft phase if we're not filling a deleted slot
-          if (!deletedSlots.includes(nextEmptyIndex)) {
-            setDraftPhase(prev => Math.min(prev + 1, draftOrder.length - 1));
+    if (isBanning) {
+      // Handle ban selection
+      setBannedChampions(prev => {
+        // Check if all ban slots are filled
+        const filledBanSlots = prev.filter(Boolean).length;
+        if (filledBanSlots >= banOrder.length) {
+          return prev;
+        }
+        
+        const newBans = [...prev];
+        
+        // First fill any deleted ban slots
+        if (deletedBanSlots.length > 0) {
+          const slotToFill = deletedBanSlots[0];
+          newBans[slotToFill] = champion;
+          setDeletedBanSlots(prev => prev.slice(1));
+        } else {
+          // Find next empty ban slot
+          const nextEmptyIndex = newBans.findIndex(ban => ban === null);
+          if (nextEmptyIndex !== -1) {
+            newBans[nextEmptyIndex] = champion;
+            setBanPhase(prev => Math.min(prev + 1, banOrder.length - 1));
           }
         }
-      }
-      
-      updateTeamStates(newSelections);
-      return newSelections;
-    });
-  }, [selectedChampions, draftOrder, updateTeamStates, deletedSlots]);
+        
+        return newBans;
+      });
+    } else {
+      // Handle pick selection
+      setSelections(prevSelections => {
+        // Check if all slots are filled
+        const filledSlots = prevSelections.filter(Boolean).length;
+        if (filledSlots >= draftOrder.length) {
+          return prevSelections;
+        }
+        
+        const newSelections = [...prevSelections];
+        
+        // First fill any deleted slots in order
+        if (deletedSlots.length > 0) {
+          const slotToFill = deletedSlots[0];
+          newSelections[slotToFill] = champion;
+          setDeletedSlots(prev => prev.slice(1));
+        } 
+        // Otherwise fill the next available slot in draft order
+        else {
+          const nextEmptyIndex = newSelections.findIndex((slot, index) => 
+            slot === null && !deletedSlots.includes(index)
+          );
+          if (nextEmptyIndex !== -1) {
+            newSelections[nextEmptyIndex] = champion;
+            // Only update draft phase if we're not filling a deleted slot
+            if (!deletedSlots.includes(nextEmptyIndex)) {
+              setDraftPhase(prev => Math.min(prev + 1, draftOrder.length - 1));
+            }
+          }
+        }
+        
+        updateTeamStates(newSelections);
+        return newSelections;
+      });
+    }
+  }, [selectedChampions, bannedChampions, isBanning, draftOrder, deletedSlots, deletedBanSlots, updateTeamStates]);
   const banSpotSize = 36;
   const banSpotBaseStyle = {
     width: banSpotSize,
     height: banSpotSize,
     border: "2px solid #222",
     borderRadius: 6,
-    backgroundColor: "#0f0f0f"
+    backgroundColor: "#0f0f0f",
+    backgroundSize: 'cover',
+    backgroundPosition: 'center',
+  };
+  
+  const getChampionImageUrl = (championId) => {
+    const DATA_DRAGON_CDN = "https://ddragon.leagueoflegends.com/cdn";
+    const DATA_DRAGON_PATCH = "15.15.1";
+    return `${DATA_DRAGON_CDN}/${DATA_DRAGON_PATCH}/img/champion/${championId}.png`;
   };
   return (
     <div
@@ -217,18 +288,46 @@ export default function Home() {
           >
             {/* Left bans (swappable) */}
             <div style={{ display: "flex", gap: 8 }}>
-              {Array.from({ length: 5 }).map((_, i) => (
-                <div
-                  key={`left-ban-${i}`}
-                  style={{
-                    ...banSpotBaseStyle,
-                    borderColor: isSwapped ? "#dc2626" : "#2563eb",
-                  }}
-                />
-              ))}
+              {[0, 1, 2, 3, 4].map((position) => {
+                const team = isSwapped ? 'red' : 'blue';
+                const banIndex = banOrder.findIndex((ban, idx) => 
+                  ban.team === team && ban.position === position
+                );
+                const ban = banIndex !== -1 ? bannedChampions[banIndex] : null;
+                const isActive = isBanning && banPhase === banIndex && banOrder[banPhase]?.team === team;
+                
+                return (
+                  <div
+                    key={`left-ban-${position}`}
+                    onClick={() => ban && handleBanClick(isSwapped ? 'red' : 'blue', position)}
+                    style={{
+                      ...banSpotBaseStyle,
+                      borderColor: isSwapped ? "#dc2626" : "#2563eb",
+                      borderWidth: '2px',
+                      opacity: ban ? 1 : 0.6,
+                      backgroundImage: ban ? `url(${getChampionImageUrl(ban.id)})` : 'none',
+                      cursor: ban ? 'pointer' : 'default',
+                      position: 'relative',
+                      overflow: 'hidden'
+                    }}
+                  >
+                    {ban && (
+                      <div style={{
+                        position: 'absolute',
+                        top: 0,
+                        left: 0,
+                        right: 0,
+                        bottom: 0,
+                        background: 'linear-gradient(135deg, transparent 45%, rgba(220, 38, 38, 0.8) 45%, rgba(220, 38, 38, 0.8) 55%, transparent 55%)',
+                        pointerEvents: 'none'
+                      }} />
+                    )}
+                  </div>
+                );
+              })}
             </div>
 
-            {/* Center group: search + buttons packaged together */}
+            {/* Search bar and action buttons */}
             <div
               style={{
                 display: "flex",
@@ -238,19 +337,12 @@ export default function Home() {
                 flexWrap: "wrap"
               }}
             >
-              <button
-                type="button"
-                className="action-button"
-                onClick={() => setIsSwapped((s) => !s)}
-              >
-                Swap Side
-              </button>
               <input
                 type="text"
                 placeholder="Search champions..."
                 style={{
-                  width: "min(640px, 90%)",
-                  padding: "10px 12px",
+                  width: "min(380px, 70%)",
+                  padding: "8px 12px",
                   borderRadius: "8px",
                   border: "1px solid #333",
                   backgroundColor: "#0f0f0f",
@@ -263,6 +355,53 @@ export default function Home() {
               <button
                 type="button"
                 className="action-button"
+                onClick={() => setIsBanning(b => !b)}
+                style={{
+                  backgroundColor: isBanning ? '#dc2626' : '#2563eb',
+                  color: 'white',
+                  border: 'none',
+                  padding: '4px 6px',
+                  minWidth: '80px',
+                  borderRadius: '4px',
+                  cursor: 'pointer',
+                  fontWeight: 'bold',
+                  transition: 'background-color 0.2s'
+                }}
+              >
+                {isBanning ? 'Banning' : 'Selecting'}
+              </button>
+              <button
+                type="button"
+                className="action-button"
+                onClick={() => setIsSwapped((s) => !s)}
+                style={{
+                  backgroundColor: '#0d8a6b',
+                  border: 'none',
+                  padding: '4px 6px',
+                  minWidth: '80px',
+                  borderRadius: '4px',
+                  cursor: 'pointer',
+                  fontWeight: 'bold',
+                  color: 'white',
+                  transition: 'background-color 0.2s'
+                }}
+              >
+                Swap Side
+              </button>
+              <button
+                type="button"
+                className="action-button"
+                style={{
+                  backgroundColor: '#4b5563',
+                  color: 'white',
+                  border: 'none',
+                  padding: '4px 6px',
+                  minWidth: '80px',
+                  borderRadius: '4px',
+                  cursor: 'pointer',
+                  fontWeight: 'bold',
+                  transition: 'background-color 0.2s'
+                }}
                 onClick={() => {
                   setIsSwapped(false);
                   setSearchTerm("");
@@ -275,15 +414,43 @@ export default function Home() {
 
             {/* Right bans (swappable) */}
             <div style={{ display: "flex", gap: 8, justifyContent: "flex-end" }}>
-              {Array.from({ length: 5 }).map((_, i) => (
-                <div
-                  key={`right-ban-${i}`}
-                  style={{
-                    ...banSpotBaseStyle,
-                    borderColor: isSwapped ? "#2563eb" : "#dc2626",
-                  }}
-                />
-              ))}
+              {[0, 1, 2, 3, 4].map((position) => {
+                const team = isSwapped ? 'blue' : 'red';
+                const banIndex = banOrder.findIndex((ban, idx) => 
+                  ban.team === team && ban.position === position
+                );
+                const ban = banIndex !== -1 ? bannedChampions[banIndex] : null;
+                const isActive = isBanning && banPhase === banIndex && banOrder[banPhase]?.team === team;
+                
+                return (
+                  <div
+                    key={`right-ban-${position}`}
+                    onClick={() => ban && handleBanClick(isSwapped ? 'blue' : 'red', position)}
+                    style={{
+                      ...banSpotBaseStyle,
+                      borderColor: isSwapped ? "#2563eb" : "#dc2626",
+                      borderWidth: '2px',
+                      opacity: ban ? 1 : 0.6,
+                      backgroundImage: ban ? `url(${getChampionImageUrl(ban.id)})` : 'none',
+                      cursor: ban ? 'pointer' : 'default',
+                      position: 'relative',
+                      overflow: 'hidden'
+                    }}
+                  >
+                    {ban && (
+                      <div style={{
+                        position: 'absolute',
+                        top: 0,
+                        left: 0,
+                        right: 0,
+                        bottom: 0,
+                        background: 'linear-gradient(135deg, transparent 45%, rgba(220, 38, 38, 0.8) 45%, rgba(220, 38, 38, 0.8) 55%, transparent 55%)',
+                        pointerEvents: 'none'
+                      }} />
+                    )}
+                  </div>
+                );
+              })}
             </div>
           </div>
           <div style={{ flex: 1, minHeight: 0 }}>
@@ -292,8 +459,10 @@ export default function Home() {
               searchTerm={searchTerm} 
               onChampionSelect={handleChampionSelect}
               selectedChampions={selectedChampions}
-              draftPhase={draftPhase}
-              draftOrder={draftOrder}
+              bannedChampions={bannedChampions}
+              draftPhase={isBanning ? banPhase : draftPhase}
+              draftOrder={isBanning ? banOrder : draftOrder}
+              isBanning={isBanning}
             />
           </div>
         </div>

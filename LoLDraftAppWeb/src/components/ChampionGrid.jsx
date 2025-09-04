@@ -8,8 +8,9 @@ export default function ChampionGrid({
   searchTerm = "", 
   onChampionSelect, 
   selectedChampions = new Set(),
-  draftPhase = 0,
-  draftOrder = []
+  bannedChampions = [],
+  draftOrder = [],
+  isBanning = false
 }) {
   const [champions, setChampions] = useState([]);
   const [error, setError] = useState(null);
@@ -50,19 +51,21 @@ export default function ChampionGrid({
       .sort((a, b) => a.name.localeCompare(b.name));
   }, [champions, searchTerm]);
 
-  const isChampionSelectable = useCallback((championId) => {
-    // Check if champion is already selected
-    if (selectedChampions.has(championId)) {
+  const isChampionSelectable = useCallback((champion) => {
+    // Check if champion is already selected or banned
+    if (selectedChampions.has(champion.id) || bannedChampions.some(ban => ban?.id === champion.id)) {
       return false;
     }
     
-    // If all slots are filled, don't allow selection
-    if (selectedChampions.size >= draftOrder.length) {
-      return false;
+    // If in banning mode, check if all ban slots are filled
+    if (isBanning) {
+      const filledBanSlots = bannedChampions.filter(Boolean).length;
+      return filledBanSlots < draftOrder.length;
     }
     
+    // In picking mode, always allow selection if champion isn't banned or already picked
     return true;
-  }, [selectedChampions, draftOrder]);
+  }, [selectedChampions, bannedChampions, draftOrder.length, isBanning]);
 
   return (
     <div
@@ -105,7 +108,7 @@ export default function ChampionGrid({
               cursor: "pointer",
               color: "inherit"
             }}
-            onClick={() => isChampionSelectable(champ.id) && onChampionSelect(champ)}
+            onClick={() => isChampionSelectable(champ) && onChampionSelect(champ)}
           >
             <div
               style={{
@@ -113,15 +116,24 @@ export default function ChampionGrid({
                 aspectRatio: "1 / 1",
                 overflow: "hidden",
                 borderRadius: "8px",
-                backgroundColor: selectedChampions.has(champ.id) ? "#1a3a1a" : "#181818",
-                border: selectedChampions.has(champ.id) 
-                  ? "2px solid #4CAF50" 
-                  : "1px solid #2a2a2a",
+                backgroundColor: selectedChampions.has(champ.id) 
+                  ? "#1a3a1a" 
+                  : bannedChampions.some(ban => ban?.id === champ.id)
+                    ? "#3a1a1a"
+                    : "#181818",
+                border: selectedChampions.has(champ.id)
+                  ? "2px solid #4CAF50"
+                  : bannedChampions.some(ban => ban?.id === champ.id)
+                    ? "2px solid #f44336"
+                    : "1px solid #2a2a2a",
                 display: "flex",
                 alignItems: "center",
                 justifyContent: "center",
-                opacity: selectedChampions.has(champ.id) ? 0.5 : (isChampionSelectable(champ.id) ? 1 : 0.3),
-                cursor: isChampionSelectable(champ.id) ? 'pointer' : 'not-allowed',
+                position: 'relative',
+                opacity: selectedChampions.has(champ.id) || bannedChampions.some(ban => ban?.id === champ.id) 
+                  ? 0.5 
+                  : (isChampionSelectable(champ) ? 1 : 0.3),
+                cursor: isChampionSelectable(champ) ? 'pointer' : 'not-allowed',
                 transition: 'opacity 0.2s ease-in-out'
               }}
             >
@@ -140,12 +152,19 @@ export default function ChampionGrid({
               style={{
                 marginTop: 6,
                 fontSize: 14,
-                color: "#ddd",
+                color: selectedChampions.has(champ.id) 
+                  ? "#4CAF50" 
+                  : bannedChampions.some(ban => ban?.id === champ.id) 
+                    ? "#f87171" 
+                    : "#ddd",
                 textAlign: "center",
                 width: "100%",
                 whiteSpace: "nowrap",
                 overflow: "hidden",
                 textOverflow: "ellipsis",
+                fontWeight: selectedChampions.has(champ.id) || bannedChampions.some(ban => ban?.id === champ.id) 
+                  ? 'bold' 
+                  : 'normal'
               }}
               title={champ.name}
             >
