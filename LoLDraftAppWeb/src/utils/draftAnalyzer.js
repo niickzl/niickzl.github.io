@@ -5,33 +5,37 @@
  * recommend optimal champion picks based on the current draft state.
  */
 
-// Mapping of champion attributes to their counter attributes
+// Mapping of champion attributes to their counter attributes (flattened structure)
 const COUNTER_MAPPING = {
-  "DamageProfile": {
-    "physicalDamage": ["tankiness", "disengage"],
-    "magicDamage": ["sustain", "tankiness"],
-    "trueDamage": ["tankiness", "mobility"],
-    "burst": ["sustain", "peel"],
-    "dps": ["tankiness", "peel"]
-  },
-  "Survivability": {
-    "tankiness": ["burst", "dps", "physicalDamage"],
-    "sustain": ["burst", "magicDamage"],
-    "mobility": ["hardCC", "engage"],
-    "disengage": ["engage", "burst"]
-  },
-  "CrowdControl": {
-    "hardCC": ["mobility", "dps", "burst"],
-    "softCC": ["dps", "sustain"],
-    "engage": ["disengage", "mobility"],
-    "peel": ["burst", "engage"]
-  },
-  "Utility": {
-    "vision": ["engage", "burst", "hardCC"],
-    "teamBuffs": ["burst", "dps", "engage"],
-    "waveclear": ["engage", "burst"],
-    "objectiveControl": ["mobility", "disengage"]
-  }
+  // Damage Profile
+  physicalDamage: ["tankiness", "disengage"],
+  magicDamage: ["sustain", "tankiness"],
+  trueDamage: ["tankiness", "mobility"],
+  burst: ["sustain", "peel"],
+  dps: ["tankiness", "peel"],
+  
+  // Survivability
+  tankiness: ["burst", "dps", "physicalDamage"],
+  sustain: ["burst", "magicDamage"],
+  mobility: ["hardCC", "engage"],
+  disengage: ["engage", "burst"],
+  
+  // Crowd Control
+  hardCC: ["mobility", "dps", "burst"],
+  softCC: ["dps", "sustain"],
+  engage: ["disengage", "mobility"],
+  peel: ["burst", "engage"],
+  
+  // Utility
+  vision: ["engage", "burst", "hardCC"],
+  teamBuffs: ["burst", "dps", "engage"],
+  waveclear: ["engage", "burst"],
+  objectiveControl: ["mobility", "disengage"],
+  
+  // Scaling
+  early: ["scaling"],
+  mid: ["scaling"],
+  late: ["scaling"]
 };
 
 // Number of top attributes to consider as enemy team's strengths
@@ -48,7 +52,7 @@ const VARIANCE_BONUS_SCALE = 10;
  * @returns {Object} Flattened characteristics object
  */
 function flattenCharacteristics(champion) {
-  if (!champion.characteristics) return {};
+  if (!champion || !champion.characteristics) return {};
   
   const flat = {};
   for (const category in champion.characteristics) {
@@ -177,25 +181,40 @@ function calculateWeights(enemyTeam, allyTeam) {
 
 /**
  * Ranks champions based on the current draft state
- * @param {Object[]} allyTeam - Array of ally champions
- * @param {Object[]} enemyTeam - Array of enemy champions
- * @param {Object[]} candidatePool - Array of champion names to consider
- * @param {Object} championDB - Full champion database
+ * @param {Object[]} allyTeam - Array of ally champion names
+ * @param {Object[]} enemyTeam - Array of enemy champion names
+ * @param {string[]} candidatePool - Array of champion names to consider
+ * @param {Object} championDB - Full champion database (championStats)
  * @returns {Array} Sorted array of { name, final_score } objects
  */
 function rankChampions(allyTeam, enemyTeam, candidatePool, championDB) {
-  if (!candidatePool.length || !championDB) return [];
+  if (!candidatePool?.length || !championDB) return [];
   
-  const weights = calculateWeights(enemyTeam, allyTeam);
-  const enemyHighlights = getTopAttributes(enemyTeam, TOP_ATTRIBUTES_COUNT);
+  // Convert champion names to champion objects from the database
+  const allyChampions = allyTeam
+    .map(name => ({
+      name,
+      ...(championDB[name] || { characteristics: {} })
+    }))
+    .filter(champ => champ.characteristics);
+    
+  const enemyChampions = enemyTeam
+    .map(name => ({
+      name,
+      ...(championDB[name] || { characteristics: {} })
+    }))
+    .filter(champ => champ.characteristics);
+  
+  const weights = calculateWeights(enemyChampions, allyChampions);
+  const enemyHighlights = getTopAttributes(enemyChampions, TOP_ATTRIBUTES_COUNT);
   
   // Calculate ally team's current variance in highlighted attributes
   let allyVarianceBefore = 0;
-  if (allyTeam.length > 0 && enemyHighlights.length > 0) {
+  if (allyChampions.length > 0 && enemyHighlights.length > 0) {
     const allyValues = {};
     
     // Collect values for highlighted attributes across ally team
-    allyTeam.forEach(champion => {
+    allyChampions.forEach(champion => {
       const flat = flattenCharacteristics(champion);
       enemyHighlights.forEach(attr => {
         if (!allyValues[attr]) allyValues[attr] = [];
@@ -217,7 +236,9 @@ function rankChampions(allyTeam, enemyTeam, candidatePool, championDB) {
   // Score each candidate champion
   const scoredCandidates = candidatePool.map(championName => {
     const champion = championDB[championName];
-    if (!champion) return { name: championName, final_score: 0 };
+    if (!champion?.characteristics) {
+      return { name: championName, final_score: 0 };
+    }
     
     const flat = flattenCharacteristics(champion);
     let baseScore = 0;
@@ -228,10 +249,10 @@ function rankChampions(allyTeam, enemyTeam, candidatePool, championDB) {
       baseScore += (value || 0) * weight;
     });
     
-    // Calculate variance bonus if there are enemy highlights
+    // Calculate variance bonus if there are enemy highlights and allies
     let varianceBonus = 0;
-    if (allyTeam.length > 0 && enemyHighlights.length > 0 && allyVarianceBefore > 0) {
-      const allyPlusCandidate = [...allyTeam, champion];
+    if (allyChampions.length > 0 && enemyHighlights.length > 0 && allyVarianceBefore > 0) {
+      const allyPlusCandidate = [...allyChampions, { ...champion, name: championName }];
       const allyValuesAfter = {};
       
       // Collect values for highlighted attributes across ally team + candidate

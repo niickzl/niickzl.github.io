@@ -58,8 +58,17 @@ export default function Home() {
   const [deletedBanSlots, setDeletedBanSlots] = useState([]); // Track deleted ban slots
   const [selectedRole, setSelectedRole] = useState(null); // Track selected role
 
+  // Debug log for team state updates
+  useEffect(() => {
+    console.log('Blue Team Updated:', blueTeam);
+    console.log('Red Team Updated:', redTeam);
+    console.log('Banned Champions:', bannedChampions);
+    console.log('Selected Champions (Set):', Array.from(selectedChampions));
+  }, [blueTeam, redTeam, bannedChampions, selectedChampions]);
+
   // Update team states based on current selections
   const updateTeamStates = useCallback((newSelections) => {
+    console.log('Updating team states with selections:', newSelections);
     const newBlueTeam = Array(5).fill(null);
     const newRedTeam = Array(5).fill(null);
     const newSelectedChampions = new Set();
@@ -126,9 +135,11 @@ export default function Home() {
   }, [draftOrder.length, banOrder.length]);
 
   const handleSlotClick = useCallback((team, position) => {
+    console.log(`Slot clicked - Team: ${team}, Position: ${position}`);
     const teamKey = team.toLowerCase();
     const teamArray = teamKey === 'blue' ? blueTeam : redTeam;
     const champion = teamArray[position];
+    console.log('Champion in slot:', champion?.name || 'Empty slot');
     
     if (!champion) return;
     
@@ -160,8 +171,10 @@ export default function Home() {
   }, [bannedChampions]);
 
   const handleChampionSelect = useCallback((champion) => {
+    console.log('Champion selected:', champion.name);
     // Check if champion is already selected or banned
     if (selectedChampions.has(champion.id) || bannedChampions.some(ban => ban?.id === champion.id)) {
+      console.log('Champion already selected or banned, ignoring selection');
       return;
     }
     
@@ -421,29 +434,6 @@ export default function Home() {
               >
                 Reset All
               </button>
-              <div style={{ display: 'flex', gap: '15px', justifyContent: 'center', width: '100%', marginTop: '8px' }}>
-                {[
-                  { name: 'Top', icon: TopIcon, role: 'top' },
-                  { name: 'Jungle', icon: JungleIcon, role: 'jungle' },
-                  { name: 'Mid', icon: MidIcon, role: 'mid' },
-                  { name: 'Bot', icon: BotIcon, role: 'bot' },
-                  { name: 'Support', icon: SupportIcon, role: 'support' }
-                ].map((role) => (
-                  <button
-                    key={role.name}
-                    type="button"
-                    className={`role-button ${selectedRole === role.role ? 'role-button-active' : ''}`}
-                    onClick={() => setSelectedRole(selectedRole === role.role ? null : role.role)}
-                  >
-                    <img 
-                      src={role.icon} 
-                      alt={role.name} 
-                      title={role.name}
-                      style={{ width: '35px', height: '35px' }}
-                    />
-                  </button>
-                ))}
-              </div>
             </div>
 
             {/* Right bans (swappable) */}
@@ -498,6 +488,10 @@ export default function Home() {
               draftOrder={isBanning ? banOrder : draftOrder}
               isBanning={isBanning}
               selectedRole={selectedRole}
+              onRoleSelect={setSelectedRole}
+              allyTeam={isSwapped ? redTeam : blueTeam}
+              enemyTeam={isSwapped ? blueTeam : redTeam}
+              isSwapped={isSwapped}
             />
           </div>
         </div>
