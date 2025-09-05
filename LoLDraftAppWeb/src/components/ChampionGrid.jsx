@@ -4,11 +4,11 @@ import { rankChampions } from "../utils/draftAnalyzer";
 import championStats from "../data/championStats";
 
 // Import role icons
-const TopIcon = "/roleIcon/Top_icon.png";
-const JungleIcon = "/roleIcon/Jungle_icon.png";
-const MidIcon = "/roleIcon/Middle_icon.png";
-const BotIcon = "/roleIcon/Bottom_icon.png";
-const SupportIcon = "/roleIcon/Support_icon.png";
+const TopIcon = "./roleIcon/Top_icon.png";
+const JungleIcon = "./roleIcon/Jungle_icon.png";
+const MidIcon = "./roleIcon/Middle_icon.png";
+const BotIcon = "./roleIcon/Bottom_icon.png";
+const SupportIcon = "./roleIcon/Support_icon.png";
 
 const DATA_DRAGON_CDN = "https://ddragon.leagueoflegends.com/cdn";
 const DATA_DRAGON_PATCH = "15.17.1";
