@@ -3,16 +3,13 @@ import TeamColumn from "../components/TeamColumn";
 import React, { useState, useEffect, useCallback } from "react";
 import "./Home.css";
 
-// Import role icons
-const TopIcon = "/roleIcon/Top_icon.png";
-const JungleIcon = "/roleIcon/Jungle_icon.png";
-const MidIcon = "/roleIcon/Middle_icon.png";
-const BotIcon = "/roleIcon/Bottom_icon.png";
-const SupportIcon = "/roleIcon/Support_icon.png";
-
 export default function Home() {
   const [searchTerm, setSearchTerm] = useState("");
   const [isSwapped, setIsSwapped] = useState(false);
+  const [hoveredBan, setHoveredBan] = useState({ 
+    left: null, 
+    right: null 
+  });
   const [resetKey, setResetKey] = useState(0);
   const [draftPhase, setDraftPhase] = useState(0);
   const [isBanning, setIsBanning] = useState(true);
@@ -57,6 +54,11 @@ export default function Home() {
   const [deletedSlots, setDeletedSlots] = useState([]); // Track deleted slots in order
   const [deletedBanSlots, setDeletedBanSlots] = useState([]); // Track deleted ban slots
   const [selectedRole, setSelectedRole] = useState(null); // Track selected role
+
+  // Team state updates effect
+  useEffect(() => {
+    // State updates handled here
+  }, [blueTeam, redTeam, bannedChampions, selectedChampions]);
 
   // Update team states based on current selections
   const updateTeamStates = useCallback((newSelections) => {
@@ -238,6 +240,11 @@ export default function Home() {
     backgroundColor: "#0f0f0f",
     backgroundSize: 'cover',
     backgroundPosition: 'center',
+    transition: 'all 0.2s ease-in-out',
+  };
+  
+  const banSpotHoverStyle = {
+    filter: 'grayscale(50%) brightness(0.8)'
   };
   
   const getChampionImageUrl = (championId) => {
@@ -311,27 +318,45 @@ export default function Home() {
                   <div
                     key={`left-ban-${position}`}
                     onClick={() => ban && handleBanClick(isSwapped ? 'red' : 'blue', position)}
+                    onMouseEnter={() => ban && setHoveredBan(prev => ({ ...prev, left: position }))}
+                    onMouseLeave={() => setHoveredBan(prev => ({ ...prev, left: null }))}
                     style={{
                       ...banSpotBaseStyle,
                       borderColor: isSwapped ? "#dc2626" : "#2563eb",
                       borderWidth: '2px',
                       opacity: ban ? 1 : 0.6,
-                      backgroundImage: ban ? `url(${getChampionImageUrl(ban.id)})` : 'none',
+                      backgroundImage: 'none',
                       cursor: ban ? 'pointer' : 'default',
                       position: 'relative',
-                      overflow: 'hidden'
+                      overflow: 'hidden',
+                      ...(hoveredBan.left === position ? banSpotHoverStyle : {})
                     }}
                   >
                     {ban && (
-                      <div style={{
-                        position: 'absolute',
-                        top: 0,
-                        left: 0,
-                        right: 0,
-                        bottom: 0,
-                        background: 'linear-gradient(135deg, transparent 45%, rgba(220, 38, 38, 0.8) 45%, rgba(220, 38, 38, 0.8) 55%, transparent 55%)',
-                        pointerEvents: 'none'
-                      }} />
+                      <>
+                        <div 
+                          style={{
+                            position: 'absolute',
+                            top: 0,
+                            left: 0,
+                            right: 0,
+                            bottom: 0,
+                            backgroundImage: `url(${getChampionImageUrl(ban.id)})`,
+                            backgroundSize: 'cover',
+                            backgroundPosition: 'center',
+                            transition: 'all 0.2s ease-in-out',
+                        }} />
+                        <div 
+                          style={{
+                            position: 'absolute',
+                            top: 0,
+                            left: 0,
+                            right: 0,
+                            bottom: 0,
+                            background: 'linear-gradient(135deg, transparent 45%, rgba(220, 38, 38, 0.8) 45%, rgba(220, 38, 38, 0.8) 55%, transparent 55%)',
+                            pointerEvents: 'none'
+                        }} />
+                      </>
                     )}
                   </div>
                 );
@@ -421,29 +446,6 @@ export default function Home() {
               >
                 Reset All
               </button>
-              <div style={{ display: 'flex', gap: '15px', justifyContent: 'center', width: '100%', marginTop: '8px' }}>
-                {[
-                  { name: 'Top', icon: TopIcon, role: 'top' },
-                  { name: 'Jungle', icon: JungleIcon, role: 'jungle' },
-                  { name: 'Mid', icon: MidIcon, role: 'mid' },
-                  { name: 'Bot', icon: BotIcon, role: 'bot' },
-                  { name: 'Support', icon: SupportIcon, role: 'support' }
-                ].map((role) => (
-                  <button
-                    key={role.name}
-                    type="button"
-                    className={`role-button ${selectedRole === role.role ? 'role-button-active' : ''}`}
-                    onClick={() => setSelectedRole(selectedRole === role.role ? null : role.role)}
-                  >
-                    <img 
-                      src={role.icon} 
-                      alt={role.name} 
-                      title={role.name}
-                      style={{ width: '35px', height: '35px' }}
-                    />
-                  </button>
-                ))}
-              </div>
             </div>
 
             {/* Right bans (swappable) */}
@@ -460,27 +462,45 @@ export default function Home() {
                   <div
                     key={`right-ban-${position}`}
                     onClick={() => ban && handleBanClick(isSwapped ? 'blue' : 'red', position)}
+                    onMouseEnter={() => ban && setHoveredBan(prev => ({ ...prev, right: position }))}
+                    onMouseLeave={() => setHoveredBan(prev => ({ ...prev, right: null }))}
                     style={{
                       ...banSpotBaseStyle,
                       borderColor: isSwapped ? "#2563eb" : "#dc2626",
                       borderWidth: '2px',
                       opacity: ban ? 1 : 0.6,
-                      backgroundImage: ban ? `url(${getChampionImageUrl(ban.id)})` : 'none',
+                      backgroundImage: 'none',
                       cursor: ban ? 'pointer' : 'default',
                       position: 'relative',
-                      overflow: 'hidden'
+                      overflow: 'hidden',
+                      ...(hoveredBan.right === position ? banSpotHoverStyle : {})
                     }}
                   >
                     {ban && (
-                      <div style={{
-                        position: 'absolute',
-                        top: 0,
-                        left: 0,
-                        right: 0,
-                        bottom: 0,
-                        background: 'linear-gradient(135deg, transparent 45%, rgba(220, 38, 38, 0.8) 45%, rgba(220, 38, 38, 0.8) 55%, transparent 55%)',
-                        pointerEvents: 'none'
-                      }} />
+                      <>
+                        <div 
+                          style={{
+                            position: 'absolute',
+                            top: 0,
+                            left: 0,
+                            right: 0,
+                            bottom: 0,
+                            backgroundImage: `url(${getChampionImageUrl(ban.id)})`,
+                            backgroundSize: 'cover',
+                            backgroundPosition: 'center',
+                            transition: 'all 0.2s ease-in-out',
+                        }} />
+                        <div 
+                          style={{
+                            position: 'absolute',
+                            top: 0,
+                            left: 0,
+                            right: 0,
+                            bottom: 0,
+                            background: 'linear-gradient(135deg, transparent 45%, rgba(220, 38, 38, 0.8) 45%, rgba(220, 38, 38, 0.8) 55%, transparent 55%)',
+                            pointerEvents: 'none'
+                        }} />
+                      </>
                     )}
                   </div>
                 );
@@ -498,6 +518,10 @@ export default function Home() {
               draftOrder={isBanning ? banOrder : draftOrder}
               isBanning={isBanning}
               selectedRole={selectedRole}
+              onRoleSelect={setSelectedRole}
+              allyTeam={isSwapped ? redTeam : blueTeam}
+              enemyTeam={isSwapped ? blueTeam : redTeam}
+              isSwapped={isSwapped}
             />
           </div>
         </div>

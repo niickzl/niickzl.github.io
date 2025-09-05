@@ -15,6 +15,7 @@ export default defineConfig({
   build: {
     outDir: '../LoLDraftAppWebDist',
     assetsDir: 'assets',
+    copyPublicDir: true,
     rollupOptions: {
       input: {
         main: resolve(__dirname, 'index.html')

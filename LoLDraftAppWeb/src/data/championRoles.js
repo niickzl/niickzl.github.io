@@ -1,4 +1,4 @@
-const championInfo = {
+const championRoles = {
   "Aatrox": { "roles": ["Top"] },
   "Ahri": { "roles": ["Mid"] },
   "Akali": { "roles": ["Mid", "Top"] },
@@ -172,4 +172,4 @@ const championInfo = {
   "Zyra": { "roles": ["Support", "Mid"] }
 };
 
-export default championInfo;
+export default championRoles;
