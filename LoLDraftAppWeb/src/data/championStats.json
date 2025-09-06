@@ -1,4 +1,4 @@
-const championStats = {
+{
     "Aatrox": {
     "characteristics": {
       "DamageProfile": {
@@ -5813,6 +5813,4 @@ const championStats = {
       }
     }
   }
-};
-export default championStats;
-  
+}

@@ -1,7 +1,7 @@
 import { useCallback, useEffect, useMemo, useState } from "react";
-import championRoles from "../data/championRoles";
+import championRoles from "../data/championRoles.json";
 import { rankChampions } from "../utils/draftAnalyzer";
-import championStats from "../data/championStats";
+import championStats from "../data/championStats.json";
 
 // Import role icons
 const TopIcon = "./roleIcon/Top_icon.png";
