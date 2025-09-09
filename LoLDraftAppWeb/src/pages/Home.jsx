@@ -51,9 +51,9 @@ export default function Home() {
   const [redTeam, setRedTeam] = useState(Array(5).fill(null));
   const [selectedChampions, setSelectedChampions] = useState(new Set());
   const [bannedChampions, setBannedChampions] = useState(Array(10).fill(null));
+  const [selectedRole, setSelectedRole] = useState(null); // Track selected role
   const [deletedSlots, setDeletedSlots] = useState([]); // Track deleted slots in order
   const [deletedBanSlots, setDeletedBanSlots] = useState([]); // Track deleted ban slots
-  const [selectedRole, setSelectedRole] = useState(null); // Track selected role
 
   // Team state updates effect
   useEffect(() => {
@@ -265,8 +265,7 @@ export default function Home() {
         flexDirection: "column",
         height: "100vh",
         backgroundColor: "#000",
-        color: "white",
-        
+        color: "white"
       }}
     >
       {/* MAIN CONTENT */}
