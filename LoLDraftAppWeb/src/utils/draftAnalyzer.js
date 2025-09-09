@@ -6,7 +6,7 @@ const COUNTER_MAPPING = {
   physicalDamage: ["tankiness", "disengage"],
   magicDamage: ["sustain", "tankiness"],
 
-  burst: ["sustain", "peel"],
+  burst: ["peel", "tankiness"],
   dps: ["tankiness", "peel"],
   poke: ["sustain", "engage"],
   range: ["engage", "mobility"],
@@ -46,7 +46,7 @@ const SYNERGY_MAPPING = {
     range: ["poke", "disengage", "waveclear"],
 
     tankiness: ["sustain", "engage"],
-    sustain: ["tankiess", "waveclear"],
+    sustain: ["tankiness", "waveclear"],
     mobility: ["burst", "mobility", "engage"],
     disengage: ["poke", "vision", "range"],
 
@@ -65,12 +65,12 @@ const SYNERGY_MAPPING = {
 }
 
 // Number of top attributes to consider as enemy team's strengths
-const TOP_ATTRIBUTES_COUNT = 5;
+const TOP_ATTRIBUTES_COUNT = 6;
 
 // Weight adjustments
 const COUNTER_WEIGHT_BONUS = 0.5;
 const SYNERGY_WEIGHT_BONUS = 0.5;
-const VARIANCE_BONUS_SCALE = 10;
+const VARIANCE_BONUS_SCALE = 1.5;
 
 /**
  * Flattens a champion's characteristics into a single level object
@@ -120,30 +120,25 @@ function calculateVariance(values) {
 function getTopAttributes(team, count) {
   if (!team.length) return [];
   
-  // Initialize attribute sums and counts
+  // Initialize attribute sums
   const attributeSums = {};
-  const attributeCounts = {};
   
-  // Sum up all attribute values across the team
   team.forEach(champion => {
     const flat = flattenCharacteristics(champion);
     Object.entries(flat).forEach(([attr, value]) => {
       attributeSums[attr] = (attributeSums[attr] || 0) + value;
-      attributeCounts[attr] = (attributeCounts[attr] || 0) + 1;
     });
   });
   
-  // Calculate averages and sort by value
-  const avgAttributes = Object.entries(attributeSums)
+  // Sort by raw totals instead of averages
+  return Object.entries(attributeSums)
     .map(([attr, sum]) => ({
       attribute: attr,
-      value: sum / attributeCounts[attr]
+      value: sum
     }))
     .sort((a, b) => b.value - a.value)
     .slice(0, count)
     .map(item => item.attribute);
-  
-  return avgAttributes;
 }
 
 /**
@@ -201,7 +196,7 @@ function calculateWeights(enemyTeam, allyTeam) {
       const avgEnemyValue = averageAttribute(flatEnemies, enemyAttr);
       if (avgEnemyValue > 0 && weights.hasOwnProperty(highlight)) {
         weights[highlight] -= avgEnemyValue * COUNTER_WEIGHT_BONUS;
-        if (weights[highlight] < 0.1) weights[highlight] = 0.1; // floor to avoid negatives
+        if (weights[highlight] < 1) weights[highlight] = 1; // floor to avoid negatives
       }
     });
   });
@@ -247,17 +242,17 @@ function rankChampions(allyTeam, enemyTeam, candidatePool, championDB) {
     .filter(champ => champ.characteristics);
   
   const weights = calculateWeights(enemyChampions, allyChampions);
-  const enemyHighlights = getTopAttributes(enemyChampions, TOP_ATTRIBUTES_COUNT);
+  const allyHighlights = getTopAttributes(allyChampions, TOP_ATTRIBUTES_COUNT);
   
   // Calculate ally team's current variance in highlighted attributes
   let allyVarianceBefore = 0;
-  if (allyChampions.length > 0 && enemyHighlights.length > 0) {
+  if (allyChampions.length > 0 && allyHighlights.length > 0) {
     const allyValues = {};
     
     // Collect values for highlighted attributes across ally team
     allyChampions.forEach(champion => {
       const flat = flattenCharacteristics(champion);
-      enemyHighlights.forEach(attr => {
+      allyHighlights.forEach(attr => {
         if (!allyValues[attr]) allyValues[attr] = [];
         allyValues[attr].push(flat[attr] || 0);
       });
@@ -292,14 +287,14 @@ function rankChampions(allyTeam, enemyTeam, candidatePool, championDB) {
     
     // Calculate variance bonus if there are enemy highlights and allies
     let varianceBonus = 0;
-    if (allyChampions.length > 0 && enemyHighlights.length > 0 && allyVarianceBefore > 0) {
+    if (allyChampions.length > 0 && allyHighlights.length > 0 && allyVarianceBefore > 0) {
       const allyPlusCandidate = [...allyChampions, { ...champion, name: championName }];
       const allyValuesAfter = {};
       
       // Collect values for highlighted attributes across ally team + candidate
       allyPlusCandidate.forEach(champ => {
         const champFlat = flattenCharacteristics(champ);
-        enemyHighlights.forEach(attr => {
+        allyHighlights.forEach(attr => {
           if (!allyValuesAfter[attr]) allyValuesAfter[attr] = [];
           allyValuesAfter[attr].push(champFlat[attr] || 0);
         });
