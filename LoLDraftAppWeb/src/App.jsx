@@ -23,7 +23,9 @@ function App() {
         <div style={{ flex: 1, minHeight: 0 }}>
           <Routes>
             <Route path="/" element={<Home />} />
+            <Route path="/index.html" element={<Home />} />
             <Route path="/about" element={<About />} />
+            <Route path="*" element={<Home />} />
           </Routes>
         </div>
         <SiteFooter />
