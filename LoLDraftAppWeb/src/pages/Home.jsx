@@ -192,6 +192,9 @@ export default function Home() {
           }
         }
         
+        // Clear search term and role after successful ban
+        setSearchTerm('');
+        setSelectedRole(null);
         return newBans;
       });
     } else {
@@ -225,6 +228,9 @@ export default function Home() {
           }
         }
         
+        // Clear search term and role after successful pick
+        setSearchTerm('');
+        setSelectedRole(null);
         updateTeamStates(newSelections);
         return newSelections;
       });
