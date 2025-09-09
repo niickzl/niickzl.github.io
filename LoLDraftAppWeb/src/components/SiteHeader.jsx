@@ -61,7 +61,7 @@ export default function SiteHeader() {
     >
       <div style={{ display: 'flex', alignItems: 'center', gap: '20px' }}>
         <div
-          onClick={() => navigate("./")}
+          onClick={() => navigate("/index.html")}
           style={{
             display: "flex",
             alignItems: "center",
