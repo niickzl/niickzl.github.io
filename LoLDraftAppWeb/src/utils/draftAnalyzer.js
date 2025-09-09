@@ -1,49 +1,75 @@
-/**
+/*
  * League of Legends Draft Analysis Algorithm
- * 
- * This module provides functions to analyze enemy team composition and
- * recommend optimal champion picks based on the current draft state.
  */
 
-// Mapping of champion attributes to their counter attributes (flattened structure)
 const COUNTER_MAPPING = {
-  // Damage Profile
   physicalDamage: ["tankiness", "disengage"],
   magicDamage: ["sustain", "tankiness"],
-  trueDamage: ["tankiness", "mobility"],
+
   burst: ["sustain", "peel"],
   dps: ["tankiness", "peel"],
+  poke: ["sustain", "engage"],
+  range: ["engage", "mobility"],
   
-  // Survivability
-  tankiness: ["burst", "dps", "physicalDamage"],
-  sustain: ["burst", "magicDamage"],
+  tankiness: ["dps"],
+  sustain: ["burst"],
   mobility: ["hardCC", "engage"],
-  disengage: ["engage", "burst"],
+  disengage: ["burst", "poke", "range"],
   
-  // Crowd Control
-  hardCC: ["mobility", "dps", "burst"],
-  softCC: ["dps", "sustain"],
+  hardCC: ["mobility", "dps", "burst", "peel"],
+  areaControl: ["mobility"],
   engage: ["disengage", "mobility"],
   peel: ["burst", "engage"],
   
-  // Utility
   vision: ["engage", "burst", "hardCC"],
   teamBuffs: ["burst", "dps", "engage"],
   waveclear: ["engage", "burst"],
-  objectiveControl: ["mobility", "disengage"],
-  
-  // Scaling
-  early: ["scaling"],
-  mid: ["scaling"],
-  late: ["scaling"]
 };
+
+const INVERSE_COUNTER_MAPPING = {};
+Object.entries(COUNTER_MAPPING).forEach(([attr, counters]) => {
+  counters.forEach(counter => {
+    if (!INVERSE_COUNTER_MAPPING[counter]) {
+      INVERSE_COUNTER_MAPPING[counter] = [];
+    }
+    INVERSE_COUNTER_MAPPING[counter].push(attr);
+  });
+});
+
+const SYNERGY_MAPPING = {
+    physicalDamage: ["magicDamage", "areaControl"],
+    magicDamage: ["physicalDamage"],
+
+    burst: ["engage", "hardCC"],
+    dps: ["peel", "sustain", "tankiness"],
+    poke: ["vision", "range"],
+    range: ["poke", "disengage", "waveclear"],
+
+    tankiness: ["sustain", "engage"],
+    sustain: ["tankiess", "waveclear"],
+    mobility: ["burst", "mobility", "engage"],
+    disengage: ["poke", "vision", "range"],
+
+    hardCC: ["burst", "dps", "engage"],
+    areaControl: ["poke", "dps"],
+    engage: ["burst", "hardCC"],
+    peel: ["dps", "teamBuffs"],
+
+    vision: ["engage"],
+    teamBuffs: ["tankiness", "dps"],
+    waveclear: ["dps", "range"],
+
+    early: ["engage", "burst"],
+    mid: ["waveclear"],
+    late: ["tankiness", "teamBuffs"]
+}
 
 // Number of top attributes to consider as enemy team's strengths
 const TOP_ATTRIBUTES_COUNT = 5;
 
 // Weight adjustments
 const COUNTER_WEIGHT_BONUS = 0.5;
-const WEAKNESS_MULTIPLIER = 1.2;
+const SYNERGY_WEIGHT_BONUS = 0.5;
 const VARIANCE_BONUS_SCALE = 10;
 
 /**
@@ -130,51 +156,66 @@ function calculateWeights(enemyTeam, allyTeam) {
   const weights = {};
   
   // Initialize all weights to 1.0
-  const allAttributes = new Set();
-  [...enemyTeam, ...allyTeam].forEach(champ => {
-    const flat = flattenCharacteristics(champ);
-    Object.keys(flat).forEach(attr => allAttributes.add(attr));
-  });
+  const allAttributes = new Set([
+    ...Object.keys(COUNTER_MAPPING),
+    ...Object.keys(SYNERGY_MAPPING),
+    ...[...enemyTeam, ...allyTeam].flatMap(champ => Object.keys(flattenCharacteristics(champ)))
+  ]);
+  allAttributes.forEach(attr => weights[attr] = 1.0);
+
+  // Flatten enemy team for attribute values
+  const flatEnemies = enemyTeam.map(champ => flattenCharacteristics(champ));
+  const flatAllies = allyTeam.map(champ => flattenCharacteristics(champ));
+
+  function averageAttribute(flatTeam, attr) {
+    let total = 0, count = 0;
+    flatTeam.forEach(flat => {
+      if (flat[attr] !== undefined) {
+        total += flat[attr];
+        count++;
+      }
+    });
+    return count > 0 ? total / count : 0;
+  }
   
-  allAttributes.forEach(attr => {
-    weights[attr] = 1.0;
-  });
-  
-  // Get enemy team's top attributes
+  // Increase weights for counter attributes proportional to enemy strength
   const enemyHighlights = getTopAttributes(enemyTeam, TOP_ATTRIBUTES_COUNT);
-  
-  // Increase weights for counter attributes
   enemyHighlights.forEach(highlight => {
+    const avgHighlightValue = averageAttribute(flatEnemies, highlight);
     const counters = COUNTER_MAPPING[highlight] || [];
     counters.forEach(counter => {
       if (weights.hasOwnProperty(counter)) {
-        weights[counter] += COUNTER_WEIGHT_BONUS;
+        weights[counter] += avgHighlightValue * COUNTER_WEIGHT_BONUS;
       }
     });
   });
-  
-  // Increase weights for ally team's weaknesses
-  if (allyTeam.length > 0) {
-    const allyAverages = {};
-    const allyCounts = {};
-    
-    // Calculate ally team averages for each attribute
-    allyTeam.forEach(champ => {
-      const flat = flattenCharacteristics(champ);
-      Object.entries(flat).forEach(([attr, value]) => {
-        allyAverages[attr] = (allyAverages[attr] || 0) + value;
-        allyCounts[attr] = (allyCounts[attr] || 0) + 1;
-      });
-    });
-    
-    // Apply weakness multiplier to attributes where ally average is low
-    Object.entries(allyAverages).forEach(([attr, sum]) => {
-      const avg = sum / allyCounts[attr];
-      if (avg <= 4 && weights[attr] !== undefined) {
-        weights[attr] *= WEAKNESS_MULTIPLIER;
+
+  // Decrease weights for ally team's strengths based on enemy counters
+  const allyHighlights = getTopAttributes(allyTeam, TOP_ATTRIBUTES_COUNT);
+  allyHighlights.forEach(highlight => {
+    const avgAllyValue = averageAttribute(flatAllies, highlight);
+    if (!avgAllyValue) return;
+
+    const enemyCounters = INVERSE_COUNTER_MAPPING[highlight] || [];
+    enemyCounters.forEach(enemyAttr => {
+      const avgEnemyValue = averageAttribute(flatEnemies, enemyAttr);
+      if (avgEnemyValue > 0 && weights.hasOwnProperty(highlight)) {
+        weights[highlight] -= avgEnemyValue * COUNTER_WEIGHT_BONUS;
+        if (weights[highlight] < 0.1) weights[highlight] = 0.1; // floor to avoid negatives
       }
     });
-  }
+  });
+
+  // Calculate synergy with allies
+  allyHighlights.forEach(highlight => {
+    const avgAllyValue = averageAttribute(flatAllies, highlight);
+    const synergies = SYNERGY_MAPPING[highlight] || [];
+    synergies.forEach(synergyAttr => {
+      if (weights.hasOwnProperty(synergyAttr)) {
+        weights[synergyAttr] += avgAllyValue * SYNERGY_WEIGHT_BONUS;
+      }
+    });
+  });
   
   return weights;
 }
@@ -290,8 +331,5 @@ function rankChampions(allyTeam, enemyTeam, candidatePool, championDB) {
 }
 
 export {
-  rankChampions,
-  flattenCharacteristics,
-  calculateWeights,
-  getTopAttributes
+  rankChampions
 };
