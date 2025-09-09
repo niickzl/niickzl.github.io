@@ -9,7 +9,7 @@ const About = () => {
         <h1>About Nick's LoL Drafter...</h1>
 
         <div className="back-button-container">
-          <Link to="../" className="back-button">
+          <Link to="/" className="back-button">
             ← Back to the main page
           </Link>
         </div>
@@ -75,7 +75,7 @@ const About = () => {
         </section>
 
         <div className="back-button-container">
-          <Link to="../" className="back-button">
+          <Link to="/" className="back-button">
             ← Back to the main page
           </Link>
         </div>
