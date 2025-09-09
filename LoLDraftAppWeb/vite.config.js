@@ -27,7 +27,6 @@ export default defineConfig({
         entryFileNames: 'assets/[name]-[hash].js'
       }
     },
-    copyPublicDir: true,
     emptyOutDir: true
   },
   publicDir: 'public',
