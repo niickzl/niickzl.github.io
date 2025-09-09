@@ -10,8 +10,7 @@ export default function SiteFooter() {
         color: "#aaa",
       }}
     >
-      <div>© {new Date().getFullYear()} League Draft Helper — All rights reserved.</div>
-      <div>Nick's LoL Drafter - No rights reserved.</div>
+      <div>© {new Date().getFullYear()} Nick's LoL Drafter - No rights reserved.</div>
     </footer>
   );
 }
