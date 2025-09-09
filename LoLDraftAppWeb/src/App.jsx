@@ -5,8 +5,11 @@ import SiteHeader from "./components/SiteHeader";
 import SiteFooter from "./components/SiteFooter";
 
 function App() {
+  // Set the basename for the router based on the environment
+  const basename = import.meta.env.PROD ? '/LolDraftAppWebDist' : '/';
+  
   return (
-    <Router>
+    <Router basename={basename}>
       <div
         style={{
           display: "flex",
