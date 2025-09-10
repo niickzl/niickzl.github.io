@@ -21,13 +21,17 @@ export default defineConfig(({ command, mode }) => {
       assetsDir: 'assets',
       copyPublicDir: true,
       emptyOutDir: true,
+      assetsInlineLimit: 0, // Ensure all assets are copied as files
       rollupOptions: {
-        input: {
-          main: resolve(__dirname, 'index.html')
-        },
+        input: resolve(__dirname, 'index.html'),
         output: {
-          manualChunks: undefined,
-          assetFileNames: 'assets/[name]-[hash][extname]',
+          assetFileNames: (assetInfo) => {
+            // Keep the original file structure for text files
+            if (assetInfo.name && assetInfo.name.endsWith('.txt')) {
+              return '[name][extname]';
+            }
+            return 'assets/[name]-[hash][extname]';
+          },
           chunkFileNames: 'assets/[name]-[hash].js',
           entryFileNames: 'assets/[name]-[hash].js'
         }

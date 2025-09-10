@@ -53,7 +53,7 @@ const About = () => {
           <h2>Additional Information:</h2>
           <p>
             Download the champion statistics data: <a 
-              href="/championStats.txt" 
+              href={`${import.meta.env.BASE_URL}championStats.txt`} 
               download="championStats.txt"
               style={{ color: '#ffffff', textDecoration: 'none', borderBottom: '1px solid #2563eb' }}
               onMouseOver={(e) => e.target.style.color = '#2563eb'}
@@ -63,7 +63,7 @@ const About = () => {
             </a>
             <br /><br />
             Download the prompt used to generate that data: <a 
-              href="/championStatsPrompt.txt" 
+              href={`${import.meta.env.BASE_URL}championStatsPrompt.txt`} 
               download="championStatsPrompt.txt"
               style={{ color: '#ffffff', textDecoration: 'none', borderBottom: '1px solid #2563eb' }}
               onMouseOver={(e) => e.target.style.color = '#2563eb'}
