@@ -34,7 +34,7 @@ const ReadMePopup = ({ onClose }) => {
         <li>Click on selected or banned champion icons to remove them</li>
         <h4>Note:</h4>
         <li>Each number shows a champion's score for the current stage</li>
-        <li>Patch updates & tier lists are not factored in calculations</li>
+        <li>Patch updates, tier lists, & specific champion counters/synergies are not factored in calculations</li>
         <li>This site assumes that you have basic drafting knowledge</li>
         <li>DO NOT RELY ON THIS SITE FOR IMPORTANT DECISIONS</li>
         <h5>Read "About This Site :)" for more information</h5>

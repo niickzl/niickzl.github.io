@@ -1,7 +1,7 @@
-I am building a League of Legends draft analysis tool. I need you (a professional league of legends coach) to generate accurate champion characteristics in JSON format for every champion in order as of patch 15.17 (Sept 6, 2025). 
+I am building a League of Legends draft analysis tool. I need you (a professional league of legends coach) to generate accurate champion characteristics in JSON format for every champion in order as of patch 15.17 (Sept 10, 2025). 
 
 Rules (strict): 
-1. Each subcategories must have a score between 1-5.
+1. Each subcategories must have a score between 0-4.
 2. Distribute points based on champion identity, teamfight impact, and stage-specific effectiveness. 
 3. DO NOT LOOK AT META, base the score off champion mechanics.
 4. Base allocations on champion identity, teamfight impact, and game-stage relevance. 
@@ -9,118 +9,102 @@ Rules (strict):
 
 Guidance for categories: 
 -DamageProfile → Assign points based on raw damage output. 
--DamageType / Survivability / CrowdControl → Assign based on teamfight impact. 
--Utility → Assign based on macro/game impact, like waveclear, vision, team buffs. 
+-DamageType / Survivability → Assign based on teamfight impact. 
+-Utility → Assign based on macro/game impact. 
 -Scaling → Assign based on stage-specific influence.
 
 1. DamageProfile (Raw damage output)
 physicalDamage – How much consistent or burst physical damage the champion deals.
-1 = negligible physical damage
-3 = moderate damage, situational (e.g., Shen)
-5 = extremely high physical damage (e.g., Jinx)
+0 = negligible physical damage
+2 = moderate damage, situational (e.g., Shen)
+4 = extremely high physical damage (e.g., Jinx)
 
 magicDamage – How much consistent or burst magic damage the champion deals.
-1 = negligible magic damage
-3 = moderate magic damage (e.g., Kai'sa)
-5 = very high magic damage (e.g., Brand)
+0 = negligible magic damage
+2 = moderate magic damage (e.g., Kai'sa)
+4 = very high magic damage (e.g., Brand)
 
 2. DamageType (Teamfight damage style)
 burst – Short, high-damage impact in fights.
-1 = none
-3 = moderate burst potential (e.g., aatrox, camile)
-5 = very high burst (e.g., LeBlanc, Syndra)
+0 = none
+2 = moderate burst potential (e.g., aatrox, camile)
+4 = very high burst (e.g., LeBlanc, Syndra)
 
 dps – Sustained damage over the fight.
-1 = negligible DPS
-3 = moderate sustained damage (e.g., Ezreal)
-5 = extremely high consistent damage (e.g., Aphelios)
+0 = negligible DPS
+2 = moderate sustained damage (e.g., Ezreal)
+4 = extremely high consistent damage (e.g., Aphelios)
 
 poke – Ability to safely chip away at enemies from range.
-1 = none
-3 = moderate poke potential (e.g., kennen)
-5 = exceptional poke (e.g., Xerath)
+0 = none
+2 = moderate poke potential (e.g., kennen)
+4 = exceptional poke (e.g., Xerath)
 
-range – Effective attack or spell range.
-1 = melee only, very short range
-3 = moderate range (e.g., samira, ryze)
-5 = long-range champion (e.g., Jhin, Xerath)
+aoe – Strength/size of AOE.
+0 = no/negligible aoe
+2 = moderate aoe (e.g., syndra, braum)
+4 = massive aoe (e.g., brand, kennen, rell)
 
 3. Survivability (Teamfight staying power)
 tankiness – Resistance to damage (HP, armor, MR, shields).
-1 = extremely squishy
-3 = moderate tankiness (e.g., irellia, riven)
-5 = extremely tanky (e.g., Malphite, Ornn)
+0 = extremely squishy
+2 = moderate tankiness (e.g., irellia, riven)
+4 = extremely tanky (e.g., Malphite, Ornn)
 
-sustain – Healing or regeneration (self-heal, shields).
-1 = none
-3 = moderate sustain (e.g., Sylas, irellia)
-5 = high sustain (e.g., Aatrox, Dr. Mundo)
+sustain – Strength of healing or shielding to self or allies.
+0 = none
+2 = moderate sustain (e.g., Sylas, irellia)
+4 = high sustain (e.g., Soraka, Dr. Mundo)
 
-mobility – Ability to move and reposition (dashes, blinks, speed boosts).
-1 = no mobility
-3 = moderate mobility (e.g. Aatrox, Jarvan)
-5 = extreme mobility (e.g., Nocturne (Global Ults), LeBlanc)
-
-disengage – Ability to peel, escape, or prevent enemies from engaging.
-1 = none
-3 = moderate (e.g., Ashe, Orianna)
-5 = strong disengage tools (e.g., Janna, Gragas)
-
-4. CrowdControl (Teamfight control)
-hardCC – amount of & reliability of Stuns, roots, suppresses, knock-ups, etc.
-1 = none
-3 = moderate CC (e.g., Ahri, Malphite)
-5 = high hard CC (e.g., Leona)
-
-areaControl - amount of AOE & space making ability.
-1 = none
-3 = moderate control (e.g., caitlyn(E ability))
-5= high control (e.g., heimerdinger, zyra, gangplank)
-
-engage – Ability & reliability to start fights effectively.
-1 = none
-3 = moderate engage (e.g., ahri, jhin)
-5 = excellent engage potential (e.g., Sejuani, Rakan)
+mobility – Ability to move and reposition in a fight(dashes, blinks, speed boosts).
+0 = no mobility
+2 = moderate mobility (e.g. Aatrox)
+4 = extreme mobility (e.g., ezreal)
 
 peel – Ability to protect carries and prevent enemy threats.
-1 = none
-3 = moderate (e.g., twisted fate, azir) 
-5 = strong peel (e.g., Lulu, Janna)
+0 = none
+2 = moderate (e.g., azir, gragas) 
+4 = strong peel (e.g., Lulu, Janna)
 
-5. Utility (Macro / game impact)
+4. Utility (Macro / game impact)
 waveclear – Ability to quickly clear minions or jungle camps.
-1 = negligible
-3 = moderate (e.g., aatrox, riven)
-5 = extremely strong (e.g., Ziggs)
+0 = negligible
+2 = moderate (e.g., aatrox, riven)
+4 = extremely strong (e.g., Ziggs)
 
 vision – Ability to provide vision or control vision in fights.
-1 = none
-3 = moderate (e.g., elise (bush checking), orianna (q into areas))
-5 = high vision potential (e.g., Maokai, zyra)
+0 = none
+2 = moderate (e.g., elise (bush checking), orianna (q into areas))
+4 = high vision potential (e.g., Maokai, zyra)
 
-teamBuffs – Shields, attack speed, heals, or other supportive effects.
-1 = none
-3 = moderate (e.g., sivir, twisted fate (R ability's vision provide))
-5 = very strong team buffs (e.g., Lulu, Karma)
+objectiveControl – Ability to securing/complete objectives like dragons and barons.
+0 = none
+2 = moderate secure(e.g. Cait(W zoning))
+4 = very strong secure(e.g., nunu(Q), poppy(R))
+
+roam– Ability/speed to rotate/roam around the map.
+0 = none
+2 = moderate roam
+4 = very strong roam (globals) (e.g., taliyah, nocturne, shen)
 
 6. Scaling (Stage relevance)
 early – Impact in the early game (laning phase / early skirmishes).
-1 = weak early
-3 = moderate
-5 = strong early (e.g., Draven, Elise)
+0 = weak early
+2 = moderate
+4 = strong early (e.g., Draven, Elise)
 
 mid – Impact in mid-game (first big teamfights).
-1 = weak
-3 = moderate
-5 = strong (e.g., Sylas, Renekton)
+0 = weak
+2 = moderate
+4 = strong (e.g., Sylas, Renekton)
 
 late – Impact in late game (teamfights, objectives).
-1 = weak late
-3 = moderate
-5 = strong late (e.g., Jinx, Azir)
+0 = weak late
+2 = moderate
+4 = strong late (e.g., Jinx, Azir)
 
-You can give champions scores between 1-5, if a champion's score is better than 3 but worse than 5 give it a for, likewise, better than 1, worse than 3, give it 2.
+You can give champions scores between 0-4, if a champion's score is better than 2 but worse than 4 give it a 3, likewise, better than 0, worse than 2, give it 1.
 
-JSON Structure: "ChampionName": { "characteristics": { "DamageProfile": { "physicalDamage": X, "magicDamage": X }, "DamageType": { "burst": X, "dps": X, "poke": X, "range": X }, "Survivability": { "tankiness": X, "sustain": X, "mobility": X, "disengage": X }, "CrowdControl": { "hardCC": X, "softCC": X, "engage": X, "peel": X }, "Utility": { "waveclear": X, "objectiveControl": X, "vision": X, "teamBuffs": X }, "Scaling": { "early": X, "mid": X, "late": X } } } 
+JSON Structure: "ChampionName": { "characteristics": { "DamageProfile": { "physicalDamage": X, "magicDamage": X }, "DamageType": { "burst": X, "dps": X, "poke": X, "aoe": X }, "Survivability": { "tankiness": X, "sustain": X, "mobility": X, "peel": X }, "Utility": { "waveclear": X, "objectiveControl": X, "vision": X, "roam": X }, "Scaling": { "early": X, "mid": X, "late": X } , "Essential": { "hardCC": X, "engage": X }}}
 
-Task: Generate characteristics for all champions in alphabetical order.
+Task: Generate characteristics for all champions in alphabetical order. 
