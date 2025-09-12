@@ -25,11 +25,11 @@ const About = () => {
         <section className="about-section">
           <h2>How this was made:</h2>
           <ul>
-            <li>The majority of the frontend (React) was created with the assistance of LLMs</li>
+            <li>The majority of the frontend (React.js) was created with the assistance of AI</li>
             <li>The backend (algorithm) was designed by myself & created with the assistance of LLMs</li>
             <li>The mass champion statistics were generated with the assistance of LLMs (See prompt below)</li>
-            <li>Champion statistics and the algorithm have went through multiple iterations and testing</li>
-            <li>Manually modifying champion statistics, counter mapping, synergy mapping, etc.</li>
+            <li>Champion statistics and the algorithm was improved through multiple iterations and testing</li>
+            <li>Manually modified champion statistics, counter mapping, synergy mapping, etc.</li>
           </ul>
         </section>
 
@@ -42,7 +42,11 @@ const About = () => {
             coach for an amateur team in 2022. Finally, I'm not sure if this matters but I am also an 8-time clash winner.
 
             <br /><br />Jokes aside, I am currently studying Computer Science at SFU, here is my <a 
-            href="https://niickzl.github.io/" 
+            href="https://niickzl.github.io/PersonalWeb/index.html" 
+            style={{ color: '#ffffff', textDecoration: 'none', borderBottom: '1px solid #2563eb' }}
+            onMouseOver={(e) => e.target.style.color = '#2563eb'}
+            onMouseOut={(e) => e.target.style.color = '#ffffff'} target = "_blank">Personal Website</a> and <a 
+            href="https://niickzl.github.io/index.html" 
             style={{ color: '#ffffff', textDecoration: 'none', borderBottom: '1px solid #2563eb' }}
             onMouseOver={(e) => e.target.style.color = '#2563eb'}
             onMouseOut={(e) => e.target.style.color = '#ffffff'} target = "_blank">Website Hub</a>.

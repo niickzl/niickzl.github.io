@@ -3,27 +3,20 @@
  */
 
 const COUNTER_MAPPING = {
-  physicalDamage: ["tankiness", "disengage"],
-  magicDamage: ["sustain", "tankiness"],
-
   burst: ["peel", "tankiness"],
-  dps: ["tankiness", "peel"],
-  poke: ["sustain", "engage"],
-  range: ["engage", "mobility"],
+  dps: ["tankiness", "sustain"],
+  poke: ["mobility", "sustain"],
+  aoe: ["mobility", "peel"],
   
-  tankiness: ["dps"],
-  sustain: ["burst"],
-  mobility: ["hardCC", "engage"],
-  disengage: ["burst", "poke", "range"],
+  tankiness: ["dps", "poke"],
+  sustain: ["burst", "aoe"],
+  mobility: ["dps", "burst"],
+  peel: ["poke", "aoe"],
   
-  hardCC: ["mobility", "dps", "burst", "peel"],
-  areaControl: ["mobility"],
-  engage: ["disengage", "mobility"],
-  peel: ["burst", "engage"],
-  
-  vision: ["engage", "burst", "hardCC"],
-  teamBuffs: ["burst", "dps", "engage"],
-  waveclear: ["engage", "burst"],
+  vision: ["tankiness"],
+  objectiveControl: ["peel"],
+  waveclear: ["sustain"],
+  roam: ["mobility"]
 };
 
 const INVERSE_COUNTER_MAPPING = {};
@@ -37,31 +30,27 @@ Object.entries(COUNTER_MAPPING).forEach(([attr, counters]) => {
 });
 
 const SYNERGY_MAPPING = {
-    physicalDamage: ["magicDamage", "areaControl"],
+    physicalDamage: ["magicDamage"],
     magicDamage: ["physicalDamage"],
 
-    burst: ["engage", "hardCC"],
-    dps: ["peel", "sustain", "tankiness"],
-    poke: ["vision", "range"],
-    range: ["poke", "disengage", "waveclear"],
+    burst: ["mobility", "sustain"],
+    dps: ["peel", "tankiness"],
+    poke: ["tankiness", "peel"],
+    aoe: ["sustain", "mobility"],
 
-    tankiness: ["sustain", "engage"],
-    sustain: ["tankiness", "waveclear"],
-    mobility: ["burst", "mobility", "engage"],
-    disengage: ["poke", "vision", "range"],
+    tankiness: ["poke", "dps"],
+    sustain: ["aoe", "burst"],
+    mobility: ["burst", "aoe"],
+    peel: ["dps", "poke"],
 
-    hardCC: ["burst", "dps", "engage"],
-    areaControl: ["poke", "dps"],
-    engage: ["burst", "hardCC"],
-    peel: ["dps", "teamBuffs"],
+    vision: ["poke"],
+    objectiveControl: ["dps"],
+    waveclear: ["aoe"],
+    roam: ["burst"],
 
-    vision: ["engage"],
-    teamBuffs: ["tankiness", "dps"],
-    waveclear: ["dps", "range"],
-
-    early: ["engage", "burst"],
-    mid: ["waveclear"],
-    late: ["tankiness", "teamBuffs"]
+    early: ["early"],
+    mid: ["late"],
+    late: ["mid"]
 }
 
 // Number of top attributes to consider as enemy team's strengths
