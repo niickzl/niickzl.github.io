@@ -1,0 +1,58 @@
+It starts by evaluating the ally team comp. When looking at the ally comp, 
+it will look into 6 sections: DamageProfile, DamageType, Survivability, Utility, Scaling, and Essential.  
+
+For DamageProfile, keep a record of the absolute value of the ally team's physicalDamage - magicDamage. 
+Then with the physicalDamage and magicDamage score of the candidate, add it to the ally team's physicalDamage and 
+magicDamage, then check the absolute value difference again. If the difference after the candidate is included is 
+smaller, record a bonus of (beforeDifference - afterDifference) added to the final score of the candidate, else dont. 
+Then, I want to sum the existing physicalDamage and magicDamage of the original ally team, then divide by the number 
+of chosen allies (e.g. I chose Xayah Rakan with physical damage of 4 and 1 respectively, then the math becomes 
+(4+1)/2 = 2.5). If the value is below 3, mark a bonus as 2-(value, in this case is 2.5)+(number chose of allies, 
+in this case is 2) = 1.5 bonus which will be multiplied to the candidate's physicalDamage and magicDamage number then 
+added to the final score (ie: champ has 2 physicalDamage and 1 magicDamage, then it will be (2*1.5) + (1*1.5) = 4.5 
+added to the final score) (if the value is greater or equal to 3 instead, skip the bonus multiplier).
+
+After DamageProfile, we will look into DamageType, where it will extract the ally team's current 2 highest score 
+categories within DamageType (e.g., burst and dps) (if the first highest score(s) are tied, skip the calculation of 
+DamageProfile) (if the second highest score category ties score with other categories, include those categories in the 
+record), then with those 2 variable again record the original absolute value of the ally team difference 
+(in this case burst - dps) before including the candidate. Then include the candidate's attribute on those 2 variables 
+(in this case burst and dps) and record the absolute value of the ally team difference (if there was multiple 2nd 
+highest [in cases of ties], then compare all attributes to find the lowest afterDifference) 
+if afterDifference < beforeDifference then add to the final score of the candidate.   
+
+Then we will look at Survivability, Utility, and Scaling the same as way DamageType where it calculates the 
+beforeDifference and afterDifference using the attributes in survivability and add the beforeDifference-afterDifference 
+to the final score of the candidate if afterDifference < beforeDifference. 
+
+Finally we will look at Essential the same as DamageProfile where you keep a record of the absolute value of the ally 
+team's hardCC - engage. Then with the hardCC and engage score of the candidate, add it to the ally team's original hardCC 
+and engage then check the absolute value difference again. If the difference after the candidate is included is smaller, 
+give it a bonus of (beforeDifference - afterDifference) added to the final score of the candidate, else don't. Then, I 
+want it to sum the existing hardCC and engage then divide by the number of chosen allies (e.g. I chose Xayah Rakan with 
+hardCC of 2 and  hardCC+engage of 7 respectively, then the math becomes (2+7)/2 = 4.5). If the value is below 4, mark a 
+bonus as 3-(value)+(number chose of allies), the bonus which will be multiply to the candidate's hardCC and engage number 
+then added to the final score (if the value is greater or equal to 4 instead, skip the bonus mutliplier to the candidate's 
+attributes).
+
+Now let's look at the synergies of the team. Scan through the DamageType, Survivability, Utility, and Scaling categories 
+of the ally team and find the 2 highest attributes of each categories (e.g., burst and poke, tankiness and peel, vision 
+and roam, early and mid) (if the first or second highest score has ties, include all ties in the calculation). Then, for 
+each recorded high scoring attributes, find its synergy in the Synergy_Mapping (e.g., burst is good with mobility and 
+sustain); for each synergy add a score to the candidate's final score. That score will be calculated by: 
+(e.g. (sum of burst in team/#allies chosen)+#allies chosen+burst score of candidate).
+
+After that let's look at the counters to the enemy team. Similar to how synergies were looked at, scan through the 
+DamageType, Survivability, Utility, and Scaling categories of the enemy team and find the 2 highest attributes of each 
+categories (e.g., dps and poke, sustain and peel, vision and waveclear) (if the first or second highest score has ties, 
+include all ties in the calculation). Then, for each recorded high scoring attributes, find its counter in the 
+Counter_Mapping (e.g., burst is countered by peel and tankiness); for each counter add a score to the candidate's 
+final score. That score will be calculated by: (e.g. (sum of dps in enemy team/#enemies chosen)+#enemies chosen+dps 
+score of candidate).
+
+Then let's look at the reverse counters, meaning add scores for what the enemy is weak at. Once again scan through the 
+DamageType, Survivability, Utility, and Scaling categories of the enemy team and find the 2 lowest attributes of each 
+categories (if the first or second highest score has ties, include all ties in the calculation). Then, for each recorded 
+high scoring attributes, find its reverse counters in the INVERSE_COUNTER_MAPPING; for each reverse counter, minus a 
+score from the candidate's final score. That score will be calculated by: 
+(e.g. 4 - (sum of dps in enemy team/#enemies chosen)+#enemies chosen+dps score of candidate).
