@@ -6,31 +6,40 @@ Welcome to my personal website and project portfolio! This repository contains t
 
 ```
 niickzl.github.io/
-├── index.html                 # Main hub page
+├── index.html                # Main hub page
 │
 ├── PersonalWeb/              # Personal website (HTML/CSS)
-│   ├── index.html             # Home page
+│   ├── index.html            # Home page
 │   ├── aboutMe.html          # About me page
 │   ├── projects.html         # Projects showcase
 │   ├── competitions.html     # Coding competitions
 │   ├── photography.html      # Photography portfolio
-│   ├── chess.html           # Chess projects
-│   ├── styles*.css          # Individual page styles
+│   ├── chess.html            # Chess projects
+│   ├── styles/              # CSS stylesheets
 │   ├── images/              # Image assets
 │   ├── gifs/                # Animated content
-│   └── files/               # Downloadable files
+│   ├── files/               # Downloadable files (resume, etc.)
+│   └── wireframe/           # Website wireframes and designs
 │
-├── LoLDraftAppWeb/          # React development
+├── LolDraftAppWeb/          # React development (source)
 │   ├── src/                 # Source code
 │   │   ├── components/      # React components
+│   │   ├── data/            # Application data
 │   │   ├── pages/           # App pages
-│   │   ├── public/          # Static assets
+│   │   ├── App.jsx          # Main application component
 │   │   └── main.jsx         # Entry point
+│   ├── public/              # Static assets
+│   │   ├── favicon/         # Favicon files
+│   │   ├── roleIcon/        # Role icons
+│   │   └── *.txt            # Data and configuration files
 │   ├── package.json         # Dependencies
-│   └── vite.config.js       # Build configuration
+│   ├── vite.config.js       # Vite configuration
+│   └── README.md            # Project documentation
 │
-└── LolDraftAppWebDist/      # Built version of LoL Draft App
-    └── assets/              # Production assets
+└── LolDraftAppWebDist/      # Production build of LoL Draft App
+    ├── assets/              # Compiled JS and CSS
+    ├── favicon/             # Favicon files
+    └── roleIcon/            # Role icons
 ```
 
 ## Projects
@@ -40,13 +49,8 @@ niickzl.github.io/
 - **Tech Stack**: HTML5, CSS3, JavaScript
 
 ### LoL Draft App
-- **URL**: [https://niickzl.github.io/LoLDraftAppWeb/](https://niickzl.github.io/LolDraftAppWebDist/)
+- **URL**: [https://niickzl.github.io/LolDraftAppWeb/](https://niickzl.github.io/LolDraftAppWebDist/)
 - **Tech Stack**: React, Vite, JavaScript
-- **Features**:
-  - Champion selection interface
-  - Team composition builder
-  - Responsive design
-  - Real-time updates
 
 ## Contact
 
