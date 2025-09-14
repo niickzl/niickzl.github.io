@@ -38,24 +38,24 @@
     "characteristics": {
       "DamageProfile": {
         "physicalDamage": 0,
-        "magicDamage": 4
+        "magicDamage": 2
       },
       "DamageType": {
         "burst": 4,
         "dps": 1,
         "poke": 2,
-        "aoe": 2
+        "aoe": 1
       },
       "Survivability": {
         "tankiness": 0,
         "sustain": 0,
         "mobility": 4,
-        "peel": 1
+        "peel": 0
       },
       "Utility": {
         "waveclear": 4,
         "objectiveControl": 0,
-        "vision": 1,
+        "vision": 0,
         "roam": 4
       },
       "Scaling": {
@@ -283,12 +283,12 @@
     "characteristics": {
       "DamageProfile": {
         "physicalDamage": 0,
-        "magicDamage": 4
+        "magicDamage": 3
       },
       "DamageType": {
         "burst": 4,
         "dps": 2,
-        "poke": 1,
+        "poke": 0,
         "aoe": 3
       },
       "Survivability": {
@@ -298,10 +298,10 @@
         "peel": 3
       },
       "Utility": {
-        "waveclear": 3,
+        "waveclear": 2,
         "objectiveControl": 1,
-        "vision": 1,
-        "roam": 2
+        "vision": 0,
+        "roam": 1
       },
       "Scaling": {
         "early": 3,
@@ -807,8 +807,8 @@
   "Cho'Gath": {
     "characteristics": {
       "DamageProfile": {
-        "physicalDamage": 1,
-        "magicDamage": 3
+        "physicalDamage": 0,
+        "magicDamage": 2
       },
       "DamageType": {
         "burst": 3,
@@ -823,10 +823,10 @@
         "peel": 2
       },
       "Utility": {
-        "waveclear": 3,
+        "waveclear": 2,
         "objectiveControl": 4,
         "vision": 1,
-        "roam": 1
+        "roam": 0
       },
       "Scaling": {
         "early": 2,
@@ -835,7 +835,7 @@
       },
       "Essential": {
         "hardCC": 3,
-        "engage": 2
+        "engage": 1
       }
     }
   },
@@ -912,26 +912,26 @@
   "Diana": {
     "characteristics": {
       "DamageProfile": {
-        "physicalDamage": 1,
-        "magicDamage": 4
+        "physicalDamage": 0,
+        "magicDamage": 3
       },
       "DamageType": {
-        "burst": 4,
+        "burst": 3,
         "dps": 2,
         "poke": 0,
         "aoe": 4
       },
       "Survivability": {
-        "tankiness": 1,
-        "sustain": 1,
-        "mobility": 2,
+        "tankiness": 0,
+        "sustain": 0,
+        "mobility": 1,
         "peel": 0
       },
       "Utility": {
-        "waveclear": 4,
-        "objectiveControl": 2,
+        "waveclear": 3,
+        "objectiveControl": 1,
         "vision": 0,
-        "roam": 2
+        "roam": 1
       },
       "Scaling": {
         "early": 2,
@@ -940,7 +940,7 @@
       },
       "Essential": {
         "hardCC": 1,
-        "engage": 4
+        "engage": 3
       }
     }
   },
@@ -1017,26 +1017,26 @@
   "Ekko": {
     "characteristics": {
       "DamageProfile": {
-        "physicalDamage": 1,
+        "physicalDamage": 0,
         "magicDamage": 4
       },
       "DamageType": {
         "burst": 4,
-        "dps": 1,
-        "poke": 1,
-        "aoe": 3
+        "dps": 0,
+        "poke": 0,
+        "aoe": 2
       },
       "Survivability": {
-        "tankiness": 1,
-        "sustain": 0,
-        "mobility": 4,
+        "tankiness": 0,
+        "sustain": 1,
+        "mobility": 3,
         "peel": 1
       },
       "Utility": {
-        "waveclear": 3,
+        "waveclear": 2,
         "objectiveControl": 1,
         "vision": 0,
-        "roam": 3
+        "roam": 2
       },
       "Scaling": {
         "early": 2,
@@ -1161,21 +1161,21 @@
         "magicDamage": 4
       },
       "DamageType": {
-        "burst": 3,
-        "dps": 3,
-        "poke": 1,
+        "burst": 2,
+        "dps": 2,
+        "poke": 0,
         "aoe": 4
       },
       "Survivability": {
         "tankiness": 0,
         "sustain": 1,
         "mobility": 0,
-        "peel": 2
+        "peel": 1
       },
       "Utility": {
         "waveclear": 3,
-        "objectiveControl": 2,
-        "vision": 4,
+        "objectiveControl": 1,
+        "vision": 3,
         "roam": 0
       },
       "Scaling": {
@@ -1185,7 +1185,7 @@
       },
       "Essential": {
         "hardCC": 3,
-        "engage": 3
+        "engage": 2
       }
     }
   },
@@ -1262,14 +1262,14 @@
   "Galio": {
     "characteristics": {
       "DamageProfile": {
-        "physicalDamage": 1,
-        "magicDamage": 3
+        "physicalDamage": 0,
+        "magicDamage": 2
       },
       "DamageType": {
-        "burst": 3,
+        "burst": 2,
         "dps": 0,
-        "poke": 1,
-        "aoe": 3
+        "poke": 0,
+        "aoe": 2
       },
       "Survivability": {
         "tankiness": 3,
@@ -1280,7 +1280,7 @@
       "Utility": {
         "waveclear": 3,
         "objectiveControl": 1,
-        "vision": 1,
+        "vision": 0,
         "roam": 4
       },
       "Scaling": {
@@ -1289,7 +1289,7 @@
         "late": 2
       },
       "Essential": {
-        "hardCC": 3,
+        "hardCC": 4,
         "engage": 3
       }
     }
@@ -1403,7 +1403,7 @@
     "characteristics": {
       "DamageProfile": {
         "physicalDamage": 0,
-        "magicDamage": 3
+        "magicDamage": 2
       },
       "DamageType": {
         "burst": 2,
@@ -1412,7 +1412,7 @@
         "aoe": 2
       },
       "Survivability": {
-        "tankiness": 3,
+        "tankiness": 2,
         "sustain": 3,
         "mobility": 2,
         "peel": 4
@@ -1420,7 +1420,7 @@
       "Utility": {
         "waveclear": 2,
         "objectiveControl": 2,
-        "vision": 1,
+        "vision": 0,
         "roam": 2
       },
       "Scaling": {
@@ -1429,8 +1429,8 @@
         "late": 3
       },
       "Essential": {
-        "hardCC": 3,
-        "engage": 3
+        "hardCC": 2,
+        "engage": 2
       }
     }
   },
@@ -1752,25 +1752,25 @@
   "Jarvan IV": {
     "characteristics": {
       "DamageProfile": {
-        "physicalDamage": 3,
+        "physicalDamage": 2,
         "magicDamage": 0
       },
       "DamageType": {
-        "burst": 2,
+        "burst": 1,
         "dps": 1,
         "poke": 0,
-        "aoe": 2
+        "aoe": 1
       },
       "Survivability": {
-        "tankiness": 3,
-        "sustain": 1,
-        "mobility": 3,
+        "tankiness": 2,
+        "sustain": 2,
+        "mobility": 2,
         "peel": 2
       },
       "Utility": {
-        "waveclear": 2,
-        "objectiveControl": 2,
-        "vision": 2,
+        "waveclear": 1,
+        "objectiveControl": 1,
+        "vision": 1,
         "roam": 3
       },
       "Scaling": {
@@ -2558,24 +2558,24 @@
     "characteristics": {
       "DamageProfile": {
         "physicalDamage": 0,
-        "magicDamage": 4
+        "magicDamage": 2
       },
       "DamageType": {
-        "burst": 3,
+        "burst": 2,
         "dps": 1,
-        "poke": 2,
-        "aoe": 3
+        "poke": 0,
+        "aoe": 4
       },
       "Survivability": {
-        "tankiness": 1,
+        "tankiness": 2,
         "sustain": 0,
-        "mobility": 2,
+        "mobility": 1,
         "peel": 3
       },
       "Utility": {
         "waveclear": 3,
         "objectiveControl": 1,
-        "vision": 1,
+        "vision": 0,
         "roam": 2
       },
       "Scaling": {
@@ -2873,11 +2873,11 @@
     "characteristics": {
       "DamageProfile": {
         "physicalDamage": 0,
-        "magicDamage": 1
+        "magicDamage": 2
       },
       "DamageType": {
         "burst": 0,
-        "dps": 0,
+        "dps": 1,
         "poke": 1,
         "aoe": 1
       },
@@ -2885,7 +2885,7 @@
         "tankiness": 0,
         "sustain": 4,
         "mobility": 2,
-        "peel": 3
+        "peel": 4
       },
       "Utility": {
         "waveclear": 0,
@@ -2894,8 +2894,8 @@
         "roam": 2
       },
       "Scaling": {
-        "early": 1,
-        "mid": 2,
+        "early": 2,
+        "mid": 3,
         "late": 3
       },
       "Essential": {
@@ -4460,7 +4460,7 @@
         "tankiness": 0,
         "sustain": 4,
         "mobility": 1,
-        "peel": 2
+        "peel": 4
       },
       "Utility": {
         "waveclear": 1,
@@ -5081,15 +5081,15 @@
         "magicDamage": 0
       },
       "DamageType": {
-        "burst": 1,
+        "burst": 2,
         "dps": 4,
         "poke": 0,
         "aoe": 0
       },
       "Survivability": {
-        "tankiness": 0,
+        "tankiness": 1,
         "sustain": 0,
-        "mobility": 3,
+        "mobility": 4,
         "peel": 0
       },
       "Utility": {
@@ -5104,7 +5104,7 @@
         "late": 4
       },
       "Essential": {
-        "hardCC": 1,
+        "hardCC": 2,
         "engage": 0
       }
     }
