@@ -1,5 +1,74 @@
+Champion Evaluation Algorithm:
+The algorithm evaluates a candidate champion by scoring them against ally team composition, 
+synergies, and enemy counters.
+
+A. Ally Team Characteristics:
+DamageProfile
+DamageType
+Survivability
+Utility
+Scaling
+Essential
+
+DamageProfile:
+1. Compute beforeDiff = |ally.physicalDamage - ally.magicDamage|.
+2. Add candidate’s damage:
+     newPhysical = ally.physicalDamage + cand.physicalDamage
+     newMagic = ally.magicDamage + cand.magicDamage
+     afterDiff = |newPhysical - newMagic|
+3. If afterDiff < beforeDiff, add (beforeDiff - afterDiff) to candidate’s score.
+Low Damage Multiplier:
+1. Compute average team damage:
+     avg = (ally.physicalDamage + ally.magicDamage) / #allies
+2. If avg < 3:
+     bonus = 2 - avg + #allies
+     Add (cand.physicalDamage * bonus + cand.magicDamage * bonus) to candidate’s score.
+
+DamageType, Survivability, Utility, Scaling:
+1. Identify top 2 highest ally attributes in each categories (include ties).
+2. Compute beforeDiff = |attr1 - attr2|.
+3. Add candidate’s contributions, recompute afterDiff.
+4. If afterDiff < beforeDiff, add (beforeDiff - afterDiff) to candidate’s score.
+
+Essential:
+1. Compute beforeDiff = |ally.hardCC - ally.engage|.
+2. Add candidate’s values, compute afterDiff.
+3. If afterDiff < beforeDiff, add (beforeDiff - afterDiff) to candidate’s score.
+
+Low CC Multiplier:
+1. Compute average: (ally.hardCC + ally.engage) / #allies.
+2. If average < 4:
+     bonus = 3 - avg + #allies
+     Add (cand.hardCC * bonus + cand.engage * bonus) to candidate’s score.
+
+B. Team Synergies
+1. For DamageType, Survivability, Utility, Scaling:
+     Find top 2 ally attributes (include ties).
+2. For each high attribute, look up synergies in SYNERGY_MAPPING.
+3. For each synergy:
+     Add score = (sum(attribute in team) / #allies) + #allies + cand.attribute.
+
+C. Enemy Counters
+Direct Counters
+1. For DamageType, Survivability, Utility, Scaling:
+     Find top 2 enemy attributes (include ties).
+2. For each high attribute, look up counters in COUNTER_MAPPING.
+3. For each counter:
+     Add score = (sum(enemyAttr) / #enemies) + #enemies + cand.attribute.
+
+Reverse Counters (Exploiting Weaknesses)
+1. For DamageType, Survivability, Utility, Scaling:
+     Find bottom 2 enemy attributes (include ties).
+2. For each weak attribute, look up reverse counters in INVERSE_COUNTER_MAPPING.
+3. For each reverse counter:
+     Subtract score = 4 - (sum(enemyAttr) / #enemies) + #enemies + cand.attribute.
+
+---------------------------------------------------------------------------------------------------
+
+Draft:
 It starts by evaluating the ally team comp. When looking at the ally comp, 
-it will look into 6 sections: DamageProfile, DamageType, Survivability, Utility, Scaling, and Essential.  
+it will look into 6 sections: DamageProfile, DamageType, Survivability, Utility, Scaling, and Essential. 
+Champion base scores is the sum of all the attributes in their characteristics, denoted by "finalScore". 
 
 For DamageProfile, keep a record of the absolute value of the ally team's physicalDamage - magicDamage. 
 Then with the physicalDamage and magicDamage score of the candidate, add it to the ally team's physicalDamage and 

@@ -174,168 +174,172 @@ function rankChampions(allyTeamNames, enemyTeamNames, candidatePool, championDB)
     if (!champion?.characteristics) return { name: championName, final_score: 0 };
 
     const flatCand = flattenCharacteristics(champion);
-    let finalScore = 0;
+    let finalScore = Object.values(flatCand).reduce((sum, val) => sum + (val || 0), 0);
 
-    //
-    // DAMAGEPROFILE (absolute difference physical - magic)
-    //
-    {
-      const beforeDiff = Math.abs(allyPhysSum - allyMagicSum);
-      const afterPhys = allyPhysSum + (flatCand.physicalDamage || 0);
-      const afterMagic = allyMagicSum + (flatCand.magicDamage || 0);
-      const afterDiff = Math.abs(afterPhys - afterMagic);
-      if (afterDiff < beforeDiff) finalScore += (beforeDiff - afterDiff);
+    if(numAllies > 0) {
+      //
+      // DAMAGEPROFILE (absolute difference physical - magic)
+      //
+      {
+        const beforeDiff = Math.abs(allyPhysSum - allyMagicSum);
+        const afterPhys = allyPhysSum + (flatCand.physicalDamage || 0);
+        const afterMagic = allyMagicSum + (flatCand.magicDamage || 0);
+        const afterDiff = Math.abs(afterPhys - afterMagic);
+        if (afterDiff < beforeDiff) finalScore += (beforeDiff - afterDiff);
 
-      // then average (physical + magic) / numAllies and if < 3 apply multiplier
-      if (numAllies > 0) {
-        const avgPhyMag = (allyPhysSum + allyMagicSum) / numAllies;
-        if (avgPhyMag < 3) {
-          const bonusMult = 2 - avgPhyMag + numAllies;
-          const add = ((flatCand.physicalDamage || 0) * bonusMult) + ((flatCand.magicDamage || 0) * bonusMult);
-          finalScore += add;
+        // then average (physical + magic) / numAllies and if < 3 apply multiplier
+        if (numAllies > 0) {
+          const avgPhyMag = (allyPhysSum + allyMagicSum) / numAllies;
+          if (avgPhyMag < 3) {
+            const bonusMult = 2 - avgPhyMag + numAllies;
+            const add = ((flatCand.physicalDamage || 0) * bonusMult) + ((flatCand.magicDamage || 0) * bonusMult);
+            finalScore += add;
+          }
         }
       }
-    }
 
-    //
-    // DAMAGETYPE, SURVIVABILITY, UTILITY, SCALING follow same pattern as DamageType
-    //
-    function processCategoryTopPair(categoryTopInfo) {
-      const top1 = categoryTopInfo.firstTop;
-      const top2 = categoryTopInfo.secondTop;
-      if (top1.length === 1 && top2.length > 0) {
-        const a1 = top1[0];
-        // compute best gain across all secondTop attributes
-        let bestGain = 0;
-        top2.forEach(a2 => {
-          const beforeDiff = Math.abs(teamSumAttribute(allyChampions, a1) - teamSumAttribute(allyChampions, a2));
-          const afterDiff = Math.abs(
-            (teamSumAttribute(allyChampions, a1) + candidateAttrValue(flatCand, a1)) -
-            (teamSumAttribute(allyChampions, a2) + candidateAttrValue(flatCand, a2))
-          );
-          if (afterDiff < beforeDiff) bestGain = Math.max(bestGain, beforeDiff - afterDiff);
-        });
-        return bestGain;
+      //
+      // DAMAGETYPE, SURVIVABILITY, UTILITY, SCALING follow same pattern as DamageType
+      //
+      function processCategoryTopPair(categoryTopInfo) {
+        const top1 = categoryTopInfo.firstTop;
+        const top2 = categoryTopInfo.secondTop;
+        if (top1.length === 1 && top2.length > 0) {
+          const a1 = top1[0];
+          // compute best gain across all secondTop attributes
+          let bestGain = 0;
+          top2.forEach(a2 => {
+            const beforeDiff = Math.abs(teamSumAttribute(allyChampions, a1) - teamSumAttribute(allyChampions, a2));
+            const afterDiff = Math.abs(
+              (teamSumAttribute(allyChampions, a1) + candidateAttrValue(flatCand, a1)) -
+              (teamSumAttribute(allyChampions, a2) + candidateAttrValue(flatCand, a2))
+            );
+            if (afterDiff < beforeDiff) bestGain = Math.max(bestGain, beforeDiff - afterDiff);
+          });
+          return bestGain;
+        }
+        return 0;
       }
-      return 0;
-    }
 
-    finalScore += processCategoryTopPair(allyDamageTypeTop);
-    finalScore += processCategoryTopPair(allySurvivabilityTop);
-    finalScore += processCategoryTopPair(allyUtilityTop);
-    finalScore += processCategoryTopPair(allyScalingTop);
+      finalScore += processCategoryTopPair(allyDamageTypeTop);
+      finalScore += processCategoryTopPair(allySurvivabilityTop);
+      finalScore += processCategoryTopPair(allyUtilityTop);
+      finalScore += processCategoryTopPair(allyScalingTop);
 
-    //
-    // ESSENTIAL (hardCC vs engage) — same as DamageProfile, plus multiplier if avg < 4
-    //
-    {
-      const allyHard = teamSumAttribute(allyChampions, "hardCC");
-      const allyEng = teamSumAttribute(allyChampions, "engage");
-      const beforeDiff = Math.abs(allyHard - allyEng);
-      const afterDiff = Math.abs(
-        (allyHard + (flatCand.hardCC || 0)) - (allyEng + (flatCand.engage || 0))
-      );
-      if (afterDiff < beforeDiff) finalScore += (beforeDiff - afterDiff);
+      //
+      // ESSENTIAL (hardCC vs engage) — same as DamageProfile, plus multiplier if avg < 4
+      //
+      {
+        const allyHard = teamSumAttribute(allyChampions, "hardCC");
+        const allyEng = teamSumAttribute(allyChampions, "engage");
+        const beforeDiff = Math.abs(allyHard - allyEng);
+        const afterDiff = Math.abs(
+          (allyHard + (flatCand.hardCC || 0)) - (allyEng + (flatCand.engage || 0))
+        );
+        if (afterDiff < beforeDiff) finalScore += (beforeDiff - afterDiff);
 
-      if (numAllies > 0) {
-        const avgHardEng = (allyHard + allyEng) / numAllies;
-        if (avgHardEng < 4) {
-          const bonusMult = 3 - avgHardEng + numAllies;
-          const add = ((flatCand.hardCC || 0) * bonusMult) + ((flatCand.engage || 0) * bonusMult);
-          finalScore += add;
+        if (numAllies > 0) {
+          const avgHardEng = (allyHard + allyEng) / numAllies;
+          if (avgHardEng < 4) {
+            const bonusMult = 3 - avgHardEng + numAllies;
+            const add = ((flatCand.hardCC || 0) * bonusMult) + ((flatCand.engage || 0) * bonusMult);
+            finalScore += add;
+          }
         }
       }
-    }
 
-    //
-    //  SYNERGIES: for DamageType, Survivability, Utility, Scaling -> pick top 2 (with ties) and for each recorded high attribute,
-    //    find synergies from SYNERGY_MAPPING and add:
-    //    add (teamAvgForAttr + numAllies + candidateValueForThatAttr)
-    //
-    function addSynergyScoresForCategory(categoryTopInfo) {
-      // collect recorded high scoring attributes: firstTop (all ties) plus secondTop (all ties)
-      const recorded = [...categoryTopInfo.firstTop];
-      // include secondTop if it exists
-      if(recorded.length == 1) {
-        categoryTopInfo.secondTop.forEach(a => { if (!recorded.includes(a)) recorded.push(a); });
+      //
+      //  SYNERGIES: for DamageType, Survivability, Utility, Scaling -> pick top 2 (with ties) and for each recorded high attribute,
+      //    find synergies from SYNERGY_MAPPING and add:
+      //    add (teamAvgForAttr + numAllies + candidateValueForThatAttr)
+      //
+      function addSynergyScoresForCategory(categoryTopInfo) {
+        // collect recorded high scoring attributes: firstTop (all ties) plus secondTop (all ties)
+        const recorded = [...categoryTopInfo.firstTop];
+        // include secondTop if it exists
+        if(recorded.length == 1) {
+          categoryTopInfo.secondTop.forEach(a => { if (!recorded.includes(a)) recorded.push(a); });
+        }
+
+        recorded.forEach(attr => {
+          const synergies = SYNERGY_MAPPING[attr] || [];
+          synergies.forEach(sy => {
+            const teamAvg = numAllies > 0 ? teamAvgAttribute(allyChampions, attr) : 0;
+            const candVal = candidateAttrValue(flatCand, sy);
+            // per your formula: (sum of attr in team/#allies) + #allies + candidate's score for the sy attribute
+            finalScore += (teamAvg + numAllies + candVal);
+          });
+        });
       }
 
-      recorded.forEach(attr => {
-        const synergies = SYNERGY_MAPPING[attr] || [];
-        synergies.forEach(sy => {
-          const teamAvg = numAllies > 0 ? teamAvgAttribute(allyChampions, attr) : 0;
-          const candVal = candidateAttrValue(flatCand, sy);
-          // per your formula: (sum of attr in team/#allies) + #allies + candidate's score for the sy attribute
-          finalScore += (teamAvg + numAllies + candVal);
-        });
-      });
+      addSynergyScoresForCategory(allyDamageTypeTop);
+      addSynergyScoresForCategory(allySurvivabilityTop);
+      addSynergyScoresForCategory(allyUtilityTop);
+      addSynergyScoresForCategory(allyScalingTop);
     }
 
-    addSynergyScoresForCategory(allyDamageTypeTop);
-    addSynergyScoresForCategory(allySurvivabilityTop);
-    addSynergyScoresForCategory(allyUtilityTop);
-    addSynergyScoresForCategory(allyScalingTop);
+    if(numEnemies > 0) {
+      //
+      //  COUNTERS to the enemy team: similar to synergy but use COUNTER_MAPPING of enemy high attributes.
+      //    For each recorded enemy high attribute -> look up COUNTER_MAPPING[enemyAttr] -> for each counter attr 'c'
+      //    add: (enemyAvgForAttr + numEnemies + candidateValueForCounterAttr)
+      //
+      function addCounterScoresFromEnemyCategory(enemyCategoryTopInfo) {
+        const recorded = [...enemyCategoryTopInfo.firstTop];
+        if(recorded.length == 1) {
+          enemyCategoryTopInfo.secondTop.forEach(a => { if (!recorded.includes(a)) recorded.push(a); });
+        }
 
-    //
-    //  COUNTERS to the enemy team: similar to synergy but use COUNTER_MAPPING of enemy high attributes.
-    //    For each recorded enemy high attribute -> look up COUNTER_MAPPING[enemyAttr] -> for each counter attr 'c'
-    //    add: (enemyAvgForAttr + numEnemies + candidateValueForCounterAttr)
-    //
-    function addCounterScoresFromEnemyCategory(enemyCategoryTopInfo) {
-      const recorded = [...enemyCategoryTopInfo.firstTop];
-      if(recorded.length == 1) {
-        enemyCategoryTopInfo.secondTop.forEach(a => { if (!recorded.includes(a)) recorded.push(a); });
+        recorded.forEach(enemyAttr => {
+          const counters = COUNTER_MAPPING[enemyAttr] || [];
+          counters.forEach(counterAttr => {
+            const enemyAvg = numEnemies > 0 ? teamAvgAttribute(enemyChampions, enemyAttr) : 0;
+            const candVal = candidateAttrValue(flatCand, counterAttr);
+            finalScore += (enemyAvg + numEnemies + candVal);
+          });
+        });
       }
 
-      recorded.forEach(enemyAttr => {
-        const counters = COUNTER_MAPPING[enemyAttr] || [];
-        counters.forEach(counterAttr => {
-          const enemyAvg = numEnemies > 0 ? teamAvgAttribute(enemyChampions, enemyAttr) : 0;
-          const candVal = candidateAttrValue(flatCand, counterAttr);
-          finalScore += (enemyAvg + numEnemies + candVal);
+      addCounterScoresFromEnemyCategory(enemyDamageTypeTop);
+      addCounterScoresFromEnemyCategory(enemySurvivabilityTop);
+      addCounterScoresFromEnemyCategory(enemyUtilityTop);
+      addCounterScoresFromEnemyCategory(enemyScalingTop);
+      
+      //
+      //  REVERSE COUNTERS: enemy's two lowest per category -> INVERSE_COUNTER_MAPPING lookup
+      //    For each reverse counter attribute rc add: (4 - enemyAvgForAttr) + numEnemies + candidateValueForRc
+      //
+      function addReverseCounterScoresFromEnemyCategory(enemyCategoryBottomInfo) {
+        const recorded = [...enemyCategoryBottomInfo.firstBottom];
+        if(recorded.length == 1) {
+          enemyCategoryBottomInfo.secondBottom.forEach(a => { if (!recorded.includes(a)) recorded.push(a); });
+        }
+
+        recorded.forEach(enemyLowAttr => {
+          const reverseCounters = INVERSE_COUNTER_MAPPING[enemyLowAttr] || [];
+          reverseCounters.forEach(rc => {
+            const enemyAvg = numEnemies > 0 ? teamAvgAttribute(enemyChampions, enemyLowAttr) : 0;
+            const candVal = candidateAttrValue(flatCand, rc);
+            finalScore += ((4 - enemyAvg) + numEnemies + candVal);
+          });
         });
-      });
-    }
-
-    addCounterScoresFromEnemyCategory(enemyDamageTypeTop);
-    addCounterScoresFromEnemyCategory(enemySurvivabilityTop);
-    addCounterScoresFromEnemyCategory(enemyUtilityTop);
-    addCounterScoresFromEnemyCategory(enemyScalingTop);
-
-    //
-    //  REVERSE COUNTERS: enemy's two lowest per category -> INVERSE_COUNTER_MAPPING lookup
-    //    For each reverse counter attribute rc add: (4 - enemyAvgForAttr) + numEnemies + candidateValueForRc
-    //
-    function addReverseCounterScoresFromEnemyCategory(enemyCategoryBottomInfo) {
-      const recorded = [...enemyCategoryBottomInfo.firstBottom];
-      if(recorded.length == 1) {
-        enemyCategoryBottomInfo.secondBottom.forEach(a => { if (!recorded.includes(a)) recorded.push(a); });
       }
 
-      recorded.forEach(enemyLowAttr => {
-        const reverseCounters = INVERSE_COUNTER_MAPPING[enemyLowAttr] || [];
-        reverseCounters.forEach(rc => {
-          const enemyAvg = numEnemies > 0 ? teamAvgAttribute(enemyChampions, enemyLowAttr) : 0;
-          const candVal = candidateAttrValue(flatCand, rc);
-          finalScore += ((4 - enemyAvg) + numEnemies + candVal);
-        });
-      });
-    }
+      const enemyDamageTypeBottom = getBottomTwoAttrsForCategory(enemyChampions, DAMAGETYPE_KEYS);
+      const enemySurvivabilityBottom = getBottomTwoAttrsForCategory(enemyChampions, SURVIVABILITY_KEYS);
+      const enemyUtilityBottom = getBottomTwoAttrsForCategory(enemyChampions, UTILITY_KEYS);
+      const enemyScalingBottom = getBottomTwoAttrsForCategory(enemyChampions, SCALING_KEYS);
 
-    const enemyDamageTypeBottom = getBottomTwoAttrsForCategory(enemyChampions, DAMAGETYPE_KEYS);
-    const enemySurvivabilityBottom = getBottomTwoAttrsForCategory(enemyChampions, SURVIVABILITY_KEYS);
-    const enemyUtilityBottom = getBottomTwoAttrsForCategory(enemyChampions, UTILITY_KEYS);
-    const enemyScalingBottom = getBottomTwoAttrsForCategory(enemyChampions, SCALING_KEYS);
+      addReverseCounterScoresFromEnemyCategory(enemyDamageTypeBottom);
+      addReverseCounterScoresFromEnemyCategory(enemySurvivabilityBottom);
+      addReverseCounterScoresFromEnemyCategory(enemyUtilityBottom);
+      addReverseCounterScoresFromEnemyCategory(enemyScalingBottom);
+  }
 
-    addReverseCounterScoresFromEnemyCategory(enemyDamageTypeBottom);
-    addReverseCounterScoresFromEnemyCategory(enemySurvivabilityBottom);
-    addReverseCounterScoresFromEnemyCategory(enemyUtilityBottom);
-    addReverseCounterScoresFromEnemyCategory(enemyScalingBottom);
-
-    // final candidate score
-    return {
-      name: championName,
-      final_score: Math.round(finalScore)
+  // final candidate score
+  return {
+    name: championName,
+    final_score: Math.round(finalScore)
     };
   });
 

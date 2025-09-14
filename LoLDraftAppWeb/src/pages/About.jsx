@@ -75,6 +75,16 @@ const About = () => {
             >
               championStatsPrompt.txt
             </a>
+            <br /><br />
+            Download the scoring algorithm in text format: <a 
+              href={`${import.meta.env.BASE_URL}championScoreAlgorithm.txt`} 
+              download="championScoreAlgorithm.txt"
+              style={{ color: '#ffffff', textDecoration: 'none', borderBottom: '1px solid #2563eb' }}
+              onMouseOver={(e) => e.target.style.color = '#2563eb'}
+              onMouseOut={(e) => e.target.style.color = '#ffffff'}
+            >
+              championScoreAlgorithm.txt
+            </a>
           </p>
         </section>
 
