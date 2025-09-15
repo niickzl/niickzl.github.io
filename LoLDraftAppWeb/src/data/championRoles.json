@@ -115,7 +115,7 @@
   "Samira": { "roles": ["Bot"] },
   "Sejuani": { "roles": ["Jungle"] },
   "Senna": { "roles": ["Support", "Bot"] },
-  "Seraphine": { "roles": ["Bot", "Support", "Mid"] },
+  "Seraphine": { "roles": ["Support", "Mid"] },
   "Sett": { "roles": ["Top", "Mid", "Support"] },
   "Shaco": { "roles": ["Jungle", "Support"] },
   "Shen": { "roles": ["Top", "Support"] },
