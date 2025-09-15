@@ -4099,7 +4099,8 @@
     "characteristics": {
       "DamageProfile": {
         "physicalDamage": 3,
-        "magicDamage": 0
+        "magicDamage": 0,
+        "trueDamage": 1
       },
       "DamageType": {
         "burst": 1,
@@ -4108,8 +4109,8 @@
         "aoe": 2
       },
       "Survivability": {
-        "tankiness": 2,
-        "sustain": 2,
+        "tankiness": 3,
+        "sustain": 1,
         "mobility": 1,
         "peel": 2
       },
