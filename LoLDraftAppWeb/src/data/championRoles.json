@@ -5,7 +5,7 @@
   "Akshan": { "roles": ["Mid"] },
   "Alistar": { "roles": ["Support"] },
   "Ambessa": { "roles": ["Top"] },
-  "Amumu": { "roles": ["Jungle"] },
+  "Amumu": { "roles": ["Jungle", "Support"] },
   "Anivia": { "roles": ["Mid"] },
   "Annie": { "roles": ["Mid"] },
   "Aphelios": { "roles": ["Bot"] },
