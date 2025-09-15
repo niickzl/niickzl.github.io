@@ -6,7 +6,7 @@ const COUNTER_MAPPING = {
   poke: ["mobility", "sustain"],
   aoe: ["tankiness", "peel"],
   
-  tankiness: ["dps", "poke"],
+  tankiness: ["dps", "poke", "trueDamage"],
   sustain: ["burst", "aoe"],
   mobility: ["dps", "burst"],
   peel: ["poke", "aoe"],
