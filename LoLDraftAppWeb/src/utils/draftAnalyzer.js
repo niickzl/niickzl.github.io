@@ -14,7 +14,11 @@ const COUNTER_MAPPING = {
   vision: ["tankiness"],
   objectiveControl: ["peel"],
   waveclear: ["sustain"],
-  roam: ["mobility"]
+  roam: ["mobility"],
+
+  early: ["mid"],
+  mid: ["late"],
+  late: ["early"]
 };
 
 const INVERSE_COUNTER_MAPPING = {};
