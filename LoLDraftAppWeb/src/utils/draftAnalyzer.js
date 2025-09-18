@@ -32,10 +32,10 @@ Object.entries(COUNTER_MAPPING).forEach(([attr, counters]) => {
 });
 
 const SYNERGY_MAPPING = {
-    burst: ["mobility", "sustain"],
-    dps: ["peel", "tankiness"],
-    poke: ["tankiness", "peel"],
-    aoe: ["sustain", "mobility"],
+    burst: ["mobility", "sustain", "burst"],
+    dps: ["peel", "tankiness", "dps"],
+    poke: ["tankiness", "peel", "poke"],
+    aoe: ["sustain", "mobility", "aoe"],
 
     tankiness: ["poke", "dps"],
     sustain: ["aoe", "burst"],
@@ -43,8 +43,8 @@ const SYNERGY_MAPPING = {
     peel: ["dps", "poke"],
 
     vision: ["poke"],
-    objectiveControl: ["dps"],
-    waveclear: ["aoe"],
+    objectiveControl: ["aoe"],
+    waveclear: ["dps"],
     roam: ["burst"],
 
     early: ["early"],
