@@ -189,13 +189,13 @@ function rankChampions(allyTeamNames, enemyTeamNames, candidatePool, championDB)
         const afterPhys = allyPhysSum + (flatCand.physicalDamage || 0);
         const afterMagic = allyMagicSum + (flatCand.magicDamage || 0);
         const afterDiff = Math.abs(afterPhys - afterMagic);
-        if (afterDiff < beforeDiff) finalScore += (beforeDiff - afterDiff);
+        if (afterDiff < beforeDiff) finalScore += (beforeDiff - afterDiff)*numAllies;
 
         // then average (physical + magic) / numAllies and if < 3 apply multiplier
         if (numAllies > 0) {
           const avgPhyMag = (allyPhysSum + allyMagicSum) / numAllies;
           if (avgPhyMag < 3) {
-            const bonusMult = 2 - avgPhyMag + numAllies;
+            const bonusMult = ((2 - avgPhyMag) + numAllies)*numAllies;
             const add = ((flatCand.physicalDamage || 0) * bonusMult) + ((flatCand.magicDamage || 0) * bonusMult);
             finalScore += add;
           }
