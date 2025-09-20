@@ -1936,7 +1936,7 @@
         "magicDamage": 3
       },
       "DamageType": {
-        "burst": 1,
+        "burst": 2,
         "dps": 4,
         "poke": 2,
         "aoe": 0
@@ -1950,12 +1950,12 @@
       "Utility": {
         "waveclear": 2,
         "objectiveControl": 3,
-        "vision": 0,
-        "roam": 1
+        "vision": 1,
+        "roam": 0
       },
       "Scaling": {
         "early": 3,
-        "mid": 4,
+        "mid": 3,
         "late": 3
       },
       "Essential": {
