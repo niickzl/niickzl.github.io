@@ -12,8 +12,8 @@
         "aoe": 2
       },
       "Survivability": {
-        "tankiness": 2,
-        "sustain": 2,
+        "tankiness": 1,
+        "sustain": 3,
         "mobility": 2,
         "peel": 0
       },
@@ -30,7 +30,7 @@
       },
       "Essential": {
         "hardCC": 3,
-        "engage": 2
+        "engage": 1
       }
     }
   },
@@ -53,10 +53,10 @@
         "peel": 0
       },
       "Utility": {
-        "waveclear": 4,
+        "waveclear": 3,
         "objectiveControl": 0,
         "vision": 0,
-        "roam": 3
+        "roam": 2
       },
       "Scaling": {
         "early": 3,
@@ -194,7 +194,7 @@
       },
       "Utility": {
         "waveclear": 2,
-        "objectiveControl": 1,
+        "objectiveControl": 0,
         "vision": 0,
         "roam": 1
       },
@@ -485,7 +485,7 @@
       },
       "Essential": {
         "hardCC": 1,
-        "engage": 2
+        "engage": 1
       }
     }
   },
@@ -504,7 +504,7 @@
       "Survivability": {
         "tankiness": 0,
         "sustain": 1,
-        "mobility": 3,
+        "mobility": 2,
         "peel": 3
       },
       "Utility": {
@@ -1319,7 +1319,7 @@
       "Utility": {
         "waveclear": 4,
         "objectiveControl": 0,
-        "vision": 1,
+        "vision": 0,
         "roam": 4
       },
       "Scaling": {
@@ -2398,7 +2398,7 @@
       },
       "Survivability": {
         "tankiness": 4,
-        "sustain": 3,
+        "sustain": 2,
         "mobility": 2,
         "peel": 2
       },
@@ -4565,7 +4565,7 @@
       "DamageType": {
         "burst": 4,
         "dps": 0,
-        "poke": 4,
+        "poke": 3,
         "aoe": 2
       },
       "Survivability": {
@@ -5860,7 +5860,7 @@
         "magicDamage": 4
       },
       "DamageType": {
-        "burst": 3,
+        "burst": 4,
         "dps": 0,
         "poke": 4,
         "aoe": 3
@@ -5869,7 +5869,7 @@
         "tankiness": 0,
         "sustain": 0,
         "mobility": 1,
-        "peel": 1
+        "peel": 0
       },
       "Utility": {
         "waveclear": 4,
@@ -5879,7 +5879,7 @@
       },
       "Scaling": {
         "early": 1,
-        "mid": 3,
+        "mid": 2,
         "late": 4
       },
       "Essential": {
