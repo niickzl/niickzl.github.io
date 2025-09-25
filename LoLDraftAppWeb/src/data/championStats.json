@@ -5686,9 +5686,9 @@
       },
       "DamageType": {
         "burst": 3,
-        "dps": 3,
+        "dps": 2,
         "poke": 0,
-        "aoe": 2
+        "aoe": 3
       },
       "Survivability": {
         "tankiness": 0,
