@@ -7,14 +7,14 @@
       },
       "DamageType": {
         "burst": 2,
-        "dps": 2,
+        "dps": 3,
         "poke": 0,
         "aoe": 2
       },
       "Survivability": {
         "tankiness": 1,
         "sustain": 3,
-        "mobility": 2,
+        "mobility": 1,
         "peel": 0
       },
       "Utility": {
@@ -26,10 +26,10 @@
       "Scaling": {
         "early": 3,
         "mid": 4,
-        "late": 2
+        "late": 3
       },
       "Essential": {
-        "hardCC": 3,
+        "hardCC": 2,
         "engage": 1
       }
     }
@@ -463,8 +463,8 @@
       "DamageType": {
         "burst": 0,
         "dps": 4,
-        "poke": 2,
-        "aoe": 2
+        "poke": 1,
+        "aoe": 3
       },
       "Survivability": {
         "tankiness": 0,
@@ -473,7 +473,7 @@
         "peel": 1
       },
       "Utility": {
-        "waveclear": 4,
+        "waveclear": 3,
         "objectiveControl": 3,
         "vision": 1,
         "roam": 0
@@ -2708,14 +2708,14 @@
       "DamageType": {
         "burst": 4,
         "dps": 0,
-        "poke": 1,
-        "aoe": 4
+        "poke": 0,
+        "aoe": 3
       },
       "Survivability": {
         "tankiness": 4,
-        "sustain": 1,
+        "sustain": 0,
         "mobility": 0,
-        "peel": 0
+        "peel": 1
       },
       "Utility": {
         "waveclear": 2,
@@ -2725,7 +2725,7 @@
       },
       "Scaling": {
         "early": 2,
-        "mid": 3,
+        "mid": 4,
         "late": 2
       },
       "Essential": {
@@ -2778,7 +2778,7 @@
       "DamageType": {
         "burst": 0,
         "dps": 0,
-        "poke": 0,
+        "poke": 1,
         "aoe": 1
       },
       "Survivability": {
@@ -2789,7 +2789,7 @@
       },
       "Utility": {
         "waveclear": 1,
-        "objectiveControl": 1,
+        "objectiveControl": 0,
         "vision": 4,
         "roam": 2
       },
@@ -2799,7 +2799,7 @@
         "late": 2
       },
       "Essential": {
-        "hardCC": 3,
+        "hardCC": 2,
         "engage": 4
       }
     }
@@ -3815,7 +3815,7 @@
       },
       "Essential": {
         "hardCC": 1,
-        "engage": 1
+        "engage": 0
       }
     }
   },
@@ -3934,13 +3934,13 @@
         "burst": 2,
         "dps": 3,
         "poke": 0,
-        "aoe": 3
+        "aoe": 2
       },
       "Survivability": {
         "tankiness": 0,
         "sustain": 0,
         "mobility": 0,
-        "peel": 0
+        "peel": 1
       },
       "Utility": {
         "waveclear": 4,
@@ -3955,7 +3955,7 @@
       },
       "Essential": {
         "hardCC": 1,
-        "engage": 2
+        "engage": 1
       }
     }
   },
@@ -4319,8 +4319,8 @@
       "DamageType": {
         "burst": 0,
         "dps": 4,
-        "poke": 2,
-        "aoe": 4
+        "poke": 1,
+        "aoe": 3
       },
       "Survivability": {
         "tankiness": 0,
@@ -4337,11 +4337,11 @@
       "Scaling": {
         "early": 3,
         "mid": 3,
-        "late": 3
+        "late": 4
       },
       "Essential": {
         "hardCC": 0,
-        "engage": 0
+        "engage": 1
       }
     }
   },
@@ -4636,7 +4636,7 @@
         "burst": 3,
         "dps": 2,
         "poke": 2,
-        "aoe": 0
+        "aoe": 1
       },
       "Survivability": {
         "tankiness": 0,
@@ -4648,11 +4648,11 @@
         "waveclear": 3,
         "objectiveControl": 2,
         "vision": 0,
-        "roam": 4
+        "roam": 3
       },
       "Scaling": {
-        "early": 2,
-        "mid": 3,
+        "early": 1,
+        "mid": 2,
         "late": 3
       },
       "Essential": {
@@ -5745,6 +5745,41 @@
       "Essential": {
         "hardCC": 0,
         "engage": 0
+      }
+    }
+  },
+  "Zaahen": {
+    "characteristics": {
+      "DamageProfile": {
+        "physicalDamage": 3,
+        "magicDamage": 0
+      },
+      "DamageType": {
+        "burst": 3,
+        "dps": 4,
+        "poke": 0,
+        "aoe": 2
+      },
+      "Survivability": {
+        "tankiness": 1,
+        "sustain": 4,
+        "mobility": 1,
+        "peel": 0
+      },
+      "Utility": {
+        "waveclear": 1,
+        "objectiveControl": 0,
+        "vision": 0,
+        "roam": 0
+      },
+      "Scaling": {
+        "early": 3,
+        "mid": 2,
+        "late": 3
+      },
+      "Essential": {
+        "hardCC": 2,
+        "engage": 1
       }
     }
   },

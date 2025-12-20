@@ -163,6 +163,7 @@
   "Yorick": { "roles": ["Top"] },
   "Yunara": { "roles": ["Bot"] },
   "Yuumi": { "roles": ["Support"] },
+  "Zaahen": { "roles": ["Top", "Jungle"] },
   "Zac": { "roles": ["Jungle"] },
   "Zed": { "roles": ["Mid", "Jungle"] },
   "Zeri": { "roles": ["Bot"] },
