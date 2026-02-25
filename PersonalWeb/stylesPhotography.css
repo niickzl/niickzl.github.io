@@ -115,6 +115,7 @@
     left: 50%;
     transform: translate(-50%, -50%) scale(2.5);
     cursor: zoom-out;
+    z-index: 1;
 }
 
 .zhangjiajiePhoto.zoomed,
@@ -124,6 +125,7 @@
     left: 50%;
     transform: translate(-50%, -50%) scale(2);
     cursor: zoom-out;
+    z-index: 1;
 }
 
 /* AI Generated Styles */

@@ -27,6 +27,7 @@
     left: 50%;
     transform: translate(-50%, -50%) scale(2.5);
     cursor: zoom-out;
+    z-index: 1;
 }
 
 .introText h1 {
