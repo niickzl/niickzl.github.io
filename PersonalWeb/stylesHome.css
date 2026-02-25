@@ -57,6 +57,7 @@
 .iconEmail,
 .iconLinkedin,
 .iconGithub,
+.iconResume,
 .iconTheme {
     width: clamp(53px, 4vw, 80px);
     height: clamp(53px, 4vw, 80px);
@@ -69,7 +70,8 @@
 .iconPhone:hover,
 .iconEmail:hover,
 .iconLinkedin:hover,
-.iconGithub:hover {
+.iconGithub:hover,
+.iconResume:hover {
     transform: scale(1.1);
 }
 
@@ -260,11 +262,13 @@ html.dark-theme .iconPhone,
 html.dark-theme .iconEmail,
 html.dark-theme .iconLinkedin,
 html.dark-theme .iconGithub,
+html.dark-theme .iconResume,
 html.dark-theme .iconTheme,
 body.dark-theme .iconPhone,
 body.dark-theme .iconEmail,
 body.dark-theme .iconLinkedin,
 body.dark-theme .iconGithub,
+body.dark-theme .iconResume,
 body.dark-theme .iconTheme {
     filter: invert(1) brightness(1.15);
 }
