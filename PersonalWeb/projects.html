@@ -61,6 +61,45 @@
     </header>
 
     <main class = "content">
+        <div class = nicksLOLDrafter>
+            <div class = "leftnicksLOLDrafter">
+                <h1><span style = "color: blue">Nick's LoL Drafter</span>: A <span style = "color: blue">Web App</span> to draft 
+                    <br>better LoL compositions</h1>
+                <h2>Date: September 2025</h2>
+
+                <h2>
+                    <a href = "https://niickzl.github.io/LolDraftAppWebDist/index.html" class = "easychartLink" target = "_blank">
+                        Nick's LoL Drafter Link
+                    </a>
+                </h2>
+
+                <ul><strong><span style = "color: blue">Background:</span></strong>
+                <li>I've been playing League of Legends for more than 6 years now (2019-2025). 
+                    <br>As this is the game I am  passionate about, I created this project with my 
+                    <br>coding expertise and my game knowledge.
+                <li>Built with <span style = "color: blue">React.js</span> (frontend), <span style = "color: blue">JavaScript</span> (backend), and <span style = "color: blue">JSON</span> (data storage)</li>
+                </ul>
+
+                <ul><strong><span style = "color: blue">Features:</span></strong>
+                <li><span style = "color: blue">Add</span> champions to the board by clicking their icons
+                <li><span style = "color: blue">Remove</span> champions by clicking their icons in the selection/ban slots
+                <li>Toggle between <span style = "color: blue">Pick</span> and <span style = "color: blue">Ban</span> modes to simulate a full draft
+                <li>Use the <span style = "color: blue">Swap Side</span> feature to instantly change your viewpoint between the
+                    <br>Blue and Red team
+                <li>Quickly find champions using the <span style = "color: blue">Search Bar</span> or <span style = "color: blue">Role Filter</span> buttons
+                <li>Each champion displays a <span style = "color: blue">Recommendation Score</span> that updates based on the 
+                    <br>current stage of the draft to assist your decision-making</li>
+                </ul>
+            </div>
+            <div class = "rightnicksLOLDrafter">
+                <a href = "https://github.com/niickzl/niickzl.github.io/tree/main/LoLDraftAppWeb" class = "GithubRepoLoL" target = "_blank">
+                    <img class = "iconGithubRepoLoL" src = "images/iconGithubImage.png" alt = "GitHub icon linking to repository"/>
+                </a>
+
+                <img class = "lolDrafterImg" src = "images/lolDraftImage.png" alt = "Image to illustrate the LoL Drafter in action"/>
+            </div>
+        </div>
+
         <div class = easyChart>
             <div class = "leftEasyChart">
                 <a href = "https://github.com/CMPT-276-SUMMER-2025/final-project-5-lakes" class = "githubEasyChart" target = "_blank">
@@ -73,6 +112,11 @@
                 <h1><span style = "color: blue">EasyChart</span>: A <span style = "color: blue">Web App</span> to
                 <br>make graphing easier</h1>
                 <h2>Date: August 2025</h2>
+                <h2>
+                    <a href = "https://easychart-omega.vercel.app/" class = "easychartLink" target = "_blank">
+                        EasyChart Link
+                    </a>
+                </h2>
 
                 <ul><strong><span style = "color: blue">Background:</span></strong>
                 <li>EasyChart is a web app for quick data visualization.
@@ -195,6 +239,21 @@
         document.addEventListener('click', (e) => {
             if (!e.target.classList.contains('easyChartHome')) {
             images3.forEach(img => img.classList.remove('zoomed'));
+            }
+        });
+    </script>
+    <script>
+        const images4 = document.querySelectorAll('.lolDrafterImg');
+
+        images4.forEach(img => {
+            img.addEventListener('click', () => {
+            img.classList.toggle('zoomed');
+            });
+        });
+
+        document.addEventListener('click', (e) => {
+            if (!e.target.classList.contains('lolDrafterImg')) {
+            images4.forEach(img => img.classList.remove('zoomed'));
             }
         });
     </script>
