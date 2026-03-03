@@ -338,3 +338,62 @@ body.dark-theme .iconPDFEnactus {
 
 html.dark-theme [style*="color: blue"],
 body.dark-theme [style*="color: blue"] { color: #8ab4f8 !important; }
+/* ── Sticky competition nav ── */
+.project-nav {
+    position: fixed;
+    top: 50%;
+    left: clamp(8px, 1.5vw, 24px);
+    transform: translateY(-50%);
+    z-index: 100;
+    display: flex;
+    flex-direction: column;
+}
+
+.project-nav ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.pnav-link {
+    display: block;
+    padding: 7px 13px;
+    font-size: clamp(11px, 0.85vw, 14px);
+    font-family: 'Overlock', sans-serif;
+    font-weight: 700;
+    text-decoration: none;
+    border-radius: 20px;
+    border: 1.5px solid var(--border);
+    color: var(--text);
+    background: var(--bg);
+    opacity: 0.55;
+    transition: opacity 0.2s ease, transform 0.2s ease, background 0.2s ease, color 0.2s ease;
+    white-space: nowrap;
+}
+
+.pnav-link:hover {
+    opacity: 1;
+    transform: translateX(4px);
+}
+
+.pnav-link.pnav-active {
+    opacity: 1;
+    background: blue;
+    color: #fff;
+    border-color: blue;
+    transform: translateX(4px);
+}
+
+html.dark-theme .pnav-link.pnav-active,
+body.dark-theme .pnav-link.pnav-active {
+    background: #8ab4f8;
+    border-color: #8ab4f8;
+    color: #0f1115;
+}
+
+@media (max-width: 600px) {
+    .project-nav { display: none; }
+}

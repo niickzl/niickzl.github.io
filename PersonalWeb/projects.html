@@ -61,7 +61,7 @@
     </header>
 
     <main class = "content">
-        <div class = nicksLOLDrafter>
+        <div id="section-lol" class = nicksLOLDrafter>
             <div class = "leftnicksLOLDrafter">
                 <h1><span style = "color: blue">Nick's LoL Drafter</span>: A <span style = "color: blue">Web App</span> to draft 
                     <br>better LoL compositions</h1>
@@ -100,7 +100,7 @@
             </div>
         </div>
 
-        <div class = easyChart>
+        <div id="section-easychart" class = easyChart>
             <div class = "leftEasyChart">
                 <a href = "https://github.com/CMPT-276-SUMMER-2025/final-project-5-lakes" class = "githubEasyChart" target = "_blank">
                     <img class = "iconGithubRepoChart" src = "images/iconGithubImage.png" alt = "GitHub icon linking to repository"/>
@@ -141,7 +141,7 @@
             </div>
         </div>
 
-        <div class = discordMusicBot>
+        <div id="section-discord" class = discordMusicBot>
             <div class = "leftDiscordMusicBot">
                 <h1><span style = "color: blue">Python</span> YouTube Audio Discord Bot</h1>
                 <h2>Date: Feb 2025</h2>
@@ -172,7 +172,7 @@
             </div>
         </div>
 
-        <div class = userInfoApp>
+        <div id="section-userapp" class = userInfoApp>
             <div class = "leftInfoApp">
                 <a href = "https://github.com/niickzl/USER-INFO-PROGRAM" class = "githubRepoApp" target = "_blank">
                     <img class = "iconGithubRepoApp" src = "images/iconGithubImage.png" alt = "GitHub icon linking to repository"/>
@@ -199,6 +199,15 @@
                 </ul>
             </div>
         </div>
+        <!-- Sticky project nav -->
+        <nav class="project-nav" id="projectNav" aria-label="Project sections">
+            <ul>
+                <li><a href="#section-lol"       class="pnav-link" data-target="section-lol">LoL Drafter</a></li>
+                <li><a href="#section-easychart"  class="pnav-link" data-target="section-easychart">EasyChart</a></li>
+                <li><a href="#section-discord"    class="pnav-link" data-target="section-discord">YouTube Audio<br>Discord Bot</a></li>
+                <li><a href="#section-userapp"    class="pnav-link" data-target="section-userapp">User Info App</a></li>
+            </ul>
+        </nav>
     </main>
 
     <script>
@@ -299,6 +308,47 @@
                     localStorage.setItem(storageKey, next);
                 });
             }
+        })();
+    </script>
+    <script>
+        // Scroll-spy: highlight active section in project nav
+        (function () {
+            const sections = [
+                { id: 'section-lol' },
+                { id: 'section-easychart' },
+                { id: 'section-discord' },
+                { id: 'section-userapp' },
+            ];
+            const links = document.querySelectorAll('.pnav-link');
+
+            function getActive() {
+                const mid = window.scrollY + window.innerHeight * 0.35;
+                let active = sections[0].id;
+                for (const s of sections) {
+                    const el = document.getElementById(s.id);
+                    if (el && el.offsetTop <= mid) active = s.id;
+                }
+                return active;
+            }
+
+            function update() {
+                const active = getActive();
+                links.forEach(a => {
+                    a.classList.toggle('pnav-active', a.dataset.target === active);
+                });
+            }
+
+            window.addEventListener('scroll', update, { passive: true });
+            update();
+
+            // Smooth scroll on click
+            links.forEach(a => {
+                a.addEventListener('click', e => {
+                    e.preventDefault();
+                    const target = document.getElementById(a.dataset.target);
+                    if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                });
+            });
         })();
     </script>
 </body>
