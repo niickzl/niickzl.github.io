@@ -5,56 +5,351 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Nick's Website Hub</title>
     <link rel="icon" href="PersonalWeb/images/favicon.ico" />
+    <link href="https://fonts.googleapis.com/css2?family=Overlock:wght@400;700;900&display=swap" rel="stylesheet">
     <style>
+        *, *::before, *::after { box-sizing: border-box; }
+
+        :root {
+            --bg-page:       #2c2f36;
+            --bg-container:  #383c45;
+            --bg-card:       #40444e;
+            --bg-preview:    #32363e;
+            --border:        #4e535f;
+            --text-primary:  #dde1e8;
+            --text-muted:    #acb0b9;
+            --accent:        #4a90d9;
+            --accent-hover:  #3578bf;
+            --shadow:        rgba(0,0,0,0.35);
+            --modal-bg:      #383c45;
+            --btn-secondary-bg: #2c2f36;
+            --btn-secondary-border: #5a5f6b;
+            --btn-secondary-text: #b0b6c2;
+        }
+
         body {
-            font-family: Arial, sans-serif;
-            max-width: 800px;
-            margin: 0 auto;
-            padding: 20px;
-            background-color: #f5f5f5;
+            font-family: 'Overlock', sans-serif;
+            margin: 0;
+            min-height: 100vh;
+            background: var(--bg-page);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 3vh 3vw;
         }
+
         .container {
-            background-color: white;
-            padding: 30px;
-            border-radius: 10px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            background: var(--bg-container);
+            padding: clamp(24px, 4vh, 52px) clamp(20px, 4vw, 52px);
+            border-radius: 20px;
+            box-shadow: 0 4px 40px var(--shadow);
+            width: 92vw;
+            max-width: 1400px;
+            min-width: 280px;
         }
+
         h1 {
-            color: #333;
+            font-family: 'Overlock', sans-serif;
+            font-size: clamp(1.4rem, 3vw, 2.2rem);
+            font-weight: 900;
+            color: var(--text-primary);
             text-align: center;
+            margin: 0 0 8px;
+            letter-spacing: -0.5px;
         }
-        .site-link {
-            display: inline-block;
-            margin: 10px;
-            padding: 20px 30px;
-            background-color: #007bff;
-            color: white;
-            text-decoration: none;
-            border-radius: 8px;
-            font-size: 18px;
-            font-weight: bold;
-            transition: background-color 0.3s;
-        }
-        .site-link:hover {
-            background-color: #0056b3;
-        }
+
         .description {
             text-align: center;
-            margin: 20px 0;
-            color: #666;
+            color: var(--text-muted);
+            font-size: clamp(13px, 1.2vw, 16px);
+            margin: 0 0 clamp(20px, 3vh, 40px);
         }
+
+        /* Card grid */
+        .card-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: clamp(14px, 2vw, 28px);
+        }
+
+        @media (max-width: 760px) {
+            .card-grid { grid-template-columns: 1fr; }
+        }
+
+        .card {
+            border-radius: 14px;
+            overflow: hidden;
+            border: 1.5px solid var(--border);
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            display: flex;
+            flex-direction: column;
+            cursor: pointer;
+            background: var(--bg-card);
+        }
+        .card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 32px var(--shadow);
+        }
+
+        /* iframe preview */
+        .preview-wrap {
+            position: relative;
+            width: 100%;
+            height: clamp(130px, 18vh, 220px);
+            overflow: hidden;
+            background: var(--bg-preview);
+            flex-shrink: 0;
+        }
+
+        .preview-wrap iframe {
+            width: 1280px;
+            height: 900px;
+            border: none;
+            transform-origin: top left;
+            transform: scale(0.245);
+            pointer-events: none;
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+
+        .preview-placeholder {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 42px;
+            background: linear-gradient(135deg, #f0f4ff 0%, #e8edf8 100%);
+        }
+
+        .preview-overlay {
+            position: absolute;
+            inset: 0;
+            background: transparent;
+        }
+
+        /* Card footer */
+        .card-body {
+            padding: clamp(12px, 1.5vh, 20px) clamp(14px, 1.5vw, 22px);
+            display: flex;
+            flex-direction: column;
+            flex: 1;
+        }
+
+        .card-title {
+            font-family: 'Overlock', sans-serif;
+            font-size: clamp(0.9rem, 1.2vw, 1.1rem);
+            font-weight: 700;
+            color: var(--text-primary);
+            margin: 0 0 6px;
+        }
+
+        .card-desc {
+            font-size: clamp(12px, 1vw, 14px);
+            color: var(--text-muted);
+            margin: 0 0 14px;
+            line-height: 1.5;
+            flex: 1;
+        }
+
+        .card-btn {
+            display: inline-block;
+            padding: clamp(8px, 1vh, 11px) 0;
+            background: var(--accent);
+            color: #f0f3f8;
+            text-align: center;
+            text-decoration: none;
+            border-radius: 8px;
+            font-size: clamp(13px, 1vw, 15px);
+            font-weight: 700;
+            border: none;
+            cursor: pointer;
+            width: 100%;
+            transition: background 0.2s;
+            letter-spacing: 0.2px;
+            font-family: 'Overlock', sans-serif;
+        }
+        .card-btn:hover { background: var(--accent-hover); }
+
+        /* Modal */
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(0,0,0,0.45);
+            z-index: 1000;
+            align-items: center;
+            justify-content: center;
+        }
+        .modal-overlay.active { display: flex; }
+
+        .modal {
+            background: var(--modal-bg);
+            border-radius: 14px;
+            padding: 32px 28px 24px;
+            max-width: 380px;
+            width: 90%;
+            box-shadow: 0 8px 40px var(--shadow);
+            text-align: center;
+            border: 1px solid var(--border);
+            animation: popIn 0.18s cubic-bezier(.4,1.6,.6,1) both;
+        }
+        @keyframes popIn {
+            from { transform: scale(0.88); opacity: 0; }
+            to   { transform: scale(1);   opacity: 1; }
+        }
+
+        .modal h2 {
+            margin: 0 0 12px;
+            font-family: 'Overlock', sans-serif;
+            font-size: 18px;
+            color: var(--text-primary);
+        }
+
+        .modal p {
+            color: var(--text-muted);
+            font-size: 15px;
+            line-height: 1.5;
+            margin: 0 0 24px;
+        }
+
+        .modal p a {
+            color: #e07070;
+            font-weight: 700;
+            text-decoration: underline;
+        }
+        .modal p a:hover { color: #c85050; }
+
+        .modal-buttons {
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+        }
+
+        .btn-close {
+            padding: 10px 22px;
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: 700;
+            cursor: pointer;
+            border: 2px solid var(--btn-secondary-border);
+            background: var(--btn-secondary-bg);
+            color: var(--btn-secondary-text);
+            transition: background 0.2s;
+            font-family: 'Overlock', sans-serif;
+        }
+        .btn-close:hover { background: #252830; }
+
+        .btn-proceed {
+            padding: 10px 22px;
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: 700;
+            cursor: pointer;
+            border: none;
+            background: var(--accent);
+            color: #f0f3f8;
+            transition: background 0.2s;
+            font-family: 'Overlock', sans-serif;
+        }
+        .btn-proceed:hover { background: var(--accent-hover); }
     </style>
 </head>
 <body>
     <div class="container">
-        <h1>Welcome to Nick's Website Hub</h1>
-        <p class="description">Choose which site you'd like to visit:</p>
-        
-        <div style="text-align: center; margin: 30px 0;">
-            <a href="PersonalWeb/index.html" class="site-link">Personal Website</a>
-            <a href="LolDraftAppWebDist/index.html" class="site-link" target = "_blank">Nick's LoL Drafter</a>
-            <a href="https://easychart-omega.vercel.app/" class="site-link" target = "_blank">EasyChart</a>
+        <h1>Nick's Website Hub</h1>
+        <p class="description">Choose which site you'd like to visit</p>
+
+        <div class="card-grid">
+
+            <!-- Personal Website -->
+            <div class="card" onclick="window.location.href='PersonalWeb/index.html'">
+                <div class="preview-wrap">
+                    <iframe src="PersonalWeb/index.html" loading="lazy" tabindex="-1" aria-hidden="true" scrolling="no"></iframe>
+                    <div class="preview-overlay"></div>
+                </div>
+                <div class="card-body">
+                    <div class="card-title">Personal Website</div>
+                    <p class="card-desc">Nick's personal site — personal activities, interests, about me, and more.</p>
+                    <a href="PersonalWeb/index.html" class="card-btn" onclick="event.stopPropagation()">Visit →</a>
+                </div>
+            </div>
+
+            <!-- LoL Drafter -->
+            <div class="card" onclick="window.open('LolDraftAppWebDist/index.html','_blank')">
+                <div class="preview-wrap">
+                    <iframe src="LolDraftAppWebDist/index.html" loading="lazy" tabindex="-1" aria-hidden="true" scrolling="no"></iframe>
+                    <div class="preview-overlay"></div>
+                </div>
+                <div class="card-body">
+                    <div class="card-title">Nick's LoL Drafter</div>
+                    <p class="card-desc">A League of Legends draft tool to help you choose the best team composition.</p>
+                    <a href="LolDraftAppWebDist/index.html" target="_blank" class="card-btn" onclick="event.stopPropagation()">Visit →</a>
+                </div>
+            </div>
+
+            <!-- EasyChart -->
+            <div class="card" onclick="openEasyChartModal()">
+                <div class="preview-wrap">
+                    <iframe src="https://easychart-omega.vercel.app/" loading="lazy" tabindex="-1" aria-hidden="true" scrolling="no"></iframe>
+                    <div class="preview-overlay"></div>
+                </div>
+                <div class="card-body">
+                    <div class="card-title">EasyChart</div>
+                    <p class="card-desc">A chart-generating web app to visualizing data easier. 
+                        <br><span style="color: #ff6b6b;">Backend is currently down — click to see the demo video.</span></p>
+                    <button class="card-btn" onclick="openEasyChartModal(); event.stopPropagation()">Visit →</button>
+                </div>
+            </div>
+
         </div>
     </div>
+
+    <!-- EasyChart Modal -->
+    <div class="modal-overlay" id="easychartModal" onclick="handleOverlayClick(event)">
+        <div class="modal">
+            <h2>EasyChart — Heads Up</h2>
+            <p>
+                Backend currently unavailable, please reference the
+                <a href="https://www.youtube.com/watch?v=mYPEXPJwkJY" target="_blank" rel="noopener">YouTube Video</a>.
+            </p>
+            <div class="modal-buttons">
+                <button class="btn-close" onclick="closeModal()">Go Back</button>
+                <button class="btn-proceed" onclick="proceedToEasyChart()">Visit Anyway</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const EASYCHART_URL = 'https://easychart-omega.vercel.app/';
+
+        // Dynamically scale iframe previews to fit their wrapper
+        function scaleIframePreviews() {
+            document.querySelectorAll('.preview-wrap').forEach(wrap => {
+                const iframe = wrap.querySelector('iframe');
+                if (!iframe) return;
+                const scale = wrap.clientWidth / 1280;
+                iframe.style.transform = `scale(${scale})`;
+                iframe.style.height = (wrap.clientHeight / scale) + 'px';
+            });
+        }
+        window.addEventListener('load', scaleIframePreviews);
+        window.addEventListener('resize', scaleIframePreviews);
+
+        function openEasyChartModal() {
+            document.getElementById('easychartModal').classList.add('active');
+        }
+        function closeModal() {
+            document.getElementById('easychartModal').classList.remove('active');
+        }
+        function proceedToEasyChart() {
+            window.open(EASYCHART_URL, '_blank');
+            closeModal();
+        }
+        function handleOverlayClick(e) {
+            if (e.target === document.getElementById('easychartModal')) closeModal();
+        }
+        document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
+    </script>
 </body>
 </html>
