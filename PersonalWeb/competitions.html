@@ -55,12 +55,55 @@
                 <h1>Canada, BC</h1>
             </div>
             <button id="themeToggle" class="theme-toggle" aria-label="Toggle color theme" title="Toggle theme">
-                <img id="iconTheme" class="iconTheme" src="images/iconLightMode.png" alt="Theme icon" />
+                <img id="iconTheme" class="iconTheme" src="images/icons/iconLightMode.png" alt="Theme icon" />
             </button>
         </div>
     </header>
 
     <main class = "content">
+        <div id="section-mountainmadness" class = "enactus">
+            <div class = "leftEnactus">
+                <a href = "https://github.com/caydeny/mountain-madness-2026" class = "MountainMadnessGithub" target = "_blank">
+                    <img class = "iconGithub" src = "images/icons/iconGithubImage.png" alt = "GitHub icon linking to repository"/>
+                </a>
+
+                <img class = "MountainMadnessImage" src = "images/MountainMadnessImage.png" alt = "Group image for the Mountain Madness Hackathon"/>
+            </div>
+            <div class = "rightEnactus">
+                <h1>Mountain Madness Hackathon
+                <br><span style = "color: blue">@CSSS, SFU</span>
+                </h1>
+                <h2>Date: Mar 2026</h2>
+
+                <ul><strong><span style = "color: blue">Context:</span></strong>
+                <li>Mountain Madness is a 24-hour hackathon hosted by the
+                <br><span style="color: blue">Computing Science Student Society (CSSS)</span> at SFU.</li>
+                <li>Our team built for the <span style = "color: blue">RBC Track: Personal Finance Platforms</span> 
+                <br>theme: designing an intelligent platform that transforms the
+                <br>unpredictable nature of modern multi-calendar life into 
+                <br>actionable financial insights.</li>
+                </ul>
+
+                <ul><strong><span style="color: blue">Our Idea — RBC (Rational Budgeting Calendar):</span></strong>
+                <li>Connects your <span style="color: blue">calendars and bank account</span> to create 
+                <br>smart, adaptive daily spending limits.</li>
+                <li><span style="color: blue">AI-powered</span> budgeting engine:
+                    <ul>
+                        <li>LLM classifies income, mandatory, and variable spending</li>
+                        <li>Splits term budget into dynamic daily limits by events</li>
+                        <li>Redistributes unused limits intelligently across the term</li>
+                    </ul>
+                </li>
+                <li><span style="color: blue">Gamification</span> to make saving motivating:
+                    <ul>
+                        <li>Goal tracking with progress bars</li>
+                        <li>Daily streaks and friend leaderboards</li>
+                        <li>Rank system based on savings efficiency & bonuses</li>
+                    </ul>
+                </li>
+                </ul>
+            </div>
+        </div>
         <div id="section-pivot" class = "pivot">
             <div class = "leftPivot">
             <h1>SAP Concur Case Competition
@@ -97,7 +140,7 @@
             </div>
             <div class = "rightPivot">
                 <a href = "files/pivot.pdf" class = "pivotPDF" target = "_blank">
-                    <img class = "iconPDFPivot" src = "images/iconPDFImage.png" alt = "PDF icon linking to Pivot PDF"/>
+                    <img class = "iconPDFPivot" src = "images/icons/iconPDFImage.png" alt = "PDF icon linking to Pivot PDF"/>
                 </a>
 
                 <img class = "pivotImage" src = "images/pivotImage.png" alt = "Group image for the Pivot Competition"/>
@@ -106,7 +149,7 @@
         <div id="section-enactus" class = "enactus">
             <div class = "leftEnactus">
                 <a href = "files/enactus.pdf" class = "enactusPDF" target = "_blank">
-                    <img class = "iconPDFEnactus" src = "images/iconPDFImage.png" alt = "PDF icon linking to Enactus PDF"/>
+                    <img class = "iconPDFEnactus" src = "images/icons/iconPDFImage.png" alt = "PDF icon linking to Enactus PDF"/>
                 </a>
 
                 <img class = "enactusImage" src = "images/enactusImage.jpg" alt = "Group image for the Enactus Competition"/>
@@ -143,6 +186,7 @@
         <!-- Sticky competition nav -->
         <nav class="project-nav" id="compNav" aria-label="Competition sections">
             <ul>
+                <li><a href="#section-mountainmadness" class="pnav-link" data-target="section-mountainmadness">Mountain Madness</a></li>
                 <li><a href="#section-pivot"   class="pnav-link" data-target="section-pivot">CaseIT Pivot</a></li>
                 <li><a href="#section-enactus" class="pnav-link" data-target="section-enactus">Enactus</a></li>
             </ul>
@@ -153,6 +197,7 @@
         // Scroll-spy: highlight active section in competition nav
         (function () {
             const sections = [
+                { id: 'section-mountainmadness' },
                 { id: 'section-pivot' },
                 { id: 'section-enactus' },
             ];
@@ -189,22 +234,22 @@
     </script>
 
     <script>
-        const images1 = document.querySelectorAll('.pivotImage');
+        const images3 = document.querySelectorAll('.MountainMadnessImage');
 
-        images1.forEach(img => {
+        images3.forEach(img => {
             img.addEventListener('click', () => {
             img.classList.toggle('zoomed');
             });
         });
 
         document.addEventListener('click', (e) => {
-            if (!e.target.classList.contains('pivotImage')) {
-            images1.forEach(img => img.classList.remove('zoomed'));
+            if (!e.target.classList.contains('MountainMadnessImage')) {
+            images3.forEach(img => img.classList.remove('zoomed'));
             }
         });
     </script>
     <script>
-        const images2 = document.querySelectorAll('.enactusImage');
+        const images2 = document.querySelectorAll('.pivotImage');
 
         images2.forEach(img => {
             img.addEventListener('click', () => {
@@ -213,8 +258,23 @@
         });
 
         document.addEventListener('click', (e) => {
-            if (!e.target.classList.contains('enactusImage')) {
+            if (!e.target.classList.contains('pivotImage')) {
             images2.forEach(img => img.classList.remove('zoomed'));
+            }
+        });
+    </script>
+    <script>
+        const images1 = document.querySelectorAll('.enactusImage');
+
+        images1.forEach(img => {
+            img.addEventListener('click', () => {
+            img.classList.toggle('zoomed');
+            });
+        });
+
+        document.addEventListener('click', (e) => {
+            if (!e.target.classList.contains('enactusImage')) {
+            images1.forEach(img => img.classList.remove('zoomed'));
             }
         });
     </script>

@@ -144,6 +144,36 @@
     z-index: 1;
 }
 
+.iconGithub {
+    width: clamp(67px, 5vw, 100px);
+    height: clamp(67px, 5vw, 100px);
+    border-radius: 50%;
+    transition: transform 0.3s ease;
+}
+
+.iconGithub:hover {
+    transform: scale(1.1);
+}
+
+.MountainMadnessImage{
+    width: clamp(333px, 25vw, 500px);
+    aspect-ratio: 5 / 3;
+    height: auto;
+    padding: clamp(7px, 0.5vw, 10px);
+    border-radius: 5%;
+    object-fit: cover;
+    cursor: zoom-in;
+}
+
+.MountainMadnessImage.zoomed{
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(2.5);
+    cursor: zoom-out;
+    z-index: 1;
+}
+
 /* AI Generated Styles */
 /* Theme variables */
 :root {
@@ -328,9 +358,11 @@ img:not(.iconPhone):not(.iconEmail):not(.iconLinkedin):not(.iconGithub):not(.ico
 
 /* Invert icons in dark theme for visibility */
 html.dark-theme .iconTheme,
+html.dark-theme .iconGithub,
 html.dark-theme .iconPDFPivot,
 html.dark-theme .iconPDFEnactus,
 body.dark-theme .iconTheme,
+body.dark-theme .iconGithub,
 body.dark-theme .iconPDFPivot,
 body.dark-theme .iconPDFEnactus {
     filter: invert(1) brightness(1.15);
