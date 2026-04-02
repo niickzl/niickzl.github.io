@@ -61,9 +61,48 @@
     </header>
 
     <main class = "content">
+        <div id="section-sillyhacks" class = "pivot">
+            <div class = "leftPivot">
+            <h1>SillyHacks Hackathon
+            <br><span style = "color: blue">@Surge, SFU</span>
+            </h1>
+            <h2>Date: Apr 2026</h2>
+
+            <ul><strong><span style = "color: blue">Context:</span></strong>
+            <li><span style = "color: blue">SillyHacks</span> is a 12-hour hackathon hosted by 
+            <br><span style = "color: blue">SFU Surge</span>.</li>
+            <li>My team and I are tasked to create a <span style = "color: blue">Silly</span> 
+            <br>project, to celebrate the spirit of <span style = "color: blue">April Fools' Day</span>.</li>
+            </ul>
+
+            <ul><strong><span style = "color: blue">Our Idea — Aura Monitor:</span></strong>
+            <li>Use a <span style = "color: blue">browser extension</span> to detect user keystrokes,
+            <br>then classify if the text has "aura" or not with a tailored <span style = "color: blue">NLQ</span>
+            </li>
+            <li>When our algorithm detects "negative aura", a pool of
+            <br>images/sound effects will be randomly chosen to pop up 
+            <br>on the user's screen.
+            </li>
+            <li>Following that, to include some AI content as we are in 2026, 
+            <br>the extension will also use <span style = "color: blue">Gemini</span> to generate a short and 
+            <br>humorous "roast" based on the detected text, which is then 
+            <br>spoken by an Anime Girl voice from <span style = "color: blue">ElevenLabs</span>.
+            </li>
+            </ul>
+            </div>
+            <div class = "rightPivot">
+                <a href = "https://github.com/niickzl/Aura-Monitor" class = "pivotPDF" target = "_blank">
+                    <img class = "iconGithub" src = "images/icons/iconGithubImage.png" alt = "GitHub icon linking to repository"/>
+                </a>
+
+                <video class = "sillyHacksVideo" loop playsinline>
+                    <source src = "gifs/AuraMonitor.mp4" type="video/mp4">
+                </video>
+            </div>
+        </div>
         <div id="section-mountainmadness" class = "enactus">
             <div class = "leftEnactus">
-                <a href = "https://github.com/caydeny/mountain-madness-2026" class = "MountainMadnessGithub" target = "_blank">
+                <a href = "https://github.com/niickzl/RBC" class = "MountainMadnessGithub" target = "_blank">
                     <img class = "iconGithub" src = "images/icons/iconGithubImage.png" alt = "GitHub icon linking to repository"/>
                 </a>
 
@@ -186,6 +225,7 @@
         <!-- Sticky competition nav -->
         <nav class="project-nav" id="compNav" aria-label="Competition sections">
             <ul>
+                <li><a href="#section-sillyhacks" class="pnav-link" data-target="section-sillyhacks">SillyHacks</a></li>
                 <li><a href="#section-mountainmadness" class="pnav-link" data-target="section-mountainmadness">Mountain Madness</a></li>
                 <li><a href="#section-pivot"   class="pnav-link" data-target="section-pivot">CaseIT Pivot</a></li>
                 <li><a href="#section-enactus" class="pnav-link" data-target="section-enactus">Enactus</a></li>
@@ -197,6 +237,7 @@
         // Scroll-spy: highlight active section in competition nav
         (function () {
             const sections = [
+                { id: 'section-sillyhacks' },
                 { id: 'section-mountainmadness' },
                 { id: 'section-pivot' },
                 { id: 'section-enactus' },
@@ -249,17 +290,51 @@
         });
     </script>
     <script>
-        const images2 = document.querySelectorAll('.pivotImage');
-
-        images2.forEach(img => {
-            img.addEventListener('click', () => {
-            img.classList.toggle('zoomed');
+        const pivotVideos = document.querySelectorAll('.pivotImage');
+        pivotVideos.forEach(vid => {
+            vid.addEventListener('click', () => {
+                const isZoomed = vid.classList.toggle('zoomed');
+                if (isZoomed) {
+                    vid.play();
+                } else {
+                    vid.pause();
+                    vid.currentTime = 0;
+                }
             });
         });
 
         document.addEventListener('click', (e) => {
             if (!e.target.classList.contains('pivotImage')) {
-            images2.forEach(img => img.classList.remove('zoomed'));
+                pivotVideos.forEach(vid => {
+                    vid.classList.remove('zoomed');
+                    vid.pause();
+                    vid.currentTime = 0;
+                });
+            }
+        });
+    </script>
+    <script>
+        const sillyHacksVideos = document.querySelectorAll('.sillyHacksVideo');
+
+        sillyHacksVideos.forEach(vid => {
+            vid.addEventListener('click', () => {
+                const isZoomed = vid.classList.toggle('zoomed');
+                if (isZoomed) {
+                    vid.play();
+                } else {
+                    vid.pause();
+                    vid.currentTime = 0;
+                }
+            });
+        });
+
+        document.addEventListener('click', (e) => {
+            if (!e.target.classList.contains('sillyHacksVideo')) {
+                sillyHacksVideos.forEach(vid => {
+                    vid.classList.remove('zoomed');
+                    vid.pause();
+                    vid.currentTime = 0;
+                });
             }
         });
     </script>
