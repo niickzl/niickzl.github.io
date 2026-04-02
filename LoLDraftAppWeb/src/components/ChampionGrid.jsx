@@ -11,7 +11,7 @@ const BotIcon = "./roleIcon/Bottom_icon.png";
 const SupportIcon = "./roleIcon/Support_icon.png";
 
 const DATA_DRAGON_CDN = "https://ddragon.leagueoflegends.com/cdn";
-const DATA_DRAGON_PATCH = "15.24.1";
+const DATA_DRAGON_PATCH = "16.7.1";
 const TILE_SIZE = "clamp(80px, 7vw, 112px)";
 
 export default function ChampionGrid({ 

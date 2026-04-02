@@ -72,7 +72,7 @@ export default function SiteHeader() {
           }}
         >
           <img src={logo} alt="Nick's LoL Drafter Logo" style={{ height: 32, width: 32 }} />
-          <span style={{ fontSize: "1.2rem", fontWeight: "bold" }}>Nick's LoL Drafter</span>
+          <span style={{ fontSize: "1.2rem", fontWeight: "bold" }}>Nick's LoL Drafter (Last Update: April 1, 2026)</span>
         </div>
       </div>
       
