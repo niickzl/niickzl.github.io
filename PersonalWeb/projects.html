@@ -4,274 +4,291 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Projects | Nick's Website</title>
     <script>
-        // Early theme: apply saved preference to <html> before CSS loads to avoid flash
         (function () {
             try {
-                const key = 'theme';
-                const saved = localStorage.getItem(key);
+                const saved = localStorage.getItem('theme');
                 const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
                 const initial = (saved === 'dark' || saved === 'light') ? saved : (prefersDark ? 'dark' : 'light');
                 document.documentElement.classList.add(initial === 'dark' ? 'dark-theme' : 'light-theme');
-            } catch (e) { /* no-op */ }
+            } catch (_) {}
         })();
     </script>
-    <link rel="stylesheet" href="stylesProjects.css">
+    <link rel="stylesheet" href="stylesActivities.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Overlock:ital,wght@0,400;0,700;0,900;1,400;1,700;1,900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Overlock:ital,wght@0,400;0,700;0,900;1,400;1,700;1,900&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
     <link rel="icon" href="images/favicon.ico" type="image/x-icon">
 </head>
 <body>
-    <header class = "navbar">
-        <div class = "name">
+
+    <header class="navbar">
+        <div class="name">
             <a class="hub-button" href="../index.html" aria-label="Go to web hub" title="Go to Web Hub">Web Hub</a>
             <h1><a href="index.html" aria-label="Back to main page">Nick Ze Kun<br>Lei</a></h1>
         </div>
 
-        <nav class = "menu">
-            <a href = "index.html" class = "activeHome">Home</a>
+        <nav class="menu">
+            <a href="index.html" class="activeHome">Home</a>
 
-            <div class = "dropdownPerson">
-                <a href = "" class = "activePerson">Personal Activities</a>
-                <div class = "dropdownPersonContent">
-                    <a href = "projects.html">Projects</a>
-                    <a href = "competitions.html">Competitions</a>
+            <div class="dropdownPerson">
+                <a href="" class="activePerson">Personal Activities</a>
+                <div class="dropdownPersonContent">
+                    <a href="projects.html">Projects</a>
+                    <a href="competitions.html">Competitions</a>
                 </div>
             </div>
 
-            <div class = "dropdownInterest">
-                <a href = "" class = "activeInterest">Interests</a>
-                <div class = "dropdownInterestContent">
-                    <a href = "photography.html">Photography</a>
-                    <a href = "chess.html">Chess</a>
+            <div class="dropdownInterest">
+                <a href="" class="activeInterest">Interests</a>
+                <div class="dropdownInterestContent">
+                    <a href="photography.html">Photography</a>
+                    <a href="chess.html">Chess</a>
                 </div>
             </div>
 
-            <a href = "aboutMe.html" class = "activeMore">More About Me</a>
+            <a href="aboutMe.html" class="activeMore">More About Me</a>
         </nav>
 
-        <div class = "headerRight">
-            <div class = "location">
-                <h1>Canada, BC</h1>
-            </div>
+        <div class="headerRight">
+            <div class="location"><h1>Canada, BC</h1></div>
             <button id="themeToggle" class="theme-toggle" aria-label="Toggle color theme" title="Toggle theme">
                 <img id="iconTheme" class="iconTheme" src="images/icons/iconLightMode.png" alt="Theme icon" />
             </button>
         </div>
     </header>
 
-    <main class = "content">
-        <div id="section-lol" class = nicksLOLDrafter>
-            <div class = "leftnicksLOLDrafter">
-                <h1><span style = "color: blue">Nick's LoL Drafter</span>: A <span style = "color: blue">Web App</span> to draft 
-                    <br>better LoL compositions</h1>
-                <h2>Date: September 2025</h2>
+    <main class="content">
 
-                <h2>
-                    <a href = "https://niickzl.github.io/LolDraftAppWebDist/index.html" class = "easychartLink" target = "_blank">
-                        Nick's LoL Drafter Link
+        <!-- ── 01 · Nick's LoL Drafter ── -->
+        <article id="section-lol" class="comp-card">
+            <div class="card-header">
+                <span class="card-num">01</span>
+                <h2 class="card-title"><span class="accent">Nick's LoL Drafter</span> — Web App</h2>
+                <span class="card-date">Sep 2025</span>
+            </div>
+            <div class="card-body">
+                <div class="card-text">
+                    <ul>
+                        <strong>Background</strong>
+                        <li>I've been playing League of Legends for 6+ years (2019–2025). I built this project combining my coding expertise with my game knowledge.</li>
+                        <li>Built with <span class="accent">React.js</span> (frontend), <span class="accent">JavaScript</span> (backend), and <span class="accent">JSON</span> (data storage).</li>
+                    </ul>
+                    <ul>
+                        <strong>Features</strong>
+                        <li><span class="accent">Add</span> champions to the board by clicking their icons.</li>
+                        <li><span class="accent">Remove</span> champions by clicking their icons in the selection/ban slots.</li>
+                        <li>Toggle between <span class="accent">Pick</span> and <span class="accent">Ban</span> modes to simulate a full draft.</li>
+                        <li>Use <span class="accent">Swap Side</span> to instantly switch viewpoint between Blue and Red team.</li>
+                        <li>Find champions quickly using the <span class="accent">Search Bar</span> or <span class="accent">Role Filter</span>.</li>
+                        <li>Each champion shows a <span class="accent">Recommendation Score</span> that updates live during the draft.</li>
+                    </ul>
+                    <div style="margin-top: 0.6em;">
+                        <a class="proj-link" href="https://niickzl.github.io/LolDraftAppWebDist/index.html" target="_blank">↗ Live App</a>
+                    </div>
+                </div>
+                <div class="card-media">
+                    <a href="https://github.com/niickzl/niickzl.github.io/tree/main/LoLDraftAppWeb" target="_blank" aria-label="GitHub repository">
+                        <img class="comp-icon iconGithub" src="images/icons/iconGithubImage.png" alt="GitHub"/>
                     </a>
-                </h2>
-
-                <ul><strong><span style = "color: blue">Background:</span></strong>
-                <li>I've been playing League of Legends for more than 6 years now (2019-2025). 
-                    <br>As this is the game I am  passionate about, I created this project with my 
-                    <br>coding expertise and my game knowledge.
-                <li>Built with <span style = "color: blue">React.js</span> (frontend), <span style = "color: blue">JavaScript</span> (backend), and <span style = "color: blue">JSON</span> (data storage)</li>
-                </ul>
-
-                <ul><strong><span style = "color: blue">Features:</span></strong>
-                <li><span style = "color: blue">Add</span> champions to the board by clicking their icons
-                <li><span style = "color: blue">Remove</span> champions by clicking their icons in the selection/ban slots
-                <li>Toggle between <span style = "color: blue">Pick</span> and <span style = "color: blue">Ban</span> modes to simulate a full draft
-                <li>Use the <span style = "color: blue">Swap Side</span> feature to instantly change your viewpoint between the
-                    <br>Blue and Red team
-                <li>Quickly find champions using the <span style = "color: blue">Search Bar</span> or <span style = "color: blue">Role Filter</span> buttons
-                <li>Each champion displays a <span style = "color: blue">Recommendation Score</span> that updates based on the 
-                    <br>current stage of the draft to assist your decision-making</li>
-                </ul>
+                    <img class="comp-media" src="images/lolDraftImage.png" alt="Nick's LoL Drafter in action"/>
+                </div>
             </div>
-            <div class = "rightnicksLOLDrafter">
-                <a href = "https://github.com/niickzl/niickzl.github.io/tree/main/LoLDraftAppWeb" class = "GithubRepoLoL" target = "_blank">
-                    <img class = "iconGithubRepoLoL" src = "images/icons/iconGithubImage.png" alt = "GitHub icon linking to repository"/>
-                </a>
+        </article>
 
-                <img class = "lolDrafterImg" src = "images/lolDraftImage.png" alt = "Image to illustrate the LoL Drafter in action"/>
+        <!-- ── 02 · EasyChart ── -->
+        <article id="section-easychart" class="comp-card">
+            <div class="card-header">
+                <span class="card-num">02</span>
+                <h2 class="card-title"><span class="accent">EasyChart</span> — Web App</h2>
+                <span class="card-date">Aug 2025</span>
             </div>
-        </div>
-
-        <div id="section-easychart" class = easyChart>
-            <div class = "leftEasyChart">
-                <a href = "https://github.com/CMPT-276-SUMMER-2025/final-project-5-lakes" class = "githubEasyChart" target = "_blank">
-                    <img class = "iconGithubRepoChart" src = "images/icons/iconGithubImage.png" alt = "GitHub icon linking to repository"/>
-                </a>
-
-                <img class = "easyChartHome" src = "images/easyChartImage.png" alt = "Image to illustrate EasyChart in action"/>
-            </div>
-            <div class = "rightEasyChart">
-                <h1><span style = "color: blue">EasyChart</span>: A <span style = "color: blue">Web App</span> to
-                <br>make graphing easier</h1>
-                <h2>Date: August 2025</h2>
-                <h2>
-                    <a href = "https://easychart-omega.vercel.app/" class = "easychartLink" target = "_blank">
-                        EasyChart Link
+            <div class="card-body reverse">
+                <div class="card-text">
+                    <ul>
+                        <strong>Background</strong>
+                        <li>A web app for quick data visualization — users upload data and the platform auto-generates editable, exportable graphs.</li>
+                        <li>Built with <span class="accent">Node.js</span> (backend), <span class="accent">React</span> (frontend), <span class="accent">DeepSeek R1T2 Chimera</span> (API), and <span class="accent">Chart.js</span> (API).</li>
+                    </ul>
+                    <ul>
+                        <strong>Features</strong>
+                        <li><span class="accent">Auto-extracts</span> data from uploaded files.</li>
+                        <li>Provides an editable table for the extracted info.</li>
+                        <li><span class="accent">Recommends</span> suited graph types for the data.</li>
+                        <li><span class="accent">Summarizes</span> key trends in the data.</li>
+                        <li>Allows modification of graph visuals and supports exporting in multiple formats.</li>
+                    </ul>
+                    <div style="margin-top: 0.6em;">
+                        <a class="proj-link" href="https://easychart-omega.vercel.app/" target="_blank">↗ Live App (AI DOWN)</a>
+                        <a class="proj-link" href="https://www.youtube.com/watch?v=mYPEXPJwkJY" target="_blank">▶ Demo Video</a>
+                    </div>
+                </div>
+                <div class="card-media">
+                    <a href="https://github.com/CMPT-276-SUMMER-2025/final-project-5-lakes" target="_blank" aria-label="GitHub repository">
+                        <img class="comp-icon iconGithub" src="images/icons/iconGithubImage.png" alt="GitHub"/>
                     </a>
-                    <br><br>
-                    <a href = "https://www.youtube.com/watch?v=mYPEXPJwkJY" class = "easychartYTLink" target = "_blank">
-                        EasyChart Demo Link
+                    <img class="comp-media" src="images/easyChartImage.png" alt="EasyChart in action"/>
+                </div>
+            </div>
+        </article>
+
+        <!-- ── 03 · Discord Music Bot ── -->
+        <article id="section-discord" class="comp-card">
+            <div class="card-header">
+                <span class="card-num">03</span>
+                <h2 class="card-title"><span class="accent">Python</span> YouTube Audio Discord Bot</h2>
+                <span class="card-date">Feb 2025</span>
+            </div>
+            <div class="card-body">
+                <div class="card-text">
+                    <ul>
+                        <strong>Background</strong>
+                        <li>YouTube rate limited Discord bots from streaming audio, causing many popular music bots to <span class="tag-red">shut down</span>.</li>
+                        <li>As a fun challenge, I built my own private music bot.</li>
+                    </ul>
+                    <ul>
+                        <strong>Features</strong>
+                        <li>Responds to <span class="accent">@zlbot</span> or <span class="accent">!!!</span> command prefixes.</li>
+                        <li>Commands: <span class="accent">join</span>, <span class="accent">leave</span>, <span class="accent">play</span>, <span class="accent">skip</span>, and <span class="accent">help</span>.</li>
+                        <li>Streams YouTube audio when given a link.</li>
+                        <li>Implements a song queue for continuous playback.</li>
+                    </ul>
+                </div>
+                <div class="card-media">
+                    <a href="https://github.com/niickzl/YT-DISC-BOT" target="_blank" aria-label="GitHub repository">
+                        <img class="comp-icon iconGithub" src="images/icons/iconGithubImage.png" alt="GitHub"/>
                     </a>
-                </h2>
-
-                <ul><strong><span style = "color: blue">Background:</span></strong>
-                <li>EasyChart is a web app for quick data visualization.
-                <br>Users upload data, and the platform auto-generates
-                <br>editable, exportable graphs.</li>
-                <li>Built with <span style = "color: blue">Node.js</span> (backend), <span style = "color: blue">React</span> (frontend), 
-                <br><span style = "color: blue">DeepSeek R1T2 Chimera</span> (API), and <span style = "color: blue">Chart.js</span> (API).</li>
-                </ul>
-
-                <ul><strong><span style = "color: blue">Features:</span></strong>
-                <li><span style = "color: blue">Auto-extracts</span> data from given files</li>
-                <li>Provides an editable table for the extracted info</li>
-                <li><span style = "color: blue">Recommends</span> suited graph types for the data</li>
-                <li><span style = "color: blue">Summarizes</span> key trends in the info</li>
-                <li>Allows modification of graph visuals</li>
-                <li>Supports exporting in multiple formats</li>
-                </ul>
+                    <img class="comp-media" src="images/discordBotTestImage.png" alt="Discord bot in action"/>
+                </div>
             </div>
-        </div>
+        </article>
 
-        <div id="section-discord" class = discordMusicBot>
-            <div class = "leftDiscordMusicBot">
-                <h1><span style = "color: blue">Python</span> YouTube Audio Discord Bot</h1>
-                <h2>Date: Feb 2025</h2>
-
-                <ul><strong><span style = "color: blue">Background:</span></strong>
-                <li>YouTube rate limited Discord bots from streaming audio,
-                <br>causing many popular music bots to <span style = "color: red">shut down</span>.</li>
-                <li>As a fun challenge, I attempted to create a private music bot.</li>
-                </ul>
-
-                <ul><strong><span style = "color: blue">Features:</span></strong>
-                <li>Responds to "@zlbot" or "!!!" commands</li>
-                <li>Simple Commands include: <span style = "color: blue">join</span>, 
-                                             <span style = "color: blue">leave</span>, 
-                                             <span style = "color: blue">play</span>, 
-                                             <span style = "color: blue">skip</span>, and 
-                                             <span style = "color: blue">help</span></li>
-                <li>Streams YouTube audio when given a YouTube link</li>
-                <li>Implements a song queue system for continuous playback</li>
-                </ul>
+        <!-- ── 04 · User Info App ── -->
+        <article id="section-userapp" class="comp-card">
+            <div class="card-header">
+                <span class="card-num">04</span>
+                <h2 class="card-title"><span class="accent">Python</span> User Information Storage Program</h2>
+                <span class="card-date">May – Jun 2024</span>
             </div>
-            <div class = "rightDiscordMusicBot">
-                <a href = "https://github.com/niickzl/YT-DISC-BOT" class = "githubRepoDiscord" target = "_blank">
-                    <img class = "iconGithubRepoDiscord" src = "images/icons/iconGithubImage.png" alt = "GitHub icon linking to repository"/>
-                </a>
-
-                <img class = "discordBotTest" src = "images/discordBotTestImage.png" alt = "Image to illustrate the Discord bot in action"/>
+            <div class="card-body reverse">
+                <div class="card-text">
+                    <ul>
+                        <strong>Background</strong>
+                        <li>With a family business that uses customer information storage software, I wanted to build one myself.</li>
+                    </ul>
+                    <ul>
+                        <strong>Features</strong>
+                        <li>Tkinter-based GUI with core features: <span class="accent">storing</span>, <span class="accent">retrieving</span>, <span class="accent">searching</span>, and <span class="accent">editing</span> user information.</li>
+                        <li>Data is organized by date in structured files for easy access.</li>
+                    </ul>
+                </div>
+                <div class="card-media">
+                    <a href="https://github.com/niickzl/USER-INFO-PROGRAM" target="_blank" aria-label="GitHub repository">
+                        <img class="comp-icon iconGithub" src="images/icons/iconGithubImage.png" alt="GitHub"/>
+                    </a>
+                    <img class="comp-media" src="images/userAppImage.png" alt="User info app in action"/>
+                </div>
             </div>
-        </div>
+        </article>
 
-        <div id="section-userapp" class = userInfoApp>
-            <div class = "leftInfoApp">
-                <a href = "https://github.com/niickzl/USER-INFO-PROGRAM" class = "githubRepoApp" target = "_blank">
-                    <img class = "iconGithubRepoApp" src = "images/icons/iconGithubImage.png" alt = "GitHub icon linking to repository"/>
-                </a>
+        <!-- Lightbox overlay -->
+        <div id="media-lightbox" role="dialog" aria-modal="true" aria-label="Media lightbox"></div>
 
-                <img class = "userApp" src = "images/userAppImage.png" alt = "Image to illustrate the user info app in action"/>
-            </div>
-            <div class = "rightInfoApp">
-                <h1><span style = "color: blue">Python</span> User Information Storage
-                <br>Program</h1>
-                <h2>Date: May - June 2024</h2>
-
-                <ul><strong><span style = "color: blue">Background:</span></strong>
-                <li>With a family business that uses a customer information 
-                <br>storage software, I wanted to make one myself.</li>
-                </ul>
-
-                <ul><strong><span style = "color: blue">Features:</span></strong>
-                <li>Tkinter-based GUI with the primary features of <span style = "color: blue">storing</span>, 
-                <br>                                               <span style = "color: blue">retrieving</span>, 
-                                                                   <span style = "color: blue">searching</span>, 
-                                                                   <span style = "color: blue">editing</span> user information</li>
-                <li>The data are organized by date in structured files for access</li>
-                </ul>
-            </div>
-        </div>
         <!-- Sticky project nav -->
         <nav class="project-nav" id="projectNav" aria-label="Project sections">
             <ul>
-                <li><a href="#section-lol"       class="pnav-link" data-target="section-lol">LoL Drafter</a></li>
-                <li><a href="#section-easychart"  class="pnav-link" data-target="section-easychart">EasyChart</a></li>
-                <li><a href="#section-discord"    class="pnav-link" data-target="section-discord">YouTube Audio<br>Discord Bot</a></li>
-                <li><a href="#section-userapp"    class="pnav-link" data-target="section-userapp">User Info App</a></li>
+                <li><a href="#section-lol"      class="pnav-link" data-target="section-lol">01 LoL Drafter</a></li>
+                <li><a href="#section-easychart" class="pnav-link" data-target="section-easychart">02 EasyChart</a></li>
+                <li><a href="#section-discord"   class="pnav-link" data-target="section-discord">03 Discord Bot</a></li>
+                <li><a href="#section-userapp"   class="pnav-link" data-target="section-userapp">04 User Info App</a></li>
             </ul>
         </nav>
+
     </main>
 
+    <!-- Scroll-spy -->
     <script>
-        const images1 = document.querySelectorAll('.discordBotTest');
+        (function () {
+            const sections = ['section-lol', 'section-easychart', 'section-discord', 'section-userapp'];
+            const links = document.querySelectorAll('.pnav-link');
 
-        images1.forEach(img => {
-            img.addEventListener('click', () => {
-            img.classList.toggle('zoomed');
-            });
-        });
-
-        document.addEventListener('click', (e) => {
-            if (!e.target.classList.contains('discordBotTest')) {
-            images1.forEach(img => img.classList.remove('zoomed'));
+            function getActive() {
+                const mid = window.scrollY + window.innerHeight * 0.35;
+                let active = sections[0];
+                for (const id of sections) {
+                    const el = document.getElementById(id);
+                    if (el && el.offsetTop <= mid) active = id;
+                }
+                return active;
             }
-        });
-    </script>
-    <script>
-        const images2 = document.querySelectorAll('.userApp');
 
-        images2.forEach(img => {
-            img.addEventListener('click', () => {
-            img.classList.toggle('zoomed');
-            });
-        });
-
-        document.addEventListener('click', (e) => {
-            if (!e.target.classList.contains('userApp')) {
-            images2.forEach(img => img.classList.remove('zoomed'));
+            function update() {
+                const active = getActive();
+                links.forEach(a => a.classList.toggle('pnav-active', a.dataset.target === active));
             }
-        });
-    </script>
-    <script>
-        const images3 = document.querySelectorAll('.easyChartHome');
 
-        images3.forEach(img => {
-            img.addEventListener('click', () => {
-            img.classList.toggle('zoomed');
+            window.addEventListener('scroll', update, { passive: true });
+            update();
+
+            links.forEach(a => {
+                a.addEventListener('click', e => {
+                    e.preventDefault();
+                    const target = document.getElementById(a.dataset.target);
+                    if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                });
             });
-        });
-
-        document.addEventListener('click', (e) => {
-            if (!e.target.classList.contains('easyChartHome')) {
-            images3.forEach(img => img.classList.remove('zoomed'));
-            }
-        });
+        })();
     </script>
-    <script>
-        const images4 = document.querySelectorAll('.lolDrafterImg');
 
-        images4.forEach(img => {
-            img.addEventListener('click', () => {
-            img.classList.toggle('zoomed');
+    <!-- Scroll-reveal for cards -->
+    <script>
+        (function () {
+            const observer = new IntersectionObserver(entries => {
+                entries.forEach(e => {
+                    if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); }
+                });
+            }, { threshold: 0.08 });
+            document.querySelectorAll('.comp-card').forEach(c => observer.observe(c));
+        })();
+    </script>
+
+    <!-- Unified lightbox zoom for all .comp-media -->
+    <script>
+        (function () {
+            const lightbox = document.getElementById('media-lightbox');
+            let activeVideo = null;
+
+            document.querySelectorAll('.comp-media').forEach(el => {
+                el.addEventListener('click', e => {
+                    e.stopPropagation();
+                    const clone = el.cloneNode(true);
+                    clone.removeAttribute('class');
+                    clone.removeAttribute('style');
+                    lightbox.innerHTML = '';
+                    lightbox.appendChild(clone);
+                    lightbox.classList.add('open');
+                    if (clone.tagName === 'VIDEO') { clone.loop = true; clone.play(); activeVideo = clone; }
+                    else activeVideo = null;
+                });
             });
-        });
 
-        document.addEventListener('click', (e) => {
-            if (!e.target.classList.contains('lolDrafterImg')) {
-            images4.forEach(img => img.classList.remove('zoomed'));
-            }
-        });
+            lightbox.addEventListener('click', () => {
+                if (activeVideo) { activeVideo.pause(); activeVideo = null; }
+                lightbox.classList.remove('open');
+                lightbox.innerHTML = '';
+            });
+
+            document.addEventListener('keydown', e => {
+                if (e.key === 'Escape' && lightbox.classList.contains('open')) {
+                    if (activeVideo) { activeVideo.pause(); activeVideo = null; }
+                    lightbox.classList.remove('open');
+                    lightbox.innerHTML = '';
+                }
+            });
+        })();
     </script>
+
+    <!-- Theme toggle -->
     <script>
-        // Theme toggle with persistence (dark <-> light)
         (function () {
             const storageKey = 'theme';
             const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
@@ -283,15 +300,10 @@
             function apply(theme) {
                 body.classList.remove('dark-theme', 'light-theme');
                 html.classList.remove('dark-theme', 'light-theme');
-                if (theme === 'dark') {
-                    body.classList.add('dark-theme');
-                    html.classList.add('dark-theme');
-                } else {
-                    body.classList.add('light-theme');
-                    html.classList.add('light-theme');
-                }
+                body.classList.add(theme + '-theme');
+                html.classList.add(theme + '-theme');
                 if (toggle) {
-                    const label = html.classList.contains('dark-theme') ? 'Switch to light mode' : 'Switch to dark mode';
+                    const label = theme === 'dark' ? 'Switch to light mode' : 'Switch to dark mode';
                     toggle.setAttribute('aria-label', label);
                     toggle.setAttribute('title', label);
                 }
@@ -310,46 +322,6 @@
             }
         })();
     </script>
-    <script>
-        // Scroll-spy: highlight active section in project nav
-        (function () {
-            const sections = [
-                { id: 'section-lol' },
-                { id: 'section-easychart' },
-                { id: 'section-discord' },
-                { id: 'section-userapp' },
-            ];
-            const links = document.querySelectorAll('.pnav-link');
 
-            function getActive() {
-                const mid = window.scrollY + window.innerHeight * 0.35;
-                let active = sections[0].id;
-                for (const s of sections) {
-                    const el = document.getElementById(s.id);
-                    if (el && el.offsetTop <= mid) active = s.id;
-                }
-                return active;
-            }
-
-            function update() {
-                const active = getActive();
-                links.forEach(a => {
-                    a.classList.toggle('pnav-active', a.dataset.target === active);
-                });
-            }
-
-            window.addEventListener('scroll', update, { passive: true });
-            update();
-
-            // Smooth scroll on click
-            links.forEach(a => {
-                a.addEventListener('click', e => {
-                    e.preventDefault();
-                    const target = document.getElementById(a.dataset.target);
-                    if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                });
-            });
-        })();
-    </script>
 </body>
 </html>

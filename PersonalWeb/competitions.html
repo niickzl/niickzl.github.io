@@ -4,261 +4,221 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Competitions | Nick's Website</title>
     <script>
-        // Early theme: apply saved preference to <html> before CSS loads to avoid flash
         (function () {
             try {
-                const key = 'theme';
-                const saved = localStorage.getItem(key);
+                const saved = localStorage.getItem('theme');
                 const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
                 const initial = (saved === 'dark' || saved === 'light') ? saved : (prefersDark ? 'dark' : 'light');
                 document.documentElement.classList.add(initial === 'dark' ? 'dark-theme' : 'light-theme');
-            } catch (_) { /* no-op */ }
+            } catch (_) {}
         })();
     </script>
-    <link rel="stylesheet" href="stylesCompetitions.css">
+    <link rel="stylesheet" href="stylesActivities.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Overlock:ital,wght@0,400;0,700;0,900;1,400;1,700;1,900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Overlock:ital,wght@0,400;0,700;0,900;1,400;1,700;1,900&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
     <link rel="icon" href="images/favicon.ico" type="image/x-icon">
 </head>
 <body>
-    <header class = "navbar">
-        <div class = "name">
+
+    <header class="navbar">
+        <div class="name">
             <a class="hub-button" href="../index.html" aria-label="Go to web hub" title="Go to Web Hub">Web Hub</a>
             <h1><a href="index.html" aria-label="Back to main page">Nick Ze Kun<br>Lei</a></h1>
         </div>
 
-        <nav class = "menu">
-            <a href = "index.html" class = "activeHome">Home</a>
+        <nav class="menu">
+            <a href="index.html" class="activeHome">Home</a>
 
-            <div class = "dropdownPerson">
-                <a href = "" class = "activePerson">Personal Activities</a>
-                <div class = "dropdownPersonContent">
-                    <a href = "projects.html">Projects</a>
-                    <a href = "competitions.html">Competitions</a>
+            <div class="dropdownPerson">
+                <a href="" class="activePerson">Personal Activities</a>
+                <div class="dropdownPersonContent">
+                    <a href="projects.html">Projects</a>
+                    <a href="competitions.html">Competitions</a>
                 </div>
             </div>
 
-            <div class = "dropdownInterest">
-                <a href = "" class = "activeInterest">Interests</a>
-                <div class = "dropdownInterestContent">
-                    <a href = "photography.html">Photography</a>
-                    <a href = "chess.html">Chess</a>
+            <div class="dropdownInterest">
+                <a href="" class="activeInterest">Interests</a>
+                <div class="dropdownInterestContent">
+                    <a href="photography.html">Photography</a>
+                    <a href="chess.html">Chess</a>
                 </div>
             </div>
 
-            <a href = "aboutMe.html" class = "activeMore">More About Me</a>
+            <a href="aboutMe.html" class="activeMore">More About Me</a>
         </nav>
 
-        <div class = "headerRight">
-            <div class = "location">
-                <h1>Canada, BC</h1>
-            </div>
+        <div class="headerRight">
+            <div class="location"><h1>Canada, BC</h1></div>
             <button id="themeToggle" class="theme-toggle" aria-label="Toggle color theme" title="Toggle theme">
                 <img id="iconTheme" class="iconTheme" src="images/icons/iconLightMode.png" alt="Theme icon" />
             </button>
         </div>
     </header>
 
-    <main class = "content">
-        <div id="section-sillyhacks" class = "pivot">
-            <div class = "leftPivot">
-            <h1>SillyHacks Hackathon
-            <br><span style = "color: blue">@Surge, SFU</span>
-            </h1>
-            <h2>Date: Apr 2026</h2>
+    <main class="content">
 
-            <ul><strong><span style = "color: blue">Context:</span></strong>
-            <li><span style = "color: blue">SillyHacks</span> is a 12-hour hackathon hosted by 
-            <br><span style = "color: blue">SFU Surge</span>.</li>
-            <li>My team and I are tasked to create a <span style = "color: blue">Silly</span> 
-            <br>project, to celebrate the spirit of <span style = "color: blue">April Fools' Day</span>.</li>
-            </ul>
-
-            <ul><strong><span style = "color: blue">Our Idea — Aura Monitor:</span></strong>
-            <li>Use a <span style = "color: blue">browser extension</span> to detect user keystrokes,
-            <br>then classify if the text has "aura" or not with a tailored <span style = "color: blue">NLQ</span>
-            </li>
-            <li>When our algorithm detects "negative aura", a pool of
-            <br>images/sound effects will be randomly chosen to pop up 
-            <br>on the user's screen.
-            </li>
-            <li>Following that, to include some AI content as we are in 2026, 
-            <br>the extension will also use <span style = "color: blue">Gemini</span> to generate a short and 
-            <br>humorous "roast" based on the detected text, which is then 
-            <br>spoken by an Anime Girl voice from <span style = "color: blue">ElevenLabs</span>.
-            </li>
-            </ul>
+        <!-- ── 01 · SillyHacks ── -->
+        <article id="section-sillyhacks" class="comp-card">
+            <div class="card-header">
+                <span class="card-num">01</span>
+                <h2 class="card-title">SillyHacks Hackathon &nbsp;<span class="accent">@Surge, SFU</span></h2>
+                <span class="card-date">Apr 2026</span>
             </div>
-            <div class = "rightPivot">
-                <a href = "https://github.com/niickzl/Aura-Monitor" class = "pivotPDF" target = "_blank">
-                    <img class = "iconGithub" src = "images/icons/iconGithubImage.png" alt = "GitHub icon linking to repository"/>
-                </a>
-
-                <video class = "sillyHacksVideo" loop playsinline>
-                    <source src = "gifs/AuraMonitor.mp4" type="video/mp4">
-                </video>
-            </div>
-        </div>
-        <div id="section-mountainmadness" class = "enactus">
-            <div class = "leftEnactus">
-                <a href = "https://github.com/niickzl/RBC" class = "MountainMadnessGithub" target = "_blank">
-                    <img class = "iconGithub" src = "images/icons/iconGithubImage.png" alt = "GitHub icon linking to repository"/>
-                </a>
-
-                <img class = "MountainMadnessImage" src = "images/MountainMadnessImage.png" alt = "Group image for the Mountain Madness Hackathon"/>
-            </div>
-            <div class = "rightEnactus">
-                <h1>Mountain Madness Hackathon
-                <br><span style = "color: blue">@CSSS, SFU</span>
-                </h1>
-                <h2>Date: Mar 2026</h2>
-
-                <ul><strong><span style = "color: blue">Context:</span></strong>
-                <li>Mountain Madness is a 24-hour hackathon hosted by the
-                <br><span style="color: blue">Computing Science Student Society (CSSS)</span> at SFU.</li>
-                <li>Our team built for the <span style = "color: blue">RBC Track: Personal Finance Platforms</span> 
-                <br>theme: designing an intelligent platform that transforms the
-                <br>unpredictable nature of modern multi-calendar life into 
-                <br>actionable financial insights.</li>
-                </ul>
-
-                <ul><strong><span style="color: blue">Our Idea — RBC (Rational Budgeting Calendar):</span></strong>
-                <li>Connects your <span style="color: blue">calendars and bank account</span> to create 
-                <br>smart, adaptive daily spending limits.</li>
-                <li><span style="color: blue">AI-powered</span> budgeting engine:
+            <div class="card-body">
+                <div class="card-text">
                     <ul>
-                        <li>LLM classifies income, mandatory, and variable spending</li>
-                        <li>Splits term budget into dynamic daily limits by events</li>
-                        <li>Redistributes unused limits intelligently across the term</li>
+                        <strong>Context</strong>
+                        <li><span class="accent">SillyHacks</span> is a 12-hour hackathon hosted by <span class="accent">SFU Surge</span>.</li>
+                        <li>My team and I were tasked to create a <span class="accent">Silly</span> project to celebrate the spirit of <span class="accent">April Fools' Day</span>.</li>
                     </ul>
-                </li>
-                <li><span style="color: blue">Gamification</span> to make saving motivating:
                     <ul>
-                        <li>Goal tracking with progress bars</li>
-                        <li>Daily streaks and friend leaderboards</li>
-                        <li>Rank system based on savings efficiency & bonuses</li>
+                        <strong>Our Idea — Aura Monitor</strong>
+                        <li>A <span class="accent">browser extension</span> that detects user keystrokes and classifies text aura using a tailored <span class="accent">NLQ</span> model.</li>
+                        <li>When "negative aura" is detected, a random pool of images and sound effects pops up on screen.</li>
+                        <li><span class="accent">Gemini</span> generates a humorous roast of the detected text, spoken by an Anime Girl voice via <span class="accent">ElevenLabs</span>.</li>
                     </ul>
-                </li>
-                </ul>
+                </div>
+                <div class="card-media">
+                    <a href="https://github.com/niickzl/Aura-Monitor" target="_blank" aria-label="GitHub repository">
+                        <img class="comp-icon iconGithub" src="images/icons/iconGithubImage.png" alt="GitHub"/>
+                    </a>
+                    <video class="comp-media" loop playsinline>
+                        <source src="gifs/AuraMonitor.mp4" type="video/mp4">
+                    </video>
+                </div>
             </div>
-        </div>
-        <div id="section-pivot" class = "pivot">
-            <div class = "leftPivot">
-            <h1>SAP Concur Case Competition
-            <br><span style = "color: blue">@Pivot, CaseIT</span>
-            </h1>
-            <h2>Date: Feb 2025</h2>
+        </article>
 
-            <ul><strong><span style = "color: blue">Context:</span></strong>
-            <li><span style = "color: blue">SAP Concur</span> is a software company providing travel 
-            <br>and expense management services to businesses.</li>
-            <li>My team and I are tasked to create a <span style = "color: blue">strategic plan</span> 
-            <br>to optimize SAP's core features and growth.</li>
-            </ul>
-
-            <ul><strong><span style = "color: blue">Our Plan:</span></strong>
-            <li>Redesign the NewGen UI with additional features:
-                <ul>
-                    <li>Online Banking Connection</li>
-                    <li>AI Voice Detection</li>
-                </ul>
-            </li>
-            <li>Establish secure data privacy:
-                <ul>
-                    <li>Physical servers located in client headquarters</li>
-                    <li>Reduce lags and gliches by controlling a smaller <br>sample</li>
-                </ul>
-            </li>
-            <li>Offer tailored support for NA clients travlling to Asia:</li>
-                <ul>
-                    <li>Optimize Payment Integrations</li>
-                    <li>Optimize Travel Integrations</li>
-                </ul>
-            </ul>
+        <!-- ── 02 · Mountain Madness ── -->
+        <article id="section-mountainmadness" class="comp-card">
+            <div class="card-header">
+                <span class="card-num">02</span>
+                <h2 class="card-title">Mountain Madness Hackathon &nbsp;<span class="accent">@CSSS, SFU</span></h2>
+                <span class="card-date">Mar 2026</span>
             </div>
-            <div class = "rightPivot">
-                <a href = "files/pivot.pdf" class = "pivotPDF" target = "_blank">
-                    <img class = "iconPDFPivot" src = "images/icons/iconPDFImage.png" alt = "PDF icon linking to Pivot PDF"/>
-                </a>
-
-                <img class = "pivotImage" src = "images/pivotImage.png" alt = "Group image for the Pivot Competition"/>
-            </div>
-        </div>
-        <div id="section-enactus" class = "enactus">
-            <div class = "leftEnactus">
-                <a href = "files/enactus.pdf" class = "enactusPDF" target = "_blank">
-                    <img class = "iconPDFEnactus" src = "images/icons/iconPDFImage.png" alt = "PDF icon linking to Enactus PDF"/>
-                </a>
-
-                <img class = "enactusImage" src = "images/enactusImage.jpg" alt = "Group image for the Enactus Competition"/>
-            </div>
-            <div class = "rightEnactus">
-                <h1>Forward Vision Pitch Competition 
-                <br><span style = "color: blue">@Enactus</span>
-                </h1>
-                <h2>Date: Feb 2025</h2>
-
-                <ul><strong><span style = "color: blue">Context:</span></strong>
-                <li>Forward Vision is an ongoing mission aiming to innovate 
-                <br>and build towards <span style = "color: blue"> The 17 Goals of The United Nations</span>.</li>
-                <li>My team and I are tasked to create a <span style = "color: blue">unique product</span> that 
-                <br>pursues at least one of the 17 goals.</li>
-                </ul>
-
-                <ul><strong><span style = "color: blue">Our Product:</span></strong>
-                <li><span style = "color: blue">Let's Go Doggo!</span>: A multi-purpose app to:</li>
+            <div class="card-body reverse">
+                <div class="card-text">
                     <ul>
-                        <li>Raise awarenes of local dog shelters</li>
-                        <li>Provide useful tools for existing dog owners</li>
-                        <li>Connect people to their dogs</li>
+                        <strong>Context</strong>
+                        <li>A 24-hour hackathon by the <span class="accent">Computing Science Student Society (CSSS)</span> at SFU.</li>
+                        <li>Our team built for the <span class="accent">RBC Track: Personal Finance Platforms</span> — an intelligent platform that transforms multi-calendar life into actionable financial insights.</li>
                     </ul>
-                <li>Aims at the three goals of:</li>
                     <ul>
-                        <li><span style = "color: blue">Goal 3</span>: Good Health and Well-being</li>
-                        <li><span style = "color: blue">Goal 11</span>: Sustainable cities and Communities</li>
-                        <li><span style = "color: blue">Goal 16</span>: Peace and Justice</li>
+                        <strong>Our Idea — RBC (Rational Budgeting Calendar)</strong>
+                        <li>Connects your <span class="accent">calendars and bank account</span> to create smart, adaptive daily spending limits.</li>
+                        <li><span class="accent">AI-powered</span> budgeting engine: classifies income and spending, splits budgets by event, redistributes unused limits intelligently.</li>
+                        <li><span class="accent">Gamification</span>: goal tracking, daily streaks, friend leaderboards, and a rank system based on savings efficiency.</li>
                     </ul>
-                </ul>
+                </div>
+                <div class="card-media">
+                    <a href="https://github.com/niickzl/RBC" target="_blank" aria-label="GitHub repository">
+                        <img class="comp-icon iconGithub" src="images/icons/iconGithubImage.png" alt="GitHub"/>
+                    </a>
+                    <img class="comp-media" src="images/MountainMadnessImage.png" alt="Group photo — Mountain Madness Hackathon"/>
+                </div>
             </div>
-        </div>
-        <!-- Sticky competition nav -->
+        </article>
+
+        <!-- ── 03 · CaseIT Pivot ── -->
+        <article id="section-pivot" class="comp-card">
+            <div class="card-header">
+                <span class="card-num">03</span>
+                <h2 class="card-title">SAP Concur Case Competition &nbsp;<span class="accent">@Pivot, CaseIT</span></h2>
+                <span class="card-date">Feb 2025</span>
+            </div>
+            <div class="card-body">
+                <div class="card-text">
+                    <ul>
+                        <strong>Context</strong>
+                        <li><span class="accent">SAP Concur</span> provides travel and expense management services to businesses worldwide.</li>
+                        <li>My team created a <span class="accent">strategic plan</span> to optimize SAP's core features and growth trajectory.</li>
+                    </ul>
+                    <ul>
+                        <strong>Our Plan</strong>
+                        <li>Redesign the NewGen UI with <span class="accent">Online Banking Connection</span> and <span class="accent">AI Voice Detection</span>.</li>
+                        <li>Establish secure data privacy via physical servers at client HQ and smaller sample control to reduce lag.</li>
+                        <li>Tailored support for NA clients in Asia: optimized <span class="accent">Payment</span> and <span class="accent">Travel Integrations</span>.</li>
+                    </ul>
+                </div>
+                <div class="card-media">
+                    <a href="files/pivot.pdf" target="_blank" aria-label="View Pivot PDF">
+                        <img class="comp-icon" src="images/icons/iconPDFImage.png" alt="PDF"/>
+                    </a>
+                    <img class="comp-media" src="images/pivotImage.png" alt="Group photo — Pivot Competition"/>
+                </div>
+            </div>
+        </article>
+
+        <!-- ── 04 · Enactus ── -->
+        <article id="section-enactus" class="comp-card">
+            <div class="card-header">
+                <span class="card-num">04</span>
+                <h2 class="card-title">Forward Vision Pitch Competition &nbsp;<span class="accent">@Enactus</span></h2>
+                <span class="card-date">Feb 2025</span>
+            </div>
+            <div class="card-body reverse">
+                <div class="card-text">
+                    <ul>
+                        <strong>Context</strong>
+                        <li>Forward Vision innovates toward <span class="accent">The 17 Goals of The United Nations</span>.</li>
+                        <li>My team created a <span class="accent">unique product</span> pursuing at least one of the 17 goals.</li>
+                    </ul>
+                    <ul>
+                        <strong>Our Product — Let's Go Doggo!</strong>
+                        <li>A multi-purpose app to raise awareness of local dog shelters, provide tools for existing owners, and connect people to their dogs.</li>
+                        <li>Targets <span class="accent">Goal 3</span>: Good Health &amp; Well-being, <span class="accent">Goal 11</span>: Sustainable Cities, and <span class="accent">Goal 16</span>: Peace &amp; Justice.</li>
+                    </ul>
+                </div>
+                <div class="card-media">
+                    <a href="files/enactus.pdf" target="_blank" aria-label="View Enactus PDF">
+                        <img class="comp-icon" src="images/icons/iconPDFImage.png" alt="PDF"/>
+                    </a>
+                    <img class="comp-media" src="images/enactusImage.jpg" alt="Group photo — Enactus Competition"/>
+                </div>
+            </div>
+        </article>
+
+        <!-- Lightbox overlay -->
+        <div id="media-lightbox" role="dialog" aria-modal="true" aria-label="Media lightbox"></div>
+
+        <!-- Sticky side nav -->
         <nav class="project-nav" id="compNav" aria-label="Competition sections">
             <ul>
-                <li><a href="#section-sillyhacks" class="pnav-link" data-target="section-sillyhacks">SillyHacks</a></li>
-                <li><a href="#section-mountainmadness" class="pnav-link" data-target="section-mountainmadness">Mountain Madness</a></li>
-                <li><a href="#section-pivot"   class="pnav-link" data-target="section-pivot">CaseIT Pivot</a></li>
-                <li><a href="#section-enactus" class="pnav-link" data-target="section-enactus">Enactus</a></li>
+                <li><a href="#section-sillyhacks"      class="pnav-link" data-target="section-sillyhacks">01 SillyHacks</a></li>
+                <li><a href="#section-mountainmadness" class="pnav-link" data-target="section-mountainmadness">02 Mtn Madness</a></li>
+                <li><a href="#section-pivot"           class="pnav-link" data-target="section-pivot">03 CaseIT</a></li>
+                <li><a href="#section-enactus"         class="pnav-link" data-target="section-enactus">04 Enactus</a></li>
             </ul>
         </nav>
+
     </main>
 
+    <!-- Scroll-spy -->
     <script>
-        // Scroll-spy: highlight active section in competition nav
         (function () {
             const sections = [
-                { id: 'section-sillyhacks' },
-                { id: 'section-mountainmadness' },
-                { id: 'section-pivot' },
-                { id: 'section-enactus' },
+                'section-sillyhacks',
+                'section-mountainmadness',
+                'section-pivot',
+                'section-enactus',
             ];
             const links = document.querySelectorAll('.pnav-link');
 
             function getActive() {
                 const mid = window.scrollY + window.innerHeight * 0.35;
-                let active = sections[0].id;
-                for (const s of sections) {
-                    const el = document.getElementById(s.id);
-                    if (el && el.offsetTop <= mid) active = s.id;
+                let active = sections[0];
+                for (const id of sections) {
+                    const el = document.getElementById(id);
+                    if (el && el.offsetTop <= mid) active = id;
                 }
                 return active;
             }
 
             function update() {
                 const active = getActive();
-                links.forEach(a => {
-                    a.classList.toggle('pnav-active', a.dataset.target === active);
-                });
+                links.forEach(a => a.classList.toggle('pnav-active', a.dataset.target === active));
             }
 
             window.addEventListener('scroll', update, { passive: true });
@@ -274,87 +234,71 @@
         })();
     </script>
 
+    <!-- Scroll-reveal for cards -->
     <script>
-        const images3 = document.querySelectorAll('.MountainMadnessImage');
-
-        images3.forEach(img => {
-            img.addEventListener('click', () => {
-            img.classList.toggle('zoomed');
-            });
-        });
-
-        document.addEventListener('click', (e) => {
-            if (!e.target.classList.contains('MountainMadnessImage')) {
-            images3.forEach(img => img.classList.remove('zoomed'));
-            }
-        });
+        (function () {
+            const cards = document.querySelectorAll('.comp-card');
+            const observer = new IntersectionObserver(entries => {
+                entries.forEach(e => {
+                    if (e.isIntersecting) {
+                        e.target.classList.add('visible');
+                        observer.unobserve(e.target);
+                    }
+                });
+            }, { threshold: 0.08 });
+            cards.forEach(c => observer.observe(c));
+        })();
     </script>
+
+    <!-- Unified lightbox zoom for all .comp-media -->
     <script>
-        const pivotVideos = document.querySelectorAll('.pivotImage');
-        pivotVideos.forEach(vid => {
-            vid.addEventListener('click', () => {
-                const isZoomed = vid.classList.toggle('zoomed');
-                if (isZoomed) {
-                    vid.play();
-                } else {
-                    vid.pause();
-                    vid.currentTime = 0;
+        (function () {
+            const lightbox = document.getElementById('media-lightbox');
+            let activeVideo = null;
+
+            document.querySelectorAll('.comp-media').forEach(el => {
+                el.addEventListener('click', e => {
+                    e.stopPropagation();
+
+                    // Clone the element into the lightbox
+                    const clone = el.cloneNode(true);
+                    clone.removeAttribute('class');   // strip comp-media sizing
+                    clone.removeAttribute('style');
+                    lightbox.innerHTML = '';
+                    lightbox.appendChild(clone);
+                    lightbox.classList.add('open');
+
+                    // If it's a video, play it
+                    if (clone.tagName === 'VIDEO') {
+                        clone.loop = true;
+                        clone.play();
+                        activeVideo = clone;
+                    } else {
+                        activeVideo = null;
+                    }
+                });
+            });
+
+            // Close on clicking the backdrop or the media itself
+            lightbox.addEventListener('click', () => {
+                if (activeVideo) { activeVideo.pause(); activeVideo = null; }
+                lightbox.classList.remove('open');
+                lightbox.innerHTML = '';
+            });
+
+            // Close on Escape key
+            document.addEventListener('keydown', e => {
+                if (e.key === 'Escape' && lightbox.classList.contains('open')) {
+                    if (activeVideo) { activeVideo.pause(); activeVideo = null; }
+                    lightbox.classList.remove('open');
+                    lightbox.innerHTML = '';
                 }
             });
-        });
-
-        document.addEventListener('click', (e) => {
-            if (!e.target.classList.contains('pivotImage')) {
-                pivotVideos.forEach(vid => {
-                    vid.classList.remove('zoomed');
-                    vid.pause();
-                    vid.currentTime = 0;
-                });
-            }
-        });
+        })();
     </script>
+
+    <!-- Theme toggle -->
     <script>
-        const sillyHacksVideos = document.querySelectorAll('.sillyHacksVideo');
-
-        sillyHacksVideos.forEach(vid => {
-            vid.addEventListener('click', () => {
-                const isZoomed = vid.classList.toggle('zoomed');
-                if (isZoomed) {
-                    vid.play();
-                } else {
-                    vid.pause();
-                    vid.currentTime = 0;
-                }
-            });
-        });
-
-        document.addEventListener('click', (e) => {
-            if (!e.target.classList.contains('sillyHacksVideo')) {
-                sillyHacksVideos.forEach(vid => {
-                    vid.classList.remove('zoomed');
-                    vid.pause();
-                    vid.currentTime = 0;
-                });
-            }
-        });
-    </script>
-    <script>
-        const images1 = document.querySelectorAll('.enactusImage');
-
-        images1.forEach(img => {
-            img.addEventListener('click', () => {
-            img.classList.toggle('zoomed');
-            });
-        });
-
-        document.addEventListener('click', (e) => {
-            if (!e.target.classList.contains('enactusImage')) {
-            images1.forEach(img => img.classList.remove('zoomed'));
-            }
-        });
-    </script>
-    <script>
-        // Theme toggle with persistence (dark <-> light)
         (function () {
             const storageKey = 'theme';
             const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
@@ -366,15 +310,10 @@
             function apply(theme) {
                 body.classList.remove('dark-theme', 'light-theme');
                 html.classList.remove('dark-theme', 'light-theme');
-                if (theme === 'dark') {
-                    body.classList.add('dark-theme');
-                    html.classList.add('dark-theme');
-                } else {
-                    body.classList.add('light-theme');
-                    html.classList.add('light-theme');
-                }
+                body.classList.add(theme + '-theme');
+                html.classList.add(theme + '-theme');
                 if (toggle) {
-                    const label = (html.classList.contains('dark-theme')) ? 'Switch to light mode' : 'Switch to dark mode';
+                    const label = theme === 'dark' ? 'Switch to light mode' : 'Switch to dark mode';
                     toggle.setAttribute('aria-label', label);
                     toggle.setAttribute('title', label);
                 }
@@ -386,12 +325,13 @@
 
             if (toggle) {
                 toggle.addEventListener('click', () => {
-                    const next = (html.classList.contains('dark-theme')) ? 'light' : 'dark';
+                    const next = html.classList.contains('dark-theme') ? 'light' : 'dark';
                     apply(next);
                     localStorage.setItem(storageKey, next);
                 });
             }
         })();
     </script>
+
 </body>
 </html>
