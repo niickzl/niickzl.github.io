@@ -28,14 +28,13 @@ const ReadMePopup = ({ onClose }) => {
         <h4>How to Use:</h4>
         <li>Click on "Swap Side" to switch between blue and red team (The left is your team)</li>
         <li>Toggle between banning and picking modes</li>
-        <li>Use the search bar to find champions</li>
-        <li>Use the role buttons to filter champions by role</li>
         <li>Click on a champion to ban or select them</li>
         <li>Click on selected or banned champion icons to remove them</li>
         <h4>Note:</h4>
-        <li>Each number shows a champion's score for the current stage</li>
+        <li>Each number represents a champion's recommended score for the current stage</li>
         <li>Patch updates, tier lists, & specific champion counters/synergies are not factored in calculations</li>
         <li>This site assumes that you have basic drafting knowledge</li>
+        <li><span style = {{ fontWeight: 'bold', color: 'lightblue' }}>95%+ for the best pick to be within the top 20 champs per role (about 2 rows).</span></li>
         <li>DO NOT RELY ON THIS SITE FOR IMPORTANT DECISIONS</li>
         <h5>Read "About This Site :)" for more information</h5>
         <div className="popup-close" onClick={onClose}>×</div>
