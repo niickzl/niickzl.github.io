@@ -59,14 +59,46 @@
 
     <main class="content">
 
-        <!-- ── 01 · Nick's LoL Drafter ── -->
-        <article id="section-lol" class="comp-card">
+        <!-- ── 01 · YTCA ── -->
+        <article id="section-YTCA" class="comp-card">
             <div class="card-header">
                 <span class="card-num">01</span>
+                <h2 class="card-title"><span class="accent">YouTube Comment Analyzer</span> — AI Chrome Extension</h2>
+                <span class="card-date">Mar – Apr 2026</span>
+            </div>
+            <div class="card-body">
+                <div class="card-text">
+                    <ul>
+                        <strong>Background</strong>
+                        <li>Creators have no quick way to learn about their audience across hundreds of comments; YTCA automates that.</li>
+                        <li>Built with <span class="accent">Python</span> (FastAPI backend), <span class="accent">HuggingFace Transformers</span>, <span class="accent">scikit-learn</span>, <span class="accent">SpaCy</span>, and <span class="accent">JavaScript</span> (Chrome extension frontend).</li>
+                    </ul>
+                    <ul>
+                        <strong>Features</strong>
+                        <li><span class="accent">Sentiment analysis</span> via Twitter-trained RoBERTa and a sarcasm model (helinvian/english-sarcasm-detector).</li>
+                        <li><span class="accent">Thematic clustering</span>: K-Means (K=3) on TF-IDF vectors groups comments into Content, Technical, and General categories.</li>
+                        <li><span class="accent">PCA cluster map</span>: interactive scatter plot showing comment clusters in 2D, hoverable for comment previews.</li>
+                        <li><span class="accent">Keyword extraction</span> via SpaCy POS tagging, with clickable filters for comments.</li>
+                        <li><span class="accent">PDF export</span>: generates a full sentiment report with video thumbnail, stats, keywords, and top comments.</li>
+                    </ul>
+                </div>
+                <div class="card-media">
+                    <a href="https://github.com/niickzl/CMPT310---YouTube-Comment-Analyzer" target="_blank" aria-label="GitHub repository">
+                        <img class="comp-icon iconGithub" src="images/icons/iconGithubImage.png" alt="GitHub"/>
+                    </a>
+                    <img class="comp-media" src="images/YTCAImage.png" alt="YTCA Chrome Extension in action"/>
+                </div>
+            </div>
+        </article>
+
+        <!-- ── 02 · Nick's LoL Drafter ── -->
+        <article id="section-lol" class="comp-card">
+            <div class="card-header">
+                <span class="card-num">02</span>
                 <h2 class="card-title"><span class="accent">Nick's LoL Drafter</span> — Web App</h2>
                 <span class="card-date">Sep 2025</span>
             </div>
-            <div class="card-body">
+            <div class="card-body reverse">
                 <div class="card-text">
                     <ul>
                         <strong>Background</strong>
@@ -95,14 +127,14 @@
             </div>
         </article>
 
-        <!-- ── 02 · EasyChart ── -->
+        <!-- ── 03 · EasyChart ── -->
         <article id="section-easychart" class="comp-card">
             <div class="card-header">
-                <span class="card-num">02</span>
+                <span class="card-num">03</span>
                 <h2 class="card-title"><span class="accent">EasyChart</span> — Web App</h2>
                 <span class="card-date">Aug 2025</span>
             </div>
-            <div class="card-body reverse">
+            <div class="card-body">
                 <div class="card-text">
                     <ul>
                         <strong>Background</strong>
@@ -131,14 +163,14 @@
             </div>
         </article>
 
-        <!-- ── 03 · Discord Music Bot ── -->
+        <!-- ── 04 · Discord Music Bot ── -->
         <article id="section-discord" class="comp-card">
             <div class="card-header">
-                <span class="card-num">03</span>
+                <span class="card-num">04</span>
                 <h2 class="card-title"><span class="accent">Python</span> YouTube Audio Discord Bot</h2>
                 <span class="card-date">Feb 2025</span>
             </div>
-            <div class="card-body">
+            <div class="card-body reverse">
                 <div class="card-text">
                     <ul>
                         <strong>Background</strong>
@@ -162,14 +194,14 @@
             </div>
         </article>
 
-        <!-- ── 04 · User Info App ── -->
+        <!-- ── 05 · User Info App ── -->
         <article id="section-userapp" class="comp-card">
             <div class="card-header">
-                <span class="card-num">04</span>
+                <span class="card-num">05</span>
                 <h2 class="card-title"><span class="accent">Python</span> User Information Storage Program</h2>
                 <span class="card-date">May – Jun 2024</span>
             </div>
-            <div class="card-body reverse">
+            <div class="card-body">
                 <div class="card-text">
                     <ul>
                         <strong>Background</strong>
@@ -196,10 +228,11 @@
         <!-- Sticky project nav -->
         <nav class="project-nav" id="projectNav" aria-label="Project sections">
             <ul>
-                <li><a href="#section-lol"      class="pnav-link" data-target="section-lol">01 LoL Drafter</a></li>
-                <li><a href="#section-easychart" class="pnav-link" data-target="section-easychart">02 EasyChart</a></li>
-                <li><a href="#section-discord"   class="pnav-link" data-target="section-discord">03 Discord Bot</a></li>
-                <li><a href="#section-userapp"   class="pnav-link" data-target="section-userapp">04 User Info App</a></li>
+                <li><a href="#section-YTCA" class="pnav-link" data-target="section-YTCA">01 YTCA</a></li>
+                <li><a href="#section-lol"        class="pnav-link" data-target="section-lol">02 LoL Drafter</a></li>
+                <li><a href="#section-easychart"  class="pnav-link" data-target="section-easychart">03 EasyChart</a></li>
+                <li><a href="#section-discord"    class="pnav-link" data-target="section-discord">04 Discord Bot</a></li>
+                <li><a href="#section-userapp"    class="pnav-link" data-target="section-userapp">05 User Info App</a></li>
             </ul>
         </nav>
 
@@ -208,7 +241,7 @@
     <!-- Scroll-spy -->
     <script>
         (function () {
-            const sections = ['section-lol', 'section-easychart', 'section-discord', 'section-userapp'];
+            const sections = ['section-YTCA', 'section-lol', 'section-easychart', 'section-discord', 'section-userapp'];
             const links = document.querySelectorAll('.pnav-link');
 
             function getActive() {
