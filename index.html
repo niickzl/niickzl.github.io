@@ -301,6 +301,18 @@
                 </div>
             </div>
 
+            <!-- Portal -->
+            <div class="card" onclick="window.open('https://portal-production-rho.vercel.app/','_blank')">
+                <div class="preview-wrap">
+                    <iframe src="https://portal-production-rho.vercel.app/" loading="lazy" tabindex="-1" aria-hidden="true" scrolling="no"></iframe>
+                    <div class="preview-overlay"></div>
+                </div>
+                <div class="card-body">
+                    <div class="card-title">Portal</div>
+                    <p class="card-desc">A platform that makes the hiring process better.</p>
+                    <a href="https://portal-production-rho.vercel.app/" target="_blank" class="card-btn" onclick="event.stopPropagation()">Visit →</a>
+                </div>
+            </div>
         </div>
     </div>
 
@@ -350,5 +362,8 @@
         }
         document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
     </script>
+    <footer style="position:fixed;bottom:0;left:0;right:0;text-align:center;padding:10px;color:var(--text-muted);font-size:13px;">
+        © 2026 All Rights Reserved
+    </footer>
 </body>
 </html>
