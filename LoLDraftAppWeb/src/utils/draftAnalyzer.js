@@ -57,6 +57,13 @@ const SURVIVABILITY_KEYS = ["tankiness", "sustain", "mobility", "peel"];
 const UTILITY_KEYS = ["waveclear", "objectiveControl", "vision", "roam"];
 const SCALING_KEYS = ["early", "mid", "late"];
 
+const CATEGORY_WEIGHTS = {
+  DamageType:    1.5,
+  Survivability: 1.5,
+  Utility:       1.0,
+  Scaling:       2.0,
+};
+
 function flattenCharacteristics(champion) {
   if (!champion || !champion.characteristics) return {};
   
@@ -178,7 +185,7 @@ function rankChampions(allyTeamNames, enemyTeamNames, candidatePool, championDB)
     if (!champion?.characteristics) return { name: championName, final_score: 0 };
 
     const flatCand = flattenCharacteristics(champion);
-    let finalScore = Object.values(flatCand).reduce((sum, val) => sum + (val || 0), 0);
+    let finalScore = 30;
 
     if(numAllies > 0) {
       //
@@ -195,7 +202,7 @@ function rankChampions(allyTeamNames, enemyTeamNames, candidatePool, championDB)
         if (numAllies > 0) {
           const avgPhyMag = (allyPhysSum + allyMagicSum) / numAllies;
           if (avgPhyMag < 3) {
-            const bonusMult = ((2 - avgPhyMag) + numAllies)*numAllies;
+            const bonusMult = (2 - avgPhyMag) + numAllies;
             const add = ((flatCand.physicalDamage || 0) * bonusMult) + ((flatCand.magicDamage || 0) * bonusMult);
             finalScore += add;
           }
@@ -257,29 +264,26 @@ function rankChampions(allyTeamNames, enemyTeamNames, candidatePool, championDB)
       //    find synergies from SYNERGY_MAPPING and add:
       //    add (teamAvgForAttr + numAllies + candidateValueForThatAttr)
       //
-      function addSynergyScoresForCategory(categoryTopInfo) {
-        // collect recorded high scoring attributes: firstTop (all ties) plus secondTop (all ties)
-        const recorded = [...categoryTopInfo.firstTop];
-        // include secondTop if it exists
-        if(recorded.length == 1) {
-          categoryTopInfo.secondTop.forEach(a => { if (!recorded.includes(a)) recorded.push(a); });
-        }
+      function addSynergyScoresForCategory(categoryTopInfo, weight) {
+        const recorded = [
+          ...categoryTopInfo.firstTop,
+          ...categoryTopInfo.secondTop.filter(a => !categoryTopInfo.firstTop.includes(a))
+        ];
 
         recorded.forEach(attr => {
           const synergies = SYNERGY_MAPPING[attr] || [];
           synergies.forEach(sy => {
             const teamAvg = numAllies > 0 ? teamAvgAttribute(allyChampions, attr) : 0;
             const candVal = candidateAttrValue(flatCand, sy);
-            // per your formula: (sum of attr in team/#allies) + #allies + candidate's score for the sy attribute
-            finalScore += (teamAvg + numAllies + candVal);
+            finalScore += (teamAvg + candVal * weight);
           });
         });
       }
 
-      addSynergyScoresForCategory(allyDamageTypeTop);
-      addSynergyScoresForCategory(allySurvivabilityTop);
-      addSynergyScoresForCategory(allyUtilityTop);
-      addSynergyScoresForCategory(allyScalingTop);
+      addSynergyScoresForCategory(allyDamageTypeTop,    CATEGORY_WEIGHTS.DamageType);
+      addSynergyScoresForCategory(allySurvivabilityTop, CATEGORY_WEIGHTS.Survivability);
+      addSynergyScoresForCategory(allyUtilityTop,       CATEGORY_WEIGHTS.Utility);
+      addSynergyScoresForCategory(allyScalingTop,       CATEGORY_WEIGHTS.Scaling);
     }
 
     if(numEnemies > 0) {
@@ -288,43 +292,43 @@ function rankChampions(allyTeamNames, enemyTeamNames, candidatePool, championDB)
       //    For each recorded enemy high attribute -> look up COUNTER_MAPPING[enemyAttr] -> for each counter attr 'c'
       //    add: (enemyAvgForAttr + numEnemies + candidateValueForCounterAttr)
       //
-      function addCounterScoresFromEnemyCategory(enemyCategoryTopInfo) {
-        const recorded = [...enemyCategoryTopInfo.firstTop];
-        if(recorded.length == 1) {
-          enemyCategoryTopInfo.secondTop.forEach(a => { if (!recorded.includes(a)) recorded.push(a); });
-        }
+      function addCounterScoresFromEnemyCategory(enemyCategoryTopInfo, weight) {
+        const recorded = [
+          ...enemyCategoryTopInfo.firstTop,
+          ...enemyCategoryTopInfo.secondTop.filter(a => !enemyCategoryTopInfo.firstTop.includes(a))
+        ];
 
         recorded.forEach(enemyAttr => {
           const counters = COUNTER_MAPPING[enemyAttr] || [];
           counters.forEach(counterAttr => {
             const enemyAvg = numEnemies > 0 ? teamAvgAttribute(enemyChampions, enemyAttr) : 0;
             const candVal = candidateAttrValue(flatCand, counterAttr);
-            finalScore += (enemyAvg + numEnemies + candVal);
+            finalScore += (enemyAvg + candVal * weight);
           });
         });
       }
 
-      addCounterScoresFromEnemyCategory(enemyDamageTypeTop);
-      addCounterScoresFromEnemyCategory(enemySurvivabilityTop);
-      addCounterScoresFromEnemyCategory(enemyUtilityTop);
-      addCounterScoresFromEnemyCategory(enemyScalingTop);
+      addCounterScoresFromEnemyCategory(enemyDamageTypeTop,    CATEGORY_WEIGHTS.DamageType);
+      addCounterScoresFromEnemyCategory(enemySurvivabilityTop, CATEGORY_WEIGHTS.Survivability);
+      addCounterScoresFromEnemyCategory(enemyUtilityTop,       CATEGORY_WEIGHTS.Utility);
+      addCounterScoresFromEnemyCategory(enemyScalingTop,       CATEGORY_WEIGHTS.Scaling);
       
       //
       //  REVERSE COUNTERS: enemy's two lowest per category -> INVERSE_COUNTER_MAPPING lookup
       //    For each reverse counter attribute rc add: (4 - enemyAvgForAttr) + numEnemies + candidateValueForRc
       //
-      function addReverseCounterScoresFromEnemyCategory(enemyCategoryBottomInfo) {
-        const recorded = [...enemyCategoryBottomInfo.firstBottom];
-        if(recorded.length == 1) {
-          enemyCategoryBottomInfo.secondBottom.forEach(a => { if (!recorded.includes(a)) recorded.push(a); });
-        }
+      function addReverseCounterScoresFromEnemyCategory(enemyCategoryBottomInfo, weight) {
+        const recorded = [
+          ...enemyCategoryBottomInfo.firstBottom,
+          ...enemyCategoryBottomInfo.secondBottom.filter(a => !enemyCategoryBottomInfo.firstBottom.includes(a))
+        ];
 
         recorded.forEach(enemyLowAttr => {
           const reverseCounters = INVERSE_COUNTER_MAPPING[enemyLowAttr] || [];
           reverseCounters.forEach(rc => {
             const enemyAvg = numEnemies > 0 ? teamAvgAttribute(enemyChampions, enemyLowAttr) : 0;
             const candVal = candidateAttrValue(flatCand, rc);
-            finalScore += ((4 - enemyAvg) + numEnemies + candVal);
+            finalScore += ((4 - enemyAvg) + candVal * weight);
           });
         });
       }
@@ -334,10 +338,10 @@ function rankChampions(allyTeamNames, enemyTeamNames, candidatePool, championDB)
       const enemyUtilityBottom = getBottomTwoAttrsForCategory(enemyChampions, UTILITY_KEYS);
       const enemyScalingBottom = getBottomTwoAttrsForCategory(enemyChampions, SCALING_KEYS);
 
-      addReverseCounterScoresFromEnemyCategory(enemyDamageTypeBottom);
-      addReverseCounterScoresFromEnemyCategory(enemySurvivabilityBottom);
-      addReverseCounterScoresFromEnemyCategory(enemyUtilityBottom);
-      addReverseCounterScoresFromEnemyCategory(enemyScalingBottom);
+      addReverseCounterScoresFromEnemyCategory(enemyDamageTypeBottom,    CATEGORY_WEIGHTS.DamageType);
+      addReverseCounterScoresFromEnemyCategory(enemySurvivabilityBottom, CATEGORY_WEIGHTS.Survivability);
+      addReverseCounterScoresFromEnemyCategory(enemyUtilityBottom,       CATEGORY_WEIGHTS.Utility);
+      addReverseCounterScoresFromEnemyCategory(enemyScalingBottom,       CATEGORY_WEIGHTS.Scaling);
   }
 
   // final candidate score
