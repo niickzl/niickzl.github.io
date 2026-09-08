@@ -4,366 +4,70 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Nick's Website Hub</title>
-    <link rel="icon" href="PersonalWeb/images/favicon.ico" />
+    <link rel="icon" href="PersonalWeb/images/favicon.ico">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Overlock:wght@400;700;900&display=swap" rel="stylesheet">
-    <style>
-        *, *::before, *::after { box-sizing: border-box; }
-
-        :root {
-            --bg-page:       #2c2f36;
-            --bg-container:  #383c45;
-            --bg-card:       #40444e;
-            --bg-preview:    #32363e;
-            --border:        #4e535f;
-            --text-primary:  #dde1e8;
-            --text-muted:    #acb0b9;
-            --accent:        #4a90d9;
-            --accent-hover:  #3578bf;
-            --shadow:        rgba(0,0,0,0.35);
-            --modal-bg:      #383c45;
-            --btn-secondary-bg: #2c2f36;
-            --btn-secondary-border: #5a5f6b;
-            --btn-secondary-text: #b0b6c2;
-        }
-
-        body {
-            font-family: 'Overlock', sans-serif;
-            margin: 0;
-            min-height: 100vh;
-            background: var(--bg-page);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 3vh 3vw;
-        }
-
-        .container {
-            background: var(--bg-container);
-            padding: clamp(24px, 4vh, 52px) clamp(20px, 4vw, 52px);
-            border-radius: 20px;
-            box-shadow: 0 4px 40px var(--shadow);
-            width: 92vw;
-            max-width: 1400px;
-            min-width: 280px;
-        }
-
-        h1 {
-            font-family: 'Overlock', sans-serif;
-            font-size: clamp(1.4rem, 3vw, 2.2rem);
-            font-weight: 900;
-            color: var(--text-primary);
-            text-align: center;
-            margin: 0 0 8px;
-            letter-spacing: -0.5px;
-        }
-
-        .description {
-            text-align: center;
-            color: var(--text-muted);
-            font-size: clamp(13px, 1.2vw, 16px);
-            margin: 0 0 clamp(20px, 3vh, 40px);
-        }
-
-        /* Card grid */
-        .card-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: clamp(14px, 2vw, 28px);
-        }
-
-        @media (max-width: 760px) {
-            .card-grid { grid-template-columns: 1fr; }
-        }
-
-        .card {
-            border-radius: 14px;
-            overflow: hidden;
-            border: 1.5px solid var(--border);
-            transition: transform 0.2s ease, box-shadow 0.2s ease;
-            display: flex;
-            flex-direction: column;
-            cursor: pointer;
-            background: var(--bg-card);
-        }
-        .card:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 12px 32px var(--shadow);
-        }
-
-        /* iframe preview */
-        .preview-wrap {
-            position: relative;
-            width: 100%;
-            height: clamp(130px, 18vh, 220px);
-            overflow: hidden;
-            background: var(--bg-preview);
-            flex-shrink: 0;
-        }
-
-        .preview-wrap iframe {
-            width: 1280px;
-            height: 900px;
-            border: none;
-            transform-origin: top left;
-            transform: scale(0.245);
-            pointer-events: none;
-            position: absolute;
-            top: 0;
-            left: 0;
-        }
-
-        .preview-placeholder {
-            width: 100%;
-            height: 100%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 42px;
-            background: linear-gradient(135deg, #f0f4ff 0%, #e8edf8 100%);
-        }
-
-        .preview-overlay {
-            position: absolute;
-            inset: 0;
-            background: transparent;
-        }
-
-        /* Card footer */
-        .card-body {
-            padding: clamp(12px, 1.5vh, 20px) clamp(14px, 1.5vw, 22px);
-            display: flex;
-            flex-direction: column;
-            flex: 1;
-        }
-
-        .card-title {
-            font-family: 'Overlock', sans-serif;
-            font-size: clamp(0.9rem, 1.2vw, 1.1rem);
-            font-weight: 700;
-            color: var(--text-primary);
-            margin: 0 0 6px;
-        }
-
-        .card-desc {
-            font-size: clamp(12px, 1vw, 14px);
-            color: var(--text-muted);
-            margin: 0 0 14px;
-            line-height: 1.5;
-            flex: 1;
-        }
-
-        .card-btn {
-            display: inline-block;
-            padding: clamp(8px, 1vh, 11px) 0;
-            background: var(--accent);
-            color: #f0f3f8;
-            text-align: center;
-            text-decoration: none;
-            border-radius: 8px;
-            font-size: clamp(13px, 1vw, 15px);
-            font-weight: 700;
-            border: none;
-            cursor: pointer;
-            width: 100%;
-            transition: background 0.2s;
-            letter-spacing: 0.2px;
-            font-family: 'Overlock', sans-serif;
-        }
-        .card-btn:hover { background: var(--accent-hover); }
-
-        /* Modal */
-        .modal-overlay {
-            display: none;
-            position: fixed;
-            inset: 0;
-            background: rgba(0,0,0,0.45);
-            z-index: 1000;
-            align-items: center;
-            justify-content: center;
-        }
-        .modal-overlay.active { display: flex; }
-
-        .modal {
-            background: var(--modal-bg);
-            border-radius: 14px;
-            padding: 32px 28px 24px;
-            max-width: 380px;
-            width: 90%;
-            box-shadow: 0 8px 40px var(--shadow);
-            text-align: center;
-            border: 1px solid var(--border);
-            animation: popIn 0.18s cubic-bezier(.4,1.6,.6,1) both;
-        }
-        @keyframes popIn {
-            from { transform: scale(0.88); opacity: 0; }
-            to   { transform: scale(1);   opacity: 1; }
-        }
-
-        .modal h2 {
-            margin: 0 0 12px;
-            font-family: 'Overlock', sans-serif;
-            font-size: 18px;
-            color: var(--text-primary);
-        }
-
-        .modal p {
-            color: var(--text-muted);
-            font-size: 15px;
-            line-height: 1.5;
-            margin: 0 0 24px;
-        }
-
-        .modal p a {
-            color: #e07070;
-            font-weight: 700;
-            text-decoration: underline;
-        }
-        .modal p a:hover { color: #c85050; }
-
-        .modal-buttons {
-            display: flex;
-            gap: 10px;
-            justify-content: center;
-        }
-
-        .btn-close {
-            padding: 10px 22px;
-            border-radius: 8px;
-            font-size: 14px;
-            font-weight: 700;
-            cursor: pointer;
-            border: 2px solid var(--btn-secondary-border);
-            background: var(--btn-secondary-bg);
-            color: var(--btn-secondary-text);
-            transition: background 0.2s;
-            font-family: 'Overlock', sans-serif;
-        }
-        .btn-close:hover { background: #252830; }
-
-        .btn-proceed {
-            padding: 10px 22px;
-            border-radius: 8px;
-            font-size: 14px;
-            font-weight: 700;
-            cursor: pointer;
-            border: none;
-            background: var(--accent);
-            color: #f0f3f8;
-            transition: background 0.2s;
-            font-family: 'Overlock', sans-serif;
-        }
-        .btn-proceed:hover { background: var(--accent-hover); }
-    </style>
+    <link rel="stylesheet" href="hub.css">
 </head>
 <body>
-    <div class="container">
+    <main class="container">
         <h1>Nick's Website Hub</h1>
         <p class="description">Choose which site you'd like to visit</p>
-
         <div class="card-grid">
-
-            <!-- Personal Website -->
-            <div class="card" onclick="window.location.href='PersonalWeb/index.html'">
-                <div class="preview-wrap">
-                    <iframe src="PersonalWeb/index.html" loading="lazy" tabindex="-1" aria-hidden="true" scrolling="no"></iframe>
-                    <div class="preview-overlay"></div>
-                </div>
+            <article class="card">
+                <a class="card-preview" href="PersonalWeb/index.html" aria-label="Visit Nick's personal website">
+                    <span class="preview-wrap"><iframe src="PersonalWeb/index.html" loading="lazy" tabindex="-1" aria-hidden="true" scrolling="no"></iframe></span>
+                </a>
                 <div class="card-body">
-                    <div class="card-title">Personal Website</div>
-                    <p class="card-desc">Nick's personal site — personal activities, interests, about me, and more.</p>
-                    <a href="PersonalWeb/index.html" class="card-btn" onclick="event.stopPropagation()">Visit →</a>
+                    <h2 class="card-title">Personal Website</h2>
+                    <p class="card-desc">Nick's personal site &mdash; personal activities, interests, about me, and more.</p>
+                    <a href="PersonalWeb/index.html" class="card-btn">Visit &rarr;</a>
                 </div>
-            </div>
-
-            <!-- LoL Drafter -->
-            <div class="card" onclick="window.open('LolDraftAppWebDist/index.html','_blank')">
-                <div class="preview-wrap">
-                    <iframe src="LolDraftAppWebDist/index.html" loading="lazy" tabindex="-1" aria-hidden="true" scrolling="no"></iframe>
-                    <div class="preview-overlay"></div>
-                </div>
+            </article>
+            <article class="card">
+                <a class="card-preview" href="https://tryportal.ca/" target="_blank" rel="noopener noreferrer" aria-label="Visit Portal">
+                    <span class="preview-wrap"><iframe src="https://tryportal.ca/" loading="lazy" tabindex="-1" aria-hidden="true" scrolling="no"></iframe></span>
+                </a>
                 <div class="card-body">
-                    <div class="card-title">Nick's LoL Drafter</div>
-                    <p class="card-desc">A League of Legends draft tool to help you choose the best team composition.</p>
-                    <a href="LolDraftAppWebDist/index.html" target="_blank" class="card-btn" onclick="event.stopPropagation()">Visit →</a>
-                </div>
-            </div>
-
-            <!-- EasyChart -->
-            <div class="card" onclick="openEasyChartModal()">
-                <div class="preview-wrap">
-                    <iframe src="https://easychart-omega.vercel.app/" loading="lazy" tabindex="-1" aria-hidden="true" scrolling="no"></iframe>
-                    <div class="preview-overlay"></div>
-                </div>
-                <div class="card-body">
-                    <div class="card-title">EasyChart</div>
-                    <p class="card-desc">A chart-generating web app to visualizing data easier.</p>
-                    <button class="card-btn" onclick="openEasyChartModal(); event.stopPropagation()">Visit →</button>
-                </div>
-            </div>
-
-            <!-- Portal -->
-            <div class="card" onclick="window.open('https://tryportal.ca/','_blank')">
-                <div class="preview-wrap">
-                    <iframe src="https://tryportal.ca/" loading="lazy" tabindex="-1" aria-hidden="true" scrolling="no"></iframe>
-                    <div class="preview-overlay"></div>
-                </div>
-                <div class="card-body">
-                    <div class="card-title">Portal</div>
+                    <h2 class="card-title">Portal &mdash; Co-founder &amp; Lead Engineer</h2>
                     <p class="card-desc">A platform that makes the hiring process better.</p>
-                    <a href="https://tryportal.ca/" target="_blank" class="card-btn" onclick="event.stopPropagation()">Visit →</a>
+                    <a href="https://tryportal.ca/" target="_blank" rel="noopener noreferrer" class="card-btn">Visit &rarr;</a>
                 </div>
-            </div>
+            </article>
+            <article class="card">
+                <button class="card-preview" type="button" data-open-modal aria-label="Learn about visiting EasyChart">
+                    <span class="preview-wrap"><iframe src="https://easychart-omega.vercel.app/" loading="lazy" tabindex="-1" aria-hidden="true" scrolling="no"></iframe></span>
+                </button>
+                <div class="card-body">
+                    <h2 class="card-title">EasyChart &mdash; Backend Developer</h2>
+                    <p class="card-desc">A chart-generating web app that makes data easier to visualize.</p>
+                    <button class="card-btn" type="button" data-open-modal>Visit &rarr;</button>
+                </div>
+            </article>
+            <article class="card">
+                <a class="card-preview" href="LolDraftAppWebDist/index.html" target="_blank" rel="noopener noreferrer" aria-label="Visit Nick's LoL Drafter">
+                    <span class="preview-wrap"><iframe src="LolDraftAppWebDist/index.html" loading="lazy" tabindex="-1" aria-hidden="true" scrolling="no"></iframe></span>
+                </a>
+                <div class="card-body">
+                    <h2 class="card-title">Nick's LoL Drafter &mdash; Full-stack Developer</h2>
+                    <p class="card-desc">A League of Legends draft tool that helps you choose the best team composition.</p>
+                    <a href="LolDraftAppWebDist/index.html" target="_blank" rel="noopener noreferrer" class="card-btn">Visit &rarr;</a>
+                </div>
+            </article>
         </div>
-    </div>
-
-    <!-- EasyChart Modal -->
-    <div class="modal-overlay" id="easychartModal" onclick="handleOverlayClick(event)">
-        <div class="modal">
-            <h2>EasyChart — Heads Up</h2>
-            <p>
-                The free LLM may be unavailable/unstable, please refer to the
-                <a href="https://www.youtube.com/watch?v=mYPEXPJwkJY" target="_blank" rel="noopener">YouTube Video</a>.
-            </p>
+    </main>
+    <div class="modal-overlay" id="easychartModal" aria-hidden="true">
+        <section class="modal" role="dialog" aria-modal="true" aria-labelledby="easychartModalTitle" aria-describedby="easychartModalDescription" tabindex="-1">
+            <h2 id="easychartModalTitle">EasyChart &mdash; Heads Up</h2>
+            <p id="easychartModalDescription">The free LLM may be unavailable or unstable. Please refer to the <a href="https://www.youtube.com/watch?v=mYPEXPJwkJY" target="_blank" rel="noopener noreferrer">YouTube video</a>.</p>
             <div class="modal-buttons">
-                <button class="btn-close" onclick="closeModal()">Go Back</button>
-                <button class="btn-proceed" onclick="proceedToEasyChart()">Visit Anyway</button>
+                <button class="btn-close" type="button" data-close-modal>Go Back</button>
+                <button class="btn-proceed" type="button" data-proceed-easychart>Visit Anyway</button>
             </div>
-        </div>
+        </section>
     </div>
-
-    <script>
-        const EASYCHART_URL = 'https://easychart-omega.vercel.app/';
-
-        // Dynamically scale iframe previews to fit their wrapper
-        function scaleIframePreviews() {
-            document.querySelectorAll('.preview-wrap').forEach(wrap => {
-                const iframe = wrap.querySelector('iframe');
-                if (!iframe) return;
-                const scale = wrap.clientWidth / 1280;
-                iframe.style.transform = `scale(${scale})`;
-                iframe.style.height = (wrap.clientHeight / scale) + 'px';
-            });
-        }
-        window.addEventListener('load', scaleIframePreviews);
-        window.addEventListener('resize', scaleIframePreviews);
-
-        function openEasyChartModal() {
-            document.getElementById('easychartModal').classList.add('active');
-        }
-        function closeModal() {
-            document.getElementById('easychartModal').classList.remove('active');
-        }
-        function proceedToEasyChart() {
-            window.open(EASYCHART_URL, '_blank');
-            closeModal();
-        }
-        function handleOverlayClick(e) {
-            if (e.target === document.getElementById('easychartModal')) closeModal();
-        }
-        document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
-    </script>
-    <footer style="position:fixed;bottom:0;left:0;right:0;text-align:center;padding:10px;color:var(--text-muted);font-size:13px;">
-        © 2026 All Rights Reserved
-    </footer>
+    <footer class="site-footer">&copy; 2026 All Rights Reserved</footer>
+    <script src="hub.js" defer></script>
 </body>
 </html>
