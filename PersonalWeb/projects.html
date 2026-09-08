@@ -14,6 +14,8 @@
         })();
     </script>
     <link rel="stylesheet" href="stylesActivities.css">
+    <link rel="stylesheet" href="components/site-chrome.css">
+    <link rel="stylesheet" href="css/responsive.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Overlock:ital,wght@0,400;0,700;0,900;1,400;1,700;1,900&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
@@ -320,44 +322,10 @@
         })();
     </script>
 
-    <!-- Theme toggle -->
-    <script>
-        (function () {
-            const storageKey = 'theme';
-            const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-            const saved = localStorage.getItem(storageKey);
-            const body = document.body;
-            const html = document.documentElement;
-            const toggle = document.getElementById('themeToggle');
-
-            function apply(theme) {
-                body.classList.remove('dark-theme', 'light-theme');
-                html.classList.remove('dark-theme', 'light-theme');
-                body.classList.add(theme + '-theme');
-                html.classList.add(theme + '-theme');
-                if (toggle) {
-                    const label = theme === 'dark' ? 'Switch to light mode' : 'Switch to dark mode';
-                    toggle.setAttribute('aria-label', label);
-                    toggle.setAttribute('title', label);
-                }
-            }
-
-            const initial = (saved === 'dark' || saved === 'light') ? saved : (prefersDark ? 'dark' : 'light');
-            apply(initial);
-            if (saved !== initial) localStorage.setItem(storageKey, initial);
-
-            if (toggle) {
-                toggle.addEventListener('click', () => {
-                    const next = html.classList.contains('dark-theme') ? 'light' : 'dark';
-                    apply(next);
-                    localStorage.setItem(storageKey, next);
-                });
-            }
-        })();
-    </script>
-    <footer style="position:fixed;bottom:0;right:0;padding:10px;color:var(--text);opacity:0.6;font-size:13px;">
+    <footer class="site-footer">
         © 2026 All Rights Reserved
     </footer>
 
+    <script src="components/site-chrome.js" defer></script>
 </body>
 </html>

@@ -16,6 +16,8 @@
         })();
     </script>
     <link rel="stylesheet" href="stylesAboutMe.css">
+    <link rel="stylesheet" href="components/site-chrome.css">
+    <link rel="stylesheet" href="css/responsive.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Overlock:ital,wght@0,400;0,700;0,900;1,400;1,700;1,900&display=swap" rel="stylesheet">
@@ -90,8 +92,8 @@
             <div class = "futureText">
                 <h1>In the future...</h1>
                 <p>I would like to concentrate in fields
-                <br>regarding <span style = "color: blue;">Artificial Intelligence</span>, <span style = "color: blue;">Full-Stack 
-                <br>Development</span>, or <span style = "color: blue;">Product Management</span>.
+                <br>regarding <span style = "color: blue;">Artificial Intelligence</span>, <span style = "color: blue;">Information
+                <br>Systems</span>, or <span style = "color: blue;">Product Management</span>.
                 </p>
             </div>
         </div>
@@ -104,7 +106,7 @@
             </h1>
         </div>
         <div class = "contactExternals">
-            <a href = "tell:12368627277" class = "cell">
+            <a href = "tel:12368627277" class = "cell">
                 <img class = "iconPhone" src = "images/icons/iconPhoneImage.png" alt = "Phone icon for calling Nick" />
             </a>
             <a href = "mailto:20051024nick@gmail.com" class = "email">
@@ -127,7 +129,7 @@
             </a>
         </div>
     </footer>
-    <footer style="position:fixed;bottom:0;right:0;padding:10px;color:var(--text);opacity:0.6;font-size:13px;">
+    <footer class="site-footer">
         © 2026 All Rights Reserved
     </footer>
 
@@ -176,45 +178,6 @@
             }
         });
     </script>
-    <script>
-        // Theme toggle with persistence (dark <-> light)
-        (function () {
-            const storageKey = 'theme';
-            const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-            const saved = localStorage.getItem(storageKey);
-            const body = document.body;
-            const html = document.documentElement;
-            const toggle = document.getElementById('themeToggle');
-
-            function apply(theme) {
-                body.classList.remove('dark-theme', 'light-theme');
-                html.classList.remove('dark-theme', 'light-theme');
-                if (theme === 'dark') {
-                    body.classList.add('dark-theme');
-                    html.classList.add('dark-theme');
-                } else {
-                    body.classList.add('light-theme');
-                    html.classList.add('light-theme');
-                }
-                if (toggle) {
-                    const label = html.classList.contains('dark-theme') ? 'Switch to light mode' : 'Switch to dark mode';
-                    toggle.setAttribute('aria-label', label);
-                    toggle.setAttribute('title', label);
-                }
-            }
-
-            const initial = (saved === 'dark' || saved === 'light') ? saved : (prefersDark ? 'dark' : 'light');
-            apply(initial);
-            if (saved !== initial) localStorage.setItem(storageKey, initial);
-
-            if (toggle) {
-                toggle.addEventListener('click', () => {
-                    const next = html.classList.contains('dark-theme') ? 'light' : 'dark';
-                    apply(next);
-                    localStorage.setItem(storageKey, next);
-                });
-            }
-        })();
-    </script>
+    <script src="components/site-chrome.js" defer></script>
 </body>
 </html>
