@@ -11,6 +11,7 @@ const interestLinks = [
   { to: '/competitions', label: 'Competitions' },
   { to: '/photography', label: 'Photography' },
   { to: '/chess', label: 'Chess' },
+  { to: '/music', label: 'Music' },
 ];
 
 function NavigationLink({ to, children, onNavigate }) {
@@ -58,7 +59,7 @@ export default function SiteHeader() {
     <header className="site-header">
       <div className="header-inner">
         <Link className="brand" to="/" aria-label="Nick Lei home">
-          <span className="brand-name">Nick Lei</span>
+          <span className="brand-name">Nick Ze Kun Lei</span>
           <span className="brand-location">Vancouver, Canada</span>
         </Link>
         <button

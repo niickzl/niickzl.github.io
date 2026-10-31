@@ -281,6 +281,7 @@ video {
 }
 
 .hero-copy {
+  min-width: 0;
   max-width: 42rem;
 }
 
@@ -326,7 +327,6 @@ video {
   border-radius: 1rem;
 }
 
-.hero-actions,
 .card-actions,
 .social-links {
   display: flex;
@@ -359,6 +359,43 @@ video {
 
 .button-secondary:hover {
   background: var(--accent-soft);
+}
+
+.hero-carousel {
+  width: min(100%, 28rem);
+}
+
+.carousel-window {
+  min-width: 0;
+  overflow: hidden;
+}
+
+.carousel-track {
+  display: flex;
+  width: max-content;
+  animation: carousel-scroll 20s linear infinite;
+}
+
+.hero-carousel:hover .carousel-track,
+.hero-carousel:focus-within .carousel-track {
+  animation-play-state: paused;
+}
+
+.carousel-group {
+  display: flex;
+  flex: 0 0 auto;
+  gap: 0.75rem;
+  padding: 0.45rem 0.75rem 0.45rem 0.45rem;
+}
+
+.carousel-group .button {
+  white-space: nowrap;
+}
+
+@keyframes carousel-scroll {
+  to {
+    transform: translateX(-50%);
+  }
 }
 
 .page-intro h1 {
@@ -568,6 +605,84 @@ video {
 .portfolio-list {
   display: grid;
   gap: 1.25rem;
+}
+
+.experience-list {
+  display: grid;
+  gap: 1.25rem;
+}
+
+.experience-page .page-intro h1 {
+  color: var(--accent);
+}
+
+.experience-entry {
+  padding: 1.5rem;
+  border: 1px solid var(--border);
+  border-radius: 1.25rem;
+  background: var(--surface);
+}
+
+.experience-heading {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: start;
+  gap: 0.75rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid var(--border);
+}
+
+.experience-heading h2 {
+  margin: 0;
+  font-size: 1.5rem;
+  line-height: 1.25;
+}
+
+.experience-identity {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  min-width: 0;
+}
+
+.experience-logo {
+  width: 4rem;
+  height: 4rem;
+  flex: 0 0 4rem;
+  padding: 0.3rem;
+  border-radius: 0.6rem;
+  background: #fff;
+  object-fit: contain;
+}
+
+.experience-heading p {
+  margin: 0.35rem 0 0;
+  color: var(--muted);
+}
+
+.experience-heading a {
+  font-weight: 700;
+}
+
+.experience-date {
+  flex: 0 0 auto;
+  margin: 0;
+  text-align: right;
+}
+
+.experience-entry ul {
+  padding-left: 1.4rem;
+  margin-bottom: 0;
+  color: var(--muted);
+}
+
+.experience-entry li + li {
+  margin-top: 0.5rem;
+}
+
+.experience-status {
+  margin-bottom: 0;
+  color: var(--muted);
 }
 
 .portfolio-card {
@@ -809,6 +924,16 @@ video {
 }
 
 @media (max-width: 50rem) {
+  .experience-heading {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 0.25rem;
+  }
+
+  .experience-date {
+    grid-column: 1;
+    text-align: left;
+  }
+
   .header-inner {
     min-height: 0;
     flex-wrap: wrap;

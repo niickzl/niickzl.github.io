@@ -5,6 +5,7 @@ import Chess from './pages/Chess.jsx';
 import Competitions from './pages/Competitions.jsx';
 import Experience from './pages/Experience.jsx';
 import Home from './pages/Home.jsx';
+import Music from './pages/Music.jsx';
 import Photography from './pages/Photography.jsx';
 import Projects from './pages/Projects.jsx';
 
@@ -15,6 +16,7 @@ const pageTitles = {
   '/competitions': 'Competitions',
   '/photography': 'Photography',
   '/chess': 'Chess',
+  '/music': 'Music',
 };
 
 function RouteEffects() {
@@ -45,6 +47,7 @@ export default function App() {
         <Route path="/competitions" element={<Competitions />} />
         <Route path="/photography" element={<Photography />} />
         <Route path="/chess" element={<Chess />} />
+        <Route path="/music" element={<Music />} />
         <Route path="*" element={<Home />} />
       </Routes>
     </SiteLayout>

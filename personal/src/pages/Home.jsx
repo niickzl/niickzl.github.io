@@ -1,5 +1,5 @@
-import { Link } from 'react-router-dom';
 import FadeIn from '../components/FadeIn.jsx';
+import HeroCarousel from '../components/HeroCarousel.jsx';
 
 const technologies = [
   { name: 'Python', image: 'Python.png' },
@@ -19,10 +19,7 @@ export default function Home() {
           <p className="hero-lede">
             A computer science student building things that lasts.
           </p>
-          <div className="hero-actions">
-            <Link className="button button-primary" to="/projects">Explore my work</Link>
-            <Link className="button button-secondary" to="/#about">More about me</Link>
-          </div>
+          <HeroCarousel />
         </div>
         <img
           className="hero-portrait"
