@@ -2,7 +2,6 @@ import { useEffect } from 'react';
 import { Navigate, Route, Routes, useLocation } from 'react-router-dom';
 import SiteLayout from './components/SiteLayout.jsx';
 import Chess from './pages/Chess.jsx';
-import Competitions from './pages/Competitions.jsx';
 import Experience from './pages/Experience.jsx';
 import Home from './pages/Home.jsx';
 import Music from './pages/Music.jsx';
@@ -13,7 +12,6 @@ const pageTitles = {
   '/': 'Home',
   '/experience': 'Professional Experience',
   '/projects': 'Projects',
-  '/competitions': 'Competitions',
   '/photography': 'Photography',
   '/chess': 'Chess',
   '/music': 'Music',
@@ -44,7 +42,7 @@ export default function App() {
         <Route path="/about" element={<Navigate to="/" replace />} />
         <Route path="/experience" element={<Experience />} />
         <Route path="/projects" element={<Projects />} />
-        <Route path="/competitions" element={<Competitions />} />
+        <Route path="/competitions" element={<Navigate to="/projects?view=competitions" replace />} />
         <Route path="/photography" element={<Photography />} />
         <Route path="/chess" element={<Chess />} />
         <Route path="/music" element={<Music />} />

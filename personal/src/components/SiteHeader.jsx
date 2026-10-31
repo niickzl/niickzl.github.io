@@ -8,7 +8,6 @@ const navigationLinks = [
 ];
 
 const interestLinks = [
-  { to: '/competitions', label: 'Competitions' },
   { to: '/photography', label: 'Photography' },
   { to: '/chess', label: 'Chess' },
   { to: '/music', label: 'Music' },

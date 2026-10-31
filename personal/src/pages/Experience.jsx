@@ -89,16 +89,16 @@ export default function Experience() {
             >
               <ul>
                 <li>
-                  Developing PostgreSQL, data-analysis, and CMS capabilities for
-                  the competition platform.
+                  Implemented CMS functionality, a PWA with a new logs system, and
+                  site analytics using Microsoft Clarity.
                 </li>
                 <li>
-                  Translating designs into responsive interfaces and integrating
-                  tracking and analytics systems.
+                  Turned the design team’s Figma designs into responsive frontend
+                  interfaces.
                 </li>
                 <li>
-                  Leading sprint planning, weekly stand-ups, and code reviews while
-                  standardizing Git workflows for associate developers.
+                  Led a web development associate by assigning tasks, reviewing
+                  code, and facilitating regular team meetings.
                 </li>
               </ul>
             </ContentCard>

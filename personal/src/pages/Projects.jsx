@@ -2,31 +2,56 @@ import PageIntro from '../components/PageIntro.jsx';
 import PortfolioCard from '../components/PortfolioCard.jsx';
 import FadeIn from '../components/FadeIn.jsx';
 import ProjectNavigation from '../components/ProjectNavigation.jsx';
-import { projects } from '../data.js';
+import { Link, useSearchParams } from 'react-router-dom';
+import { competitions, projects } from '../data.js';
 
 export default function Projects() {
+  const [searchParams] = useSearchParams();
+  const showingCompetitions = searchParams.get('view') === 'competitions';
+  const items = showingCompetitions ? competitions : projects;
+  const sectionName = showingCompetitions ? 'competition' : 'personal-work';
+
   return (
     <main id="main-content" className="page-shell projects-page">
       <FadeIn>
         <PageIntro
           title="Projects"
-          description="A selection of software, tools, and experiments I’ve worked on."
-        />
+          description="Independent builds, coursework, and collaborative competition entries."
+        >
+          <nav className="section-tabs work-tabs" aria-label="Work categories">
+            <Link
+              to="/projects"
+              aria-current={!showingCompetitions ? 'page' : undefined}
+            >
+              Builds
+            </Link>
+            <Link
+              to="/projects?view=competitions"
+              aria-current={showingCompetitions ? 'page' : undefined}
+            >
+              Competitions
+            </Link>
+          </nav>
+        </PageIntro>
       </FadeIn>
-      <div className="projects-layout">
+      <div className="projects-layout" key={sectionName}>
         <ProjectNavigation
-          items={projects.map((project) => ({
-            ...project,
-            id: `section-${project.number}`,
+          items={items.map((item) => ({
+            ...item,
+            id: `section-${sectionName}-${item.number}`,
           }))}
           heading="On this page"
-          buttonLabel="Jump to a project"
-          ariaLabel="Jump to a project"
+          buttonLabel={`Jump to ${showingCompetitions ? 'a competition' : 'an entry'}`}
+          ariaLabel={`Jump to ${showingCompetitions ? 'a competition' : 'a project or course entry'}`}
         />
         <div className="portfolio-list">
-          {projects.map((project) => (
-            <FadeIn key={project.number}>
-              <PortfolioCard item={project} />
+          {items.map((item) => (
+            <FadeIn key={item.number}>
+              <PortfolioCard
+                item={item}
+                kind={showingCompetitions ? 'competition' : 'project'}
+                id={`section-${sectionName}-${item.number}`}
+              />
             </FadeIn>
           ))}
         </div>

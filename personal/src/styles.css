@@ -428,6 +428,45 @@ video {
   color: var(--accent);
 }
 
+.projects-page .page-intro,
+.experience-page .page-intro {
+  display: grid;
+  max-width: none;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: center;
+  column-gap: 1.5rem;
+  row-gap: 0.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.projects-page .page-intro h1 {
+  grid-column: 1;
+  grid-row: 1;
+}
+
+.projects-page .page-intro > .page-description {
+  grid-column: 1 / -1;
+  grid-row: 2;
+  margin: 0;
+}
+
+.projects-page .page-intro > .work-tabs {
+  grid-column: 2;
+  grid-row: 1;
+  margin: 0;
+}
+
+.experience-page .page-intro h1 {
+  grid-column: 1;
+  grid-row: 1;
+}
+
+.experience-page .page-intro > .page-description {
+  grid-column: 1 / -1;
+  grid-row: 2;
+  margin: 0;
+}
+
 .page-description,
 .page-intro > p:not(.eyebrow) {
   max-width: 45rem;
@@ -582,18 +621,20 @@ video {
 
 .section-tabs a,
 .section-tabs button,
+.project-navigation-links button,
 .card-actions a,
 .chess-card > a,
 .text-link {
   display: inline-flex;
-  min-height: 2.75rem;
+  min-height: 2.25rem;
   align-items: center;
-  padding: 0.55rem 0.8rem;
+  padding: 0.4rem 0.55rem;
   border: 1px solid var(--border);
-  border-radius: 0.65rem;
+  border-radius: 0.45rem;
   background: var(--surface);
   color: var(--accent);
   font: inherit;
+  font-size: 0.9rem;
   font-weight: 700;
   text-decoration: none;
   white-space: nowrap;
@@ -605,10 +646,45 @@ video {
 
 .section-tabs button:hover,
 .section-tabs a:hover,
+.project-navigation-links button:hover,
 .card-actions a:hover,
 .chess-card > a:hover,
 .text-link:hover {
   background: var(--accent-soft);
+}
+
+.work-tabs a {
+  min-height: 2.75rem;
+  padding: 0.5rem 0.7rem;
+  border: 0;
+  border-radius: 0.65rem;
+  background: transparent;
+  color: var(--text);
+  font-size: 1rem;
+}
+
+.work-tabs a:hover {
+  background: var(--surface-raised);
+}
+
+.work-tabs a[aria-current="page"] {
+  background: var(--accent-soft);
+  color: var(--accent);
+  text-decoration: underline;
+  text-decoration-thickness: 0.12em;
+}
+
+.work-tabs a:focus-visible,
+.project-navigation-links button:focus-visible,
+.section-tabs a:focus-visible {
+  outline: 0.15rem solid var(--accent);
+  outline-offset: 0.1rem;
+}
+
+.work-tabs {
+  overflow: visible;
+  padding: 0;
+  margin-bottom: 0.75rem;
 }
 
 .projects-layout,
@@ -634,27 +710,23 @@ video {
 }
 
 .project-navigation-links {
+  display: grid;
+  gap: 0.35rem;
   padding: 0;
   margin: 0.35rem 0 0;
   list-style: none;
 }
 
 .project-navigation-links button {
-  display: flex;
+  display: inline-flex;
   width: 100%;
-  min-height: 2.25rem;
-  align-items: flex-start;
+  min-height: 2.5rem;
   gap: 0.4rem;
-  padding: 0.4rem;
-  border: 0;
-  border-radius: 0.35rem;
-  background: transparent;
-  color: var(--text);
-  font: inherit;
+  padding: 0.5rem 0.65rem;
   text-align: left;
-  font-size: 0.9rem;
   line-height: 1.35;
   cursor: pointer;
+  white-space: normal;
 }
 
 .project-navigation-links button span {
@@ -662,11 +734,6 @@ video {
   color: var(--accent);
   font-size: 0.85rem;
   font-weight: 700;
-}
-
-.project-navigation-links button:hover {
-  background: var(--surface-raised);
-  color: var(--accent);
 }
 
 .project-navigation-toggle {
@@ -680,12 +747,12 @@ video {
 
 .portfolio-list {
   display: grid;
-  gap: 1.25rem;
+  gap: 1.5rem;
 }
 
 .experience-list {
   display: grid;
-  gap: 1.25rem;
+  gap: 1.5rem;
 }
 
 .experience-fade {
@@ -1040,7 +1107,7 @@ video {
 
   .project-navigation-links.is-open {
     display: grid;
-    gap: 0.1rem;
+    gap: 0.35rem;
     padding: 0.4rem;
     margin-top: 0.4rem;
     margin-bottom: 0.25rem;
@@ -1063,19 +1130,7 @@ video {
     }
   }
 
-  .project-navigation-links button {
-    min-height: 2.5rem;
-    align-items: center;
-    padding: 0.5rem 0.65rem;
-    font-size: 1rem;
-  }
-
-  .project-navigation-links button:hover {
-    background: var(--surface-raised);
-  }
-
-  .project-navigation-toggle:focus-visible,
-  .project-navigation-links button:focus-visible {
+  .project-navigation-toggle:focus-visible {
     outline: 0.15rem solid var(--accent);
     outline-offset: 0.15rem;
   }
@@ -1216,6 +1271,30 @@ video {
 
   .page-intro h1 {
     font-size: 2.3rem;
+  }
+
+  .projects-page .page-intro {
+    grid-template-columns: minmax(0, 1fr);
+    row-gap: 0.5rem;
+  }
+
+  .projects-page .page-intro h1,
+  .projects-page .page-intro > .page-description,
+  .projects-page .page-intro > .work-tabs {
+    grid-column: 1;
+  }
+
+  .projects-page .page-intro h1 {
+    grid-row: 1;
+  }
+
+  .projects-page .page-intro > .page-description {
+    grid-row: 2;
+  }
+
+  .projects-page .page-intro > .work-tabs {
+    grid-row: 3;
+    margin-top: 0.25rem;
   }
 
   .home-about-grid {

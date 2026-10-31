@@ -85,9 +85,6 @@ export const competitions = [
     title: 'SillyHacks Hackathon',
     organization: 'SFU Surge',
     date: 'Apr 2026',
-    image: 'gifs/AuraMonitor.mp4',
-    video: true,
-    alt: 'Aura Monitor browser extension demo',
     repository: 'https://github.com/niickzl/Aura-Monitor',
     background:
       "A 12-hour hackathon celebrating April Fools' Day with a deliberately silly project.",
@@ -103,8 +100,6 @@ export const competitions = [
     title: 'Mountain Madness Hackathon',
     organization: 'CSSS, SFU',
     date: 'Mar 2026',
-    image: 'images/MountainMadnessImage.png',
-    alt: 'Mountain Madness Hackathon team',
     repository: 'https://github.com/niickzl/RBC',
     background:
       'A 24-hour hackathon hosted by the Computing Science Student Society. Our team built for the RBC Personal Finance Platforms track.',
@@ -120,8 +115,6 @@ export const competitions = [
     title: 'SAP Concur Case Competition',
     organization: 'Pivot, CaseIT',
     date: 'Feb 2025',
-    image: 'images/pivotImage.png',
-    alt: 'Pivot Case Competition team',
     document: 'files/pivot.pdf',
     background:
       "Our team created a strategic plan to optimize SAP Concur's features and growth.",
@@ -136,8 +129,6 @@ export const competitions = [
     title: 'Forward Vision Pitch Competition',
     organization: 'Enactus',
     date: 'Feb 2025',
-    image: 'images/enactusImage.jpg',
-    alt: 'Enactus competition team',
     document: 'files/enactus.pdf',
     background:
       'Forward Vision develops ideas inspired by the United Nations Sustainable Development Goals.',

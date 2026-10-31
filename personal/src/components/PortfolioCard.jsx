@@ -50,7 +50,7 @@ function MediaLightbox({ image, video, alt, onClose }) {
   );
 }
 
-export default function PortfolioCard({ item, kind = 'project' }) {
+export default function PortfolioCard({ item, kind = 'project', id }) {
   const [lightboxOpen, setLightboxOpen] = useState(false);
   const isCompetition = kind === 'competition';
   const mediaUrl = item.image ? `/personal/${item.image}` : undefined;
@@ -58,7 +58,7 @@ export default function PortfolioCard({ item, kind = 'project' }) {
   return (
     <ContentCard
       bodyClassName={item.image ? 'has-media' : ''}
-      id={`section-${item.number}`}
+      id={id || `section-${item.number}`}
       title={item.title}
       marker={item.number}
       subtitle={[item.category, item.organization].filter(Boolean).join(' · ')}
