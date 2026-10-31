@@ -4,8 +4,6 @@ export const projects = [
     title: 'YouTube Comment Analyzer',
     category: 'AI Chrome Extension',
     date: 'Mar – Apr 2026',
-    image: 'images/YTCAImage.png',
-    alt: 'YouTube Comment Analyzer Chrome extension',
     repository: 'https://github.com/niickzl/CMPT310---YouTube-Comment-Analyzer',
     background:
       'Creators have no quick way to learn about their audience across hundreds of comments; YTCA automates that.',
@@ -23,8 +21,6 @@ export const projects = [
     title: "Nick's LoL Drafter",
     category: 'Web App',
     date: 'Sep 2025',
-    image: 'images/lolDraftImage.png',
-    alt: "Nick's League of Legends draft app",
     repository: 'https://github.com/niickzl/niickzl.github.io/tree/main/LoLDraftAppWeb',
     live: 'https://niickzl.github.io/LolDraftAppWebDist/index.html',
     background:
@@ -42,8 +38,6 @@ export const projects = [
     title: 'EasyChart',
     category: 'Web App',
     date: 'Aug 2025',
-    image: 'images/easyChartImage.png',
-    alt: 'EasyChart data visualization web app',
     repository: 'https://github.com/CMPT-276-SUMMER-2025/final-project-5-lakes',
     live: 'https://easychart-omega.vercel.app/',
     demo: 'https://www.youtube.com/watch?v=mYPEXPJwkJY',
@@ -61,8 +55,6 @@ export const projects = [
     title: 'YouTube Audio Discord Bot',
     category: 'Python Project',
     date: 'Feb 2025',
-    image: 'images/discordBotTestImage.png',
-    alt: 'YouTube audio Discord bot test',
     repository: 'https://github.com/niickzl/YT-DISC-BOT',
     background:
       'A private music bot built as a challenge after YouTube rate limits affected Discord audio bots.',
@@ -77,8 +69,6 @@ export const projects = [
     title: 'User Information Storage Program',
     category: 'Python Project',
     date: 'May – Jun 2024',
-    image: 'images/userAppImage.png',
-    alt: 'User information storage program',
     repository: 'https://github.com/niickzl/USER-INFO-PROGRAM',
     background:
       'A Tkinter program inspired by customer information software used by a family business.',

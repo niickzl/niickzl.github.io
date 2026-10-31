@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
+import ContentCard from './ContentCard.jsx';
 
 function MediaLightbox({ image, video, alt, onClose }) {
   const dialogRef = useRef(null);
@@ -52,52 +53,50 @@ function MediaLightbox({ image, video, alt, onClose }) {
 export default function PortfolioCard({ item, kind = 'project' }) {
   const [lightboxOpen, setLightboxOpen] = useState(false);
   const isCompetition = kind === 'competition';
-  const mediaUrl = `/personal/${item.image}`;
+  const mediaUrl = item.image ? `/personal/${item.image}` : undefined;
 
   return (
-    <article className="portfolio-card" id={`section-${item.number}`}>
-      <div className="portfolio-card-heading">
-        <span className="card-number">{item.number}</span>
-        <div>
-          <h2>{item.title}</h2>
-          {item.category && <p className="card-category">{item.category}</p>}
-          {item.organization && <p className="card-category">{item.organization}</p>}
-        </div>
-        <time>{item.date}</time>
-      </div>
-      <div className="portfolio-card-content">
-        <div className="portfolio-copy">
-          <p>{item.background}</p>
-          {item.idea && <h3>{isCompetition ? 'Our idea' : 'Highlights'}: {item.idea}</h3>}
-          {item.stack && <p><strong>Built with:</strong> {item.stack}</p>}
-          {item.features && (
-            <ul>
-              {item.features.map((feature) => <li key={feature}>{feature}</li>)}
-            </ul>
+    <ContentCard
+      bodyClassName={item.image ? 'has-media' : ''}
+      id={`section-${item.number}`}
+      title={item.title}
+      marker={item.number}
+      subtitle={[item.category, item.organization].filter(Boolean).join(' · ')}
+      date={<time>{item.date}</time>}
+    >
+      <div className="portfolio-copy">
+        <p>{item.background}</p>
+        {item.idea && <h3>{isCompetition ? 'Our idea' : 'Highlights'}: {item.idea}</h3>}
+        {item.stack && <p><strong>Built with:</strong> {item.stack}</p>}
+        {item.features && (
+          <ul>
+            {item.features.map((feature) => <li key={feature}>{feature}</li>)}
+          </ul>
+        )}
+        <div className="card-actions">
+          {item.repository && (
+            <a href={item.repository} target="_blank" rel="noreferrer">
+              GitHub repository
+            </a>
           )}
-          <div className="card-actions">
-            {item.repository && (
-              <a href={item.repository} target="_blank" rel="noreferrer">
-                GitHub repository
-              </a>
-            )}
-            {item.live && (
-              <a href={item.live} target="_blank" rel="noreferrer">
-                Live app
-              </a>
-            )}
-            {item.demo && (
-              <a href={item.demo} target="_blank" rel="noreferrer">
-                Demo video
-              </a>
-            )}
-            {item.document && (
-              <a href={`/personal/${item.document}`} target="_blank" rel="noreferrer">
-                View presentation
-              </a>
-            )}
-          </div>
+          {item.live && (
+            <a href={item.live} target="_blank" rel="noreferrer">
+              Live app
+            </a>
+          )}
+          {item.demo && (
+            <a href={item.demo} target="_blank" rel="noreferrer">
+              Demo video
+            </a>
+          )}
+          {item.document && (
+            <a href={`/personal/${item.document}`} target="_blank" rel="noreferrer">
+              View presentation
+            </a>
+          )}
         </div>
+      </div>
+      {item.image && (
         <button
           className="media-button"
           type="button"
@@ -111,8 +110,8 @@ export default function PortfolioCard({ item, kind = 'project' }) {
           )}
           <span>Expand media</span>
         </button>
-      </div>
-      {lightboxOpen && (
+      )}
+      {item.image && lightboxOpen && (
         <MediaLightbox
           image={mediaUrl}
           video={item.video ? mediaUrl : undefined}
@@ -120,6 +119,6 @@ export default function PortfolioCard({ item, kind = 'project' }) {
           onClose={() => setLightboxOpen(false)}
         />
       )}
-    </article>
+    </ContentCard>
   );
 }
