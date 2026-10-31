@@ -3,7 +3,6 @@ import { Link, NavLink, useLocation } from 'react-router-dom';
 
 const navigationLinks = [
   { to: '/', label: 'Home' },
-  { to: '/about', label: 'About me' },
   { to: '/experience', label: 'Professional Experience' },
   { to: '/projects', label: 'Projects' },
 ];
@@ -60,7 +59,7 @@ export default function SiteHeader() {
       <div className="header-inner">
         <Link className="brand" to="/" aria-label="Nick Lei home">
           <span className="brand-name">Nick Lei</span>
-          <span className="brand-location">Canada, BC</span>
+          <span className="brand-location">Vancouver, Canada</span>
         </Link>
         <button
           className="menu-toggle"

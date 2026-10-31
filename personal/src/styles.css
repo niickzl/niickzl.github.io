@@ -277,9 +277,7 @@ video {
   padding: 3rem;
   border: 1px solid var(--border);
   border-radius: 2rem;
-  background:
-    radial-gradient(ellipse at 12% 15%, var(--accent-soft), transparent 58%),
-    var(--surface);
+  background: var(--surface);
 }
 
 .hero-copy {
@@ -305,6 +303,11 @@ video {
   color: var(--accent);
 }
 
+.hero-location {
+  margin: 0.6rem 0 0;
+  color: var(--muted);
+}
+
 .hero-lede {
   max-width: 38rem;
   margin-block: 1.5rem;
@@ -312,14 +315,15 @@ video {
   font-size: 1.35rem;
 }
 
+.hero-lede span {
+  color: var(--accent);
+}
+
 .hero-portrait {
   width: min(100%, 20rem);
-  aspect-ratio: 1;
+  height: auto;
   justify-self: center;
-  border: 0.35rem solid var(--surface);
-  border-radius: 50%;
-  object-fit: cover;
-  box-shadow: var(--shadow);
+  border-radius: 1rem;
 }
 
 .hero-actions,
@@ -353,81 +357,20 @@ video {
   color: var(--accent);
 }
 
-.featured-section {
-  padding-top: 5rem;
+.button-secondary:hover {
+  background: var(--accent-soft);
 }
 
-.section-heading {
-  margin-bottom: 1.5rem;
-}
-
-.section-heading h2,
 .page-intro h1 {
   margin: 0;
   font-size: 2.6rem;
   line-height: 1.15;
 }
 
-.feature-grid {
-  display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
-  gap: 1rem;
-}
-
-.feature-card {
-  position: relative;
-  display: flex;
-  min-height: 12rem;
-  flex-direction: column;
-  padding: 1.4rem;
-  border: 1px solid var(--border);
-  border-radius: 1rem;
-  background: var(--surface);
-  color: var(--text);
-  text-decoration: none;
-  transition: transform 160ms ease, border-color 160ms ease;
-}
-
-.feature-card:hover {
-  transform: translateY(-0.2rem);
-  border-color: var(--accent);
-}
-
-.feature-card h3 {
-  margin: 0.65rem 0 0;
-  font-size: 1.45rem;
-}
-
-.feature-card p {
-  margin: 0.35rem 0 1rem;
-  color: var(--muted);
-}
-
 .card-number {
   color: var(--accent);
   font-size: 0.9rem;
   font-weight: 700;
-}
-
-.feature-arrow {
-  margin-top: auto;
-  align-self: flex-end;
-  color: var(--accent);
-}
-
-.home-note {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-  gap: 0.75rem 2rem;
-  margin-top: 2rem;
-  padding: 1.1rem 1.3rem;
-  border-left: 0.25rem solid var(--accent);
-  background: var(--surface-raised);
-}
-
-.home-note p {
-  margin: 0;
 }
 
 .page-intro {
@@ -450,43 +393,137 @@ video {
   margin-bottom: 0;
 }
 
-.about-grid {
-  display: grid;
-  gap: 1.25rem;
-}
-
-.about-card {
-  display: grid;
-  min-height: 18rem;
-  grid-template-columns: minmax(0, 1fr) minmax(12rem, 0.65fr);
-  align-items: center;
-  gap: 2rem;
-  padding: 2rem;
+.home-about {
+  margin: 2rem auto 0;
+  padding: 3rem;
   border: 1px solid var(--border);
-  border-radius: 1.25rem;
+  border-radius: 2rem;
   background: var(--surface);
 }
 
-.about-card h2 {
+.home-about h2 {
   margin: 0;
-  font-size: 1.9rem;
+  font-size: 2.2rem;
+  line-height: 1.2;
 }
 
-.about-card p:not(.eyebrow) {
-  max-width: 42rem;
+.home-about > p {
   color: var(--muted);
 }
 
-.about-card img {
-  width: 100%;
-  max-height: 18rem;
-  aspect-ratio: 4 / 3;
-  border-radius: 0.9rem;
-  object-fit: cover;
+.home-about-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 2rem;
+  padding: 1.75rem 0;
+  border-top: 1px solid var(--border);
 }
 
-.about-background {
-  grid-template-columns: minmax(12rem, 0.65fr) minmax(0, 1fr);
+.home-about-entry h3,
+.home-education h3,
+.home-skills h3 {
+  margin: 0;
+  font-size: 1.45rem;
+}
+
+.home-about-entry p,
+.home-education > p,
+.home-skills > p {
+  margin-bottom: 0;
+  color: var(--muted);
+}
+
+.home-about-entry p,
+.home-skills > p {
+  max-width: 42rem;
+}
+
+.home-education,
+.home-skills {
+  padding: 1.75rem 0;
+  border-top: 1px solid var(--border);
+}
+
+.technology-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  padding: 0;
+  margin: 1.25rem 0 0;
+  list-style: none;
+}
+
+.technology-list li {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.65rem;
+  padding: 0.4rem 0.75rem 0.4rem 0.4rem;
+  border: 1px solid var(--border);
+  border-radius: 0.65rem;
+  background: var(--surface);
+  font-weight: 700;
+}
+
+.technology-logo {
+  display: grid;
+  width: 3rem;
+  height: 3rem;
+  flex: 0 0 3rem;
+  place-items: center;
+  padding: 0.4rem;
+  border-radius: 0.35rem;
+  background: #fff;
+}
+
+.technology-logo img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.education-list {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+  margin-top: 1.25rem;
+}
+
+.education-card {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  min-width: 0;
+  padding: 1rem;
+  border: 1px solid var(--border);
+  border-radius: 0.8rem;
+}
+
+.education-logo {
+  display: grid;
+  width: 4.5rem;
+  height: 4.5rem;
+  flex: 0 0 4.5rem;
+  place-items: center;
+  padding: 0.35rem;
+  border-radius: 0.5rem;
+  background: #fff;
+}
+
+.education-logo img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.education-card h4 {
+  margin: 0;
+  font-size: 1.1rem;
+  line-height: 1.3;
+}
+
+.education-card p {
+  margin: 0.35rem 0 0;
+  color: var(--muted);
 }
 
 .section-tabs {
@@ -766,10 +803,6 @@ video {
 }
 
 @media (max-width: 62rem) {
-  .feature-grid {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-
   .hero {
     gap: 2rem;
   }
@@ -845,6 +878,11 @@ video {
     border-radius: 1.25rem;
   }
 
+  .home-about {
+    padding: 1.5rem;
+    border-radius: 1.25rem;
+  }
+
   .hero h1 {
     font-size: 3rem;
   }
@@ -857,28 +895,17 @@ video {
     width: min(65vw, 18rem);
   }
 
-  .featured-section {
-    padding-top: 3rem;
-  }
-
-  .section-heading h2,
   .page-intro h1 {
     font-size: 2.3rem;
   }
 
-  .about-card,
-  .about-background {
+  .home-about-grid {
     grid-template-columns: 1fr;
-    gap: 1rem;
-    padding: 1.25rem;
+    gap: 1.75rem;
   }
 
-  .about-background img {
-    order: 2;
-  }
-
-  .about-card img {
-    max-height: 22rem;
+  .education-list {
+    grid-template-columns: 1fr;
   }
 
   .portfolio-card-heading {
@@ -901,18 +928,9 @@ video {
 }
 
 @media (max-width: 34rem) {
-  .feature-grid,
   .photo-grid,
   .chess-grid {
     grid-template-columns: 1fr;
-  }
-
-  .feature-card {
-    min-height: 10rem;
-  }
-
-  .home-note {
-    flex-direction: column;
   }
 
   .page-intro h1 {

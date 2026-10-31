@@ -3,11 +3,6 @@ export default function SiteFooter() {
     <footer className="site-footer">
       <p>Thanks for visiting. Feel free to reach out.</p>
       <nav className="social-links" aria-label="Contact and social links">
-        <a href="tel:12368627277" aria-label="Phone" title="Phone">
-          <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
-            <path d="M5 3h3l2 5-2 2c1 2.5 3.5 5 6 6l2-2 5 2v3c0 1.1-.9 2-2 2C10 20 4 14 3 5c0-1.1.9-2 2-2Z" />
-          </svg>
-        </a>
         <a href="mailto:20051024nick@gmail.com" aria-label="Email" title="Email">
           <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
             <rect x="3" y="5" width="18" height="14" rx="2" />
