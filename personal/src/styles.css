@@ -1269,6 +1269,24 @@ video {
     width: min(65vw, 18rem);
   }
 
+  .hero-carousel {
+    width: min(100%, 28rem);
+    margin-inline: auto;
+  }
+
+  .carousel-window {
+    overflow: hidden;
+  }
+
+  .carousel-track {
+    width: max-content;
+  }
+
+  .carousel-group {
+    justify-content: center;
+    padding: 0.25rem 1rem;
+  }
+
   .page-intro h1 {
     font-size: 2.3rem;
   }
