@@ -1,5 +1,9 @@
 .fade-in {
-  transition: opacity 500ms ease, transform 500ms ease;
+  transition:
+    opacity 500ms ease,
+    transform 500ms ease,
+    background-color 180ms ease,
+    border-color 180ms ease;
 }
 
 .fade-in-waiting:not(:focus-within) {

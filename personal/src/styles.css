@@ -37,6 +37,12 @@
   box-sizing: border-box;
 }
 
+*,
+*::before,
+*::after {
+  transition: background-color 180ms ease, border-color 180ms ease;
+}
+
 html {
   scroll-behavior: smooth;
   scroll-padding-top: 6rem;
@@ -49,7 +55,6 @@ body {
   color: var(--text);
   font-size: 1.125rem;
   line-height: 1.65;
-  transition: background-color 180ms ease, color 180ms ease;
 }
 
 body,
@@ -1068,14 +1073,5 @@ video {
 
   .lightbox {
     padding: 1rem;
-  }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  *:not(.fade-in),
-  *::before,
-  *::after {
-    scroll-behavior: auto !important;
-    transition-duration: 0.01ms !important;
   }
 }
