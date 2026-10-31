@@ -141,30 +141,30 @@ export const competitions = [
 ];
 
 export const photographs = [
-  { image: 'images/sunset.jpg', alt: 'Sunset in Burnaby, Canada', location: 'Burnaby, Canada' },
-  { image: 'images/yongshun.jpg', alt: 'Scenery in Yongshun, China', location: 'Yongshun, China' },
-  { image: 'images/zhangjiajie.jpg', alt: 'Scenery in Zhangjiajie, China', location: 'Zhangjiajie, China' },
-  { image: 'images/toronto.jpg', alt: 'Scenery in Toronto, Canada', location: 'Toronto, Canada' },
+  { image: 'images/sunset.webp', alt: 'Sunset in Burnaby, Canada', location: 'Burnaby, Canada' },
+  { image: 'images/yongshun.webp', alt: 'Scenery in Yongshun, China', location: 'Yongshun, China' },
+  { image: 'images/zhangjiajie.webp', alt: 'Scenery in Zhangjiajie, China', location: 'Zhangjiajie, China' },
+  { image: 'images/toronto.webp', alt: 'Scenery in Toronto, Canada', location: 'Toronto, Canada' },
 ];
 
 export const chessGames = [
   {
-    image: 'gifs/chessLeftOne.gif',
+    image: 'gifs/chessLeftOne.webp',
     title: '(1620) vs (1593) · Rapid',
     review: 'https://www.chess.com/analysis/game/live/123368152778?tab=review',
   },
   {
-    image: 'gifs/chessLeftTwo.gif',
+    image: 'gifs/chessLeftTwo.webp',
     title: '(1631) vs (1624) · Rapid',
     review: 'https://www.chess.com/analysis/game/live/123558032818?tab=review',
   },
   {
-    image: 'gifs/chessRightOne.gif',
+    image: 'gifs/chessRightOne.webp',
     title: '(1574) vs (1643) · Rapid',
     review: 'https://www.chess.com/analysis/game/live/126155373007?tab=review',
   },
   {
-    image: 'gifs/chessRightTwo.gif',
+    image: 'gifs/chessRightTwo.webp',
     title: '(1542) vs (1542) · Rapid',
     review: 'https://www.chess.com/analysis/game/live/125663367031?tab=review',
   },
