@@ -29,7 +29,7 @@ npm run build
 ```
 
 The React source, site assets, and generated static build all live in `personal/`. Commit the generated `index.html` and `assets/` bundle with the source changes for GitHub Pages deployment.
-For local development, run `npm run dev` in `personal/` and open the `/personal/` URL printed by Vite. Run `npm run preview` after a build to view the published static output.
+For local development, run `npm run dev` in `personal/` and open `http://localhost:5173/personal/`. Run `npm run preview` after a build to view the published static output at the same URL. Stop the development server before starting the preview (or vice versa), since both use port 5173.
 
 ### LoL Draft App
 

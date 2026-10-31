@@ -4,6 +4,7 @@ import SiteLayout from './components/SiteLayout.jsx';
 import About from './pages/About.jsx';
 import Chess from './pages/Chess.jsx';
 import Competitions from './pages/Competitions.jsx';
+import Experience from './pages/Experience.jsx';
 import Home from './pages/Home.jsx';
 import Photography from './pages/Photography.jsx';
 import Projects from './pages/Projects.jsx';
@@ -11,6 +12,7 @@ import Projects from './pages/Projects.jsx';
 const pageTitles = {
   '/': 'Home',
   '/about': 'About me',
+  '/experience': 'Professional Experience',
   '/projects': 'Projects',
   '/competitions': 'Competitions',
   '/photography': 'Photography',
@@ -36,6 +38,7 @@ export default function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/about" element={<About />} />
+        <Route path="/experience" element={<Experience />} />
         <Route path="/projects" element={<Projects />} />
         <Route path="/competitions" element={<Competitions />} />
         <Route path="/photography" element={<Photography />} />
