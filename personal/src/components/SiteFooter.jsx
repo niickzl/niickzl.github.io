@@ -26,6 +26,25 @@ export default function SiteFooter() {
             <path d="m10 9 5 3-5 3z" />
           </svg>
         </a>
+        <a
+          href="https://open.spotify.com/user/a8996u4euvbxavuwz3ugsc93i?si=c2d7bf6e778441d8"
+          target="_blank"
+          rel="noreferrer"
+          aria-label="Spotify"
+          title="Spotify"
+        >
+          <svg
+            aria-hidden="true"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="1.6"
+            strokeLinecap="round"
+          >
+            <circle cx="12" cy="12" r="10" />
+            <path d="M6.5 9.2c3.8-1.2 8.2-.8 11.4 1.1M7.1 12.2c3.1-1 6.7-.7 9.5 1M7.7 15c2.4-.7 5.2-.5 7.4.8" />
+          </svg>
+        </a>
         <a href="https://www.chess.com/member/hiiamnick" target="_blank" rel="noreferrer" aria-label="Chess.com" title="Chess.com">
           <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
             <circle cx="12" cy="6" r="3" />

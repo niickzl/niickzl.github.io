@@ -4,10 +4,8 @@ const destinations = [
   { label: 'More about me', to: '/#about' },
   { label: 'Professional Experience', to: '/experience' },
   { label: 'Projects', to: '/projects' },
-  { label: 'Competitions', to: '/competitions' },
-  { label: 'Photography', to: '/photography' },
-  { label: 'Chess', to: '/chess' },
-  { label: 'Music', to: '/music' },
+  { label: 'Competitions', to: '/projects?view=competitions' },
+  { label: 'Interests', to: '/interests' },
 ];
 
 export default function HeroCarousel() {

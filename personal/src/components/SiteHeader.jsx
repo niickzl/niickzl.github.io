@@ -5,12 +5,7 @@ const navigationLinks = [
   { to: '/', label: 'Home' },
   { to: '/experience', label: 'Professional Experience' },
   { to: '/projects', label: 'Projects' },
-];
-
-const interestLinks = [
-  { to: '/photography', label: 'Photography' },
-  { to: '/chess', label: 'Chess' },
-  { to: '/music', label: 'Music' },
+  { to: '/interests', label: 'Interests' },
 ];
 
 function NavigationLink({ to, children, onNavigate }) {
@@ -28,7 +23,6 @@ function NavigationLink({ to, children, onNavigate }) {
 
 export default function SiteHeader() {
   const [menuOpen, setMenuOpen] = useState(false);
-  const [interestsOpen, setInterestsOpen] = useState(false);
   const [theme, setTheme] = useState(
     () => document.documentElement.dataset.theme || 'light',
   );
@@ -36,7 +30,6 @@ export default function SiteHeader() {
 
   useEffect(() => {
     setMenuOpen(false);
-    setInterestsOpen(false);
   }, [location.pathname]);
 
   useEffect(() => {
@@ -51,7 +44,6 @@ export default function SiteHeader() {
 
   function closeNavigation() {
     setMenuOpen(false);
-    setInterestsOpen(false);
   }
 
   return (
@@ -70,7 +62,6 @@ export default function SiteHeader() {
           title={menuOpen ? 'Close menu' : 'Menu'}
           onClick={() => {
             setMenuOpen((open) => !open);
-            setInterestsOpen(false);
           }}
         >
           <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round">
@@ -91,40 +82,6 @@ export default function SiteHeader() {
               {item.label}
             </NavigationLink>
           ))}
-          <div
-            className="nav-group"
-            onBlur={(event) => {
-              if (!event.currentTarget.contains(event.relatedTarget)) {
-                setInterestsOpen(false);
-              }
-            }}
-            onKeyDown={(event) => {
-              if (event.key === 'Escape' && interestsOpen) {
-                setInterestsOpen(false);
-                event.currentTarget.querySelector('button').focus();
-              }
-            }}
-          >
-            <button
-              className={`nav-group-toggle${interestLinks.some((item) => item.to === location.pathname) ? ' active' : ''}`}
-              type="button"
-              aria-expanded={interestsOpen}
-              aria-controls="interests-navigation"
-              onClick={() => setInterestsOpen((open) => !open)}
-            >
-              Interests
-              <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                <path d="m6 9 6 6 6-6" />
-              </svg>
-            </button>
-            <div className="nav-group-links" id="interests-navigation" hidden={!interestsOpen}>
-              {interestLinks.map((item) => (
-                <NavigationLink key={item.to} to={item.to} onNavigate={closeNavigation}>
-                  {item.label}
-                </NavigationLink>
-              ))}
-            </div>
-          </div>
         </nav>
         <div className="header-actions">
           <button
