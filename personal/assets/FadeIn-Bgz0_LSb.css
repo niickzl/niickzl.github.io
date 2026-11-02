@@ -1,0 +1,1 @@
+.fade-in{transition:opacity .5s ease,transform .5s ease,background-color .18s ease,border-color .18s ease}.fade-in-waiting:not(:focus-within){opacity:0;transform:translateY(-1rem)}.fade-in-active:not(:focus-within){animation:fade-in-down .5s ease}@keyframes fade-in-down{0%{opacity:0;transform:translateY(-1rem)}to{opacity:1;transform:translateY(0)}}

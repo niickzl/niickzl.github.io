@@ -1,3 +1,4 @@
+import { useEffect, useRef, useState } from 'react';
 import { Link, useSearchParams } from 'react-router-dom';
 import { chessGames, photographs } from '../data.js';
 import FadeIn from '../components/FadeIn.jsx';
@@ -18,6 +19,48 @@ const topSongs = [
   '4xlkIVboOY2plOALp9bqD8',
   '5maOnuGt1ftrhFaQNSbrNT',
 ];
+
+function SpotifyEmbed({ trackId, index }) {
+  const iframeRef = useRef(null);
+  const [shouldLoad, setShouldLoad] = useState(false);
+
+  useEffect(() => {
+    const iframe = iframeRef.current;
+    if (!iframe) return undefined;
+
+    if (!('IntersectionObserver' in window)) {
+      setShouldLoad(true);
+      return undefined;
+    }
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setShouldLoad(true);
+          observer.disconnect();
+        }
+      },
+      { rootMargin: '0px' },
+    );
+
+    observer.observe(iframe);
+    return () => observer.disconnect();
+  }, []);
+
+  return (
+    <iframe
+      ref={iframeRef}
+      title={`Spotify player for song ${index + 1}`}
+      src={
+        shouldLoad
+          ? `https://open.spotify.com/embed/track/${trackId}?utm_source=generator`
+          : undefined
+      }
+      allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+      loading="lazy"
+    />
+  );
+}
 
 function PhotographySection() {
   return (
@@ -89,15 +132,9 @@ function MusicSection() {
           View my Spotify profile
         </a>
       </div>
-      <section className="music-grid" aria-label="My top four songs">
+      <section className="music-grid" aria-label="My favorite songs">
         {topSongs.map((trackId, index) => (
-          <iframe
-            key={trackId}
-            title={`Spotify player for top song ${index + 1}`}
-            src={`https://open.spotify.com/embed/track/${trackId}?utm_source=generator`}
-            allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
-            loading="lazy"
-          />
+          <SpotifyEmbed key={trackId} trackId={trackId} index={index} />
         ))}
       </section>
     </>

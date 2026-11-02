@@ -1,10 +1,11 @@
-import { useEffect } from 'react';
+import { lazy, Suspense, useEffect } from 'react';
 import { Navigate, Route, Routes, useLocation } from 'react-router-dom';
 import SiteLayout from './components/SiteLayout.jsx';
-import Experience from './pages/Experience.jsx';
-import Home from './pages/Home.jsx';
-import Interests from './pages/Interests.jsx';
-import Projects from './pages/Projects.jsx';
+
+const Home = lazy(() => import('./pages/Home.jsx'));
+const Experience = lazy(() => import('./pages/Experience.jsx'));
+const Interests = lazy(() => import('./pages/Interests.jsx'));
+const Projects = lazy(() => import('./pages/Projects.jsx'));
 
 const pageTitles = {
   '/': 'Home',
@@ -33,18 +34,26 @@ export default function App() {
   return (
     <SiteLayout>
       <RouteEffects />
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/about" element={<Navigate to="/" replace />} />
-        <Route path="/experience" element={<Experience />} />
-        <Route path="/projects" element={<Projects />} />
-        <Route path="/competitions" element={<Navigate to="/projects?view=competitions" replace />} />
-        <Route path="/interests" element={<Interests />} />
-        <Route path="/photography" element={<Navigate to="/interests?section=photography" replace />} />
-        <Route path="/chess" element={<Navigate to="/interests?section=chess" replace />} />
-        <Route path="/music" element={<Navigate to="/interests?section=music" replace />} />
-        <Route path="*" element={<Home />} />
-      </Routes>
+      <Suspense
+        fallback={
+          <main id="main-content" className="page-shell" role="status">
+            Loading page…
+          </main>
+        }
+      >
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/about" element={<Navigate to="/" replace />} />
+          <Route path="/experience" element={<Experience />} />
+          <Route path="/projects" element={<Projects />} />
+          <Route path="/competitions" element={<Navigate to="/projects?view=competitions" replace />} />
+          <Route path="/interests" element={<Interests />} />
+          <Route path="/photography" element={<Navigate to="/interests?section=photography" replace />} />
+          <Route path="/chess" element={<Navigate to="/interests?section=chess" replace />} />
+          <Route path="/music" element={<Navigate to="/interests?section=music" replace />} />
+          <Route path="*" element={<Home />} />
+        </Routes>
+      </Suspense>
     </SiteLayout>
   );
 }
