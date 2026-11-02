@@ -1273,6 +1273,7 @@ video {
 
   .primary-navigation.is-open {
     display: flex;
+    animation: navigation-dropdown-in 180ms ease-out;
   }
 
   .primary-navigation > .nav-link,
