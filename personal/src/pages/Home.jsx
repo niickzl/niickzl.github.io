@@ -88,12 +88,12 @@ export default function Home() {
             <h3>Background and future</h3>
             <p>
               I was born in Canada with a Chinese background. After attending
-              school in China until Grade 4, I moved back to Canada. I’m fluent in
+              school in China until Grade 4, I moved back to Canada; That's why I’m fluent in
               English, Mandarin, and Cantonese.
             </p>
             <p>
               I’d like to pursue a career in information systems, full-stack development,
-              web development, artificial intelligence, and product management.
+              web development, artificial intelligence, or product management.
             </p>
           </article>
         </div>

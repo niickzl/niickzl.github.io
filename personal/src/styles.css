@@ -126,6 +126,28 @@ video {
   margin-inline: auto;
 }
 
+.site-notice {
+  border-top: 1px solid var(--border);
+  background: var(--accent-soft);
+  color: var(--text);
+}
+
+.site-notice-inner {
+  width: min(100% - 2rem, 80rem);
+  margin-inline: auto;
+  padding-block: 0.35rem;
+  font-size: 0.95rem;
+  text-align: center;
+}
+
+.site-notice-inner p {
+  margin: 0;
+}
+
+.site-notice-inner a {
+  font-weight: 700;
+}
+
 .brand {
   display: grid;
   flex: 0 0 auto;

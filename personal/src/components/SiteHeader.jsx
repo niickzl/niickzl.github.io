@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { Link, NavLink, useLocation } from 'react-router-dom';
+import SiteNotice from './SiteNotice.jsx';
 
 const navigationLinks = [
   { to: '/', label: 'Home' },
@@ -105,6 +106,7 @@ export default function SiteHeader() {
           <a className="nav-link hub-link" href="../index.html">Web hub</a>
         </div>
       </div>
+      <SiteNotice />
     </header>
   );
 }
