@@ -1,5 +1,6 @@
 import SiteFooter from './SiteFooter.jsx';
 import SiteHeader from './SiteHeader.jsx';
+import BackToTop from './BackToTop.jsx';
 
 export default function SiteLayout({ children }) {
   return (
@@ -10,6 +11,7 @@ export default function SiteLayout({ children }) {
       <SiteHeader />
       {children}
       <SiteFooter />
+      <BackToTop />
     </>
   );
 }

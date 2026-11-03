@@ -110,9 +110,6 @@ video {
 }
 
 .site-header {
-  position: sticky;
-  z-index: 20;
-  top: 0;
   border-bottom: 1px solid var(--border);
   background: var(--surface);
 }
@@ -753,9 +750,11 @@ video {
 
 .project-navigation {
   position: sticky;
-  top: 7rem;
+  top: max(10rem, calc(50vh - 12rem));
   min-width: 0;
+  max-height: calc(100vh - 2rem);
   align-self: start;
+  overflow-y: auto;
 }
 
 .project-navigation h2 {
@@ -1116,6 +1115,32 @@ video {
   color: var(--accent);
 }
 
+.back-to-top {
+  position: fixed;
+  z-index: 15;
+  right: 1.25rem;
+  bottom: 1.25rem;
+  display: grid;
+  width: 3rem;
+  min-height: 3rem;
+  place-items: center;
+  border: 1px solid var(--border);
+  border-radius: 0.75rem;
+  background: var(--surface);
+  color: var(--accent);
+  box-shadow: var(--shadow);
+  cursor: pointer;
+}
+
+.back-to-top:hover {
+  background: var(--accent-soft);
+}
+
+.back-to-top svg {
+  width: 1.4rem;
+  height: 1.4rem;
+}
+
 @media (max-width: 62rem) {
   .hero {
     gap: 2rem;
@@ -1131,6 +1156,9 @@ video {
 
   .project-navigation {
     position: static;
+    max-height: none;
+    overflow: visible;
+    transform: none;
   }
 
   .project-navigation h2 {
