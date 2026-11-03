@@ -1,0 +1,15 @@
+.fade-out {
+  transition:
+    opacity 220ms ease,
+    transform 220ms ease;
+}
+
+.fade-out-hidden {
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(0.5rem);
+}
+
+.fade-out-visible {
+  opacity: 1;
+}

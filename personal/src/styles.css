@@ -1115,13 +1115,16 @@ video {
   color: var(--accent);
 }
 
-.back-to-top {
+.back-to-top-container {
   position: fixed;
   z-index: 15;
   right: 1.25rem;
   bottom: 1.25rem;
+}
+
+.back-to-top {
   display: grid;
-  width: 3rem;
+  width: 4rem;
   min-height: 3rem;
   place-items: center;
   border: 1px solid var(--border);
@@ -1137,8 +1140,8 @@ video {
 }
 
 .back-to-top svg {
-  width: 1.4rem;
-  height: 1.4rem;
+  width: 1.6rem;
+  height: 1.6rem;
 }
 
 @media (max-width: 62rem) {
