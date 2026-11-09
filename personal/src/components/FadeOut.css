@@ -1,7 +1,7 @@
 .fade-out {
   transition:
-    opacity 220ms ease,
-    transform 220ms ease;
+    opacity 320ms ease-in,
+    transform 320ms ease-in;
 }
 
 .fade-out-hidden {

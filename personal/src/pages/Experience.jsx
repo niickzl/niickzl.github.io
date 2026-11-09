@@ -26,7 +26,7 @@ export default function Experience() {
           ariaLabel="Jump to a professional experience"
         />
         <div className="experience-list">
-          <FadeIn className="experience-fade">
+          <FadeIn className="experience-fade" style={{ transitionDelay: '0ms' }}>
             <ContentCard
               id="experience-weltel"
               title="Incoming Full Stack Developer"
@@ -42,7 +42,7 @@ export default function Experience() {
               <p className="experience-status">Incoming 8-month internship</p>
             </ContentCard>
           </FadeIn>
-          <FadeIn className="experience-fade">
+          <FadeIn className="experience-fade" style={{ transitionDelay: '30ms' }}>
             <ContentCard
               id="experience-portal"
               title="Co-Founder & Lead Engineer"
@@ -79,7 +79,7 @@ export default function Experience() {
               </ul>
             </ContentCard>
           </FadeIn>
-          <FadeIn className="experience-fade">
+          <FadeIn className="experience-fade" style={{ transitionDelay: '60ms' }}>
             <ContentCard
               id="experience-caseit"
               title="Director of Web Development"

@@ -1,28 +1,42 @@
 import { useEffect, useRef, useState } from 'react';
 import ContentCard from './ContentCard.jsx';
 
-function MediaLightbox({ image, video, alt, onClose }) {
+function MediaLightbox({ image, video, alt, origin, onClose }) {
   const dialogRef = useRef(null);
+  const closeTimer = useRef(null);
+  const [closing, setClosing] = useState(false);
 
   useEffect(() => {
     const dialog = dialogRef.current;
     if (dialog && !dialog.open) dialog.showModal();
     return () => {
+      if (closeTimer.current !== null) window.clearTimeout(closeTimer.current);
       if (dialog?.open) dialog.close();
     };
   }, []);
 
+  function requestClose() {
+    if (closing) return;
+    setClosing(true);
+    closeTimer.current = window.setTimeout(onClose, 320);
+  }
+
   return (
     <dialog
       ref={dialogRef}
-      className="lightbox"
+      className={`lightbox${closing ? ' is-closing' : ''}`}
       aria-label="Expanded project media"
+      inert={closing}
+      style={{
+        '--trigger-x': `${origin.x}px`,
+        '--trigger-y': `${origin.y}px`,
+      }}
       onCancel={(event) => {
         event.preventDefault();
-        onClose();
+        requestClose();
       }}
       onClick={(event) => {
-        if (event.target === dialogRef.current) onClose();
+        if (event.target === dialogRef.current) requestClose();
       }}
     >
       {video ? (
@@ -43,7 +57,7 @@ function MediaLightbox({ image, video, alt, onClose }) {
           onClick={(event) => event.stopPropagation()}
         />
       )}
-      <button className="lightbox-close" type="button" onClick={onClose}>
+      <button className="lightbox-close" type="button" onClick={requestClose}>
         Close
       </button>
     </dialog>
@@ -52,6 +66,7 @@ function MediaLightbox({ image, video, alt, onClose }) {
 
 export default function PortfolioCard({ item, kind = 'project', id }) {
   const [lightboxOpen, setLightboxOpen] = useState(false);
+  const [lightboxOrigin, setLightboxOrigin] = useState({ x: 0, y: 0 });
   const isCompetition = kind === 'competition';
   const mediaUrl = item.image ? `/personal/${item.image}` : undefined;
 
@@ -100,7 +115,14 @@ export default function PortfolioCard({ item, kind = 'project', id }) {
         <button
           className="media-button"
           type="button"
-          onClick={() => setLightboxOpen(true)}
+          onClick={(event) => {
+            const bounds = event.currentTarget.getBoundingClientRect();
+            setLightboxOrigin({
+              x: bounds.left + bounds.width / 2,
+              y: bounds.top + bounds.height / 2,
+            });
+            setLightboxOpen(true);
+          }}
           aria-label={`Expand: ${item.alt}`}
         >
           {item.video ? (
@@ -116,6 +138,7 @@ export default function PortfolioCard({ item, kind = 'project', id }) {
           image={mediaUrl}
           video={item.video ? mediaUrl : undefined}
           alt={item.alt}
+          origin={lightboxOrigin}
           onClose={() => setLightboxOpen(false)}
         />
       )}

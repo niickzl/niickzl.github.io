@@ -21,12 +21,14 @@ export default function Projects() {
           <nav className="section-tabs work-tabs" aria-label="Work categories">
             <Link
               to="/projects"
+              viewTransition
               aria-current={!showingCompetitions ? 'page' : undefined}
             >
               Builds
             </Link>
             <Link
               to="/projects?view=competitions"
+              viewTransition
               aria-current={showingCompetitions ? 'page' : undefined}
             >
               Competitions
@@ -45,8 +47,8 @@ export default function Projects() {
           ariaLabel={`Jump to ${showingCompetitions ? 'a competition' : 'a project or course entry'}`}
         />
         <div className="portfolio-list">
-          {items.map((item) => (
-            <FadeIn key={item.number}>
+          {items.map((item, index) => (
+            <FadeIn key={item.number} style={{ transitionDelay: `${index * 30}ms` }}>
               <PortfolioCard
                 item={item}
                 kind={showingCompetitions ? 'competition' : 'project'}

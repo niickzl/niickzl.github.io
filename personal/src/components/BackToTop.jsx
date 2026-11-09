@@ -1,5 +1,4 @@
 import { useEffect, useState } from 'react';
-import FadeIn from './FadeIn.jsx';
 import FadeOut from './FadeOut.jsx';
 
 const visibilityThreshold = 400;
@@ -23,9 +22,7 @@ export default function BackToTop() {
       visible={visible}
       className="back-to-top-container"
     >
-      <FadeIn
-        as="button"
-        active
+      <button
         className="back-to-top"
         type="button"
         aria-label="Back to top"
@@ -43,7 +40,7 @@ export default function BackToTop() {
         >
           <path d="m6 14 6-6 6 6M12 8v12" />
         </svg>
-      </FadeIn>
+      </button>
     </FadeOut>
   );
 }

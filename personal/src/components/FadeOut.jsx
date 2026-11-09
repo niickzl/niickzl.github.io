@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import './FadeOut.css';
 
-const fadeOutDuration = 220;
+const fadeOutDuration = 320;
 
 export default function FadeOut({
   as: Element = 'div',

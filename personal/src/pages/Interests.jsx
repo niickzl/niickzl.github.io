@@ -76,11 +76,16 @@ function PhotographySection() {
         </a>
       </div>
       <section className="photo-grid" aria-label="Selected photographs">
-        {photographs.map((photo) => (
-          <figure className="photo-card" key={photo.image}>
+        {photographs.map((photo, index) => (
+          <FadeIn
+            as="figure"
+            className="photo-card"
+            key={photo.image}
+            style={{ transitionDelay: `${index * 30}ms` }}
+          >
             <img src={`/personal/${photo.image}`} alt={photo.alt} loading="lazy" />
             <figcaption>{photo.location}</figcaption>
-          </figure>
+          </FadeIn>
         ))}
       </section>
     </>
@@ -101,8 +106,13 @@ function ChessSection() {
         </a>
       </div>
       <section className="chess-grid" aria-label="Selected chess games">
-        {chessGames.map((game) => (
-          <article className="chess-card" key={game.image}>
+        {chessGames.map((game, index) => (
+          <FadeIn
+            as="article"
+            className="chess-card"
+            key={game.image}
+            style={{ transitionDelay: `${index * 30}ms` }}
+          >
             <h2>{game.title}</h2>
             <img
               src={`/personal/${game.image}`}
@@ -112,7 +122,7 @@ function ChessSection() {
             <a href={game.review} target="_blank" rel="noreferrer">
               Review this game
             </a>
-          </article>
+          </FadeIn>
         ))}
       </section>
     </>
@@ -134,7 +144,14 @@ function MusicSection() {
       </div>
       <section className="music-grid" aria-label="My favorite songs">
         {topSongs.map((trackId, index) => (
-          <SpotifyEmbed key={trackId} trackId={trackId} index={index} />
+          <FadeIn
+            as="div"
+            className="music-card"
+            key={trackId}
+            style={{ transitionDelay: `${index * 30}ms` }}
+          >
+            <SpotifyEmbed trackId={trackId} index={index} />
+          </FadeIn>
         ))}
       </section>
     </>
@@ -164,6 +181,7 @@ export default function Interests() {
             <Link
               key={id}
               to={`/interests?section=${id}`}
+              viewTransition
               aria-current={activeSection === id ? 'page' : undefined}
             >
               {label}

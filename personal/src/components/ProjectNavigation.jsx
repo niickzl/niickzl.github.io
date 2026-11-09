@@ -43,16 +43,21 @@ export default function ProjectNavigation({
           onClick={() => setMenuOpen((open) => !open)}
         >
           {buttonLabel}
-          <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-            <path d="m6 9 6 6 6-6" />
-          </svg>
+          <span className="project-navigation-icons" aria-hidden="true">
+            <svg className="project-navigation-icon-closed" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+              <path d="m6 9 6 6 6-6" />
+            </svg>
+            <svg className="project-navigation-icon-open" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+              <path d="m6 15 6-6 6 6" />
+            </svg>
+          </span>
         </button>
         <ol
           className={`project-navigation-links${menuOpen ? ' is-open' : ''}`}
           id="project-navigation-links"
         >
-          {items.map((item) => (
-            <li key={item.id}>
+          {items.map((item, index) => (
+            <li key={item.id} style={{ '--stagger-index': index }}>
               <button type="button" onClick={() => navigateToItem(item.id)}>
                 {item.number && <span>{item.number}</span>}
                 {item.title}

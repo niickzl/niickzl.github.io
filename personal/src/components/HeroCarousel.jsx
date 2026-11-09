@@ -28,6 +28,7 @@ export default function HeroCarousel() {
                   className="button button-secondary"
                   key={to}
                   to={to}
+                  viewTransition
                   tabIndex={copy === 1 ? -1 : undefined}
                 >
                   {label}

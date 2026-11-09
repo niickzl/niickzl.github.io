@@ -37,7 +37,7 @@ export default function Home() {
             I’m studying computer science, with a concentration on artificial intelligence and information systems.
           </p>
           <div className="education-list">
-            <article className="education-card">
+            <article className="education-card" style={{ animationDelay: '0ms' }}>
               <div className="education-logo">
                 <img src="/personal/images/SFU.png" alt="" />
               </div>
@@ -46,7 +46,7 @@ export default function Home() {
                 <p>BSc in Computer Science, September 2023 - Present</p>
               </div>
             </article>
-            <article className="education-card">
+            <article className="education-card" style={{ animationDelay: '30ms' }}>
               <div className="education-logo">
                 <img src="/personal/images/HKU.png" alt="" />
               </div>
@@ -61,8 +61,8 @@ export default function Home() {
           <h3 id="skills-title">Technologies</h3>
           <p>Technologies I’m most comfortable with.</p>
           <ul className="technology-list">
-            {technologies.map(({ name, image }) => (
-              <li key={name}>
+            {technologies.map(({ name, image }, index) => (
+              <li key={name} style={{ animationDelay: `${index * 30}ms` }}>
                 <span className="technology-logo">
                   <img src={`/personal/images/${image}`} alt="" />
                 </span>
@@ -72,7 +72,7 @@ export default function Home() {
           </ul>
         </section>
         <div className="home-about-grid">
-          <article className="home-about-entry">
+          <article className="home-about-entry" style={{ animationDelay: '0ms' }}>
             <h3>Building with purpose</h3>
             <p>
               I find meaning in building things that help the community around me.
@@ -84,7 +84,7 @@ export default function Home() {
               and try something new.
             </p>
           </article>
-          <article className="home-about-entry">
+          <article className="home-about-entry" style={{ animationDelay: '30ms' }}>
             <h3>Background and future</h3>
             <p>
               I was born in Canada with a Chinese background. After attending

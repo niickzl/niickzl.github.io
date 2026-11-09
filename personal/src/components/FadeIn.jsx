@@ -1,22 +1,15 @@
 import { useEffect, useRef, useState } from 'react';
 import './FadeIn.css';
 
-export default function FadeIn({ as: Element = 'div', children, className = '', active, ...props }) {
+export default function FadeIn({ as: Element = 'div', children, className = '', ...props }) {
   const elementRef = useRef(null);
-  const [visible, setVisible] = useState(
-    () => typeof window === 'undefined' || !('IntersectionObserver' in window),
-  );
+  const [visible, setVisible] = useState(false);
 
   useEffect(() => {
-    if (active !== undefined || visible) return undefined;
+    if (visible) return undefined;
 
     const element = elementRef.current;
-    const observer = new IntersectionObserver(([entry]) => {
-      if (entry.isIntersecting) {
-        setVisible(true);
-        observer.disconnect();
-      }
-    });
+    if (!element) return undefined;
 
     function checkVisibility() {
       const bounds = element.getBoundingClientRect();
@@ -32,23 +25,33 @@ export default function FadeIn({ as: Element = 'div', children, className = '', 
       }
     }
 
-    observer.observe(element);
+    if ('IntersectionObserver' in window) {
+      const observer = new IntersectionObserver(([entry]) => {
+        if (entry.isIntersecting && entry.intersectionRatio > 0) {
+          setVisible(true);
+          observer.disconnect();
+        }
+      });
+
+      observer.observe(element);
+      return () => observer.disconnect();
+    }
+
     window.addEventListener('scroll', checkVisibility, { passive: true });
     window.addEventListener('resize', checkVisibility);
     checkVisibility();
 
     return () => {
-      observer.disconnect();
       window.removeEventListener('scroll', checkVisibility);
       window.removeEventListener('resize', checkVisibility);
     };
-  }, [active, visible]);
+  }, [visible]);
 
   return (
     <Element
       {...props}
       ref={elementRef}
-      className={`fade-in${active === undefined && !visible ? ' fade-in-waiting' : ''}${active ? ' fade-in-active' : ''}${className ? ` ${className}` : ''}`}
+      className={`fade-in${!visible ? ' fade-in-waiting' : ''}${className ? ` ${className}` : ''}`}
     >
       {children}
     </Element>
